@@ -1,0 +1,138 @@
+/* =========================================
+   共通変数（カラーパレット）
+   ========================================= */
+:root {
+    --primary-blue: #003366; /* Science Tokyo 深いネイビー */
+    --accent-blue: #008eb3;  /* アクセントの明るい青（シアン系） */
+    --bg-light: #f8f9fa;     /* 全体の背景色（ごく薄いグレー） */
+    --border-color: #dee2e6; /* 枠線の色 */
+    --text-main: #212529;    /* メインテキスト */
+    --text-muted: #6c757d;   /* サブテキスト */
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    padding-top: 60px; /* 固定ヘッダー用 */
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+/* =========================================
+   ヘッダー（ナビゲーション）
+   ========================================= */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 3px solid var(--primary-blue); /* 下部にネイビーの太線 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.navbar-brand {
+    color: var(--primary-blue) !important;
+    letter-spacing: 1px;
+}
+/* ヘッダーのリンクテキスト */
+.navbar-nav .nav-link {
+    color: var(--text-muted) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 10px 15px !important;
+    transition: color 0.3s;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--accent-blue) !important;
+}
+
+/* =========================================
+   フッター
+   ========================================= */
+.footer-link:hover {
+    color: var(--accent-blue) !important;
+    text-decoration: none;
+}
+.back-to-top-text:hover {
+    color: #ffffff !important;
+}
+
+/* =========================================
+   見出し・テキスト
+   ========================================= */
+.tracking-widest { letter-spacing: 0.15em; }
+
+/* ページ最上部のタイトル */
+.page-title {
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.page-title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-blue);
+    margin: 15px auto 0;
+}
+
+/* セクション（H2）の見出し */
+.section-title {
+    color: var(--primary-blue);
+    font-weight: 700;
+    border-left: 5px solid var(--accent-blue); /* 左にシアンのアクセント線 */
+    padding-left: 15px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   サイドバー（目次）
+   ========================================= */
+.sidebar-toc {
+    background-color: transparent !important;
+    border: none !important;
+    border-left: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding-left: 15px !important;
+}
+.sidebar-toc .nav-link {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid transparent;
+    border-radius: 0;
+    margin-bottom: 2px;
+    transition: all 0.2s;
+}
+.sidebar-toc .nav-link:hover {
+    background-color: transparent;
+    color: var(--primary-blue);
+}
+.sidebar-toc .nav-link.active {
+    background-color: transparent;
+    color: var(--primary-blue);
+    border-left: 2px solid var(--accent-blue); /* 現在地にシアンの左線 */
+    font-weight: bold;
+    box-shadow: none;
+}
+
+/* =========================================
+   コンテンツボックス
+   ========================================= */
+.content-box {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* 角丸を廃止し、シャープに */
+    padding: 30px;
+    box-shadow: none; /* 影を廃止 */
+}
+
+/* スクロール時のフェードインアニメーション */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

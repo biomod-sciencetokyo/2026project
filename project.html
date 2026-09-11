@@ -3,64 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project | BIOMOD 2026 Team Science Tokyo</title>
+    <title>PROJECT | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white text-dark" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
+<body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
 
     <div id="header-placeholder"></div>
 
     <main class="container px-3 px-md-0" style="max-width: 1100px; padding-top: 80px; padding-bottom: 100px;">
         
-        <div class="text-center mb-5">
-            <h1 class="display-5 fw-bold text-custom-blue tracking-widest">PROJECT</h1>
+        <!-- 新しいページタイトルデザイン -->
+        <div class="text-center mb-5 pb-4">
+            <h1 class="page-title">PROJECT</h1>
+            <div class="page-title-underline"></div>
         </div>
 
         <div class="row gx-5">
-            <!-- 左側：追従する目次（PCのみ表示） -->
+            <!-- 新しいサイドバーデザイン -->
             <div class="col-lg-3 d-none d-lg-block">
-                <nav id="page-nav" class="nav flex-column sticky-top" style="top: 100px;">
-                    <a class="nav-link custom-link fw-bold" href="#background">Background</a>
-                    <a class="nav-link custom-link fw-bold" href="#design">Design</a>
-                    <a class="nav-link custom-link fw-bold" href="#results">Results</a>
-                    <a class="nav-link custom-link fw-bold" href="#discussion">Discussion</a>
+                <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc" style="top: 100px;">
+                    <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
+                    <a class="nav-link fw-bold" href="#background">1. Background</a>
+                    <a class="nav-link fw-bold" href="#problem">2. Problem</a>
+                    <a class="nav-link fw-bold" href="#approach">3. Our Approach</a>
+                    <a class="nav-link fw-bold" href="#goals">4. Goals</a>
                 </nav>
             </div>
 
-            <!-- 右側：メインコンテンツ -->
+            <!-- メインコンテンツ -->
             <div class="col-lg-9">
                 
                 <section id="background" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 fw-bold text-custom-blue mb-4 pb-2 border-bottom border-secondary-subtle">Background</h2>
-                    <p class="fs-6 text-secondary mb-3" style="line-height: 1.9;">
-                        [背景情報のテキスト]
+                    <!-- 新しいセクション見出しデザイン -->
+                    <h2 class="h3 section-title">1. Background</h2>
+                    <p class="fs-6 text-secondary mb-4" style="line-height: 1.9;">
+                        Lipid bilayers are the fundamental structures of liposomes, extracellular vesicles (EVs), and cells. Among them, we focused on EVs. EVs encapsulate critical molecular information, including RNA, Proteins, and Polypeptides. Extracting and analyzing this information is essential for precise medical diagnosis and understanding dynamic cellular conditions.
                     </p>
-                    <!-- 画像のプレースホルダー -->
-                    <div class="bg-light border rounded-3 d-flex justify-content-center align-items-center mb-3" style="height: 300px;">
-                        <span class="text-muted">Figure 1. Background image placeholder</span>
+                    <!-- 画像枠も角丸・影を廃止し、シンプルな枠線（content-box）に -->
+                    <div class="content-box mb-4 text-center p-0">
+                        <img src="画像URL" alt="Extracellular vesicles" class="img-fluid" style="width: 100%;">
                     </div>
                 </section>
 
-                <section id="design" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 fw-bold text-custom-blue mb-4 pb-2 border-bottom border-secondary-subtle">Design</h2>
-                    <p class="fs-6 text-secondary mb-3" style="line-height: 1.9;">
-                        [設計情報のテキスト]
+                <section id="problem" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">2. Problem</h2>
+                    <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">The Loss of Origin Information</h3>
+                    <p class="fs-6 text-secondary mb-4" style="line-height: 1.9;">
+                        With conventional disruption methods, all vesicles are destroyed simultaneously. While the internal contents are released, the crucial diagnostic information regarding "which EV contained which molecule" is completely lost in the bulk solution.
                     </p>
                 </section>
 
-                <section id="results" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 fw-bold text-custom-blue mb-4 pb-2 border-bottom border-secondary-subtle">Results</h2>
-                    <p class="fs-6 text-secondary mb-3" style="line-height: 1.9;">
-                        [実験結果のテキスト]
+                <section id="approach" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">3. Our Approach</h2>
+                    <p class="fs-6 text-secondary mb-4" style="line-height: 1.9;">
+                        To address these challenges, we propose a <strong>Stimuli-Responsive Membrane Disruption System</strong> utilizing DNA bundles.
                     </p>
-                </section>
-
-                <section id="discussion" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 fw-bold text-custom-blue mb-4 pb-2 border-bottom border-secondary-subtle">Discussion & Future Works</h2>
-                    <p class="fs-6 text-secondary mb-3" style="line-height: 1.9;">
-                        [考察・今後の展望のテキスト]
-                    </p>
+                    <!-- リストボックスも角丸なしの content-box に変更 -->
+                    <div class="content-box mb-4">
+                        <ul class="list-unstyled mb-0 fs-6 text-secondary" style="line-height: 1.8;">
+                            <li class="mb-3 d-flex align-items-start">
+                                <span class="fw-bold me-2" style="color: var(--accent-blue);">✔</span>
+                                <div><strong>Target Specificity:</strong> The reaction is triggered ONLY by a specific signal (e.g., target miRNA).</div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <span class="fw-bold me-2" style="color: var(--accent-blue);">✔</span>
+                                <div><strong>In Situ Assembly:</strong> Utilizing Hybridization Chain Reaction (HCR), rigid DNA bundles are dynamically assembled directly on the target membrane.</div>
+                            </li>
+                        </ul>
+                    </div>
                 </section>
 
             </div>
