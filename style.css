@@ -15,6 +15,12 @@ body {
     color: var(--text-main);
     padding-top: 60px; /* 固定ヘッダー用 */
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    font-size: 18px;
+}
+
+p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
 }
 
 /* =========================================
