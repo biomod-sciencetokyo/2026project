@@ -13,14 +13,12 @@
 
     <main class="container px-3 px-md-0" style="max-width: 1200px; padding-top: 80px; padding-bottom: 100px;">
         
-        <!-- 新しいページタイトルデザイン -->
         <div class="text-center mb-5 pb-4">
             <h1 class="page-title">PROJECT</h1>
             <div class="page-title-underline"></div>
         </div>
 
         <div class="row gx-5">
-            <!-- 新しいサイドバーデザイン -->
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc" style="top: 100px;">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
@@ -31,52 +29,119 @@
                 </nav>
             </div>
 
-            <!-- メインコンテンツ -->
             <div class="col-lg-10">
-                
                 <section id="background" class="fade-in-section mb-5 pt-4">
-                    <!-- 新しいセクション見出しデザイン -->
-                    <h2 class="h3 section-title">1. Background</h2>
-                    <p class="text-secondary mb-4" style="line-height: 1.9;">
-                        Lipid bilayers are the fundamental structures of liposomes, extracellular vesicles (EVs), and cells. Among them, we focused on EVs. EVs encapsulate critical molecular information, including RNA, Proteins, and Polypeptides. Extracting and analyzing this information is essential for precise medical diagnosis and understanding dynamic cellular conditions.
+                    <h2 class="section-title">1. Background</h2>
+                    <p class="text-secondary mb-4">
+                        Lipid bilayers play an essential role as barriers separating the interior and exterior of cells. Among them, we focused on Extracellular Vesicles (EVs). EVs encapsulate critical molecular information, including RNA, Proteins, and Polypeptides. Extracting and analyzing this information is essential for precise medical diagnosis and understanding dynamic cellular conditions.
                     </p>
-                    <!-- 画像枠も角丸・影を廃止し、シンプルな枠線（content-box）に -->
-                    <div class="content-box mb-4 text-center p-0">
-                        <img src="画像URL" alt="Extracellular vesicles" class="img-fluid" style="width: 100%;">
+                    <div class="ratio ratio-16x9 content-box p-0 mb-4">
+                        <div class="d-flex justify-content-center align-items-center bg-light">
+                            <span class="text-muted">EV and Cell Concept Diagram</span>
+                        </div>
                     </div>
                 </section>
 
                 <section id="problem" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">2. Problem</h2>
+                    <h2 class="section-title">2. Problem</h2>
                     <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">The Loss of Origin Information</h3>
-                    <p class=" text-secondary mb-4" style="line-height: 1.9;">
-                        With conventional disruption methods, all vesicles are destroyed simultaneously. While the internal contents are released, the crucial diagnostic information regarding "which EV contained which molecule" is completely lost in the bulk solution.
+                    <p class="text-secondary mb-4">
+                        With conventional bulk disruption methods, all vesicles are destroyed simultaneously. While internal contents are released, crucial diagnostic information regarding "which EV contained which molecule" is completely lost.
+                    </p>
+                    <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Limitations of Current DNA Nanotechnology (Bennett et al., 2024)</h3>
+                    <p class="text-secondary mb-4">
+                        Recent DNA nanotechnology approaches, such as DNA Barrels, attempt membrane disruption using physical force. However, because these pre-assembled structures are "Always Active," they indiscriminately attack membranes, leading to severe off-target effects.
                     </p>
                 </section>
 
                 <section id="approach" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">3. Our Approach</h2>
-                    <p class=" text-secondary mb-4" style="line-height: 1.9;">
-                        text
+                    <h2 class="section-title">3. Our Approach</h2>
+                    <p class="text-secondary mb-4">
+                        To address these challenges, we propose a Stimuli-Responsive Membrane Disruption System using DNA bundles.
                     </p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="content-box h-100">
+                                <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Trigger-Dependent Stimulus-Response</h3>
+                                <p class="text-secondary mb-0">Reacts ONLY to specific signals (e.g., target miRNA) to avoid off-target effects.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="content-box h-100">
+                                <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">In Situ Bundle HCR</h3>
+                                <p class="text-secondary mb-0">Utilizing Hybridization Chain Reaction, rigid DNA bundles are dynamically assembled.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="content-box h-100">
+                                <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Physical Rupture via High Rigidity</h3>
+                                <p class="text-secondary mb-0">Anchored via cholesterol, the extreme bending stiffness of DNA bundles induces localized membrane rupture.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratio ratio-21x9 content-box p-0 mb-4">
+                        <div class="d-flex justify-content-center align-items-center bg-light">
+                            <span class="text-muted">Stimuli-Responsive Membrane Disruption System Schematic</span>
+                        </div>
+                    </div>
                 </section>
-                
+
                 <section id="goals" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">4. Goals</h2>
-                    <p class=" text-secondary mb-4" style="line-height: 1.9;">
-                        text
-                    </p>
-                    <div class="content-box mb-4">
-                        <ul class="list-unstyled mb-0  text-secondary" style="line-height: 1.8;">
-                            <li class="mb-3 d-flex align-items-start">
-                                <span class="fw-bold me-2" style="color: var(--accent-blue);">✔</span>
-                                <div><strong>Target Specificity:</strong> The reaction is triggered ONLY by a specific signal (e.g., target miRNA).</div>
-                            </li>
-                            <li class="mb-3 d-flex align-items-start">
-                                <span class="fw-bold me-2" style="color: var(--accent-blue);">✔</span>
-                                <div><strong>In Situ Assembly:</strong> Utilizing Hybridization Chain Reaction (HCR), rigid DNA bundles are dynamically assembled directly on the target membrane.</div>
-                            </li>
-                        </ul>
+                    <h2 class="section-title">4. Goals and Achievements</h2>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <div class="content-box h-100">
+                                <h3 class="h5 fw-bold mb-4" style="color: var(--primary-blue);">Achievements in Simulation</h3>
+                                <ul class="list-unstyled mb-0 text-secondary">
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="content-box h-100">
+                                <h3 class="h5 fw-bold mb-4" style="color: var(--primary-blue);">Achievements in Experiment</h3>
+                                <ul class="list-unstyled mb-0 text-secondary">
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span>text</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-box text-center">
+                        <p class="fw-bold mb-2" style="color: var(--primary-blue);">Our Goal</p>
+                        <h3 class="h5 fw-bold mb-3" style="color: var(--accent-blue);">Selectively Disrupt ONLY the Membrane of the Target EV.</h3>
+                        <p class="text-secondary mb-0">
+                            By achieving this goal, we enable safe extraction of contents from specific disease-related EVs without destroying healthy vesicles, paving the way for next-generation targeted diagnostics.
+                        </p>
                     </div>
                 </section>
 

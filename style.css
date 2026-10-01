@@ -132,6 +132,19 @@ p {
     box-shadow: none; /* 影を廃止 */
 }
 
+.learn-more-btn {
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.learn-more-btn:hover,
+.learn-more-btn:focus-visible {
+    border-color: var(--primary-blue);
+    color: #ffffff;
+    background-color: var(--primary-blue);
+}
+
 /* スクロール時のフェードインアニメーション */
 .fade-in-section {
     opacity: 0;
