@@ -1,19 +1,29 @@
 /* =========================================
-   共通変数（カラーパレット）
+   Midnight Waterfall theme
    ========================================= */
 :root {
-    --primary-blue: #003366; /* Science Tokyo 深いネイビー */
-    --accent-blue: #008eb3;  /* アクセントの明るい青（シアン系） */
-    --bg-light: #f8f9fa;     /* 全体の背景色（ごく薄いグレー） */
-    --border-color: #dee2e6; /* 枠線の色 */
-    --text-main: #212529;    /* メインテキスト */
-    --text-muted: #6c757d;   /* サブテキスト */
+    --primary-blue: #0d1b34;
+    --accent-blue: #62c5d5;
+    --accent-gold: #d8b96f;
+    --bg-light: #091426;
+    --border-color: #2b405d;
+    --text-main: #e5edf5;
+    --text-muted: #a4b3c5;
+    --surface-dark: #10213b;
+    --surface-raised: #142945;
 }
 
 body {
     background-color: var(--bg-light);
+    background-image:
+        linear-gradient(rgba(98, 197, 213, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(98, 197, 213, 0.035) 1px, transparent 1px),
+        radial-gradient(ellipse at 50% 0%, rgba(98, 197, 213, 0.09), transparent 58%),
+        linear-gradient(180deg, #0b1830 0%, #091426 60%, #0d1b34 100%);
+    background-size: 28px 28px, 28px 28px, auto, auto;
+    background-attachment: fixed;
     color: var(--text-main);
-    padding-top: 60px; /* 固定ヘッダー用 */
+    padding-top: 60px;
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     font-size: 18px;
 }
@@ -23,75 +33,131 @@ p {
     margin-bottom: 1.5rem;
 }
 
-/* =========================================
-   ヘッダー（ナビゲーション）
-   ========================================= */
+a {
+    color: var(--accent-blue);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-gold);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 3px;
+}
+
+/* Navigation */
 .navbar {
-    background-color: #ffffff !important;
-    border-bottom: 3px solid var(--primary-blue); /* 下部にネイビーの太線 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background-color: #0b1830 !important;
+    border-bottom: 1px solid #314763;
+    box-shadow: 0 2px 12px rgba(2, 9, 20, 0.28);
 }
+
 .navbar-brand {
-    color: var(--primary-blue) !important;
-    letter-spacing: 1px;
+    color: #e7edf4 !important;
+    letter-spacing: 0.04em;
 }
-/* ヘッダーのリンクテキスト */
+
+.navbar-toggler {
+    border: 1px solid #7890aa;
+    border-radius: 0;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) grayscale(1) brightness(1.8);
+}
+
 .navbar-nav .nav-link {
-    color: var(--text-muted) !important;
+    border-bottom: 1px solid transparent;
+    color: #c2cfdd !important;
     font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    padding: 10px 15px !important;
-    transition: color 0.3s;
+    letter-spacing: 0.035em;
+    padding: 10px 13px !important;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
+
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    color: var(--accent-blue) !important;
+    background-color: rgba(98, 197, 213, 0.08);
+    border-bottom-color: var(--accent-gold);
+    color: var(--accent-gold) !important;
+    transform: translateY(-1px);
 }
 
-/* =========================================
-   フッター
-   ========================================= */
+/* Footer */
 .footer-link:hover {
-    color: var(--accent-blue) !important;
+    color: var(--accent-gold) !important;
     text-decoration: none;
 }
+
 .back-to-top-text:hover {
-    color: #ffffff !important;
+    color: var(--accent-gold) !important;
 }
 
-/* =========================================
-   見出し・テキスト
-   ========================================= */
-.tracking-widest { letter-spacing: 0.15em; }
+/* Headings */
+.tracking-widest {
+    letter-spacing: 0.12em;
+}
 
-/* ページ最上部のタイトル */
 .page-title {
-    color: var(--primary-blue);
+    color: #e5edf5;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
 }
+
 .page-title-underline {
-    width: 60px;
-    height: 4px;
-    background-color: var(--accent-blue);
+    width: 56px;
+    height: 2px;
+    background-color: var(--accent-gold);
     margin: 15px auto 0;
 }
 
-/* セクション（H2）の見出し */
 .section-title {
-    color: var(--primary-blue);
+    color: #e5edf5;
     font-weight: 700;
-    border-left: 5px solid var(--accent-blue); /* 左にシアンのアクセント線 */
+    border-left: 3px solid var(--accent-gold);
     padding-left: 15px;
     margin-bottom: 30px;
     text-transform: uppercase;
 }
 
-/* =========================================
-   サイドバー（目次）
-   ========================================= */
+h3,
+h4,
+h5,
+h6 {
+    color: #e5edf5;
+}
+
+#mentors h3.text-dark {
+    color: #e5edf5 !important;
+}
+
+/* Darken sections that were previously hard-coded as white. */
+.fade-in-section[style*="background-color: #ffffff"] {
+    background-color: transparent !important;
+}
+
+.text-secondary {
+    color: #c0ccda !important;
+}
+
+.text-muted {
+    color: #a4b3c5 !important;
+}
+
+.bg-light .text-muted {
+    color: #5d6d80 !important;
+}
+
+[style*="color: var(--primary-blue)"] {
+    color: #dbe6f1 !important;
+}
+
+/* Sidebar */
 .sidebar-toc {
     background-color: transparent !important;
     border: none !important;
@@ -100,58 +166,95 @@ p {
     box-shadow: none !important;
     padding-left: 15px !important;
 }
+
 .sidebar-toc .nav-link {
-    color: var(--text-muted);
+    color: #aebdce;
     font-size: 0.9rem;
     padding: 6px 0 6px 12px;
     border-left: 2px solid transparent;
     border-radius: 0;
     margin-bottom: 2px;
-    transition: all 0.2s;
-}
-.sidebar-toc .nav-link:hover {
-    background-color: transparent;
-    color: var(--primary-blue);
-}
-.sidebar-toc .nav-link.active {
-    background-color: transparent;
-    color: var(--primary-blue);
-    border-left: 2px solid var(--accent-blue); /* 現在地にシアンの左線 */
-    font-weight: bold;
-    box-shadow: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-/* =========================================
-   コンテンツボックス
-   ========================================= */
+.sidebar-toc .nav-link:hover,
+.sidebar-toc .nav-link.active {
+    background-color: transparent;
+    color: var(--accent-gold);
+    border-left-color: var(--accent-blue);
+}
+
+/* Content panels */
 .content-box {
-    background-color: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: 0; /* 角丸を廃止し、シャープに */
+    background-color: var(--surface-dark);
+    border: 1px solid #314763;
+    border-radius: 0;
     padding: 30px;
-    box-shadow: none; /* 影を廃止 */
+    background-image:
+        linear-gradient(var(--accent-gold), var(--accent-gold)),
+        linear-gradient(var(--accent-gold), var(--accent-gold)),
+        linear-gradient(var(--accent-blue), var(--accent-blue)),
+        linear-gradient(var(--accent-blue), var(--accent-blue)),
+        linear-gradient(var(--accent-blue), var(--accent-blue)),
+        linear-gradient(var(--accent-blue), var(--accent-blue)),
+        linear-gradient(var(--accent-gold), var(--accent-gold)),
+        linear-gradient(var(--accent-gold), var(--accent-gold));
+    background-repeat: no-repeat;
+    background-position: top 3px left 3px, top 3px left 3px, top 3px left 3px, top 3px left 3px,
+        bottom 3px right 3px, bottom 3px right 3px, bottom 3px right 3px, bottom 3px right 3px;
+    background-size: 10px 1px, 1px 10px, 5px 1px, 1px 5px, 10px 1px, 1px 10px, 5px 1px, 1px 5px;
+    box-shadow: 0 3px 10px rgba(2, 9, 20, 0.16);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.content-box:hover {
+    border-color: #526d88;
+    box-shadow: 0 5px 14px rgba(2, 9, 20, 0.22);
+    transform: translateY(-2px);
+}
+
+.content-box.bg-light {
+    background-color: #eef4f7 !important;
+}
+
+#approach .ratio.content-box {
+    background: #ffffff !important;
 }
 
 .learn-more-btn {
-    border: 1px solid var(--primary-blue);
-    color: var(--primary-blue);
+    border: 1px solid var(--accent-gold);
+    border-radius: 0;
+    color: var(--accent-gold);
     background-color: transparent;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-.learn-more-btn:hover,
-.learn-more-btn:focus-visible {
-    border-color: var(--primary-blue);
-    color: #ffffff;
-    background-color: var(--primary-blue);
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
-/* スクロール時のフェードインアニメーション */
+.learn-more-btn:hover,
+.learn-more-btn:focus-visible {
+    border-color: var(--accent-gold);
+    color: var(--primary-blue);
+    background-color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+/* Scroll reveal */
 .fade-in-section {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
+
 .fade-in-section.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
 }
