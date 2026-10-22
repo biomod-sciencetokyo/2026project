@@ -14,18 +14,87 @@
 }
 
 body {
+    isolation: isolate;
+    position: relative;
     background-color: var(--bg-light);
     background-image:
         linear-gradient(rgba(98, 197, 213, 0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(98, 197, 213, 0.035) 1px, transparent 1px),
-        radial-gradient(ellipse at 50% 0%, rgba(98, 197, 213, 0.09), transparent 58%),
-        linear-gradient(180deg, #0b1830 0%, #091426 60%, #0d1b34 100%);
+        radial-gradient(ellipse at 50% 0%, rgba(98, 197, 213, 0.07), transparent 58%),
+        linear-gradient(180deg, #0b1830 0%, #091426 60%, #0a1730 100%);
     background-size: 28px 28px, 28px 28px, auto, auto;
     background-attachment: fixed;
     color: var(--text-main);
     padding-top: 60px;
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     font-size: 18px;
+}
+
+.content-container {
+    max-width: 1080px;
+}
+
+.ambient-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body > header,
+body > main,
+#footer-placeholder {
+    position: relative;
+    z-index: 1;
+}
+
+.ambient-particles span {
+    position: absolute;
+    width: var(--sparkle-size, 24px);
+    aspect-ratio: 1;
+    background-color: #c9f5ff;
+    clip-path: polygon(
+        44% 0, 56% 0, 56% 19%, 69% 19%, 69% 31%,
+        81% 31%, 81% 44%, 100% 44%, 100% 56%,
+        81% 56%, 81% 69%, 69% 69%, 69% 81%,
+        56% 81%, 56% 100%, 44% 100%, 44% 81%,
+        31% 81%, 31% 69%, 19% 69%, 19% 56%,
+        0 56%, 0 44%, 19% 44%, 19% 31%,
+        31% 31%, 31% 19%, 44% 19%
+    );
+    filter: drop-shadow(0 0 5px rgba(138, 226, 255, 0.7));
+    opacity: 0;
+    animation: pixel-star-twinkle var(--twinkle-duration, 4s) ease-in-out var(--twinkle-delay, 0s) infinite;
+}
+
+.ambient-particles span:nth-child(1) { left: 5%; top: 8%; --sparkle-size: 30px; --twinkle-delay: -1.2s; }
+.ambient-particles span:nth-child(2) { left: 12%; top: 25%; --sparkle-size: 20px; --twinkle-duration: 3.6s; --twinkle-delay: -3.1s; }
+.ambient-particles span:nth-child(3) { left: 4%; top: 41%; --sparkle-size: 32px; --twinkle-duration: 5s; --twinkle-delay: -1.8s; }
+.ambient-particles span:nth-child(4) { left: 11%; top: 58%; --sparkle-size: 24px; --twinkle-duration: 4.2s; --twinkle-delay: -0.4s; }
+.ambient-particles span:nth-child(5) { left: 5%; top: 75%; --sparkle-size: 18px; --twinkle-duration: 3s; --twinkle-delay: -1.7s; }
+.ambient-particles span:nth-child(6) { left: 13%; top: 91%; --sparkle-size: 28px; --twinkle-duration: 3.1s; --twinkle-delay: -0.9s; }
+.ambient-particles span:nth-child(7) { left: 91%; top: 8%; --sparkle-size: 25px; --twinkle-duration: 4.2s; --twinkle-delay: -0.4s; }
+.ambient-particles span:nth-child(8) { left: 95%; top: 25%; --sparkle-size: 16px; --twinkle-duration: 3s; --twinkle-delay: -1.7s; }
+.ambient-particles span:nth-child(9) { left: 88%; top: 41%; --sparkle-size: 28px; --twinkle-duration: 3.1s; --twinkle-delay: -0.9s; }
+.ambient-particles span:nth-child(10) { left: 94%; top: 58%; --sparkle-size: 22px; --twinkle-duration: 4.6s; --twinkle-delay: -2.4s; }
+.ambient-particles span:nth-child(11) { left: 90%; top: 75%; --sparkle-size: 32px; --twinkle-duration: 5s; --twinkle-delay: -2.8s; }
+.ambient-particles span:nth-child(12) { left: 96%; top: 91%; --sparkle-size: 18px; --twinkle-duration: 3.4s; --twinkle-delay: -1.3s; }
+
+@keyframes pixel-star-twinkle {
+    0%, 100% {
+        opacity: 0.08;
+        transform: scale(0.72) rotate(0deg);
+    }
+
+    45%, 55% {
+        opacity: 0.85;
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08) rotate(0deg);
+    }
 }
 
 p {
@@ -133,6 +202,10 @@ h6 {
 }
 
 #mentors h3.text-dark {
+    color: #e5edf5 !important;
+}
+
+.team-member-card h4.text-dark {
     color: #e5edf5 !important;
 }
 
@@ -256,5 +329,10 @@ h6 {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+    }
+
+    .ambient-particles span {
+        animation: none;
+        opacity: 0.28;
     }
 }
