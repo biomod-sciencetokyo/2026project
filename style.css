@@ -549,6 +549,63 @@ h6, .h6 { font-size: 1.08rem; }
     padding-top: 1rem;
 }
 
+/* ELSI Utilities */
+.elsi-icon-badge {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 8px;
+    background: rgba(98, 197, 213, 0.12);
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.content-box:hover .elsi-icon-badge {
+    transform: scale(1.08);
+    background: rgba(98, 197, 213, 0.22);
+    box-shadow: 0 0 12px rgba(98, 197, 213, 0.35);
+}
+
+.elsi-icon-badge-gold {
+    background: rgba(216, 185, 111, 0.12);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.content-box:hover .elsi-icon-badge-gold {
+    transform: scale(1.08);
+    background: rgba(216, 185, 111, 0.22);
+    box-shadow: 0 0 12px rgba(216, 185, 111, 0.35);
+}
+
+.elsi-icon-badge-teal {
+    background: rgba(78, 205, 196, 0.12);
+    border-color: #4ecdc4;
+    color: #4ecdc4;
+}
+
+.content-box:hover .elsi-icon-badge-teal {
+    transform: scale(1.08);
+    background: rgba(78, 205, 196, 0.22);
+    box-shadow: 0 0 12px rgba(78, 205, 196, 0.35);
+}
+
+/* Reference List Styles */
+.reference-link {
+    color: #7e91a6 !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-size: 0.85rem;
+    word-break: break-word;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.reference-link:hover {
+    color: var(--accent-blue) !important;
+}
+
 /* Scroll reveal */
 .fade-in-section {
     opacity: 0;
