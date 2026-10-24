@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELSI | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=css-cleanup-6">
+    <link rel="stylesheet" href="style.css?v=css-cleanup-15">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
 
     <div class="ambient-particles" aria-hidden="true">
@@ -19,44 +21,229 @@
     <div id="header-placeholder"></div>
 
     <main class="container content-container px-3 px-md-0" style="padding-top: 80px; padding-bottom: 100px;">
-        
-        <!-- 新しいページタイトルデザイン -->
+
+        <!-- ページタイトルデザイン -->
         <div class="text-center mb-5 pb-4">
             <h1 class="page-title">ELSI</h1>
             <div class="page-title-underline"></div>
+            <p class="text-muted mt-3 mb-0" style="font-size: 1.05rem; letter-spacing: 0.05em;">
+                Ethical, Legal, and Social Issues of Stimuli-Responsive DNA Nanomachines
+            </p>
         </div>
 
         <div class="row gx-5">
-            <!-- 新しいサイドバーデザイン -->
+            <!-- サイドバーデザイン -->
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc" style="top: 100px;">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
-                    <a class="nav-link fw-bold" href="#ethics">1. Ethics</a>
-                    <a class="nav-link fw-bold" href="#safety">2. Biosafety</a>
+                    <a class="nav-link fw-bold" href="#ethical-issues">1. Ethical Issues</a>
+                    <a class="nav-link fw-bold mt-2" href="#legal-issues">2. Legal Issues</a>
+                    <a class="nav-link fw-bold mt-2" href="#social-issues">3. Social Issues</a>
                 </nav>
             </div>
 
             <!-- 右側：メインコンテンツ -->
             <div class="col-lg-10">
-                
-                <section id="ethics" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">1. Ethical Considerations</h2>
-                    <h4 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Minimizing Off-Target Toxicity</h4>
-                    <p class=" text-secondary mb-4" style="line-height: 1.9;">
-                        The core ethical advantage of our Stimuli-Responsive Membrane Disruption System lies in its extreme selectivity. Traditional chemotherapy and even advanced targeted nanotherapies often cause collateral damage to healthy tissues. Our system remains entirely inert until it physically encounters a specific disease biomarker (e.g., miR-21). This boolean logic ("AND" gate) ensures that membrane rupture is confined strictly to pathological cells, upholding the ethical mandate of <em>non-maleficence</em> in medical treatments.
-                    </p>
+
+                <!-- 1. Ethical Issues -->
+                <section id="ethical-issues" class="fade-in-section mb-5 pt-3" style="scroll-margin-top: 80px;">
+                    <h2 class="h3 section-title">1. Ethical Issues</h2>
+
+                    <!-- 1.1 Verification of Off-Target Rupture Risks and Safety -->
+                    <div id="off-target-safety" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="elsi-icon-badge me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Verification of Off-Target Rupture Risks and Safety</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            Because this technology physically ruptures membranes using the structural rigidity of DNA,
+                            the risk of inadvertently damaging normal cell membranes—beyond the targeted extracellular
+                            vesicles (EVs) and cancer cells—must be thoroughly evaluated. For therapeutic applications,
+                            establishing high selectivity and in vivo safety is essential to prevent unintended effects
+                            on normal tissues and the emergence of novel side effects.
+                        </p>
+                    </div>
+
+                    <!-- 1.2 Implementation of Informed Consent -->
+                    <div id="informed-consent" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="elsi-icon-badge me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Implementation of Informed Consent</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            In the stages of clinical research and future practical application, obtaining informed
+                            consent from patients is critical. As this approach differs fundamentally from conventional
+                            drug therapies, a robust communication framework must be established to provide sincere
+                            explanations, ensuring patients fully understand and accept the mechanisms, potential risks,
+                            and expected benefits.
+                        </p>
+                    </div>
+
+                    <!-- 1.3 Research Integrity and Prevention of Dual-Use -->
+                    <div id="dual-use" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="elsi-icon-badge me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Research Integrity and Prevention of Dual-Use</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            Since this system handles DNA architecture designed to trigger in response to specific
+                            sequences, the research process itself must be strictly managed to prevent misconduct or
+                            unintended applications. Furthermore, addressing the "dual-use" risk—wherein developed DNA
+                            sequences or technologies could be misused for offensive weapons or bioterrorism to
+                            selectively destroy normal cells—requires proactive disclosure and advocacy of peaceful
+                            applications and safety to society.
+                        </p>
+                    </div>
+
                 </section>
 
-                <section id="safety" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">2. Biosafety & Security</h2>
-                    <h4 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Material Safety of DNA Nanotechnology</h4>
-                    <p class=" text-secondary mb-4" style="line-height: 1.9;">
-                        Unlike synthetic polymers or heavy-metal nanoparticles, our structural material is entirely composed of nucleic acids (DNA). DNA is inherently biocompatible and biodegradable. In the event of systemic administration, disassembled or degraded DNA strands can be safely metabolized by endogenous nucleases (e.g., DNase I), posing minimal long-term accumulation risks in the environment or the human body.
-                    </p>
-                    <h4 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Laboratory Safety</h4>
-                    <p class=" text-secondary mb-4" style="line-height: 1.9;">
-                        All wet experiments planned for our proof of concept will be conducted using synthetic lipid vesicles (liposomes) and commercially synthesized DNA oligos. No pathogenic organisms, live viruses, or infectious human samples are required for the fundamental validation, adhering strictly to Biosafety Level 1 (BSL-1) protocols.
-                    </p>
+                <!-- 2. Legal Issues -->
+                <section id="legal-issues" class="fade-in-section mb-5 pt-4" style="scroll-margin-top: 80px;">
+                    <h2 class="h3 section-title">2. Legal Issues</h2>
+
+                    <!-- 2.1 Protection of Intellectual Property and Clarification of AI-Generated Output -->
+                    <div id="ip-ai-output" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-gold me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Protection of Intellectual Property and Clarification of
+                                AI-Generated Output</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            Outcomes generated from this research activity (including data, DNA designs, algorithms, and
+                            experimental know-how) constitute critical intellectual property. Protecting IP rights is
+                            essential not only for pursuing commercial value, but also for preventing unauthorized
+                            monopolization or misuse by third parties, ensuring appropriate societal benefits.
+                            Furthermore, when leveraging AI for DNA sequence design or computational simulations, proper
+                            rights management aligned with relevant laws and guidelines must be conducted to avoid
+                            ambiguities surrounding the ownership of copyrights and patent rights for generated outputs.
+                        </p>
+                    </div>
+
+                    <!-- 2.2 Compliance with Medical Regulations (PMDA Approval) -->
+                    <div id="pmda-approval" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-gold me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-file-medical"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Compliance with Medical Regulations (PMDA Approval)</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            To apply this technology clinically for therapeutic purposes, it must undergo rigorous
+                            evaluation and receive approval from regulatory agencies, such as Japan's Pharmaceuticals
+                            and Medical Devices Agency (PMDA), under the Pharmaceuticals and Medical Devices Act.
+                        </p>
+                    </div>
+
+                    <!-- 2.3 Adherence to Biosafety Regulations and the Cartagena Act -->
+                    <div id="cartagena-act" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-gold me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Adherence to Biosafety Regulations and the Cartagena Act
+                            </h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            To guarantee the safety of research processes involving artificial DNA sequence design,
+                            genetic materials, and nucleic acids, experiments must strictly comply with biosafety laws
+                            and laboratory safety standards, including the Cartagena Act (regulations on the use of
+                            genetically modified organisms).
+                        </p>
+                    </div>
+
+                </section>
+
+                <!-- 3. Social Issues -->
+                <section id="social-issues" class="fade-in-section mb-5 pt-4" style="scroll-margin-top: 80px;">
+                    <h2 class="h3 section-title">3. Social Issues</h2>
+
+                    <!-- 3.1 Privacy Protection of Genomic Data and Human Rights Considerations -->
+                    <div id="genomic-privacy" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-teal me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Privacy Protection of Genomic Data and Human Rights Considerations</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            Guided by the principles of the Universal Declaration on the Human Genome and Human Rights, any research, treatment, or diagnosis affecting an individual's genome or RNA expression patterns requires a rigorous prior assessment of associated risks and benefits. Personal genetic information acquired during target identification and cancer screening represents sensitive personal data; thus, a robust data governance system must be established to prevent unauthorized use, privacy infringement, and discriminatory practices.
+                        </p>
+                    </div>
+
+                    <!-- 3.2 Addressing Global Healthcare Disparities -->
+                    <div id="healthcare-disparities" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-teal me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-earth-americas"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Addressing Global Healthcare Disparities</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            Developing cutting-edge treatments based on advanced DNA nanotechnology carries the risk of escalating treatment costs and exacerbating global healthcare disparities due to unevenly distributed manufacturing infrastructure. Implementation feasibility varies significantly between developed nations or affluent patient populations and low-income regions with underdeveloped medical infrastructure.
+                        </p>
+                    </div>
+
+                    <!-- 3.3 Fostering Public Acceptance and Trust -->
+                    <div id="public-acceptance" class="content-box mb-4" style="scroll-margin-top: 90px;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-teal me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Fostering Public Acceptance and Trust</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            The public may harbor anxieties or concerns regarding research involving genetic manipulation. Consequently, proactive efforts must be made to clearly explain the underlying mechanisms, control frameworks, and safety measures to secure accurate understanding and trust from society.
+                        </p>
+                    </div>
+
+                </section>
+
+                <!-- Reference Section (Subtle & compact) -->
+                <section id="reference" class="mt-5 pt-4" style="border-top: 1px solid rgba(43, 64, 93, 0.45);">
+                    <h3 class="h6 fw-bold tracking-widest mb-3" style="font-size: 0.88rem; color: #7e91a6 !important;">
+                        Reference
+                    </h3>
+                    <ul class="list-unstyled mb-0" style="line-height: 1.85;">
+                        <li class="mb-2">
+                            <a href="https://elsi.osaka-u.ac.jp/research/about_elsi" target="_blank" rel="noopener noreferrer" class="reference-link">
+                                ELSI とは - 大阪大学 社会技術共創研究センター（ELSI センター）
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://euipo.europa.eu/" target="_blank" rel="noopener noreferrer" class="reference-link">
+                                Intellectual Property for Researchers - EUIPO
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://www.pmda.go.jp/" target="_blank" rel="noopener noreferrer" class="reference-link">
+                                独立行政法人 医薬品医療機器総合機構
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://www.pmda.go.jp/english/review-services/regulatory-info/0002.html" target="_blank" rel="noopener noreferrer" class="reference-link">
+                                Regulations Regarding Living Modified Organisms (Genetically Modified Organisms) | Pharmaceuticals and Medical Devices Agency
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/universal-declaration-human-genome-and-human-rights" target="_blank" rel="noopener noreferrer" class="reference-link">
+                                Universal Declaration on the Human Genome and Human Rights | OHCHR
+                            </a>
+                        </li>
+                    </ul>
                 </section>
 
             </div>
@@ -68,4 +255,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

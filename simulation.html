@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=css-cleanup-6">
+    <link rel="stylesheet" href="style.css?v=css-cleanup-14">
 </head>
-<body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
+
+<body class="simulation-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
 
     <div class="ambient-particles" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
@@ -27,103 +29,479 @@
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc" style="top: 100px;">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
-                    <a class="nav-link fw-bold" href="#membrane-disruption">MembranedisruptionSimulation</a>
-                    <a class="nav-link" href="#two-d-md">2DMD simulation</a>
-                    <a class="nav-link" href="#three-d">3D simulation</a>
-                    <a class="nav-link fw-bold" href="#hcr-reaction">HCRreaction</a>
+                    <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Disruption</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
+                        <a class="nav-link" href="#three-d">1.2 3D Thermodynamic Simulation</a>
+                        <a class="nav-link" href="#guv-env">1.3 GUV Environment</a>
+                    </div>
+                    <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Reaction</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#hcr-self-assembly">2.1 Self Assembly</a>
+                        <a class="nav-link" href="#hcr-possibility">2.2 Reaction Possibility</a>
+                    </div>
                 </nav>
             </div>
 
             <div class="col-lg-10">
-                <section id="simulation" class="fade-in-section mb-5 pt-4">
-                    <section id="membrane-disruption" class="mb-5 pt-3">
-                        <h2 class="section-title">MembranedisruptionSimulation</h2>
+                <!-- 1. Membrane Disruption -->
+                <section id="membrane-disruption" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">1. Membrane Disruption</h2>
 
-                        <div id="two-d-md" class="mb-5 pt-3">
-                            <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">2DMD simulation</h3>
-                            <div class="content-box mb-4">
-                                <p class="text-secondary mb-0">[Add an introduction to the 2DMD simulation.]</p>
+                    <!-- 1.1 2D MD-CG Simulation -->
+                    <div id="two-d-md" class="mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">1.1 MD-CG Simulation in 2D
+                            Environment</h3>
+                        <p class="text-secondary mb-4">
+                            To understand how DNA bundles deform and rupture extracellular vesicle (EV) membranes, we
+                            established a two-dimensional coarse-grained molecular dynamics (CG-MD) simulation. This
+                            cross-sectional model lets us examine the competition between DNA-bundle bending stiffness
+                            and lipid-membrane elasticity. The model represents groups of atoms as single beads and
+                            includes the DNA bundle, cholesterol anchors, flexible linkers, and the EV membrane lipid
+                            bilayer, enabling large-scale structural dynamics to be observed over extended timescales.
+                        </p>
+
+                        <!-- Accordion: More about 2D MD-CG simulation -->
+                        <div class="custom-accordion">
+                            <button class="custom-accordion-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#more-2d-md" aria-expanded="false" aria-controls="more-2d-md">
+                                <span class="accordion-icon-badge">&#9656;</span>
+                                <span>More about 2D MD-CG Simulation</span>
+                            </button>
+                            <div class="collapse" id="more-2d-md">
+                                <div class="custom-accordion-body">
+                                    <h5 class="fw-bold mb-3 text-info">Detailed Theory &amp; Parameter Settings</h5>
+                                    <p class="text-secondary">The dynamics of this system are governed by several key
+                                        biophysical models. To implicitly account for the aqueous solvent environment
+                                        without rendering every water molecule, the motion of each bead is calculated
+                                        using Langevin dynamics:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="m sub i times d v sub i over d t equals negative gamma sub i v sub i plus F sub i superscript C plus F sub i superscript R">
+                                        <i>m</i><sub>i</sub> d<strong>v</strong><sub>i</sub>/dt =
+                                        −γ<sub>i</sub><strong>v</strong><sub>i</sub>
+                                        + <strong>F</strong><sub>i</sub><sup>C</sup> +
+                                        <strong>F</strong><sub>i</sub><sup>R</sup>
+                                    </p>
+                                    <p class="text-secondary">Here, <i>m</i><sub>i</sub> and
+                                        <strong>v</strong><sub>i</sub> represent the mass and velocity of particle
+                                        <i>i</i>, and γ<sub>i</sub> is the friction coefficient of the solvent. The
+                                        forces are divided into inter-particle conservative forces
+                                        (<strong>F</strong><sub>i</sub><sup>C</sup>) and a stochastic Gaussian noise
+                                        term (<strong>F</strong><sub>i</sub><sup>R</sup>) representing thermal
+                                        fluctuations (Brownian motion).
+                                    </p>
+                                    <p class="text-secondary">The behavior of the EV membrane is based on Helfrich's
+                                        continuum elastic theory, where the bending energy of the lipid bilayer is
+                                        primarily determined by its bending modulus (κ) and curvature. In our CG model,
+                                        this macroscopic elasticity is approximated by tuning the angular and dihedral
+                                        potentials between the lipid beads.</p>
+                                    <p class="text-secondary">To connect the DNA bundle to the membrane via
+                                        cholesterol, we utilized the Finitely Extensible Nonlinear Elastic (FENE)
+                                        potential for the linker molecules:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="V FENE of r equals negative one half K R zero squared times the natural logarithm of one minus the quantity r over R zero squared">
+                                        <i>V</i><sub>FENE</sub>(<i>r</i>) = −½ <i>K</i><i>R</i><sub>0</sub><sup>2</sup>
+                                        ln[1 − (<i>r</i>/<i>R</i><sub>0</sub>)<sup>2</sup>]
+                                    </p>
+                                    <p class="text-secondary">This ensures that the linker acts as a harmonic spring at
+                                        equilibrium distances but cannot extend beyond a critical maximum length
+                                        (<i>R</i><sub>0</sub>), accurately reflecting the physical constraints of
+                                        polymer chains.</p>
+                                    <p class="text-secondary small mb-0">The critical parameter in this model is the
+                                        bending stiffness (<i>EI</i>) of the DNA bundle. Based on composite beam
+                                        mechanics, this stiffness is determined by the number of DNA double helices
+                                        (<i>N</i>) and the crosslinking efficiency (α, ranging from 0 to 1). When α = 0
+                                        (no crosslinks), the stiffness scales with <i>N</i>. When perfectly crosslinked
+                                        (α = 1), the stiffness scales with <i>N</i><sup>2</sup>. We translated this
+                                        macroscopic effective stiffness into the angular spring constant
+                                        (<i>K</i><sub>θ</sub>) between the DNA beads in our simulation, allowing us to
+                                        test how structural rigidity affects the membrane.</p>
+                                </div>
                             </div>
-                            <div class="row g-4 align-items-stretch mb-4">
-                                <div class="col-lg-6">
-                                    <div class="ratio ratio-16x9 content-box p-0">
-                                        <img src="video/dual_dna_membrane_attack.gif" alt="Simulation of dual DNA membrane attack" class="w-100 h-100 object-fit-contain">
-                                    </div>
+                        </div>
+
+                        <!-- DNA Bundle Rigidity -->
+                        <div id="two-d-rigidity" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 text-info">DNA Bundle Rigidity</h4>
+                            <p class="text-secondary mb-4">
+                                DNA-bundle bending stiffness determines how strongly the bundle resists conforming to
+                                the membrane. Comparing low- and high-rigidity conditions shows how that mechanical
+                                response affects membrane deformation and rupture.
+                            </p>
+
+                            <div class="row g-4 align-items-center mb-4 simulation-rigidity-row">
+                                <div class="col-12 col-md-6 text-center">
+                                    <span class="simulation-feature-badge simulation-feature-low">Low</span>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="ratio ratio-16x9 content-box p-0 d-flex justify-content-center align-items-center">
-                                        <span class="text-muted">Second 2DMD simulation figure placeholder</span>
-                                    </div>
+                                <div class="simulation-rigidity-indicator">DNA bundle rigidity</div>
+                                <div class="col-12 col-md-6 text-center">
+                                    <span class="simulation-feature-badge simulation-feature-high">High</span>
                                 </div>
-                                <div class="col-lg-6">
+                            </div>
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
                                     <div class="content-box h-100">
-                                        <p class="text-secondary mb-0">[Add text describing the first figure.]</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-bold text-light">Low Rigidity</span>
+                                        </div>
+                                        <div class="ratio ratio-1x1 mb-3 position-relative">
+                                            <img src="video/SIMULATION/Low_guv_tension_r50_a01_b2_pure_chained.gif"
+                                                alt="Low-rigidity DNA bundle simulation; membrane rupture not observed"
+                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            <span class="simulation-result-mark simulation-result-mark-negative"
+                                                aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">Low rigidity: membrane rupture is not
+                                            observed in the simulation. The more flexible bundle deforms along with the
+                                            membrane instead of concentrating enough stress to disrupt it.</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-md-6">
                                     <div class="content-box h-100">
-                                        <p class="text-secondary mb-0">[Add text describing the second figure.]</p>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-bold text-light">High Rigidity</span>
+                                        </div>
+                                        <div class="ratio ratio-1x1 mb-3 position-relative">
+                                            <img src="video/SIMULATION/High_guv_tension_r50_a08_b2_pure_chained.gif"
+                                                alt="High-rigidity DNA bundle simulation; membrane rupture observed"
+                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            <span class="simulation-result-mark simulation-result-mark-positive"
+                                                aria-label="Membrane rupture observed" title="Membrane rupture: Observed">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="8.5"></circle>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">High rigidity: membrane rupture is
+                                            observed in the simulation. The stiffer bundle resists bending and
+                                            concentrates mechanical stress on the membrane.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-box">
-                                <p class="text-secondary mb-0">[Add a summary of the 2DMD simulation.]</p>
+
+                            <p class="text-secondary mb-0">Together, these simulations illustrate how DNA-bundle
+                                rigidity can affect the membrane response and whether rupture occurs under the modeled
+                                conditions.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1.2 3D Thermodynamic Simulation -->
+                    <div id="three-d" class="mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">1.2 3D Thermodynamic Simulation
+                        </h3>
+                        <p class="text-secondary mb-4">To accurately investigate the conditions required for membrane
+                            disruption, we performed a 3D thermodynamic stabilization calculation. The primary reason
+                            for adopting this approach is that it allows us to visualize the thermodynamically stable
+                            positions of the DNA bundle and the liposome in a static system, enabling detailed
+                            observation of the stereoscopic deformation process. Furthermore, by establishing a
+                            critical curvature limit, we can effectively determine whether the membrane will rupture,
+                            making it a powerful method for exploring the exact conditions of membrane disruption. In
+                            our modeling, we established a system that finds the equilibrium state by minimizing the
+                            total free energy, which consists of the membrane's bending and tension energies, the DNA's
+                            bending energy, and the adhesion energy from the cholesterol anchors.</p>
+
+                        <!-- Accordion: More about 3D simulation -->
+                        <div class="custom-accordion">
+                            <button class="custom-accordion-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#more-3d" aria-expanded="false" aria-controls="more-3d">
+                                <span class="accordion-icon-badge">&#9656;</span>
+                                <span>More about 3D Simulation</span>
+                            </button>
+                            <div class="collapse" id="more-3d">
+                                <div class="custom-accordion-body">
+                                    <h5 class="fw-bold mb-3 text-info">Theoretical Framework &amp; Thermodynamic
+                                        Parameters</h5>
+                                    <p class="text-secondary small mb-0">Our calculation is strictly based on
+                                        established physical principles: the Canham-Helfrich theory for evaluating the
+                                        membrane's bending energy cost, and the Euler-Bernoulli beam theory for defining
+                                        the DNA bundle's bending elasticity. To find the most stable shape, we utilized
+                                        an optimization algorithm to minimize the total free energy. For the specific
+                                        parameters, we set the initial liposome radius to 50 nm, the membrane bending
+                                        modulus to 20 <i>k</i><sub>B</sub><i>T</i>, and the adhesion energy per
+                                        cholesterol molecule to 4.5 <i>k</i><sub>B</sub><i>T</i>. Crucially, based on
+                                        our prior physical models, we defined the critical average curvature for
+                                        membrane rupture as 0.067 nm<sup>-1</sup>.</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div id="three-d" class="mb-3 pt-3">
-                            <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">3D simulation</h3>
-                            <div class="content-box mb-4">
-                                <p class="text-secondary mb-0">[Add an introduction to the 3D simulation.]</p>
-                            </div>
-                            <div class="ratio ratio-16x9 content-box p-0 d-flex justify-content-center align-items-center mb-4">
-                                <span class="text-muted">Large 3D simulation figure placeholder</span>
-                            </div>
-                            <div class="content-box mb-4">
-                                <p class="text-secondary mb-0">[Add text describing the large 3D simulation figure.]</p>
-                            </div>
-                            <div class="ratio ratio-16x9 content-box p-0 d-flex justify-content-center align-items-center mb-4">
-                                <span class="text-muted">3D simulation figure placeholder</span>
-                            </div>
-                            <div class="content-box mb-4">
-                                <p class="text-secondary mb-0">[Add text describing this 3D simulation figure.]</p>
-                            </div>
-                            <div class="ratio ratio-16x9 content-box p-0 d-flex justify-content-center align-items-center mb-4">
-                                <span class="text-muted">3D simulation figure placeholder</span>
-                            </div>
-                            <div class="content-box">
-                                <p class="text-secondary mb-0">[Add text describing the final 3D simulation figure.]</p>
+                        <!-- Modeling Objectives & Structural Scale -->
+                        <div id="three-d-modeling" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 text-info">Modeling Objectives &amp; Structural Scale</h4>
+                            <p class="text-secondary mb-4">The model finds the thermodynamically stable configuration
+                                by minimizing the total free energy contributed by membrane bending and tension, DNA
+                                bending, and cholesterol-anchor adhesion. Establishing a critical average curvature of
+                                0.067 nm<sup>-1</sup> provides a threshold for determining whether the membrane is
+                                predicted to rupture.</p>
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-4x3 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">Bilayer membrane &amp; vesicle section figure
+                                                placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">The membrane's bending-energy cost is
+                                            evaluated using Canham-Helfrich theory, with a bending modulus of
+                                            20 <i>k</i><sub>B</sub><i>T</i>.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-4x3 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">Bundle-vesicle complex with scale bar figure
+                                                placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">The modeled liposome has an initial
+                                            radius of 50 nm. Cholesterol anchors connect the DNA bundle to the
+                                            membrane, with an adhesion energy of 4.5 <i>k</i><sub>B</sub><i>T</i> per
+                                            cholesterol molecule.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </section>
 
-                    <section id="hcr-reaction" class="mb-3 pt-4">
-                        <h2 class="section-title" style="text-transform: none;">HCRreaction</h2>
-                        <div class="row g-4 align-items-stretch mb-4">
-                            <div class="col-lg-6">
-                                <div class="content-box h-100">
-                                    <p class="text-secondary mb-0">[Add text about the HCR reaction.]</p>
+                        <!-- 3D Dynamic Model -->
+                        <div id="three-d-interactive" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 text-info">3D Dynamic Model for EV Environment</h4>
+                            <p class="text-secondary mb-4">Explore the liposome model by dragging to rotate and using
+                                the viewer controls to zoom.</p>
+                            <div class="row g-3 mb-4 align-items-stretch">
+                                <div class="col-md-9">
+                                    <div class="content-box p-0 h-100">
+                                        <model-viewer class="simulation-model-viewer"
+                                            src="img/SIMULATION/EV_environmentliposome_3Dmodel.glb"
+                                            alt="Interactive 3D liposome model for the EV environment" camera-controls
+                                            touch-action="pan-y" shadow-intensity="1" exposure="1" loading="lazy">
+                                        </model-viewer>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="ratio ratio-16x9 content-box p-0 d-flex justify-content-center align-items-center">
-                                    <span class="text-muted">HCR reaction image placeholder</span>
+                                <div class="col-md-3">
+                                    <div
+                                        class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
+                                        <img src="img/SIMULATION/curvature_colorbar.png"
+                                            alt="Local membrane curvature color scale in inverse nanometers"
+                                            class="simulation-colorbar" loading="lazy" decoding="async">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row g-4 align-items-stretch">
-                            <div class="col-lg-6">
-                                <div class="content-box h-100">
-                                    <p class="text-secondary mb-0">[Add additional HCR reaction text or results.]</p>
+
+                        <!-- Deformation Analysis -->
+                        <div id="three-d-deformation" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 text-info">Deformation Analysis &amp; Bundle Radius</h4>
+                            <p class="text-secondary mb-4">
+                                [Present various modes of membrane deformation across different stiffness and radius
+                                conditions.]
+                            </p>
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">Linear bundle deformation mode figure
+                                                placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">[Add caption: Linear rigid bundle causing
+                                            sharp localized stress concentration.]</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">Curved bundle deformation mode figure
+                                                placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">[Add caption: Flexible bundle conformally
+                                            wrapping the vesicle without disruption.]</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="ratio ratio-16x9 content-box p-0 d-flex justify-content-center align-items-center">
-                                    <span class="text-muted">Additional HCR reaction image placeholder</span>
-                                </div>
-                            </div>
+                            <p class="text-secondary mb-0">
+                                Both the bundle stiffness and cross-sectional bundle radius strongly govern membrane
+                                disruption. By establishing the analytical relationship between DNA bundle helix count
+                                and effective radius, we can predict the minimum number of helices required for rupture.
+                            </p>
                         </div>
-                    </section>
+
+                        <!-- Required Bundle Helices & Cross-linking Efficiency -->
+                        <div id="three-d-crosslinking" class="simulation-subblock mb-0">
+                            <h4 class="h5 fw-bold mb-3 text-info">Minimum Bundle Requirements &amp; Cross-linking
+                                Efficiency</h4>
+                            <p class="text-secondary mb-4">
+                                Below are the calculated minimum numbers of DNA bundle helices required to trigger
+                                membrane rupture under different structural efficiencies.
+                            </p>
+                            <figure class="mb-5 pb-3">
+                                <img src="img/SIMULATION/3D_graph1.png"
+                                    alt="Membrane deformation analysis showing maximum local curvature by number of DNA helices in a bundle"
+                                    class="img-fluid w-100 border" style="border-color: #314763 !important;" loading="lazy" decoding="async">
+                                <figcaption class="text-secondary mt-3">
+                                    <strong>Figure: Minimum Helices with Perfect Cross-linking (&alpha; = 1.0).</strong>
+                                    This graph illustrates the theoretical minimum helix count assuming perfect
+                                    inter-helix bundling where individual helices cannot slip past one another.
+                                </figcaption>
+                            </figure>
+                            <figure class="mb-0">
+                                <img src="img/SIMULATION/3D_graph2.png"
+                                    alt="Effect of cross-linking efficiency on membrane rupture by number of DNA helices in a bundle"
+                                    class="img-fluid w-100 border" style="border-color: #314763 !important;" loading="lazy" decoding="async">
+                                <figcaption class="text-secondary mt-3">
+                                    <strong>Figure: Dependency on Cross-linking Efficiency (&alpha;).</strong> In
+                                    experimental conditions, inter-helix slipping reduces effective bending stiffness
+                                    (&alpha; &asymp; 0.5&ndash;0.7). As cross-linking efficiency decreases, the required
+                                    bundle size increases to approximately 10&ndash;13 helices to guarantee disruption.
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- 1.3 GUV Environment -->
+                    <div id="guv-env" class="mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">1.3 GUV Environment</h3>
+                        <p class="text-secondary mb-4">
+                            While the ultimate target of this project is extracellular vesicles (EVs), laboratory
+                            validation experiments utilize giant unilamellar vesicles (GUVs, radius <em>r</em> &ge; 300
+                            nm). We therefore adapted both 2D and 3D simulation models to examine bundle behavior on
+                            large-diameter GUVs.
+                        </p>
+
+                        <!-- 2D Simulation on GUV -->
+                        <div id="guv-2d" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 text-info">2D Simulation on GUV</h4>
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">Standard linker on GUV figure placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">[Add caption: Due to large GUV size,
+                                            standard bundle attachment fails to induce critical curvature.]</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">Extended linker on GUV figure placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">[Add caption: Extending the linker improved
+                                            membrane contact and increased local bending stress.]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-secondary mb-0 small">
+                                <em>Observation:</em> Because the vesicle diameter is substantially larger than EV
+                                scales, disruption could not be triggered under standard parameters; however, elongating
+                                the linker attachment enhanced membrane deformation.
+                            </p>
+                        </div>
+
+                        <!-- 3D Simulation on GUV -->
+                        <div id="guv-3d" class="simulation-subblock mb-0">
+                            <h4 class="h5 fw-bold mb-3 text-info">3D Simulation on GUV</h4>
+                            <div class="row g-3 mb-4 align-items-stretch">
+                                <div class="col-md-9">
+                                    <div class="content-box p-0 h-100">
+                                        <model-viewer class="simulation-model-viewer"
+                                            src="img/SIMULATION/GUV_environment_liposome_model.glb"
+                                            alt="Interactive 3D liposome model for the GUV simulation" camera-controls
+                                            touch-action="pan-y" shadow-intensity="1" exposure="1" loading="lazy">
+                                        </model-viewer>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div
+                                        class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
+                                        <img src="img/SIMULATION/curvature_colorbar.png"
+                                            alt="Local membrane curvature color scale in inverse nanometers"
+                                            class="simulation-colorbar" loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">3D GUV increased helices figure placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">[Add caption: Testing high-helix bundles
+                                            against GUV membrane curvature.]</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div
+                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted">3D GUV wrapping profile figure placeholder</span>
+                                        </div>
+                                        <p class="text-secondary small mb-0">[Add caption: Cross-sectional wrapping
+                                            profile on large-scale membrane.]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-secondary mb-0 small">
+                                <em>Observation:</em> 3D simulations similarly confirmed that even when increasing helix
+                                count significantly, complete rupture of GUVs remains extremely challenging solely
+                                through mechanical bundling, emphasizing the distinct physics between small EVs and
+                                giant vesicles.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. HCR Reaction -->
+                <section id="hcr-reaction" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">2. Design and Thermodynamic Validation of 6-Helix Bundle HCR Sequences
+                    </h2>
+                    <p class="text-secondary mb-4">
+                        To achieve programmable and stimuli-responsive bundle assembly, we computationally designed
+                        and thermodynamically evaluated the DNA sequences for the 6-Helix Bundle HCR system.
+                    </p>
+
+                    <!-- 2.1 Sequence Design Conditions -->
+                    <div id="hcr-self-assembly" class="simulation-subblock">
+                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">2.1 Sequence Design
+                            Conditions</h3>
+                        <div class="content-box p-4 p-md-5 mb-4">
+                            <p class="text-secondary">The DNA sequences for the 6-Helix Bundle HCR system (seeds
+                                S1-S6 and hairpins H1-H6) were computationally optimized using NUPACK to eliminate
+                                unintended leak reactions and structural defects. Strict physical constraints were
+                                applied during the design process:</p>
+                            <ol class="text-secondary mb-0">
+                                <li>Complete elimination of ≥4-nt palindromes and homopolymers.</li>
+                                <li>Enforcement of sequence diversity, requiring all four nucleobases (A, T, G, C) to
+                                    be present within any 7-nt window to prevent local GC-bias.</li>
+                                <li>Multi-tube optimization (<code>max_size=2</code>) to rigorously suppress
+                                    homodimerization and non-specific crosstalk between domains.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- 2.2 Thermodynamic Feasibility -->
+                    <div id="hcr-possibility" class="simulation-subblock mb-0">
+                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">2.2 Thermodynamic Feasibility
+                            of the HCR Cascade</h3>
+                        <div class="content-box p-4 p-md-5">
+                            <p class="text-secondary mb-0">Thermodynamic simulations at 25°C confirmed the high
+                                structural integrity and reactivity of the designed system. In isolation, the hairpin
+                                strands strongly favor the target double-hairpin monomer state, with dimerization rates
+                                suppressed to near zero (&lt;0.1%). Furthermore, the hybridization chain reaction is
+                                thermodynamically highly favorable; every sequential binding step in the cascade yields
+                                a substantial negative Gibbs free energy change (ΔG ≪ 0). This steep “energy cascade”
+                                ensures that the self-assembly into the final 6-Helix Bundle proceeds spontaneously,
+                                rapidly, and irreversibly upon trigger initiation.</p>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -132,6 +510,9 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

@@ -43,7 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, {
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0
+    });
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach(section => {
+        // 初期読み込み時に画面内（ビューポート）に既に表示されている要素は即座にフェードイン
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            section.classList.add('is-visible');
+        } else {
+            observer.observe(section);
+        }
+    });
 });
