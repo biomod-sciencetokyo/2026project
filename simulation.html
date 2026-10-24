@@ -77,7 +77,8 @@
                                         using Langevin dynamics:</p>
                                     <p class="text-secondary text-center fs-5 my-3" role="math"
                                         aria-label="m sub i times d v sub i over d t equals negative gamma sub i v sub i plus F sub i superscript C plus F sub i superscript R">
-                                        <i>m</i><sub>i</sub> d<strong>v</strong><sub>i</sub>/dt = −γ<sub>i</sub><strong>v</strong><sub>i</sub>
+                                        <i>m</i><sub>i</sub> d<strong>v</strong><sub>i</sub>/dt =
+                                        −γ<sub>i</sub><strong>v</strong><sub>i</sub>
                                         + <strong>F</strong><sub>i</sub><sup>C</sup> +
                                         <strong>F</strong><sub>i</sub><sup>R</sup>
                                     </p>
@@ -87,7 +88,8 @@
                                         forces are divided into inter-particle conservative forces
                                         (<strong>F</strong><sub>i</sub><sup>C</sup>) and a stochastic Gaussian noise
                                         term (<strong>F</strong><sub>i</sub><sup>R</sup>) representing thermal
-                                        fluctuations (Brownian motion).</p>
+                                        fluctuations (Brownian motion).
+                                    </p>
                                     <p class="text-secondary">The behavior of the EV membrane is based on Helfrich's
                                         continuum elastic theory, where the bending energy of the lipid bilayer is
                                         primarily determined by its bending modulus (κ) and curvature. In our CG model,
@@ -143,11 +145,16 @@
                                             <span class="fw-bold text-light">Low Rigidity</span>
                                         </div>
                                         <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/Low_guv_tension_r50_a01_b2_pure_chained.gif"
+                                            <img src="video/SIMULATION/Low_guv_tension_r50_a01_b2_pure_chained.gif"
                                                 alt="Low-rigidity DNA bundle simulation; membrane rupture not observed"
                                                 class="w-100 h-100 object-fit-contain">
                                             <span class="simulation-result-mark simulation-result-mark-negative"
-                                                aria-label="Membrane rupture not observed">&times;</span>
+                                                aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <p class="text-secondary small mb-0">Low rigidity: membrane rupture is not
                                             observed in the simulation. The more flexible bundle deforms along with the
@@ -160,11 +167,15 @@
                                             <span class="fw-bold text-light">High Rigidity</span>
                                         </div>
                                         <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/High_guv_tension_r50_a08_b2_pure_chained.gif"
+                                            <img src="video/SIMULATION/High_guv_tension_r50_a08_b2_pure_chained.gif"
                                                 alt="High-rigidity DNA bundle simulation; membrane rupture observed"
                                                 class="w-100 h-100 object-fit-contain">
                                             <span class="simulation-result-mark simulation-result-mark-positive"
-                                                aria-label="Membrane rupture observed">&#9675;</span>
+                                                aria-label="Membrane rupture observed" title="Membrane rupture: Observed">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="8.5"></circle>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <p class="text-secondary small mb-0">High rigidity: membrane rupture is
                                             observed in the simulation. The stiffer bundle resists bending and
@@ -264,21 +275,17 @@
                             <div class="row g-3 mb-4 align-items-stretch">
                                 <div class="col-md-9">
                                     <div class="content-box p-0 h-100">
-                                        <model-viewer
-                                            class="simulation-model-viewer"
+                                        <model-viewer class="simulation-model-viewer"
                                             src="img/SIMULATION/EV_environmentliposome_3Dmodel.glb"
-                                            alt="Interactive 3D liposome model for the EV environment"
-                                            camera-controls
-                                            touch-action="pan-y"
-                                            shadow-intensity="1"
-                                            exposure="1">
+                                            alt="Interactive 3D liposome model for the EV environment" camera-controls
+                                            touch-action="pan-y" shadow-intensity="1" exposure="1">
                                         </model-viewer>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
-                                        <img
-                                            src="img/SIMULATION/curvature_colorbar.png"
+                                    <div
+                                        class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
+                                        <img src="img/SIMULATION/curvature_colorbar.png"
                                             alt="Local membrane curvature color scale in inverse nanometers"
                                             class="simulation-colorbar">
                                     </div>
@@ -404,21 +411,17 @@
                             <div class="row g-3 mb-4 align-items-stretch">
                                 <div class="col-md-9">
                                     <div class="content-box p-0 h-100">
-                                        <model-viewer
-                                            class="simulation-model-viewer"
+                                        <model-viewer class="simulation-model-viewer"
                                             src="img/SIMULATION/GUV_environment_liposome_model.glb"
-                                            alt="Interactive 3D liposome model for the GUV simulation"
-                                            camera-controls
-                                            touch-action="pan-y"
-                                            shadow-intensity="1"
-                                            exposure="1">
+                                            alt="Interactive 3D liposome model for the GUV simulation" camera-controls
+                                            touch-action="pan-y" shadow-intensity="1" exposure="1">
                                         </model-viewer>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
-                                        <img
-                                            src="img/SIMULATION/curvature_colorbar.png"
+                                    <div
+                                        class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
+                                        <img src="img/SIMULATION/curvature_colorbar.png"
                                             alt="Local membrane curvature color scale in inverse nanometers"
                                             class="simulation-colorbar">
                                     </div>
