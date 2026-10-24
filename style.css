@@ -471,6 +471,84 @@ h6, .h6 { font-size: 1.08rem; }
     transform: translateY(-2px);
 }
 
+/* Custom Accordion Menu - Midnight Waterfall Theme */
+.custom-accordion {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 4px 14px rgba(2, 9, 20, 0.25);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.custom-accordion:hover {
+    border-color: #48658a;
+    box-shadow: 0 6px 20px rgba(2, 9, 20, 0.4);
+}
+
+.custom-accordion-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #10213b 0%, #142945 100%);
+    border: none;
+    color: var(--text-main);
+    padding: 22px 28px;
+    min-height: 70px;
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.22rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.25s ease, color 0.2s ease;
+}
+
+.custom-accordion-btn:hover {
+    background: linear-gradient(90deg, #142945 0%, #1b3558 100%);
+    color: var(--accent-gold);
+}
+
+.custom-accordion-btn:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: -2px;
+}
+
+.custom-accordion-btn .accordion-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-right: 14px;
+    color: var(--accent-blue);
+    font-size: 1.25rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.custom-accordion-btn[aria-expanded="true"] {
+    border-bottom: 1px solid var(--border-color);
+    color: var(--accent-gold);
+    background: linear-gradient(90deg, #142945 0%, #173254 100%);
+}
+
+.custom-accordion-btn[aria-expanded="true"] .accordion-icon-badge {
+    transform: rotate(90deg);
+    color: var(--accent-gold);
+}
+
+.custom-accordion-body {
+    padding: 32px 30px;
+    background-color: rgba(11, 24, 48, 0.85);
+    color: var(--text-main);
+}
+
+/* Simulation Section Spacing Utility */
+.simulation-subblock {
+    margin-bottom: 4.5rem;
+    padding-top: 1rem;
+}
+
 /* Scroll reveal */
 .fade-in-section {
     opacity: 0;
