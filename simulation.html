@@ -133,9 +133,12 @@
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <span class="fw-bold text-light">Low Rigidity</span>
                                         </div>
-                                        <div
-                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                            <span class="text-muted">Low Rigidity simulation figure placeholder</span>
+                                        <div class="ratio ratio-1x1 mb-3 position-relative">
+                                            <img src="video/Low_guv_tension_r50_a01_b2_pure_chained.gif"
+                                                alt="Low-rigidity DNA bundle simulation; membrane rupture not observed"
+                                                class="w-100 h-100 object-fit-contain">
+                                            <span class="simulation-result-mark simulation-result-mark-negative"
+                                                aria-label="Membrane rupture not observed">&times;</span>
                                         </div>
                                         <p class="text-secondary small mb-0">Low rigidity: membrane rupture is not
                                             observed in the simulation. The more flexible bundle deforms along with the
@@ -147,9 +150,12 @@
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <span class="fw-bold text-light">High Rigidity</span>
                                         </div>
-                                        <div
-                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                            <span class="text-muted">High Rigidity simulation figure placeholder</span>
+                                        <div class="ratio ratio-1x1 mb-3 position-relative">
+                                            <img src="video/High_guv_tension_r50_a08_b2_pure_chained.gif"
+                                                alt="High-rigidity DNA bundle simulation; membrane rupture observed"
+                                                class="w-100 h-100 object-fit-contain">
+                                            <span class="simulation-result-mark simulation-result-mark-positive"
+                                                aria-label="Membrane rupture observed">&#9675;</span>
                                         </div>
                                         <p class="text-secondary small mb-0">High rigidity: membrane rupture is
                                             observed in the simulation. The stiffer bundle resists bending and
@@ -244,16 +250,30 @@
                         <!-- 3D Dynamic Model -->
                         <div id="three-d-interactive" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 text-info">3D Dynamic Model</h4>
-                            <p class="text-secondary mb-4">
-                                [Interactive 3D model visualization showing vesicle wrapping and bending dynamics upon
-                                DNA bundle attachment.]
-                            </p>
-                            <div class="content-box p-3 mb-3">
-                                <div class="ratio ratio-21x9 mb-3 d-flex justify-content-center align-items-center">
-                                    <span class="text-muted">3D dynamic simulation model placeholder</span>
+                            <p class="text-secondary mb-4">Explore the liposome model by dragging to rotate and using
+                                the viewer controls to zoom.</p>
+                            <div class="row g-3 mb-4 align-items-stretch">
+                                <div class="col-md-9">
+                                    <div class="content-box p-0 h-100">
+                                        <model-viewer
+                                            class="simulation-model-viewer"
+                                            src="img/SIMULATION/liposome_3Dmodel.glb"
+                                            alt="Interactive 3D model of a liposome with an attached DNA bundle"
+                                            camera-controls
+                                            touch-action="pan-y"
+                                            shadow-intensity="1"
+                                            exposure="1">
+                                        </model-viewer>
+                                    </div>
                                 </div>
-                                <p class="text-secondary small mb-0 text-center">[Insert interactive 3D canvas or
-                                    animated demonstration of the deformation dynamics.]</p>
+                                <div class="col-md-3">
+                                    <div class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
+                                        <img
+                                            src="img/SIMULATION/curvature_colorbar.png"
+                                            alt="Local membrane curvature color scale in inverse nanometers"
+                                            class="simulation-colorbar">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -372,6 +392,29 @@
                         <!-- 3D Simulation on GUV -->
                         <div id="guv-3d" class="simulation-subblock mb-0">
                             <h4 class="h5 fw-bold mb-3 text-info">3D Simulation on GUV</h4>
+                            <div class="row g-3 mb-4 align-items-stretch">
+                                <div class="col-md-9">
+                                    <div class="content-box p-0 h-100">
+                                        <model-viewer
+                                            class="simulation-model-viewer"
+                                            src="img/SIMULATION/liposome_3Dmodel.glb"
+                                            alt="Interactive 3D liposome model for the GUV simulation"
+                                            camera-controls
+                                            touch-action="pan-y"
+                                            shadow-intensity="1"
+                                            exposure="1">
+                                        </model-viewer>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="content-box p-3 h-100 d-flex justify-content-center align-items-center simulation-colorbar-panel">
+                                        <img
+                                            src="img/SIMULATION/curvature_colorbar.png"
+                                            alt="Local membrane curvature color scale in inverse nanometers"
+                                            class="simulation-colorbar">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
