@@ -524,13 +524,23 @@ section[id],
 }
 
 .simulation-colorbar-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: min(70vh, 640px);
+    min-height: 360px;
     background-color: #ffffff;
+    padding: 1.5rem;
+    box-sizing: border-box;
 }
 
 .simulation-colorbar {
     display: block;
-    width: 100%;
-    max-height: min(70vh, 640px);
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }
 
