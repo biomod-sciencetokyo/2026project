@@ -36,6 +36,11 @@ body {
     max-width: 1080px;
 }
 
+main.content-container {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
 .ambient-particles {
     position: absolute;
     inset: 0;
@@ -172,9 +177,45 @@ h6,
 }
 
 /* Footer */
+.site-footer {
+    background-color: #002244;
+    color: #ffffff;
+    padding: 60px 0 40px 0;
+    border-top: 5px solid var(--accent-blue);
+}
+
+.footer-title {
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.footer-menu-title {
+    color: #a0aec0;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+}
+
+.footer-text-muted {
+    color: #a0aec0;
+}
+
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-link {
+    transition: color 0.3s ease;
+}
+
 .footer-link:hover {
     color: var(--accent-gold) !important;
     text-decoration: none;
+}
+
+.back-to-top-text {
+    color: #a0aec0;
+    transition: color 0.3s ease;
 }
 
 .back-to-top-text:hover {
@@ -210,6 +251,22 @@ h6,
     margin-bottom: 30px;
 }
 
+/* Subheadings & Section Subtitles */
+.section-subtitle {
+    color: var(--accent-blue);
+    font-family: 'DotGothic16', monospace;
+    -webkit-text-stroke: 0.6px currentColor;
+}
+
+/* Accent Color Utilities */
+.text-accent-blue {
+    color: var(--accent-blue) !important;
+}
+
+.text-accent-gold {
+    color: var(--accent-gold) !important;
+}
+
 h3,
 h4,
 h5,
@@ -221,14 +278,6 @@ h3, .h3 { font-size: clamp(1.89rem, calc(1.404rem + 0.648vw), 2.43rem); }
 h4, .h4 { font-size: clamp(1.377rem, calc(1.377rem + 0.324vw), 1.89rem); }
 h5, .h5 { font-size: 1.35rem; }
 h6, .h6 { font-size: 1.08rem; }
-
-#mentors h3.text-dark {
-    color: #e5edf5 !important;
-}
-
-.team-member-card h4.text-dark {
-    color: #e5edf5 !important;
-}
 
 /* Darken sections that were previously hard-coded as white. */
 .fade-in-section[style*="background-color: #ffffff"] {
@@ -247,12 +296,17 @@ h6, .h6 { font-size: 1.08rem; }
     color: #5d6d80 !important;
 }
 
-[style*="color: var(--primary-blue)"] {
-    color: #dbe6f1 !important;
+/* Anchor Scroll Margins */
+section[id],
+.fade-in-section[id],
+.simulation-subblock[id],
+.content-box[id] {
+    scroll-margin-top: 90px;
 }
 
 /* Sidebar */
 .sidebar-toc {
+    top: 100px;
     background-color: transparent !important;
     border: none !important;
     border-left: 1px solid var(--border-color) !important;
@@ -660,4 +714,10 @@ h6, .h6 { font-size: 1.08rem; }
         animation: none;
         opacity: 0.28;
     }
+}
+
+/* Text Highlight */
+.concept-highlight {
+    color: var(--accent-gold, #d8b96f);
+    font-weight: 700;
 }

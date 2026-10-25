@@ -19,7 +19,7 @@
 
     <div id="header-placeholder"></div>
 
-    <main class="container content-container px-3 px-md-0" style="padding-top: 80px; padding-bottom: 100px;">
+    <main class="container content-container px-3 px-md-0">
 
         <div class="text-center mb-5 pb-4">
             <h1 class="page-title">PROJECT</h1>
@@ -28,7 +28,7 @@
 
         <div class="row gx-5">
             <div class="col-lg-2 d-none d-lg-block">
-                <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc" style="top: 100px;">
+                <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
                     <a class="nav-link fw-bold" href="#background">1. Background</a>
                     <a class="nav-link fw-bold" href="#problem">2. Problem</a>
@@ -41,32 +41,48 @@
             <div class="col-lg-10">
                 <section id="background" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">1. Background</h2>
-                    <p class="text-secondary mb-4">
-                        The lipid bilayer, a fundamental structural component of life, also constitutes microscopic
-                        vesicles known as extracellular vesicles (EVs). EVs are present in all bodily fluids, such as
-                        blood and saliva. Among EVs, exosomes—which originate from endosomes—have a diameter of
-                        approximately 40 to 160 nanometers (averaging about 100 nanometers) [1].<br>
-                        Cells engage in intercellular communication by encapsulating various biomolecules—such as RNA,
-                        DNA, proteins, and lipids—within these EVs and releasing them into the extracellular space [1].
-                        Consequently, EVs, which reflect the state of the secreting cell, give important molecular
-                        information and are attracting attention for their potential applications in disease diagnosis
-                        as biomarkers and therapy.<br>
+
+                    <div class="row g-4 align-items-center mb-4">
+                        <!-- 左側：文章 -->
+                        <div class="col-md-7">
+                            <p class="text-secondary mb-3">
+                                The lipid bilayer, a fundamental structural component of life, also constitutes microscopic
+                                vesicles known as extracellular vesicles (EVs). EVs are present in all bodily fluids, such as
+                                blood and saliva. Among EVs, exosomes—which originate from endosomes—have a diameter of
+                                approximately 40 to 160 nanometers (averaging about 100 nanometers) [1].
+                            </p>
+                            <p class="text-secondary mb-0">
+                                Cells engage in intercellular communication by encapsulating various biomolecules—such as RNA,
+                                DNA, proteins, and lipids—within these EVs and releasing them into the extracellular space [1].
+                                Consequently, EVs, which reflect the state of the secreting cell, give important molecular
+                                information and are attracting attention for their potential applications in disease diagnosis
+                                as biomarkers and therapy.
+                            </p>
+                        </div>
+                        <!-- 右側：画像 -->
+                        <div class="col-md-5">
+                            <div class="ratio ratio-4x3 content-box p-0" style="background-color: #ffffff;">
+                                <img src="img/PROJECT/Background.png" alt="EV and Cell Concept Diagram"
+                                    class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-secondary mb-3">
                         However, when attempting to access the information inside these EVs using molecular robots, the
                         lipid bilayer acts as a physical barrier. To analyze the information inside EVs or apply it to
                         therapy, it is necessary to disrupt this lipid bilayer and gain direct access to the molecules
-                        within.<br>
+                        within.
+                    </p>
+                    <p class="text-secondary mb-4">
                         Furthermore, technologies that disrupt lipid membranes are of significant importance in
                         applications such as drug delivery systems (DDS) and the direct destruction of cancer cells.
-
-                    <div class="ratio ratio-4x3 content-box p-0 mb-4 w-50 mx-auto">
-                        <img src="img/PROJECT/Background.png" alt="EV and Cell Concept Diagram"
-                            style="object-fit: cover;">
-                    </div>
+                    </p>
                 </section>
 
                 <section id="problem" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">2. Challenges of Current Technology</h2>
-                    <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Bulk assay ➡️ Loss of Origin
+                    <h3 class="h5 fw-bold mb-3 section-subtitle">Bulk assay ➡️ Loss of Origin
                         Information</h3>
                     <p class="text-secondary mb-4">
                         Bulk assays, such as the chemical dissolution of membranes using surfactants, have often been
@@ -74,7 +90,7 @@
                         information—which molecules were contained in which EVs—is lost[2]. Furthermore, surfactants may
                         damage the molecules inside the EVs.
                     </p>
-                    <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Pre-assembled DNA ➡️ “Always Active”
+                    <h3 class="h5 fw-bold mb-3 section-subtitle">Pre-assembled DNA ➡️ “Always Active”
                         (Off-target Effects)</h3>
                     <p class="text-secondary mb-4">
                         Recent DNA nanotechnology approaches attempt to disrupt membranes using physical force. For
@@ -87,14 +103,18 @@
 
                 <section id="approach" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">3. Our Approach</h2>
-                    <p class="text-secondary mb-4">
-                        We propose <span class="fw-bold fs-5 text-white">lipid membrane disruption using in situ
-                            assembled DNA bundles</span>.<br>
+                    <p class="text-secondary mb-3">
+                        We propose <span class="concept-highlight">lipid membrane disruption using in situ
+                            assembled DNA bundles</span>.
+                    </p>
+                    <p class="text-secondary mb-3">
                         In our approach, Bundled HCR (Bundled Hybridization Chain Reaction) is initiated near the target
                         EV, where highly rigid DNA bundles are assembled in situ. Because this system becomes active
                         only in the vicinity of the target EV, it can prevent the loss of origin information and
                         minimize off-target effects.
-                        Our proposal proceeds as follows.<br>
+                        Our proposal proceeds as follows.
+                    </p>
+                    <p class="text-secondary mb-4">
                         Given the feasibility within the limited timeframe, this project will evaluate Steps 2 and 3.
                     </p>
 
@@ -102,7 +122,7 @@
                         <!-- Step 1 -->
                         <div class="col-12">
                             <div class="content-box">
-                                <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Step 1: Bundled
+                                <h3 class="h5 fw-bold mb-3 section-subtitle">Step 1: Bundled
                                     HCR is initiated by a trigger</h3>
                                 <div class="row g-4 align-items-center">
                                     <!-- 左側：画像（一回り拡大） -->
@@ -127,7 +147,7 @@
                         <!-- Step 2 -->
                         <div class="col-12">
                             <div class="content-box">
-                                <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Step 2:
+                                <h3 class="h5 fw-bold mb-3 section-subtitle">Step 2:
                                     Cholesterol-modified DNA bundle elongates via Bundled HCR</h3>
                                 <div class="row g-4 align-items-center">
                                     <!-- 左側：画像（一回り拡大） -->
@@ -153,7 +173,7 @@
                         <!-- Step 3 -->
                         <div class="col-12">
                             <div class="content-box">
-                                <h3 class="h5 fw-bold mb-3" style="color: var(--primary-blue);">Step 3: Anchors
+                                <h3 class="h5 fw-bold mb-3 section-subtitle">Step 3: Anchors
                                     to and disrupts the lipid membrane</h3>
                                 <div class="row g-4 align-items-center">
                                     <!-- 左側：画像（一回り拡大） -->
@@ -183,14 +203,18 @@
 
                 <section id="bundled-hcr" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">4. KEY FACTOR - Bundled HCR</h2>
-                    <p class="text-secondary mb-4">
+                    <p class="text-secondary mb-3">
                         We have extended the concept of Hybridization Chain Reaction (HCR) and developed what we call
-                        <span class="fw-bold fs-5 text-white">Bundled HCR</span>.<br>
+                        <span class="concept-highlight">Bundled HCR</span>.
+                    </p>
+                    <p class="text-secondary mb-3">
                         Conventional HCR is an enzyme-free cascade reaction driven solely by DNA hybridization.
                         Initiated by a Trigger DNA, two types of hairpin DNAs sequentially open and hybridize via
                         toehold-mediated strand displacement to form a long DNA polymer[4].
                         While conventional HCR yields a long, single double-stranded DNA (dsDNA), our Bundled HCR
-                        generates a long, thick DNA bundle.<br>
+                        generates a long, thick DNA bundle.
+                    </p>
+                    <p class="text-secondary mb-4">
                         The key components of Bundled HCR are Double-Hairpin DNAs and a seed that serves as the
                         foundation for the bundle.
                     </p>
@@ -232,23 +256,23 @@
                     <div class="row g-4 mb-4">
                         <div class="col-md-6">
                             <div class="content-box h-100">
-                                <h3 class="h5 fw-bold mb-4" style="color: var(--primary-blue);">Achievements in
+                                <h3 class="h5 fw-bold mb-4 section-subtitle">Achievements in
                                     Simulation</h3>
                                 <ul class="list-unstyled mb-0 text-secondary">
                                     <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                     <li class="d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                 </ul>
@@ -256,23 +280,23 @@
                         </div>
                         <div class="col-md-6">
                             <div class="content-box h-100">
-                                <h3 class="h5 fw-bold mb-4" style="color: var(--primary-blue);">Achievements in
+                                <h3 class="h5 fw-bold mb-4 section-subtitle">Achievements in
                                     Experiment</h3>
                                 <ul class="list-unstyled mb-0 text-secondary">
                                     <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                     <li class="d-flex align-items-start">
-                                        <span class="fw-bold me-3" style="color: var(--accent-blue);">&#10003;</span>
+                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
                                         <span>text</span>
                                     </li>
                                 </ul>
@@ -280,8 +304,8 @@
                         </div>
                     </div>
                     <div class="content-box text-center">
-                        <p class="fw-bold mb-2" style="color: var(--primary-blue);">Our Goal</p>
-                        <h3 class="h5 fw-bold mb-3" style="color: var(--accent-blue);">A physical membrane disruption
+                        <p class="fw-bold mb-2 text-accent-gold">Our Goal</p>
+                        <h3 class="h5 fw-bold mb-3 section-subtitle">A physical membrane disruption
                             system that becomes active only near the target EV.</h3>
                         <p class="text-secondary mb-0">
                             Achieving this goal will enable access to the molecules inside specific EVs without losing
