@@ -19,7 +19,7 @@
 
     <div id="header-placeholder"></div>
 
-    <main class="container content-container px-3 px-md-0" style="padding-top: 80px; padding-bottom: 100px;">
+    <main class="container content-container px-3 px-md-0">
         <div class="text-center mb-5 pb-4">
             <h1 class="page-title">SIMULATION</h1>
             <div class="page-title-underline"></div>
@@ -27,7 +27,7 @@
 
         <div class="row gx-5">
             <div class="col-lg-2 d-none d-lg-block">
-                <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc" style="top: 100px;">
+                <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
                     <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Disruption</a>
                     <div class="nav flex-column sidebar-toc-subnav">
@@ -50,7 +50,7 @@
 
                     <!-- 1.1 2D MD-CG Simulation -->
                     <div id="two-d-md" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">1.1 MD-CG Simulation in 2D
+                        <h3 class="h4 fw-bold mb-4">1.1 MD-CG Simulation in 2D
                             Environment</h3>
                         <p class="text-secondary mb-4">
                             To understand how DNA bundles deform and rupture extracellular vesicle (EV) membranes, we
@@ -70,7 +70,7 @@
                             </button>
                             <div class="collapse" id="more-2d-md">
                                 <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 text-info">Detailed Theory &amp; Parameter Settings</h5>
+                                    <h5 class="fw-bold mb-3 section-subtitle">Detailed Theory &amp; Parameter Settings</h5>
                                     <p class="text-secondary">The dynamics of this system are governed by several key
                                         biophysical models. To implicitly account for the aqueous solvent environment
                                         without rendering every water molecule, the motion of each bead is calculated
@@ -122,7 +122,7 @@
 
                         <!-- DNA Bundle Rigidity -->
                         <div id="two-d-rigidity" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 text-info">DNA Bundle Rigidity</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">DNA Bundle Rigidity</h4>
                             <p class="text-secondary mb-4">
                                 DNA-bundle bending stiffness determines how strongly the bundle resists conforming to
                                 the membrane. Comparing low- and high-rigidity conditions shows how that mechanical
@@ -192,7 +192,7 @@
 
                     <!-- 1.2 3D Thermodynamic Simulation -->
                     <div id="three-d" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">1.2 3D Thermodynamic Simulation
+                        <h3 class="h4 fw-bold mb-4">1.2 3D Thermodynamic Simulation
                         </h3>
                         <p class="text-secondary mb-4">To accurately investigate the conditions required for membrane
                             disruption, we performed a 3D thermodynamic stabilization calculation. The primary reason
@@ -214,7 +214,7 @@
                             </button>
                             <div class="collapse" id="more-3d">
                                 <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 text-info">Theoretical Framework &amp; Thermodynamic
+                                    <h5 class="fw-bold mb-3 section-subtitle">Theoretical Framework &amp; Thermodynamic
                                         Parameters</h5>
                                     <p class="text-secondary small mb-0">Our calculation is strictly based on
                                         established physical principles: the Canham-Helfrich theory for evaluating the
@@ -232,7 +232,7 @@
 
                         <!-- Modeling Objectives & Structural Scale -->
                         <div id="three-d-modeling" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 text-info">Modeling Objectives &amp; Structural Scale</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Modeling Objectives &amp; Structural Scale</h4>
                             <p class="text-secondary mb-4">The model finds the thermodynamically stable configuration
                                 by minimizing the total free energy contributed by membrane bending and tension, DNA
                                 bending, and cholesterol-anchor adhesion. Establishing a critical average curvature of
@@ -269,7 +269,7 @@
 
                         <!-- 3D Dynamic Model -->
                         <div id="three-d-interactive" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 text-info">3D Dynamic Model for EV Environment</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">3D Dynamic Model for EV Environment</h4>
                             <p class="text-secondary mb-4">Explore the liposome model by dragging to rotate and using
                                 the viewer controls to zoom.</p>
                             <div class="row g-3 mb-4 align-items-stretch">
@@ -295,7 +295,7 @@
 
                         <!-- Deformation Analysis -->
                         <div id="three-d-deformation" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 text-info">Deformation Analysis &amp; Bundle Radius</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Deformation Analysis &amp; Bundle Radius</h4>
                             <p class="text-secondary mb-4">
                                 [Present various modes of membrane deformation across different stiffness and radius
                                 conditions.]
@@ -333,7 +333,7 @@
 
                         <!-- Required Bundle Helices & Cross-linking Efficiency -->
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 text-info">Minimum Bundle Requirements &amp; Cross-linking
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Minimum Bundle Requirements &amp; Cross-linking
                                 Efficiency</h4>
                             <p class="text-secondary mb-4">
                                 Below are the calculated minimum numbers of DNA bundle helices required to trigger
@@ -365,7 +365,7 @@
 
                     <!-- 1.3 GUV Environment -->
                     <div id="guv-env" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">1.3 GUV Environment</h3>
+                        <h3 class="h4 fw-bold mb-4">1.3 GUV Environment</h3>
                         <p class="text-secondary mb-4">
                             While the ultimate target of this project is extracellular vesicles (EVs), laboratory
                             validation experiments utilize giant unilamellar vesicles (GUVs, radius <em>r</em> &ge; 300
@@ -375,7 +375,7 @@
 
                         <!-- 2D Simulation on GUV -->
                         <div id="guv-2d" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 text-info">2D Simulation on GUV</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">2D Simulation on GUV</h4>
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
@@ -407,7 +407,7 @@
 
                         <!-- 3D Simulation on GUV -->
                         <div id="guv-3d" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 text-info">3D Simulation on GUV</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">3D Simulation on GUV</h4>
                             <div class="row g-3 mb-4 align-items-stretch">
                                 <div class="col-md-9">
                                     <div class="content-box p-0 h-100">
@@ -470,7 +470,7 @@
 
                     <!-- 2.1 Sequence Design Conditions -->
                     <div id="hcr-self-assembly" class="simulation-subblock">
-                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">2.1 Sequence Design
+                        <h3 class="h4 fw-bold mb-4">2.1 Sequence Design
                             Conditions</h3>
                         <div class="content-box p-4 p-md-5 mb-4">
                             <p class="text-secondary">The DNA sequences for the 6-Helix Bundle HCR system (seeds
@@ -489,7 +489,7 @@
 
                     <!-- 2.2 Thermodynamic Feasibility -->
                     <div id="hcr-possibility" class="simulation-subblock mb-0">
-                        <h3 class="h4 fw-bold mb-4" style="color: var(--primary-blue);">2.2 Thermodynamic Feasibility
+                        <h3 class="h4 fw-bold mb-4">2.2 Thermodynamic Feasibility
                             of the HCR Cascade</h3>
                         <div class="content-box p-4 p-md-5">
                             <p class="text-secondary mb-0">Thermodynamic simulations at 25°C confirmed the high
