@@ -70,7 +70,7 @@
                             </button>
                             <div class="collapse" id="more-2d-md">
                                 <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 section-subtitle">Detailed Theory &amp; Parameter Settings</h5>
+                                    <h5 class="fw-bold mb-3 section-subtitle">2. Kinetics and Thermodynamic Framework</h5>
                                     <p class="text-secondary">The dynamics of this system are governed by several key
                                         biophysical models. To implicitly account for the aqueous solvent environment
                                         without rendering every water molecule, the motion of each bead is calculated
@@ -85,37 +85,114 @@
                                     <p class="text-secondary">Here, <i>m</i><sub>i</sub> and
                                         <strong>v</strong><sub>i</sub> represent the mass and velocity of particle
                                         <i>i</i>, and γ<sub>i</sub> is the friction coefficient of the solvent. The
-                                        forces are divided into inter-particle conservative forces
-                                        (<strong>F</strong><sub>i</sub><sup>C</sup>) and a stochastic Gaussian noise
-                                        term (<strong>F</strong><sub>i</sub><sup>R</sup>) representing thermal
-                                        fluctuations (Brownian motion).
-                                    </p>
+                                        stochastic Gaussian noise term (<strong>F</strong><sub>i</sub><sup>R</sup>)
+                                        accurately replicates thermal fluctuations (Brownian motion).</p>
                                     <p class="text-secondary">The behavior of the EV membrane is based on Helfrich's
-                                        continuum elastic theory, where the bending energy of the lipid bilayer is
-                                        primarily determined by its bending modulus (κ) and curvature. In our CG model,
-                                        this macroscopic elasticity is approximated by tuning the angular and dihedral
-                                        potentials between the lipid beads.</p>
-                                    <p class="text-secondary">To connect the DNA bundle to the membrane via
-                                        cholesterol, we utilized the Finitely Extensible Nonlinear Elastic (FENE)
-                                        potential for the linker molecules:</p>
+                                        continuum elastic theory (Helfrich, 1973), approximated by tuning the angular
+                                        and linear potentials between the lipid beads to reflect the membrane's bending
+                                        modulus and area stretch modulus. Furthermore, membrane rupture (lysis) is
+                                        rigorously determined by a local area strain threshold. When the local strain
+                                        between lipid beads exceeds a critical limit, the bonds irreversibly break,
+                                        accurately mimicking the tension-induced bursting of actual lipid bilayers
+                                        (Evans et al., 2003).</p>
+                                    <p class="text-secondary">The interactions between cholesterol anchors and the
+                                        lipid membrane are modeled using a Morse potential, which accurately
+                                        represents the strong, short-range hydrophobic insertion energies (Bacle et
+                                        al., 2017). To simulate realistic sequential adhesion, we introduced an
+                                        entropic zipping mechanism representing the probability of thermally
+                                        fluctuating linkers stochastically colliding with and binding to the membrane.
+                                        Finally, the linkers (modeling TEG or poly-T sequences) act as flexible
+                                        entropic springs that provide mechanical "play" but cannot extend beyond their
+                                        contour length, instantly transmitting strong tension to the membrane once fully
+                                        stretched (Kremer &amp; Grest, 1990).</p>
+
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">3. Bead-Spring Modeling and DNA Bundle Stiffness</h5>
+                                    <p class="text-secondary">To accurately simulate the mechanical behavior of the
+                                        DNA bundles, we adopted a bead-spring polymer model where each bundle is
+                                        discretized into multiple segments. The internal mechanics of this segmented
+                                        bundle are governed by a bending stiffness that resists changes in angle across
+                                        consecutive beads.</p>
+                                    <p class="text-secondary">The critical parameter determining this bending
+                                        stiffness is based on established mechanical models of DNA nanostructures
+                                        (Liedl et al., 2010). It is determined by the number of bundled DNA double
+                                        helices (<i>N</i>) and their crosslinking efficiency (α, ranging from 0 to 1).
+                                        We derived the effective persistence length <i>L</i><sub>p,eff</sub> by
+                                        interpolating the uncrosslinked limit (<i>N</i>) and the fully crosslinked
+                                        rigid-body limit (<i>N</i><sup>2</sup>):</p>
                                     <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="V FENE of r equals negative one half K R zero squared times the natural logarithm of one minus the quantity r over R zero squared">
-                                        <i>V</i><sub>FENE</sub>(<i>r</i>) = −½ <i>K</i><i>R</i><sub>0</sub><sup>2</sup>
-                                        ln[1 − (<i>r</i>/<i>R</i><sub>0</sub>)<sup>2</sup>]
+                                        aria-label="L p effective equals L p zero times N times one minus alpha plus N squared alpha">
+                                        <i>L</i><sub>p,eff</sub> = <i>L</i><sub>p,0</sub>
+                                        [<i>N</i>(1 − α) + <i>N</i><sup>2</sup>α]
                                     </p>
-                                    <p class="text-secondary">This ensures that the linker acts as a harmonic spring at
-                                        equilibrium distances but cannot extend beyond a critical maximum length
-                                        (<i>R</i><sub>0</sub>), accurately reflecting the physical constraints of
-                                        polymer chains.</p>
-                                    <p class="text-secondary small mb-0">The critical parameter in this model is the
-                                        bending stiffness (<i>EI</i>) of the DNA bundle. Based on composite beam
-                                        mechanics, this stiffness is determined by the number of DNA double helices
-                                        (<i>N</i>) and the crosslinking efficiency (α, ranging from 0 to 1). When α = 0
-                                        (no crosslinks), the stiffness scales with <i>N</i>. When perfectly crosslinked
-                                        (α = 1), the stiffness scales with <i>N</i><sup>2</sup>. We translated this
-                                        macroscopic effective stiffness into the angular spring constant
-                                        (<i>K</i><sub>θ</sub>) between the DNA beads in our simulation, allowing us to
-                                        test how structural rigidity affects the membrane.</p>
+                                    <p class="text-secondary">where <i>L</i><sub>p,0</sub> is the base persistence
+                                        length of a single DNA duplex containing nicks. This macroscopic effective
+                                        stiffness is then translated into the angular spring constants between the DNA
+                                        segments in our simulation.</p>
+
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">4. 2D Simulation Results: The Crucial Role of Rigidity</h5>
+                                    <p class="text-secondary">As demonstrated in the simulation results, the bending
+                                        stiffness of the DNA bundle decisively dictates the fate of the EV membrane.
+                                        The results establish a clear physical principle: the more rigid the DNA
+                                        bundle, the higher the rupture efficiency.</p>
+                                    <p class="text-secondary">We compared two distinct scenarios. Under conditions
+                                        where crosslinking efficiency is low (α ≈ 0.1), the DNA bundle remains
+                                        flexible. As the vesicle undergoes elliptical deformation, the soft DNA yields
+                                        to the membrane's inherent curvature, bending its segments to hug the
+                                        membrane surface via the entropic zipping effect. While this maximizes the
+                                        number of bound cholesterol anchors, the pulling force becomes broadly
+                                        dispersed across the entire membrane. Furthermore, the DNA itself absorbs the
+                                        deformation energy by bending, buffering the applied tension. Consequently,
+                                        the local strain fails to accumulate sufficiently, and the membrane deformation
+                                        fails (the vesicle remains intact).</p>
+                                    <p class="text-secondary">In stark contrast, under conditions with high
+                                        crosslinking efficiency (α ≈ 0.8), the DNA bundle forms a highly rigid
+                                        structure. This rigid scaffold acts like a lever, strongly resisting any
+                                        bending along the deforming membrane. As a result, the physical pulling forces
+                                        are locally concentrated at the few contact points near the edges. Because the
+                                        rigid DNA does not absorb tension through its own deformation, the physical
+                                        stress is 100% transmitted through the fully stretched linkers to the lipid
+                                        bilayer. This focused stress instantly causes the local strain to surpass the
+                                        critical rupture threshold, successfully tearing the membrane.</p>
+
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">5. Simulation Parameters and Physical Justification</h5>
+                                    <p class="text-secondary">The simulation utilizes parameters rigorously grounded
+                                        in biophysics to ensure the model remains stable and realistic, even when
+                                        scaled up to Giant Unilamellar Vesicles (GUVs).</p>
+                                    <h6 class="fw-bold mt-3">Thermodynamic Environment</h6>
+                                    <ul class="text-secondary">
+                                        <li><i>k</i><sub>B</sub><i>T</i> = 4.11 pN·nm: Thermal energy at room
+                                            temperature (approximately 298 K).</li>
+                                        <li>γ = 1.0 pN·s/nm: Friction coefficient of the solvent.</li>
+                                        <li><i>dt</i> = 0.0001: Time step. To prevent numerical explosion caused by
+                                            the extreme forces of rigid DNA, a maximum displacement cap per step is
+                                            applied.</li>
+                                    </ul>
+                                    <h6 class="fw-bold mt-3">Membrane Mechanics (DOPC-based)</h6>
+                                    <ul class="text-secondary">
+                                        <li><i>k</i><sub>bend_mem</sub> = 25 <i>k</i><sub>B</sub><i>T</i>:
+                                            Membrane bending rigidity (Dimova, 2014).</li>
+                                        <li>Critical strain = 0.35 (35%): The local rupture threshold. Real membranes
+                                            rupture at 3–5% global area strain (Evans et al., 2003); in our
+                                            coarse-grained scaling, 35% local strain provides a physically robust
+                                            buffer against thermal noise while ensuring tension-induced lysis.</li>
+                                        <li>Scale-independent area constraint: To stabilize GUV scales
+                                            (<i>R</i> = 300 nm), internal volume pressure is calculated using
+                                            relative area strain rather than absolute area difference, preventing
+                                            numerical divergence.</li>
+                                    </ul>
+                                    <h6 class="fw-bold mt-3">DNA and Linker Dynamics</h6>
+                                    <ul class="text-secondary mb-0">
+                                        <li><i>N</i><sub>chains</sub> = 12: Number of bundled DNA chains.</li>
+                                        <li><i>L</i><sub>p,0</sub> = 25 nm: Base persistence length, adjusted
+                                            downward from 50 nm to account for nicks and gaps in HCR polymers.</li>
+                                        <li><i>D</i><sub>e</sub> = 60 <i>k</i><sub>B</sub><i>T</i>: Cholesterol
+                                            insertion energy for the Morse potential, mimicking strong, short-range
+                                            hydrophobic anchoring (Bacle et al., 2017).</li>
+                                        <li><i>L</i><sub>contour</sub>: Maximum extension length of the TEG/poly-T
+                                            linkers. They act as ultra-soft entropic springs
+                                            (<i>k</i><sub>linker</sub> = 1.5 pN/nm) until this limit is reached,
+                                            mimicking realistic polymer "play."</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
