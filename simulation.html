@@ -303,31 +303,38 @@
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
-                                        <div
-                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                            <span class="text-muted">Linear bundle deformation mode figure
-                                                placeholder</span>
-                                        </div>
-                                        <p class="text-secondary small mb-0">[Add caption: Linear rigid bundle causing
-                                            sharp localized stress concentration.]</p>
+                                        <img src="img/SIMULATION/low_bundle_radious_r4.jpeg"
+                                            alt="Liposome deformation caused by a low-radius DNA bundle"
+                                            class="img-fluid w-100 mb-3" loading="lazy" decoding="async">
+                                        <p class="text-secondary small mb-0">Low bundle radius (<em>r</em> = 4 nm).</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
-                                        <div
-                                            class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                            <span class="text-muted">Curved bundle deformation mode figure
-                                                placeholder</span>
-                                        </div>
-                                        <p class="text-secondary small mb-0">[Add caption: Flexible bundle conformally
-                                            wrapping the vesicle without disruption.]</p>
+                                        <img src="img/SIMULATION/high_bundle_radious_r10.jpeg"
+                                            alt="Liposome deformation caused by a high-radius DNA bundle"
+                                            class="img-fluid w-100 mb-3" loading="lazy" decoding="async">
+                                        <p class="text-secondary small mb-0">High bundle radius (<em>r</em> = 10 nm).
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+                            <p class="text-secondary mb-3">
+                                By using the L-BFGS-B optimization algorithm to solve for the equilibrium state where
+                                the membrane's elastic energy (based on Helfrich theory) competes with the DNA's
+                                bending energy (based on Euler-Bernoulli beam theory), we constructed 3D curvature
+                                heatmaps. This spatially proved that when a highly rigid, straight DNA bundle adheres
+                                to a liposome, the membrane is sharply folded at the bundle's edges, causing extreme
+                                stress concentration.
+                            </p>
                             <p class="text-secondary mb-0">
-                                Both the bundle stiffness and cross-sectional bundle radius strongly govern membrane
-                                disruption. By establishing the analytical relationship between DNA bundle helix count
-                                and effective radius, we can predict the minimum number of helices required for rupture.
+                                Subsequent parameter exploration revealed that not only the "bending rigidity" but
+                                also the "bundle radius (thickness)" is crucial for membrane rupture. While increased
+                                rigidity severely distorts the membrane, a thicker bundle spreads the stress laterally
+                                due to a wider contact area, thereby reducing local curvature. Since both of these
+                                physical scalings depend directly on the number of bundled DNA strands (<em>N</em>),
+                                we reasoned that we could theoretically calculate the minimum number of strands
+                                required to disrupt the membrane.
                             </p>
                         </div>
 
@@ -336,7 +343,7 @@
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Minimum Bundle Requirements &amp; Cross-linking
                                 Efficiency</h4>
                             <p class="text-secondary mb-4">
-                                We performed a 2D scaling analysis, plotting the number of strands (<em>N</em>) on the X-axis against the maximum membrane curvature (<em>H</em><sub>max</sub>) on the Y-axis. Assuming an ideal rigid DNA bundle (cross-linking efficiency <span class="math-inline">&alpha; = 1.0</span>), the bundle's radius is calculated as <span class="math-inline">r \approx 1.25\sqrt{N}</span>, and its bending rigidity increases proportionally to the square of the number of strands, <span class="math-inline">B \propto \alpha \cdot N^2</span>. When these parameters are fed back into our 3D stabilization simulation, the curvature initially spikes due to the explosive increase in rigidity, but eventually, the stress dispersion from the increasing radius takes over, creating a "convex saturation curve." In this calculation, the curve breached the critical membrane rupture threshold (<span class="math-inline">0.067\text{ nm}^{-1}</span>) at approximately 6 DNA helices. This quantitatively demonstrates that under ideal, perfectly cross-linked conditions, a minimum of 6 DNA strands is required to initiate membrane disruption.
+                                We performed a 2D scaling analysis, plotting the number of strands (<em>N</em>) on the X-axis against the maximum membrane curvature (<em>H</em><sub>max</sub>) on the Y-axis. Assuming an ideal rigid DNA bundle (cross-linking efficiency &alpha; = 1.0), the bundle's radius is calculated as <em>r</em> &asymp; 1.25&radic;<em>N</em>, and its bending rigidity increases proportionally to the square of the number of strands, <em>B</em> &prop; &alpha; &middot; <em>N</em><sup>2</sup>. When these parameters are fed back into our 3D stabilization simulation, the curvature initially spikes due to the explosive increase in rigidity, but eventually, the stress dispersion from the increasing radius takes over, creating a "convex saturation curve." In this calculation, the curve breached the critical membrane rupture threshold (0.067 nm<sup>&minus;1</sup>) at approximately 6 DNA helices. This quantitatively demonstrates that under ideal, perfectly cross-linked conditions, a minimum of 6 DNA strands is required to initiate membrane disruption.
                             </p>
                             <figure class="mb-5 pb-3">
                                 <img src="img/SIMULATION/3D_graph1.png"
