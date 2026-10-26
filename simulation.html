@@ -291,18 +291,69 @@
                             </button>
                             <div class="collapse" id="more-3d">
                                 <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 section-subtitle">Theoretical Framework &amp; Thermodynamic
-                                        Parameters</h5>
-                                    <p class="text-secondary small mb-0">Our calculation is strictly based on
-                                        established physical principles: the Canham-Helfrich theory for evaluating the
-                                        membrane's bending energy cost, and the Euler-Bernoulli beam theory for defining
-                                        the DNA bundle's bending elasticity. To find the most stable shape, we utilized
-                                        an optimization algorithm to minimize the total free energy. For the specific
-                                        parameters, we set the initial liposome radius to 50 nm, the membrane bending
-                                        modulus to 20 <i>k</i><sub>B</sub><i>T</i>, and the adhesion energy per
-                                        cholesterol molecule to 4.5 <i>k</i><sub>B</sub><i>T</i>. Crucially, based on
-                                        our prior physical models, we defined the critical average curvature for
-                                        membrane rupture as 0.067 nm<sup>-1</sup>.</p>
+                                    <h5 class="fw-bold mb-3 section-subtitle">Details of the 3D Thermodynamic Simulation Equations and Parameter Settings</h5>
+                                    <p class="text-secondary">This simulation models the search for a thermodynamic
+                                        equilibrium state that minimizes the total free energy of the system,
+                                        <i>F</i><sub>total</sub>. <i>F</i><sub>total</sub> is defined as the sum of
+                                        three energy terms:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="F total equals E adhesion plus E DNA bend plus E membrane">
+                                        <i>F</i><sub>total</sub> =
+                                        <i>E</i><sub>adhesion</sub> +
+                                        <i>E</i><sub>dna_bend</sub> +
+                                        <i>E</i><sub>membrane</sub>
+                                    </p>
+                                    <p class="text-secondary">The calculations are based on the thermal energy at room
+                                        temperature (300 K), <i>k</i><sub>B</sub><i>T</i> ≈ 4.11 × 10<sup>−21</sup> J.</p>
+
+                                    <h6 class="fw-bold mt-4">Cholesterol Adhesion Energy
+                                        (<i>E</i><sub>adhesion</sub>)</h6>
+                                    <p class="text-secondary">The adhesion energy per cholesterol molecule due to
+                                        hydrophobic insertion, <i>ε</i><sub>chol</sub>, was set to 4.5
+                                        <i>k</i><sub>B</sub><i>T</i> (Baumgart et al., <em>Nature</em>, 2003). For a
+                                        DNA bundle of length <i>L</i><sub>bundle</sub> = 60 nm modified with
+                                        <i>N</i><sub>chol</sub> = 22 cholesterols, the total theoretical adhesion
+                                        energy is:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="E adhesion total equals 22 times 4.5 k B T equals 99 k B T">
+                                        <i>E</i><sub>adh,total</sub> = 22 × 4.5 <i>k</i><sub>B</sub><i>T</i> =
+                                        99 <i>k</i><sub>B</sub><i>T</i>
+                                    </p>
+                                    <p class="text-secondary">The simulation calculates the actual energy gained
+                                        proportionally to the contact area, which depends on the membrane indentation
+                                        depth (<i>z</i><sub>indent</sub>) and the bundle radius
+                                        (<i>r</i><sub>dna</sub>).</p>
+
+                                    <h6 class="fw-bold mt-4">DNA Bundle Bending Energy
+                                        (<i>E</i><sub>dna_bend</sub>)</h6>
+                                    <p class="text-secondary">The DNA bundle is treated as an elastic beam based on
+                                        Euler-Bernoulli beam theory. The energy cost for a bundle with rigidity
+                                        <i>B</i><sub>dna</sub> to bend at a radius of curvature
+                                        <i>R</i><sub>bend</sub> is:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="E DNA bend equals one half B DNA times one over R bend squared times L bundle">
+                                        <i>E</i><sub>dna_bend</sub> =
+                                        ½ <i>B</i><sub>dna</sub>
+                                        (1/<i>R</i><sub>bend</sub>)<sup>2</sup>
+                                        <i>L</i><sub>bundle</sub>
+                                    </p>
+
+                                    <h6 class="fw-bold mt-4">Membrane Deformation Energy
+                                        (<i>E</i><sub>membrane</sub>)</h6>
+                                    <p class="text-secondary">Based on Helfrich theory, we calculate the deformation
+                                        cost of the target liposome with an initial radius <i>R</i><sub>0</sub> = 50 nm.
+                                        We used a membrane bending rigidity <i>κ</i><sub>m</sub> = 20
+                                        <i>k</i><sub>B</sub><i>T</i> (Rawicz et al., <em>Biophysical Journal</em>,
+                                        2000) and a membrane fluctuation tension <i>γ</i><sub>m</sub> = 1.0 × 10<sup>−4</sup>
+                                        mN/m. The bending and tension penalties are calculated using the effective
+                                        deformation depth (<i>z</i><sub>eff</sub>), which accounts for the geometric
+                                        mismatch between the straight DNA rod and the spherical liposome, and the width
+                                        of the membrane deformation pocket (<i>w</i><sub>y</sub>).</p>
+
+                                    <p class="text-secondary mb-0">Using SciPy's <code>L-BFGS-B</code> optimization
+                                        algorithm, we simultaneously optimize these three variables—
+                                        <i>z</i><sub>indent</sub>, <i>R</i><sub>bend</sub>, and <i>w</i><sub>y</sub>—
+                                        to find the geometric solution where <i>F</i><sub>total</sub> is minimized.</p>
                                 </div>
                             </div>
                         </div>
