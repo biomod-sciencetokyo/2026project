@@ -620,14 +620,71 @@
                         <h3 class="h4 fw-bold mb-4">2.2 Thermodynamic Feasibility
                             of the HCR Cascade</h3>
                         <div class="content-box p-4 p-md-5">
-                            <p class="text-secondary mb-0">Thermodynamic simulations at 25°C confirmed the high
-                                structural integrity and reactivity of the designed system. In isolation, the hairpin
-                                strands strongly favor the target double-hairpin monomer state, with dimerization rates
-                                suppressed to near zero (&lt;0.1%). Furthermore, the hybridization chain reaction is
-                                thermodynamically highly favorable; every sequential binding step in the cascade yields
-                                a substantial negative Gibbs free energy change (ΔG ≪ 0). This steep “energy cascade”
-                                ensures that the self-assembly into the final 6-Helix Bundle proceeds spontaneously,
-                                rapidly, and irreversibly upon trigger initiation.</p>
+                            <p class="text-secondary">To verify the structural integrity and reaction feasibility of
+                                the designed 6-Helix Bundle HCR system, thermodynamic simulations were conducted
+                                using NUPACK. The monomer fraction of each hairpin (H1–H6) in isolation (1 μM) was
+                                evaluated, demonstrating exceptional structural fidelity (&gt;99.7% monomeric purity)
+                                with negligible homodimerization (≤0.21%). The thermodynamic driving force for the HCR
+                                cascade was assessed by calculating the Gibbs free energy change (ΔG) for each
+                                sequential binding event initialized by the trigger strand (S2). As summarized in
+                                Table 1, every hybridization step exhibits a substantial negative free energy change
+                                (ΔG &lt; 0), establishing a robust energetic cascade that guarantees the spontaneous
+                                and irreversible assembly of the 6-Helix Bundle.</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped align-middle mb-2">
+                                    <caption class="caption-top text-secondary">
+                                        Table 1. Thermodynamic properties and cascade energetics of the HCR hairpins.
+                                    </caption>
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col">Reaction Step (Added Strand)</th>
+                                            <th scope="col">Monomer Fraction (%)*</th>
+                                            <th scope="col">Homodimerization (%)*</th>
+                                            <th scope="col">Sequential ΔG (kcal/mol)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Step 1 (S2 + H1)</th>
+                                            <td>99.92</td>
+                                            <td>0.0785</td>
+                                            <td>−17.50</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Step 2 (+ H2)</th>
+                                            <td>99.94</td>
+                                            <td>0.0586</td>
+                                            <td>−10.61</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Step 3 (+ H4)</th>
+                                            <td>99.93</td>
+                                            <td>0.0732</td>
+                                            <td>−15.94</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Step 4 (+ H5)</th>
+                                            <td>99.79</td>
+                                            <td>0.2093</td>
+                                            <td>−6.41</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Step 5 (+ H3)</th>
+                                            <td>99.88</td>
+                                            <td>0.1189</td>
+                                            <td>−6.54</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Step 6 (+ H6)</th>
+                                            <td>99.96</td>
+                                            <td>0.0386</td>
+                                            <td>−6.11</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-secondary small mb-0">* Monomer fraction and homodimerization values are for
+                                each hairpin evaluated in isolation at 1 μM.</p>
                         </div>
                     </div>
                 </section>
