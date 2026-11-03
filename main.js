@@ -48,6 +48,28 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0
     });
 
+    // シミュレーション環境図：マーカーと説明カードの連動ハイライト（クリック／タップで固定）
+    document.querySelectorAll('[data-sim-env]').forEach(env => {
+        const parts = env.querySelectorAll('[data-part]');
+        let pinned = null;
+
+        const highlight = (name) => {
+            env.classList.toggle('has-active', Boolean(name));
+            parts.forEach(el => el.classList.toggle('is-active', el.dataset.part === name));
+        };
+
+        parts.forEach(el => {
+            el.addEventListener('mouseenter', () => highlight(el.dataset.part));
+            el.addEventListener('mouseleave', () => highlight(pinned));
+            el.addEventListener('focus', () => highlight(el.dataset.part));
+            el.addEventListener('blur', () => highlight(pinned));
+            el.addEventListener('click', () => {
+                pinned = pinned === el.dataset.part ? null : el.dataset.part;
+                highlight(pinned);
+            });
+        });
+    });
+
     sections.forEach(section => {
         // 初期読み込み時に画面内（ビューポート）に既に表示されている要素は即座にフェードイン
         const rect = section.getBoundingClientRect();
