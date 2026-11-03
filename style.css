@@ -808,9 +808,9 @@ section[id],
     font-weight: 400;
 }
 
+/* top-aligned so the real and model images share the same framing */
 .sim-env-canvas {
     position: relative;
-    margin-top: auto;
     margin-bottom: auto;
 }
 
