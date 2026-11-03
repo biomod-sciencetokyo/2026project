@@ -63,8 +63,6 @@
 
                         <!-- Real system vs. 2D model -->
                         <div class="sim-env mb-5" data-sim-env>
-                            <p class="sim-env-hint">Hover over or tap a component to see where it sits in the real
-                                system and in the model.</p>
                             <div class="sim-env-panels">
                                 <figure class="sim-env-panel">
                                     <figcaption class="sim-env-panel-label">Real system</figcaption>
@@ -98,61 +96,22 @@
                                 </figure>
                             </div>
 
-                            <ol class="sim-env-parts sim-env-parts-2x2">
+                            <ol class="sim-env-parts">
                                 <li class="sim-env-part" data-part="bundle" tabindex="0">
                                     <span class="sim-env-num">1</span>
-                                    <div>
-                                        <h5 class="sim-env-part-title">DNA bundle</h5>
-                                        <dl>
-                                            <dt>Real</dt>
-                                            <dd>DNA double helices assembled by HCR and packed side by side into a
-                                                rigid bundle.</dd>
-                                            <dt>Model</dt>
-                                            <dd>A chain of stiff rod segments joined end to end. The joints resist
-                                                bending; their stiffness reflects how tightly the helices are
-                                                cross-linked.</dd>
-                                        </dl>
-                                    </div>
+                                    <h5 class="sim-env-part-title">DNA bundle</h5>
                                 </li>
                                 <li class="sim-env-part" data-part="linker" tabindex="0">
                                     <span class="sim-env-num">2</span>
-                                    <div>
-                                        <h5 class="sim-env-part-title">TEG linker</h5>
-                                        <dl>
-                                            <dt>Real</dt>
-                                            <dd>A short, flexible tether between the DNA and each cholesterol.</dd>
-                                            <dt>Model</dt>
-                                            <dd>A soft spring that gives freely until it reaches its full length, then
-                                                passes the pulling force straight to the membrane.</dd>
-                                        </dl>
-                                    </div>
+                                    <h5 class="sim-env-part-title">TEG linker</h5>
                                 </li>
                                 <li class="sim-env-part" data-part="chol" tabindex="0">
                                     <span class="sim-env-num">3</span>
-                                    <div>
-                                        <h5 class="sim-env-part-title">Cholesterol</h5>
-                                        <dl>
-                                            <dt>Real</dt>
-                                            <dd>A hydrophobic anchor that inserts into the lipid bilayer.</dd>
-                                            <dt>Model</dt>
-                                            <dd>A bead with a strong, short-range attraction to the membrane beads:
-                                                once it comes close, it sticks.</dd>
-                                        </dl>
-                                    </div>
+                                    <h5 class="sim-env-part-title">Cholesterol</h5>
                                 </li>
                                 <li class="sim-env-part" data-part="membrane" tabindex="0">
                                     <span class="sim-env-num">4</span>
-                                    <div>
-                                        <h5 class="sim-env-part-title">Lipid membrane</h5>
-                                        <dl>
-                                            <dt>Real</dt>
-                                            <dd>The lipid bilayer that encloses the EV.</dd>
-                                            <dt>Model</dt>
-                                            <dd>A ring of beads joined by springs that resist bending and stretching.
-                                                A spring stretched past its limit breaks &mdash; this is how membrane
-                                                rupture appears in the simulation.</dd>
-                                        </dl>
-                                    </div>
+                                    <h5 class="sim-env-part-title">Lipid membrane</h5>
                                 </li>
                             </ol>
                         </div>
@@ -464,8 +423,6 @@
                                 predicted to rupture.</p>
                             <!-- Real system vs. 3D model -->
                             <div class="sim-env mb-4" data-sim-env>
-                                <p class="sim-env-hint">Hover over or tap a component to see where it sits in the real
-                                    system and in the model.</p>
                                 <div class="sim-env-panels">
                                     <figure class="sim-env-panel">
                                         <figcaption class="sim-env-panel-label">Real system</figcaption>
@@ -500,47 +457,15 @@
                                 <ol class="sim-env-parts">
                                     <li class="sim-env-part" data-part="bundle" tabindex="0">
                                         <span class="sim-env-num">1</span>
-                                        <div>
-                                            <h5 class="sim-env-part-title">DNA bundle</h5>
-                                            <dl>
-                                                <dt>Real</dt>
-                                                <dd>The same rigid bundle, now partly sunk into the surface of a whole vesicle.</dd>
-                                                <dt>Model</dt>
-                                                <dd>A continuous elastic rod. It can bend to follow the membrane, but
-                                                    bending costs energy set by the bundle's rigidity.</dd>
-                                            </dl>
-                                        </div>
+                                        <h5 class="sim-env-part-title">DNA bundle</h5>
                                     </li>
                                     <li class="sim-env-part" data-part="chol" tabindex="0">
                                         <span class="sim-env-num">2</span>
-                                        <div>
-                                            <h5 class="sim-env-part-title">Cholesterol anchors</h5>
-                                            <dl>
-                                                <dt>Real</dt>
-                                                <dd>Cholesterols stick out on every side of the bundle. Where the bundle sinks into the
-                                                    membrane, they insert into the outer leaflet, so the membrane wraps
-                                                    around the bundle and adheres to it.</dd>
-                                                <dt>Model</dt>
-                                                <dd>Not drawn one by one. Instead, every patch of membrane in contact
-                                                    with the rod releases adhesion energy, which pulls the membrane
-                                                    onto the rod.</dd>
-                                            </dl>
-                                        </div>
+                                        <h5 class="sim-env-part-title">Cholesterol anchors</h5>
                                     </li>
                                     <li class="sim-env-part" data-part="membrane" tabindex="0">
                                         <span class="sim-env-num">3</span>
-                                        <div>
-                                            <h5 class="sim-env-part-title">Lipid membrane</h5>
-                                            <dl>
-                                                <dt>Real</dt>
-                                                <dd>The spherical lipid bilayer of the vesicle.</dd>
-                                                <dt>Model</dt>
-                                                <dd>A continuous elastic surface (Canham&ndash;Helfrich) that costs
-                                                    energy to bend and stretch. The simulation finds the shape with the
-                                                    lowest total energy; strongly curved regions are where rupture is
-                                                    predicted.</dd>
-                                            </dl>
-                                        </div>
+                                        <h5 class="sim-env-part-title">Lipid membrane</h5>
                                     </li>
                                 </ol>
                             </div>

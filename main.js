@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // ヘッダーの読み込み
     fetch('header.html')
         .then(response => response.text())
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const currentPath = window.location.pathname;
                 const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
                 const navLinks = headerPlaceholder.querySelectorAll('.nav-link');
-                
+
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     const href = link.getAttribute('href');
@@ -48,13 +48,71 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0
     });
 
-    // シミュレーション環境図：マーカーと説明カードの連動ハイライト（クリック／タップで固定）
+    // シミュレーション環境図：ドットのみ＋共通要素バーによる左右同時スポットライト比較
+    const DOT_LAYOUTS = {
+        'sim2d_real': {
+            bundle: { label: 'DNA bundle', dot: [22.0, 14.0] },
+            linker: { label: 'TEG linker', dot: [34.3, 25.5] },
+            chol: { label: 'Cholesterol', dot: [62.2, 31.5] },
+            membrane: { label: 'Lipid membrane', dot: [50.0, 56.0] }
+        },
+        'sim2d_model': {
+            bundle: { label: 'DNA bundle', dot: [22.8, 11.0] },
+            linker: { label: 'TEG linker', dot: [35.6, 20.0] },
+            chol: { label: 'Cholesterol', dot: [61.0, 27.3] },
+            membrane: { label: 'Lipid membrane', dot: [50.0, 45.5] }
+        },
+        'sim3d_real': {
+            bundle: { label: 'DNA bundle', dot: [48.5, 23.5] },
+            chol: { label: 'Cholesterol anchors', dot: [39.7, 32.3] },
+            membrane: { label: 'Lipid membrane', dot: [64.0, 76.0] }
+        },
+        'sim3d_model': {
+            bundle: { label: 'DNA bundle', dot: [48.5, 23.5] },
+            chol: { label: 'Cholesterol anchors', dot: [39.7, 32.3] },
+            membrane: { label: 'Lipid membrane', dot: [64.0, 76.0] }
+        }
+    };
+
     document.querySelectorAll('[data-sim-env]').forEach(env => {
+        // 共通の要素バー（.sim-env-parts）を比較パネルのすぐ上に配置
+        const partsList = env.querySelector('.sim-env-parts');
+        const panels = env.querySelector('.sim-env-panels');
+        if (partsList && panels) {
+            env.insertBefore(partsList, panels);
+        }
+
+        env.querySelectorAll('.sim-env-canvas').forEach(canvas => {
+            const img = canvas.querySelector('img');
+            if (!img) return;
+            const src = img.getAttribute('src') || '';
+            const key = Object.keys(DOT_LAYOUTS).find(k => src.includes(k));
+            if (!key) return;
+            const layout = DOT_LAYOUTS[key];
+
+            canvas.querySelectorAll('.sim-env-marker').forEach(marker => {
+                const part = marker.dataset.part;
+                const cfg = layout[part];
+                if (!cfg) return;
+
+                marker.classList.add('sim-env-beacon');
+                marker.style.left = `${cfg.dot[0]}%`;
+                marker.style.top = `${cfg.dot[1]}%`;
+                marker.dataset.label = cfg.label;
+                marker.textContent = '';
+            });
+        });
+
         const parts = env.querySelectorAll('[data-part]');
         let pinned = null;
 
         const highlight = (name) => {
             env.classList.toggle('has-active', Boolean(name));
+            if (name) {
+                env.dataset.activePart = name;
+            } else {
+                delete env.dataset.activePart;
+            }
             parts.forEach(el => el.classList.toggle('is-active', el.dataset.part === name));
         };
 
