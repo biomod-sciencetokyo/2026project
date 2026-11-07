@@ -1316,11 +1316,41 @@ section[id],
 /* one text area: every panel sits in the same grid cell, so the area keeps the longest step's height
    and nothing below it jumps when the step changes */
 .approach-panels {
+    --tab-gap: 8px;   /* same as .approach-tabs gap */
+    position: relative;
     display: grid;
-    margin-top: 6px;
+    margin-top: 10px;
     padding: 16px 18px;
     border: 1px solid #263b57;
     background: rgba(9, 20, 38, 0.45);
+}
+
+/* the text area says which step it belongs to by pointing at the active tab:
+   a lit segment of its top edge sits under that tab, with a notch pointing up into it, and slides along
+   when the step changes (--step is 0, 1 or 2, set by main.js) */
+.approach-panels::before,
+.approach-panels::after {
+    content: "";
+    position: absolute;
+    transition: left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.approach-panels::before {
+    top: -1px;
+    left: calc((100% + 2px + var(--tab-gap)) * var(--step, 0) / 3 - 1px);
+    width: calc((100% + 2px - 2 * var(--tab-gap)) / 3);
+    height: 2px;
+    background: var(--accent-blue);
+}
+
+.approach-panels::after {
+    top: -7px;
+    left: calc((100% + 2px + var(--tab-gap)) * var(--step, 0) / 3 - 1px + (100% + 2px - 2 * var(--tab-gap)) / 6 - 6px);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid var(--accent-blue);
 }
 
 .approach-panel {
@@ -1355,6 +1385,7 @@ section[id],
     }
 
     .approach-panels {
+        --tab-gap: 6px;
         padding: 12px 14px;
     }
 

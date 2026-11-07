@@ -158,6 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const p = Math.max(0, (t - s.start) / (sEnd - s.start));
                 s.bar.style.width = active ? (p * 100) + '%' : '';
             });
+            const current = steps.findIndex(s => s.el.classList.contains('is-active'));
+            if (current >= 0) approachPlayer.style.setProperty('--step', current);
             approachPlayer.classList.toggle('is-paused', video.paused);
             toggle.setAttribute('aria-label', video.paused ? 'Play animation' : 'Pause animation');
         };
