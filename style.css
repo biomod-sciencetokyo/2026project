@@ -422,6 +422,7 @@ h6,
 /* Anchor Scroll Margins */
 section[id],
 .fade-in-section[id],
+.fade-in-section [id],
 .simulation-subblock[id],
 .content-box[id] {
     scroll-margin-top: 90px;
@@ -1170,4 +1171,146 @@ section[id],
 .concept-highlight {
     color: var(--accent-gold, #d8b96f);
     font-weight: 700;
+}
+
+/* Approach animation: one video, step text follows playback */
+.approach-player {
+    padding: 20px;
+}
+
+.approach-player:hover {
+    transform: none;
+}
+
+.approach-video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #fff;
+    border: 1px solid #314763;
+    overflow: hidden;
+}
+
+.approach-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.approach-toggle {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    background: rgba(13, 27, 52, 0.78);
+    color: var(--text-main);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.approach-toggle:hover,
+.approach-toggle:focus-visible {
+    opacity: 1;
+    border-color: var(--accent-blue);
+}
+
+/* pause icon by default, play icon when paused */
+.approach-toggle-icon {
+    width: 10px;
+    height: 12px;
+    border-left: 3px solid currentColor;
+    border-right: 3px solid currentColor;
+}
+
+.approach-player.is-paused .approach-toggle-icon {
+    width: 0;
+    height: 0;
+    border-right: 0;
+    border-left: 11px solid currentColor;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    margin-left: 3px;
+}
+
+.approach-step {
+    position: relative;
+    height: 100%;
+    padding: 14px 16px 16px;
+    border: 1px solid #263b57;
+    background: rgba(9, 20, 38, 0.45);
+    opacity: 0.5;
+    transition: opacity 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+}
+
+.approach-step:hover {
+    opacity: 0.8;
+}
+
+.approach-step.is-active {
+    opacity: 1;
+    border-color: var(--accent-blue);
+    background: var(--surface-raised);
+}
+
+.approach-step-bar {
+    height: 2px;
+    margin-bottom: 12px;
+    background: #263b57;
+    overflow: hidden;
+}
+
+.approach-step-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--accent-blue);
+}
+
+.approach-step-btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    -webkit-text-stroke: inherit;
+}
+
+/* the whole card is the click target */
+.approach-step-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.approach-step-btn:focus-visible {
+    outline: none;
+}
+
+.approach-step:has(.approach-step-btn:focus-visible) {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+/* stacked under the video: only the current step keeps its text, so it stays next to the video */
+@media (max-width: 991.98px) {
+    .approach-step:not(.is-active) p {
+        display: none;
+    }
+
+    .approach-step:not(.is-active) .section-subtitle {
+        margin-bottom: 0 !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .approach-player {
+        padding: 12px;
+    }
 }

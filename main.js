@@ -128,6 +128,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Approach アニメーション：再生位置に合わせて Step の文章を切り替える
+    const approachPlayer = document.getElementById('approach-player');
+    if (approachPlayer) {
+        const video = approachPlayer.querySelector('.approach-video');
+        const toggle = approachPlayer.querySelector('.approach-toggle');
+        const steps = [...approachPlayer.querySelectorAll('.approach-step')].map(el => ({
+            el,
+            bar: el.querySelector('.approach-step-bar span'),
+            start: parseFloat(el.dataset.start),
+            end: parseFloat(el.dataset.end)
+        }));
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let userPaused = reduceMotion;   // 動きを減らす設定なら自動再生しない
+
+        const render = () => {
+            const t = video.currentTime;
+            const end = video.duration || Infinity;
+            steps.forEach(s => {
+                const sEnd = Math.min(s.end, end);
+                const active = t >= s.start && t < sEnd;
+                s.el.classList.toggle('is-active', active);
+                const p = t >= sEnd ? 1 : Math.max(0, (t - s.start) / (sEnd - s.start));
+                s.bar.style.width = (active ? p * 100 : 0) + '%';
+            });
+            approachPlayer.classList.toggle('is-paused', video.paused);
+            toggle.setAttribute('aria-label', video.paused ? 'Play animation' : 'Pause animation');
+        };
+        const loop = () => {
+            render();
+            if (!video.paused) requestAnimationFrame(loop);
+        };
+        video.addEventListener('play', () => requestAnimationFrame(loop));
+        video.addEventListener('pause', render);
+        video.addEventListener('seeked', render);
+        video.addEventListener('loadedmetadata', render);
+
+        const play = () => video.play().catch(() => render());
+        toggle.addEventListener('click', () => {
+            userPaused = !video.paused;
+            if (userPaused) video.pause(); else play();
+        });
+        steps.forEach(s => {
+            s.el.querySelector('.approach-step-btn').addEventListener('click', () => {
+                video.currentTime = s.start + 0.01;
+                userPaused = false;
+                play();
+            });
+        });
+
+        // 画面に入ったら再生、外れたら一時停止
+        new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !userPaused) play();
+                else if (!entry.isIntersecting) video.pause();
+            });
+        }, { threshold: 0.35 }).observe(video);
+        render();
+    }
+
     sections.forEach(section => {
         // 初期読み込み時に画面内（ビューポート）に既に表示されている要素は即座にフェードイン
         const rect = section.getBoundingClientRect();

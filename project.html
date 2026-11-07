@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROJECT | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=css-cleanup-14">
+    <link rel="stylesheet" href="style.css?v=approach-video-2">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -109,7 +109,7 @@
                     <h2 class="section-title">3. Our Approach</h2>
                     <p class="text-secondary mb-3">
                         We propose <span class="concept-highlight">lipid membrane disruption using in situ
-                        assembled DNA bundles by Bundled HCR</span>.
+                            assembled DNA bundles by Bundled HCR</span>.
                     </p>
                     <p class="text-secondary mb-3">
                         In our approach, Bundled HCR (Bundled Hybridization Chain Reaction) is initiated near the target
@@ -122,82 +122,69 @@
                         this project.
                     </p>
 
-                    <div class="row g-4 mb-4">
-                        <!-- Step 1 -->
-                        <div class="col-12">
-                            <div class="content-box">
-                                <h3 class="h5 fw-bold mb-3 section-subtitle">Step 1: Bundled
-                                    HCR is initiated by a trigger</h3>
-                                <div class="row g-4 align-items-center">
-                                    <!-- 左側：画像（一回り拡大） -->
-                                    <div class="col-md-5">
-                                        <div class="ratio ratio-4x3 content-box p-0">
-                                            <img src="img/PROJECT/STEP1.jpeg" alt="Step 1: Triggered HCR"
-                                                class="w-100 h-100 object-fit-contain">
-                                        </div>
-                                    </div>
-                                    <!-- 右側：文章 -->
-                                    <div class="col-md-7">
-                                        <p class="text-secondary mb-0">
-                                            Only in the presence of the Trigger DNA does the seed become active. This
-                                            initiates the Bundled HCR process, causing the Double-Hairpin DNAs to
-                                            sequentially open and assemble.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Approach animation: one continuous video, the step text follows the playback -->
+                    <div class="content-box approach-player mb-4" id="approach-player">
+                        <div class="approach-video-frame">
+                            <video class="approach-video" muted loop playsinline preload="metadata"
+                                poster="video/PROJECT/hcr-trigger-grow-rupture-poster.jpg"
+                                aria-label="Animation: a trigger starts Bundled HCR, the cholesterol-modified DNA bundle elongates, then anchors to and ruptures the lipid membrane">
+                                <source src="video/PROJECT/hcr-trigger-grow-rupture-3d.mp4" type="video/mp4">
+                            </video>
+                            <button type="button" class="approach-toggle" aria-label="Pause animation">
+                                <span class="approach-toggle-icon" aria-hidden="true"></span>
+                            </button>
                         </div>
 
-                        <!-- Step 2 -->
-                        <div class="col-12">
-                            <div class="content-box">
-                                <h3 class="h5 fw-bold mb-3 section-subtitle">Step 2:
-                                    Cholesterol-modified DNA bundle elongates via Bundled HCR</h3>
-                                <div class="row g-4 align-items-center">
-                                    <!-- 左側：画像（一回り拡大） -->
-                                    <div class="col-md-5">
-                                        <div class="ratio ratio-4x3 content-box p-0">
-                                            <img src="img/PROJECT/STEP2.jpeg" alt="Step 2: DNA Bundling"
-                                                class="w-100 h-100 object-fit-contain">
-                                        </div>
-                                    </div>
-                                    <!-- 右側：文章 -->
-                                    <div class="col-md-7">
-                                        <p class="text-secondary mb-0">
-                                            Through the Bundled HCR process, the DNA bundle elongates to a length
-                                            ranging from several hundred nanometers to a few micrometers. Because the
-                                            Double-Hairpin DNAs are modified with cholesterol, a cholesterol-tagged DNA
-                                            bundle is assembled.
-                                        </p>
-                                    </div>
+                        <div class="row g-3 mt-2 approach-steps">
+                            <!-- Step 1 -->
+                            <div class="col-lg-4">
+                                <div class="approach-step is-active" data-start="0" data-end="21">
+                                    <div class="approach-step-bar"><span></span></div>
+                                    <h3 class="h6 fw-bold mb-2 section-subtitle">
+                                        <button type="button" class="approach-step-btn">Step 1: Bundled HCR is
+                                            initiated by a trigger</button>
+                                    </h3>
+                                    <p class="text-secondary small mb-0">
+                                        Only in the presence of the Trigger DNA does the seed become active. This
+                                        initiates the Bundled HCR process, causing the Double-Hairpin DNAs to
+                                        sequentially open and assemble.
+                                    </p>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Step 3 -->
-                        <div class="col-12">
-                            <div class="content-box">
-                                <h3 class="h5 fw-bold mb-3 section-subtitle">Step 3: Anchors
-                                    to and disrupts the lipid membrane</h3>
-                                <div class="row g-4 align-items-center">
-                                    <!-- 左側：画像（一回り拡大） -->
-                                    <div class="col-md-5">
-                                        <div class="ratio ratio-4x3 content-box p-0">
-                                            <img src="img/PROJECT/STEP3.jpeg" alt="Step 3: Membrane Disruption"
-                                                class="w-100 h-100 object-fit-contain">
-                                        </div>
-                                    </div>
-                                    <!-- 右側：文章 -->
-                                    <div class="col-md-7">
-                                        <p class="text-secondary mb-0">
-                                            Through hydrophobic interactions with the hydrophobic core of the lipid
-                                            bilayer, the cholesterol tags sequentially anchor to the lipid membrane. The
-                                            multivalent binding of this highly rigid DNA bundle generates local physical
-                                            tension, forcing the membrane to deform. When this deformation exceeds the
-                                            critical curvature of the lipid membrane, it can no longer maintain its
-                                            structure, resulting in physical rupture.
-                                        </p>
-                                    </div>
+                            <!-- Step 2 -->
+                            <div class="col-lg-4">
+                                <div class="approach-step" data-start="21" data-end="61">
+                                    <div class="approach-step-bar"><span></span></div>
+                                    <h3 class="h6 fw-bold mb-2 section-subtitle">
+                                        <button type="button" class="approach-step-btn">Step 2: Cholesterol-modified
+                                            DNA bundle elongates via Bundled HCR</button>
+                                    </h3>
+                                    <p class="text-secondary small mb-0">
+                                        Through the Bundled HCR process, the DNA bundle elongates to a length
+                                        ranging from several hundred nanometers to a few micrometers. Because the
+                                        Double-Hairpin DNAs are modified with cholesterol, a cholesterol-tagged DNA
+                                        bundle is assembled.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="col-lg-4">
+                                <div class="approach-step" data-start="61" data-end="999">
+                                    <div class="approach-step-bar"><span></span></div>
+                                    <h3 class="h6 fw-bold mb-2 section-subtitle">
+                                        <button type="button" class="approach-step-btn">Step 3: Anchors to and
+                                            disrupts the lipid membrane</button>
+                                    </h3>
+                                    <p class="text-secondary small mb-0">
+                                        Through hydrophobic interactions with the hydrophobic core of the lipid
+                                        bilayer, the cholesterol tags sequentially anchor to the lipid membrane. The
+                                        multivalent binding of this highly rigid DNA bundle generates local physical
+                                        tension, forcing the membrane to deform. When this deformation exceeds the
+                                        critical curvature of the lipid membrane, it can no longer maintain its
+                                        structure, resulting in physical rupture.
+                                    </p>
                                 </div>
                             </div>
                         </div>
