@@ -139,8 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
             start: parseFloat(el.dataset.start),
             end: parseFloat(el.dataset.end)
         }));
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let userPaused = reduceMotion;   // 動きを減らす設定なら自動再生しない
+        let userPaused = false;
+
+        video.muted = true;
+        video.playsInline = true;
 
         const render = () => {
             const t = video.currentTime;
@@ -160,15 +162,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!video.paused) requestAnimationFrame(loop);
         };
         video.addEventListener('play', () => requestAnimationFrame(loop));
+        video.addEventListener('playing', () => requestAnimationFrame(loop));
+        video.addEventListener('timeupdate', render);
         video.addEventListener('pause', render);
         video.addEventListener('seeked', render);
         video.addEventListener('loadedmetadata', render);
 
-        const play = () => video.play().catch(() => render());
-        toggle.addEventListener('click', () => {
+        const play = () => {
+            video.muted = true;
+            const p = video.play();
+            if (p && typeof p.catch === 'function') {
+                p.catch(() => render());
+            }
+        };
+        const togglePlay = () => {
             userPaused = !video.paused;
             if (userPaused) video.pause(); else play();
-        });
+        };
+        toggle.addEventListener('click', togglePlay);
+        video.addEventListener('click', togglePlay);
         steps.forEach(s => {
             s.el.querySelector('.approach-step-btn').addEventListener('click', () => {
                 video.currentTime = s.start + 0.01;
@@ -183,8 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (entry.isIntersecting && !userPaused) play();
                 else if (!entry.isIntersecting) video.pause();
             });
-        }, { threshold: 0.35 }).observe(video);
+        }, { threshold: 0.2 }).observe(video);
         render();
+        if (!video.paused) requestAnimationFrame(loop);
     }
 
     sections.forEach(section => {
