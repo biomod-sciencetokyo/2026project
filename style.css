@@ -1393,3 +1393,116 @@ section[id],
         font-size: 0.9rem;
     }
 }
+
+
+/* =============================================================================
+   Cover (index.html). Still by default; hero/hero-scroll.js adds .hero--live once its 3D scene is up,
+   which turns the header into a tall scroll track with the scene pinned to the viewport.
+   ========================================================================== */
+.hero {
+    position: relative;
+    margin-top: -60px;   /* run under the fixed navbar */
+    height: 80vh;
+    min-height: 500px;
+    background: radial-gradient(circle at right, rgba(127, 150, 194, 0.3) 0%, var(--primary-blue) 70%);
+}
+
+.hero-stage {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-text {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 7vw;
+    text-align: right;
+    pointer-events: none;
+}
+
+.hero-text h1 {
+    max-width: 1040px;
+    margin: 0 0 1.4rem;
+    color: #fff;
+    font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 40px rgba(4, 12, 26, 0.9);
+}
+
+.hero-text p {
+    max-width: 720px;
+    color: var(--accent-blue);
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    text-shadow: 0 2px 30px rgba(4, 12, 26, 0.95);
+}
+
+.hero-scroll {
+    display: none;
+    position: absolute;
+    right: 7vw;
+    bottom: 5vh;
+    color: #7f93ad;
+    font-size: 0.7rem;
+    letter-spacing: 0.34em;
+}
+
+.hero-scroll::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 34px;
+    margin: 10px 0 0 auto;
+    background: linear-gradient(#7f93ad, transparent);
+}
+
+/* live: the scroll bar is the clock */
+.hero.hero--live {
+    height: 460vh;
+    min-height: 0;
+    background: none;
+}
+
+.hero--live .hero-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.hero--live .hero-stage canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* a scrim so the words stay readable over the structure, without washing it out */
+.hero--live .hero-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(ellipse 70% 55% at 50% 48%, rgba(7, 17, 32, 0.82), rgba(7, 17, 32, 0.35) 55%, rgba(7, 17, 32, 0) 78%);
+    transition: opacity 0.4s linear;
+}
+
+.hero--live.gone .hero-stage::after {
+    opacity: 0;
+}
+
+/* the script fades the title in when the bundle is built and out as the scroll begins */
+.hero--live .hero-text {
+    position: fixed;
+    opacity: 0;
+}
+
+.hero--live .hero-scroll {
+    display: block;
+}
