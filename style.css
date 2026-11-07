@@ -1463,7 +1463,7 @@ section[id],
 
 /* live: the scroll bar is the clock */
 .hero.hero--live {
-    height: 460vh;
+    height: 320vh;   /* 2.2 screens of scroll for the whole cover */
     min-height: 0;
     background: none;
 }
@@ -1505,4 +1505,31 @@ section[id],
 
 .hero--live .hero-scroll {
     display: block;
+}
+
+/* sealed: the camera has gone through the hole and the cover has closed behind it (height set by the script) */
+.hero.hero--done {
+    min-height: 0;
+}
+
+.hero--done .hero-stage,
+.hero--done .hero-text {
+    display: none;
+}
+
+/* ...and once that empty screen has scrolled away, the top of the page becomes a still title band */
+.hero.hero--done.hero--titled {
+    height: auto;
+    padding: calc(60px + 12vh) 0 10vh;
+}
+
+.hero--done.hero--titled .hero-text {
+    display: flex;
+    position: relative;
+    inset: auto;
+    opacity: 1;
+}
+
+.hero--done.hero--titled .hero-scroll {
+    display: none;
 }

@@ -1261,10 +1261,12 @@ const INTRO = 7.0;
 const GROW_A = PRO + layerT[Math.max(0, layerT.length - 12)], GROW_B = PRO + TOTAL_GROW + 0.4;
 const HERO_A = GROW_B, HERO_B = PRO + A2 + T_RUP + 3.4;   // right through the rupture
 /* The scroll does not run at an even rate through the film. The part worth looking at is the moment the
-   membrane gives way, so a quarter of the whole scroll is spent on the two and a half seconds around it,
-   and the long approach before it is passed over quickly. */
-const KNOTS = [[0, HERO_A], [0.42, PRO + A2 + 11], [0.60, PRO + A2 + 17.2],
-               [0.70, PRO + A2 + 19.0], [0.90, PRO + A2 + 21.4], [1, HERO_B]];
+   membrane gives way, so most of the scroll is spent on the seconds around it, and the approach before it
+   (which, seen from above, is mostly the camera swinging round) is passed over quickly.
+   Times are given on act two's clock (te: 0 = the bundle is finished, T_RUP = the membrane tears). */
+const TE = te => PRO + A2 + te;
+const KNOTS = [[0, HERO_A], [0.22, TE(11)], [0.44, TE(17.2)],
+               [0.60, TE(19.0)], [0.86, TE(21.4)], [1, HERO_B]];
 function timeAt(p) {
   for (let i = 0; i < KNOTS.length - 1; i++) {
     const [pa, ta] = KNOTS[i], [pb, tb] = KNOTS[i + 1];
@@ -1276,39 +1278,40 @@ let cur = HERO_A, want = HERO_A, phase = 1, started = performance.now() / 1000;
 // update() is fed the playback clock, which runs longer than the animation clock by every pause in it
 const realFor = a => a + STOPS.reduce((n, st) => n + (st.a <= a ? st.dur : 0), 0);
 
-/* Square on, not three-quarters: a straight elevation, the bundle lying across the frame and the vesicle
-   under it, so that scrolling down and the bundle coming down are the same movement. */
+/* One camera move, then none: as soon as the title has gone the camera swings round, in a single motion
+   while it pulls back, onto the axis of the opening that is about to tear, and from then on it stays on
+   that axis and only comes closer - so the last dive goes straight in, with no change of angle on the way.
+   The opening sits on top of the vesicle, just to our side of the bundle, so that axis looks down on it. */
 const CUP = new THREE.Vector3(0, 1, 0);
+const SIDE = new THREE.Vector3(0, 0, 1);                                     // the intro's square-on view
+const HOLE_DIR = new THREE.Vector3(...PC).applyEuler(evGroup.rotation).normalize();   // out of the opening
+const atTe = te => (TE(te) - HERO_A) / (HERO_B - HERO_A);
 const SHOTS = [
-  { at: 0.00, dir: [0, 0, 1], half: 13, tx: grown(HERO_A - PRO) - 6.5 - XMID, ty: 0, ev: 0, pore: 0 },
-  { at: 0.18, dir: [0, 0, 1], half: 26, tx: 12, ty: -2, ev: 0, pore: 0 },
-  { at: 0.44, dir: [0, 0, 1], half: 52, tx: 0, ty: 0, ev: 0.45, pore: 0 },
-  { at: 0.60, dir: [0, 0, 1], half: 66, tx: 0, ty: 0, ev: 0.9, pore: 0.2 },
+  // where the intro leaves it: square on, riding the growing end
+  { at: 0, top: 0, half: 13, tx: grown(HERO_A - PRO) - 6.5 - XMID, pore: 0 },
+  // swung round onto the opening's axis and pulled back to take in the vesicle as it rises into place
+  { at: atTe(5.0), top: 1, half: 60, tx: 0, pore: 0 },
+  { at: atTe(13.7), top: 1, half: 60, tx: 0, pore: 0 },
   // the tear itself, held at a size where it can be read before anything else happens
-  { at: 0.72, dir: [0, 0, 1], half: 34, tx: 0, ty: 0, ev: 1, pore: 0.45 },
-  { at: 0.88, dir: [0, 0, 1], half: 22, tx: 0, ty: 0, ev: 1, pore: 0.6 },
+  { at: atTe(16.4), top: 1, half: 34, tx: 0, pore: 0.45 },
+  { at: atTe(19.9), top: 1, half: 22, tx: 0, pore: 0.6 },
   // and only then into it, until the torn edge has passed out of the frame
-  { at: 0.96, dir: [0, 0, 1], half: 3.2, tx: 0, ty: 0, ev: 1, pore: 1 },
-  { at: 1.00, dir: [0, 0, 1], half: 3.2, tx: 0, ty: 0, ev: 1, pore: 1 },
+  { at: atTe(21.7), top: 1, half: 3.2, tx: 0, pore: 1 },
+  { at: 1.00, top: 1, half: 3.2, tx: 0, pore: 1 },
 ];
-const CD = new THREE.Vector3(), CT = new THREE.Vector3(), CE = new THREE.Vector3(), CPN = new THREE.Vector3();
+const CD = new THREE.Vector3(), CT = new THREE.Vector3(), CE = new THREE.Vector3();
 function coverCam(p) {
   let i = 0;
   for (let k = 0; k < SHOTS.length - 1; k++) if (p >= SHOTS[k].at) i = k;
   const A = SHOTS[i], B = SHOTS[Math.min(i + 1, SHOTS.length - 1)];
   const f = B.at > A.at ? smooth((p - A.at) / (B.at - A.at)) : 0;
-  CD.set(lerp(A.dir[0], B.dir[0], f), lerp(A.dir[1], B.dir[1], f), lerp(A.dir[2], B.dir[2], f)).normalize();
-  CT.set(XMID + lerp(A.tx, B.tx, f), model.position.y + lerp(A.ty, B.ty, f), 0);
-  CE.set(XMID, EVC.y + RM * 0.55, 0);
-  CT.lerp(CE, lerp(A.ev, B.ev, f));
-  const po = lerp(A.pore, B.pore, f);
-  if (po > 0.001) {
-    const hole = onEV(PC[0], PC[1], PC[2]);
-    CPN.copy(hole).sub(evGroup.position).normalize();    // look square into the opening
-    // the aim slides from just outside the wall to well inside it, so the torn rim passes the frame
-    CT.lerp(CE.copy(evGroup.position).addScaledVector(CPN, lerp(RM + 4, -RM * 0.15, smooth((po - 0.45) / 0.55))), po);
-    CD.lerp(CPN, po).normalize();
-  }
+  const top = lerp(A.top, B.top, f), po = lerp(A.pore, B.pore, f);
+  CD.copy(SIDE).lerp(HOLE_DIR, top).normalize();
+  // the aim: on the bundle while square on; on the opening once on its axis, sliding from just outside the
+  // wall to well inside it during the dive, so the torn rim passes the frame
+  CT.set(XMID + lerp(A.tx, B.tx, f), model.position.y, 0);
+  CE.copy(evGroup.position).addScaledVector(HOLE_DIR, lerp(RM + 4, -RM * 0.15, smooth((po - 0.45) / 0.55)));
+  CT.lerp(CE, top);
   setCam(CD, CUP, Math.exp(lerp(Math.log(A.half), Math.log(B.half), f)), CT);
 }
 
@@ -1358,11 +1361,48 @@ renderer.setAnimationLoop(() => {
   const out = Math.max(smooth((pc - 0.93) / 0.07), smooth((progress() - 0.92) / 0.08));
   renderer.domElement.style.opacity = String(1 - out);
   fade();
-  if (out >= 1) return;              // fully dissolved: nothing to draw, so leave the GPU alone while reading
+  if (out >= 1) {                    // fully dissolved: nothing left to draw
+    if (progress() >= 1) seal();      // and through the hole: there is no way back out
+    return;
+  }
   update(realFor(cur));
   coverCam(pc);
   renderer.render(scene, cam); note();
 });
+
+/* One way only: once the camera is through the hole the cover closes behind it. The part of the track
+   already scrolled past is cut away and the scroll position moved by the same amount in the same frame, so
+   nothing on screen moves - but scrolling up now stops at the top of the page instead of playing the film
+   backwards. The scene is shut down too, which hands the GPU back to the rest of the page. */
+let sealed = false;
+function seal() {
+  if (sealed) return;
+  sealed = true;
+  renderer.setAnimationLoop(null);
+  const next = hero.nextElementSibling, before = next ? next.getBoundingClientRect().top : 0;
+  const cut = Math.min(scrollY, hero.offsetHeight);   // everything of the cover above the viewport
+  hero.style.height = (hero.offsetHeight - cut) + 'px';
+  hero.classList.add('hero--done');
+  // measure rather than trust the arithmetic: browsers that anchor the scroll may already have moved it
+  // instant: Bootstrap makes the page scroll smoothly, which would turn this correction into a visible slide
+  if (next) scrollBy({ top: next.getBoundingClientRect().top - before, behavior: 'instant' });
+  txt.style.visibility = 'hidden';
+  // what is left is one empty screen (the inside of the hole). Once it has scrolled out of sight it is swapped,
+  // the same way, for a still title band, so the top of the page keeps the project's title
+  const shut = () => {
+    if (!next || scrollY < hero.offsetHeight) return;
+    const b = next.getBoundingClientRect().top;
+    hero.style.height = '';
+    txt.style.cssText = '';           // drop the opacity / offset the scroll animation left on it
+    hero.classList.add('hero--titled');
+    scrollBy({ top: next.getBoundingClientRect().top - b, behavior: 'instant' });
+    removeEventListener('scroll', shut);
+  };
+  addEventListener('scroll', shut, { passive: true });
+  renderer.dispose();
+  renderer.forceContextLoss();
+  renderer.domElement.remove();
+}
 
 console.log(`cover ${HERO_A.toFixed(1)} - ${HERO_B.toFixed(1)} s`);
 window.__total = 1;
@@ -1373,7 +1413,7 @@ window.__seek = u => {
   if (u < 0.5) { const e = u * 2, a = GROW_A + (GROW_B - GROW_A) * ease(e);
     update(realFor(a)); introCam(e, a); titleAt(clamp((e - 0.74) / 0.26, 0, 1)); }
   else { const p = (u - 0.5) * 2; cur = want = timeAt(p);
-    update(realFor(cur)); coverCam(p); titleAt(clamp(1 - p / 0.2, 0, 1)); }
+    update(realFor(cur)); coverCam(clamp((cur - HERO_A) / (HERO_B - HERO_A), 0, 1)); titleAt(clamp(1 - p / 0.2, 0, 1)); }
   renderer.render(scene, cam); return renderer.domElement.toDataURL('image/png');
 };
 const dbg = document.createElement('div');
