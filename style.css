@@ -1185,6 +1185,10 @@ section[id],
 .approach-video-frame {
     position: relative;
     aspect-ratio: 16 / 9;
+    /* shrink on short screens so the header, video, tabs and the longest step text fit in one view
+       (380px = header + tabs + text area + padding) */
+    max-height: max(220px, min(60vh, calc(100vh - 380px)));
+    margin-inline: auto;   /* when the cap narrows the frame (it keeps 16:9), keep it centred */
     background: #fff;
     border: 1px solid #314763;
     overflow: hidden;
@@ -1238,79 +1242,123 @@ section[id],
     margin-left: 3px;
 }
 
-.approach-step {
-    position: relative;
-    height: 100%;
-    padding: 14px 16px 16px;
-    border: 1px solid #263b57;
-    background: rgba(9, 20, 38, 0.45);
-    opacity: 0.5;
-    transition: opacity 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+/* tabs under the video: progress of each step, click to jump */
+.approach-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 14px;
 }
 
-.approach-step:hover {
-    opacity: 0.8;
+.approach-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+    padding: 0 0 8px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: var(--text-muted);
+    text-align: left;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, color 0.3s ease;
 }
 
-.approach-step.is-active {
+.approach-tab:hover {
+    opacity: 0.9;
+}
+
+.approach-tab.is-active {
     opacity: 1;
-    border-color: var(--accent-blue);
-    background: var(--surface-raised);
+    color: var(--text-main);
 }
 
-.approach-step-bar {
-    height: 2px;
-    margin-bottom: 12px;
+.approach-tab:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+.approach-tab-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin-bottom: 8px;
     background: #263b57;
     overflow: hidden;
 }
 
-.approach-step-bar span {
+.approach-tab-bar span {
     display: block;
     width: 0;
     height: 100%;
     background: var(--accent-blue);
 }
 
-.approach-step-btn {
-    padding: 0;
-    border: 0;
-    background: none;
-    color: inherit;
-    font: inherit;
-    text-align: left;
-    -webkit-text-stroke: inherit;
+/* a step already played keeps a full, dimmer bar */
+.approach-tab.is-done .approach-tab-bar span {
+    width: 100%;
+    background: #3e6b80;
 }
 
-/* the whole card is the click target */
-.approach-step-btn::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+.approach-tab-num {
+    font-family: 'DotGothic16', monospace;
+    font-size: 0.95rem;
+    color: var(--accent-blue);
 }
 
-.approach-step-btn:focus-visible {
-    outline: none;
+.approach-tab-label {
+    font-size: 0.8rem;
+    line-height: 1.3;
 }
 
-.approach-step:has(.approach-step-btn:focus-visible) {
-    outline: 2px solid var(--accent-gold);
-    outline-offset: 2px;
+/* one text area: every panel sits in the same grid cell, so the area keeps the longest step's height
+   and nothing below it jumps when the step changes */
+.approach-panels {
+    display: grid;
+    margin-top: 6px;
+    padding: 16px 18px;
+    border: 1px solid #263b57;
+    background: rgba(9, 20, 38, 0.45);
 }
 
-/* stacked under the video: only the current step keeps its text, so it stays next to the video */
-@media (max-width: 991.98px) {
-    .approach-step:not(.is-active) p {
-        display: none;
-    }
+.approach-panel {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
 
-    .approach-step:not(.is-active) .section-subtitle {
-        margin-bottom: 0 !important;
-    }
+.approach-panel.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease 0.1s, visibility 0s;
+}
+
+.approach-panel p {
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 @media (max-width: 575.98px) {
     .approach-player {
         padding: 12px;
+    }
+
+    .approach-tabs {
+        gap: 6px;
+    }
+
+    .approach-tab-label {
+        font-size: 0.72rem;
+    }
+
+    .approach-panels {
+        padding: 12px 14px;
+    }
+
+    .approach-panel p {
+        font-size: 0.9rem;
     }
 }

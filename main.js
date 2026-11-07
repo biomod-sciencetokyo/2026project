@@ -133,9 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (approachPlayer) {
         const video = approachPlayer.querySelector('.approach-video');
         const toggle = approachPlayer.querySelector('.approach-toggle');
-        const steps = [...approachPlayer.querySelectorAll('.approach-step')].map(el => ({
+        const steps = [...approachPlayer.querySelectorAll('.approach-tab')].map(el => ({
             el,
-            bar: el.querySelector('.approach-step-bar span'),
+            panel: document.getElementById(el.getAttribute('aria-controls')),
+            bar: el.querySelector('.approach-tab-bar span'),
             start: parseFloat(el.dataset.start),
             end: parseFloat(el.dataset.end)
         }));
@@ -151,8 +152,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sEnd = Math.min(s.end, end);
                 const active = t >= s.start && t < sEnd;
                 s.el.classList.toggle('is-active', active);
-                const p = t >= sEnd ? 1 : Math.max(0, (t - s.start) / (sEnd - s.start));
-                s.bar.style.width = (active ? p * 100 : 0) + '%';
+                s.el.classList.toggle('is-done', t >= sEnd);
+                s.el.setAttribute('aria-selected', active ? 'true' : 'false');
+                s.panel.classList.toggle('is-active', active);
+                const p = Math.max(0, (t - s.start) / (sEnd - s.start));
+                s.bar.style.width = active ? (p * 100) + '%' : '';
             });
             approachPlayer.classList.toggle('is-paused', video.paused);
             toggle.setAttribute('aria-label', video.paused ? 'Play animation' : 'Pause animation');
@@ -182,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', togglePlay);
         video.addEventListener('click', togglePlay);
         steps.forEach(s => {
-            s.el.querySelector('.approach-step-btn').addEventListener('click', () => {
+            s.el.addEventListener('click', () => {
                 video.currentTime = s.start + 0.01;
                 userPaused = false;
                 play();
