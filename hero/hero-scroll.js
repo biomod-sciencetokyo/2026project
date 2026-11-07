@@ -1324,6 +1324,7 @@ function titleAt(v) {
   txt.style.opacity = String(v);
   txt.style.transform = `translateY(${(1 - v) * 26}px)`;
   txt.style.visibility = v < 0.005 ? 'hidden' : 'visible';
+  if (v > 0.02) txt.classList.add('is-revealed');
 }
 function fade() {
   const p = progress();

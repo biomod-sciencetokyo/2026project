@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIOMOD 2026 | Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=hero-scroll-6">
+    <link rel="stylesheet" href="style.css?v=hero-title-7">
 </head>
 
 <body>
@@ -25,14 +25,20 @@
     <header class="hero" id="hero">
         <div class="hero-stage"></div>
         <div class="hero-text">
-            <h1 class="fw-bold">
-                Open Sesame!
-                <br>Hybridization Chain Reaction-Driven DNA Bundling
-                <br>for Lipid Membrane Disruption
-            </h1>
-            <p class="mb-0">
-                Targeted EV membrane disruption using rigid DNA bundles assembled via in situ HCR.
-            </p>
+            <div class="hero-title-Lockup">
+                <span class="hero-kicker">BIOMOD 2026 &mdash; TEAM SCIENCE TOKYO</span>
+                <h1 class="hero-heading">
+                    <span class="hero-title-main">Open Sesame!</span>
+                    <span class="hero-title-divider" aria-hidden="true"></span>
+                    <span class="hero-title-sub">
+                        Hybridization Chain Reaction-Driven DNA Bundling<br>
+                        for Lipid Membrane Disruption
+                    </span>
+                </h1>
+                <p class="hero-lead mb-0">
+                    Targeted EV membrane disruption using rigid DNA bundles assembled via <em>in situ</em> HCR.
+                </p>
+            </div>
             <span class="hero-scroll" aria-hidden="true">SCROLL</span>
         </div>
         <canvas id="labels" hidden></canvas>
@@ -134,7 +140,7 @@
     <script type="module">
         // 3D の表紙：動きを減らす設定の人には読み込まない。失敗しても静止したタイトルが残る
         if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            import('./hero/hero-scroll.js?v=10').catch(e => console.warn('hero cover unavailable:', e));
+            import('./hero/hero-scroll.js?v=11').catch(e => console.warn('hero cover unavailable:', e));
         }
     </script>
 </body>
