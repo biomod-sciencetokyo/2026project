@@ -125,129 +125,229 @@
                             </button>
                             <div class="collapse" id="more-2d-md">
                                 <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 section-subtitle">2. Kinetics and Thermodynamic Framework</h5>
-                                    <p class="text-secondary">The dynamics of this system are governed by several key
-                                        biophysical models. To implicitly account for the aqueous solvent environment
-                                        without rendering every water molecule, the motion of each bead is calculated
-                                        using Langevin dynamics:</p>
+                                    <h5 class="fw-bold mb-3 section-subtitle">2.1 Membrane representation</h5>
+                                    <p class="text-secondary">The EV-like membrane is represented by a closed
+                                        periodic ring of <i>N</i><sub>mem</sub> beads with initial radius
+                                        <i>R</i>:</p>
                                     <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="m sub i times d v sub i over d t equals negative gamma sub i v sub i plus F sub i superscript C plus F sub i superscript R">
-                                        <i>m</i><sub>i</sub> d<strong>v</strong><sub>i</sub>/dt =
-                                        −γ<sub>i</sub><strong>v</strong><sub>i</sub>
-                                        + <strong>F</strong><sub>i</sub><sup>C</sup> +
-                                        <strong>F</strong><sub>i</sub><sup>R</sup>
+                                        aria-label="N mem equals integer part of 240 times R divided by 150 nanometers; r i at zero equals R times cosine theta i, sine theta i">
+                                        <i>N</i><sub>mem</sub> =
+                                        int(240 <i>R</i> / 150 nm),
+                                        &nbsp;&nbsp;
+                                        <strong>r</strong><sub>i</sub>(0) =
+                                        <i>R</i>(cos θ<sub>i</sub>, sin θ<sub>i</sub>)
                                     </p>
-                                    <p class="text-secondary">Here, <i>m</i><sub>i</sub> and
-                                        <strong>v</strong><sub>i</sub> represent the mass and velocity of particle
-                                        <i>i</i>, and γ<sub>i</sub> is the friction coefficient of the solvent. The
-                                        stochastic Gaussian noise term (<strong>F</strong><sub>i</sub><sup>R</sup>)
-                                        accurately replicates thermal fluctuations (Brownian motion).</p>
-                                    <p class="text-secondary">The behavior of the EV membrane is based on Helfrich's
-                                        continuum elastic theory (Helfrich, 1973), approximated by tuning the angular
-                                        and linear potentials between the lipid beads to reflect the membrane's bending
-                                        modulus and area stretch modulus. Furthermore, membrane rupture (lysis) is
-                                        rigorously determined by a local area strain threshold. When the local strain
-                                        between lipid beads exceeds a critical limit, the bonds irreversibly break,
-                                        accurately mimicking the tension-induced bursting of actual lipid bilayers
-                                        (Evans et al., 2003).</p>
-                                    <p class="text-secondary">The interactions between cholesterol anchors and the
-                                        lipid membrane are modeled using a Morse potential, which accurately
-                                        represents the strong, short-range hydrophobic insertion energies (Bacle et
-                                        al., 2017). To simulate realistic sequential adhesion, we introduced an
-                                        entropic zipping mechanism representing the probability of thermally
-                                        fluctuating linkers stochastically colliding with and binding to the membrane.
-                                        Finally, the linkers (modeling TEG or poly-T sequences) act as flexible
-                                        entropic springs that provide mechanical "play" but cannot extend beyond their
-                                        contour length, instantly transmitting strong tension to the membrane once fully
-                                        stretched (Kremer &amp; Grest, 1990).</p>
-
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">3. Bead-Spring Modeling and DNA Bundle Stiffness</h5>
-                                    <p class="text-secondary">To accurately simulate the mechanical behavior of the
-                                        DNA bundles, we adopted a bead-spring polymer model where each bundle is
-                                        discretized into multiple segments. The internal mechanics of this segmented
-                                        bundle are governed by a bending stiffness that resists changes in angle across
-                                        consecutive beads.</p>
-                                    <p class="text-secondary">The critical parameter determining this bending
-                                        stiffness is based on established mechanical models of DNA nanostructures
-                                        (Liedl et al., 2010). It is determined by the number of bundled DNA double
-                                        helices (<i>N</i>) and their crosslinking efficiency (α, ranging from 0 to 1).
-                                        We derived the effective persistence length <i>L</i><sub>p,eff</sub> by
-                                        interpolating the uncrosslinked limit (<i>N</i>) and the fully crosslinked
-                                        rigid-body limit (<i>N</i><sup>2</sup>):</p>
+                                    <p class="text-secondary">The initial spacing of neighboring membrane beads is</p>
                                     <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="L p effective equals L p zero times N times one minus alpha plus N squared alpha">
-                                        <i>L</i><sub>p,eff</sub> = <i>L</i><sub>p,0</sub>
-                                        [<i>N</i>(1 − α) + <i>N</i><sup>2</sup>α]
+                                        aria-label="r zero mem equals 2 R sine of pi divided by N mem">
+                                        <i>r</i><sub>0,mem</sub> =
+                                        2<i>R</i> sin(π / <i>N</i><sub>mem</sub>).
                                     </p>
-                                    <p class="text-secondary">where <i>L</i><sub>p,0</sub> is the base persistence
-                                        length of a single DNA duplex containing nicks. This macroscopic effective
-                                        stiffness is then translated into the angular spring constants between the DNA
-                                        segments in our simulation.</p>
+                                    <p class="text-secondary">This prescription yields an initial spacing of
+                                        approximately 3.927 nm at both <i>R</i> = 150 and 200 nm. Thus,
+                                        radius-dependent trends are not caused simply by a change in the initial
+                                        membrane discretization length.</p>
+                                    <p class="text-secondary">Each pair of intact neighboring beads is connected by a
+                                        Hookean spring. If <i>ℓ</i><sub>i</sub> is the length of edge <i>i</i>, the
+                                        model-defined membrane tension is</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="T i equals k mem times ell i minus r zero mem; k mem equals 150">
+                                        <i>T</i><sub>i</sub> =
+                                        <i>k</i><sub>mem</sub>(<i>ℓ</i><sub>i</sub> −
+                                        <i>r</i><sub>0,mem</sub>),
+                                        &nbsp;&nbsp;
+                                        <i>k</i><sub>mem</sub> = 150.
+                                    </p>
+                                    <p class="text-secondary">This term represents in-plane membrane extension in the
+                                        discrete contour. A curvature-smoothing contribution based on the discrete
+                                        second difference
+                                        <strong>r</strong><sub>i−1</sub> − 2<strong>r</strong><sub>i</sub> +
+                                        <strong>r</strong><sub>i+1</sub> suppresses unphysical sharp kinks. Its
+                                        coefficient is <i>k</i><sub>bend,mem</sub> =
+                                        25<i>k</i><sub>B</sub><i>T</i>/<i>r</i><sub>0,mem</sub>. The term is
+                                        inspired by Helfrich-type membrane elasticity, but it is not the exact
+                                        variational force of a three-dimensional Helfrich surface.</p>
+                                    <p class="text-secondary">While the membrane remains intact, an additional
+                                        pressure-like restoring force constrains the enclosed planar area relative
+                                        to <i>A</i><sub>0</sub> = π<i>R</i><sup>2</sup>, with
+                                        <i>k</i><sub>area</sub> = 160. This term stabilizes the two-dimensional ring
+                                        against global area drift. It is a planar enclosed-area constraint, not a
+                                        three-dimensional volume, osmotic-pressure, or area-per-lipid constraint.
+                                        Once a membrane spring undergoes Rupture, this area-restoring term is removed
+                                        in subsequent updates.</p>
 
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">4. 2D Simulation Results: The Crucial Role of Rigidity</h5>
-                                    <p class="text-secondary">As demonstrated in the simulation results, the bending
-                                        stiffness of the DNA bundle decisively dictates the fate of the EV membrane.
-                                        The results establish a clear physical principle: the more rigid the DNA
-                                        bundle, the higher the rupture efficiency.</p>
-                                    <p class="text-secondary">We compared two distinct scenarios. Under conditions
-                                        where crosslinking efficiency is low (α ≈ 0.1), the DNA bundle remains
-                                        flexible. As the vesicle undergoes elliptical deformation, the soft DNA yields
-                                        to the membrane's inherent curvature, bending its segments to hug the
-                                        membrane surface via the entropic zipping effect. While this maximizes the
-                                        number of bound cholesterol anchors, the pulling force becomes broadly
-                                        dispersed across the entire membrane. Furthermore, the DNA itself absorbs the
-                                        deformation energy by bending, buffering the applied tension. Consequently,
-                                        the local strain fails to accumulate sufficiently, and the membrane deformation
-                                        fails (the vesicle remains intact).</p>
-                                    <p class="text-secondary">In stark contrast, under conditions with high
-                                        crosslinking efficiency (α ≈ 0.8), the DNA bundle forms a highly rigid
-                                        structure. This rigid scaffold acts like a lever, strongly resisting any
-                                        bending along the deforming membrane. As a result, the physical pulling forces
-                                        are locally concentrated at the few contact points near the edges. Because the
-                                        rigid DNA does not absorb tension through its own deformation, the physical
-                                        stress is 100% transmitted through the fully stretched linkers to the lipid
-                                        bilayer. This focused stress instantly causes the local strain to surpass the
-                                        critical rupture threshold, successfully tearing the membrane.</p>
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">2.2 DNA Bundle geometry and bending mechanics</h5>
+                                    <p class="text-secondary">The simulation contains one DNA Bundle of length</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="L bundle equals 3 R">
+                                        <i>L</i><sub>Bundle</sub> = 3<i>R</i>.
+                                    </p>
+                                    <p class="text-secondary">The DNA Bundle is represented by five connected
+                                        constant-curvature arcs. Its generalized-coordinate vector is</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="q equals X, Y, theta, kappa zero through kappa four, transposed">
+                                        <strong>q</strong> =
+                                        (<i>X</i>, <i>Y</i>, θ, κ<sub>0</sub>, κ<sub>1</sub>, κ<sub>2</sub>,
+                                        κ<sub>3</sub>, κ<sub>4</sub>)<sup>T</sup>,
+                                    </p>
+                                    <p class="text-secondary">where (<i>X</i>, <i>Y</i>) is the bundle position, θ
+                                        is the overall orientation, and κ<sub>m</sub> are the local curvatures. The
+                                        construction enforces continuous position and tangent direction at segment
+                                        junctions, allowing the DNA Bundle to bend smoothly without treating it as
+                                        freely hinged rods.</p>
+                                    <p class="text-secondary">The DNA Bundle is treated as a 12-chain assembly with
+                                        effective radius</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="r DNA equals 1.25 square root of 12 equals 4.330 nanometers">
+                                        <i>r</i><sub>DNA</sub> = 1.25√12 = 4.330 nm.
+                                    </p>
+                                    <p class="text-secondary">Its effective persistence length and bending modulus
+                                        depend on the dimensionless crosslinking-efficiency parameter α:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="L p effective equals 2 N chains plus 120 times N chains alpha cubed; B DNA equals L p effective k B T">
+                                        <i>L</i><sub>p,eff</sub> =
+                                        2<i>N</i><sub>chains</sub> +
+                                        120(<i>N</i><sub>chains</sub>α)<sup>3</sup>,
+                                        &nbsp;&nbsp;
+                                        <i>B</i><sub>DNA</sub> =
+                                        <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>.
+                                    </p>
+                                    <p class="text-secondary">Here <i>N</i><sub>chains</sub> = 12. Higher α
+                                        produces a much larger bending modulus, so a high-α DNA Bundle resists
+                                        conforming to the membrane. The persistence-length/bending-modulus relation
+                                        follows the usual worm-like-chain idea, whereas the cubic α dependence is a
+                                        phenomenological rule used to model the sharp stiffening expected when
+                                        inter-chain sliding is suppressed. It should not be presented as a directly
+                                        measured constitutive law.</p>
 
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">5. Simulation Parameters and Physical Justification</h5>
-                                    <p class="text-secondary">The simulation utilizes parameters rigorously grounded
-                                        in biophysics to ensure the model remains stable and realistic, even when
-                                        scaled up to Giant Unilamellar Vesicles (GUVs).</p>
-                                    <h6 class="fw-bold mt-3">Thermodynamic Environment</h6>
-                                    <ul class="text-secondary">
-                                        <li><i>k</i><sub>B</sub><i>T</i> = 4.11 pN·nm: Thermal energy at room
-                                            temperature (approximately 298 K).</li>
-                                        <li>γ = 1.0 pN·s/nm: Friction coefficient of the solvent.</li>
-                                        <li><i>dt</i> = 0.0001: Time step. To prevent numerical explosion caused by
-                                            the extreme forces of rigid DNA, a maximum displacement cap per step is
-                                            applied.</li>
-                                    </ul>
-                                    <h6 class="fw-bold mt-3">Membrane Mechanics (DOPC-based)</h6>
-                                    <ul class="text-secondary">
-                                        <li><i>k</i><sub>bend_mem</sub> = 25 <i>k</i><sub>B</sub><i>T</i>:
-                                            Membrane bending rigidity (Dimova, 2014).</li>
-                                        <li>Critical strain = 0.35 (35%): The local rupture threshold. Real membranes
-                                            rupture at 3–5% global area strain (Evans et al., 2003); in our
-                                            coarse-grained scaling, 35% local strain provides a physically robust
-                                            buffer against thermal noise while ensuring tension-induced lysis.</li>
-                                        <li>Scale-independent area constraint: To stabilize GUV scales
-                                            (<i>R</i> = 300 nm), internal volume pressure is calculated using
-                                            relative area strain rather than absolute area difference, preventing
-                                            numerical divergence.</li>
-                                    </ul>
-                                    <h6 class="fw-bold mt-3">DNA and Linker Dynamics</h6>
-                                    <ul class="text-secondary mb-0">
-                                        <li><i>N</i><sub>chains</sub> = 12: Number of bundled DNA chains.</li>
-                                        <li><i>L</i><sub>p,0</sub> = 25 nm: Base persistence length, adjusted
-                                            downward from 50 nm to account for nicks and gaps in HCR polymers.</li>
-                                        <li><i>D</i><sub>e</sub> = 60 <i>k</i><sub>B</sub><i>T</i>: Cholesterol
-                                            insertion energy for the Morse potential, mimicking strong, short-range
-                                            hydrophobic anchoring (Bacle et al., 2017).</li>
-                                        <li><i>L</i><sub>contour</sub>: Maximum extension length of the TEG/poly-T
-                                            linkers. They act as ultra-soft entropic springs
-                                            (<i>k</i><sub>linker</sub> = 1.5 pN/nm) until this limit is reached,
-                                            mimicking realistic polymer "play."</li>
-                                    </ul>
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">2.3 Cholesterol anchors, linkers, and membrane capture</h5>
+                                    <p class="text-secondary">Cholesterol anchors are placed every 15 base pairs
+                                        (5.1 nm) along the DNA Bundle:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="N anchor equals integer part of L Bundle divided by 5.1 plus 1">
+                                        <i>N</i><sub>anchor</sub> =
+                                        int(<i>L</i><sub>Bundle</sub>/5.1) + 1.
+                                    </p>
+                                    <p class="text-secondary">The number of anchors is therefore 89 at
+                                        <i>R</i> = 150 nm and 118 at <i>R</i> = 200 nm. For an anchor–cholesterol
+                                        separation <i>d</i>, the linker force is represented by a piecewise-linear,
+                                        strain-stiffening law:</p>
+                                    <div class="table-responsive my-3">
+                                        <table class="table table-sm table-dark table-bordered align-middle mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">d &lt; l<sub>0</sub></th>
+                                                    <td><i>F</i><sub>link</sub>(<i>d</i>) =
+                                                        3(<i>d</i> − <i>l</i><sub>0</sub>)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">l<sub>0</sub> ≤ d &lt; l<sub>0</sub> + 6</th>
+                                                    <td><i>F</i><sub>link</sub>(<i>d</i>) =
+                                                        10(<i>d</i> − <i>l</i><sub>0</sub>)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">d ≥ l<sub>0</sub> + 6</th>
+                                                    <td><i>F</i><sub>link</sub>(<i>d</i>) =
+                                                        60 + 18[<i>d</i> − (<i>l</i><sub>0</sub> + 6)]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p class="text-secondary">The linker is therefore softer in compression, stiffer
+                                        under ordinary extension, and still stiffer after exceeding the nominal
+                                        contour length <i>l</i><sub>0</sub> + 6 nm. This form is an effective,
+                                        numerically stable spring law; it is not an exact WLC or FENE linker
+                                        potential.</p>
+                                    <p class="text-secondary">A cholesterol particle becomes mechanically coupled to
+                                        the nearest membrane bead when its separation satisfies</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="r m c less than 24 plus l zero nanometers">
+                                        <i>r</i><sub>mc</sub> &lt; 24 + <i>l</i><sub>0</sub> nm.
+                                    </p>
+                                    <p class="text-secondary">The membrane reaction is applied in the local normal
+                                        direction and distributed over five beads with weights 0.40, 0.20, 0.20,
+                                        0.10, and 0.10. A key consequence is that <i>l</i><sub>0</sub> alters two
+                                        aspects of the model at the same time: it changes the linker rest length and
+                                        expands the membrane-capture range from 26 to 44 nm across the present
+                                        sweep. Thus, any apparent linker-length effect must be interpreted as the
+                                        effect of this coupled design variable.</p>
+                                    <p class="text-secondary">To avoid unphysical overlap, the DNA Bundle experiences
+                                        a normal harmonic repulsion when points along its centerline approach the
+                                        membrane more closely than <i>r</i><sub>DNA</sub> + 1 nm. The number of
+                                        evaluation points is</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="N rep equals maximum of 15 and integer part of L Bundle divided by 3">
+                                        <i>N</i><sub>rep</sub> =
+                                        max{15, int(<i>L</i><sub>Bundle</sub>/3)}.
+                                    </p>
+                                    <p class="text-secondary">This count increases from 150 at <i>R</i> = 150 nm to
+                                        200 at <i>R</i> = 200 nm. Because point forces are summed without an
+                                        explicit arc-length weight, this parameter is both a numerical-resolution
+                                        setting and part of the discrete representation of the total repulsive
+                                        interaction.</p>
+
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">2.4 Dynamical update</h5>
+                                    <p class="text-secondary">Membrane beads and captured cholesterol particles are
+                                        propagated by an overdamped Brownian update:</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="Delta r equals F over gamma times delta t plus square root of 2 k B T delta t over gamma times xi">
+                                        Δ<strong>r</strong> =
+                                        (<strong>F</strong>/γ)Δ<i>t</i> +
+                                        √(2<i>k</i><sub>B</sub><i>T</i>Δ<i>t</i>/γ) ξ.
+                                    </p>
+                                    <p class="text-secondary">Here <i>k</i><sub>B</sub><i>T</i> = 4.11 in the
+                                        code energy units, γ<sub>mem</sub> = 1.0, and γ<sub>chol</sub> = 0.2.
+                                        The DNA Bundle is not advanced by an additional explicit translation or
+                                        rotation step. Instead, its eight generalized coordinates are updated by a
+                                        semi-implicit 8 × 8 linear system including the linker tangent stiffness and
+                                        DNA Bundle bending stiffness. The translational and rotational frictions are</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="gamma trans equals 1.5 times L Bundle over 100; gamma rot equals L Bundle squared over 12">
+                                        γ<sub>trans</sub> = 1.5(<i>L</i><sub>Bundle</sub>/100),
+                                        &nbsp;&nbsp;
+                                        γ<sub>rot</sub> = <i>L</i><sub>Bundle</sub><sup>2</sup>/12.
+                                    </p>
+                                    <p class="text-secondary">The simulation time step is Δ<i>t</i> = 10<sup>−4</sup>
+                                        code-time units. Because the friction coefficients have not been calibrated
+                                        to an experimentally specified viscosity, code time must not be converted
+                                        directly into seconds.</p>
+
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">3. Parameter sweep and Rupture definition</h5>
+                                    <h6 class="fw-bold mt-3">3.1 Sweep protocol</h6>
+                                    <p class="text-secondary">The current aligned sweep examines <i>R</i> = 150 and
+                                        200 nm, eight values of α from 0.1 to 1.0, and eight values of
+                                        <i>l</i><sub>0</sub> from 2 to 20 nm. Each parameter cell contains 50
+                                        stochastic trajectories. A trajectory contains 100 frames, each composed
+                                        of 100 substeps, giving a fixed observation window for all cells. The result
+                                        is the fraction of the 50 trajectories in which a first membrane-spring
+                                        Rupture occurs during that window.</p>
+                                    <p class="text-secondary">The single-trajectory GIF code accepts the same
+                                        radius, α, linker length, seed, number of frames, substeps, and time step
+                                        through its settings, allowing a representative GIF to be generated for a
+                                        selected probability-map cell. Before the first Rupture, the single-run and
+                                        sweep implementations have been confirmed to yield identical states for
+                                        validation conditions.</p>
+                                    <h6 class="fw-bold mt-3">3.2 Operational definition of membrane Rupture</h6>
+                                    <p class="text-secondary">At the start of each substep, all intact membrane
+                                        springs are examined. A membrane Rupture event is registered as soon as one
+                                        spring satisfies</p>
+                                    <p class="text-secondary text-center fs-5 my-3" role="math"
+                                        aria-label="T i greater than 150">
+                                        <i>T</i><sub>i</sub> &gt; 150.
+                                    </p>
+                                    <p class="text-secondary">Since <i>k</i><sub>mem</sub> = 150, this corresponds
+                                        to an extension greater than 1.0 nm, or approximately 25.5% of the initial
+                                        spring spacing. The threshold 150 is a force-like quantity in the code's
+                                        discrete-spring model. It is not directly a physical membrane surface
+                                        tension in mN m<sup>−1</sup>, and it should not be labelled as a calibrated
+                                        pN value without an explicit unit-mapping procedure.</p>
+                                    <p class="text-secondary mb-0">The current criterion is instantaneous and
+                                        local: one sufficiently extended membrane spring anywhere on the ring causes
+                                        Rupture. It contains no time-persistence condition, contact-zone restriction,
+                                        spatial averaging, or area-per-lipid criterion. The reported maps should
+                                        therefore be described as probabilities of <em>model-defined first
+                                        membrane-spring Rupture</em>, not as direct predictions of pore nucleation,
+                                        pore growth, or complete EV lysis.</p>
                                 </div>
                             </div>
                         </div>
@@ -256,9 +356,8 @@
                         <div id="two-d-rigidity" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">DNA Bundle Rigidity</h4>
                             <p class="text-secondary mb-4">
-                                DNA-bundle bending stiffness determines how strongly the bundle resists conforming to
-                                the membrane. Comparing low- and high-rigidity conditions shows how that mechanical
-                                response affects membrane deformation and rupture.
+                                Our simulation results identify DNA Bundle rigidity as a key factor influencing
+                                membrane Rupture probability across the conditions examined.
                             </p>
 
                             <div class="row g-4 align-items-center mb-4 simulation-rigidity-row">
@@ -277,8 +376,8 @@
                                             <span class="fw-bold text-light">Low Rigidity</span>
                                         </div>
                                         <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/Low_guv_tension_r50_a01_b2_pure_chained.gif"
-                                                alt="Low-rigidity DNA bundle simulation; membrane rupture not observed"
+                                            <img src="video/SIMULATION/Lowr_igidity_r50_a01_l1.0_b1.gif"
+                                                alt="Low-rigidity DNA bundle simulation with a 1.0 nm linker; membrane rupture not observed"
                                                 class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
                                             <span class="simulation-result-mark simulation-result-mark-negative"
                                                 aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed">
@@ -299,8 +398,8 @@
                                             <span class="fw-bold text-light">High Rigidity</span>
                                         </div>
                                         <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/High_guv_tension_r50_a08_b2_pure_chained.gif"
-                                                alt="High-rigidity DNA bundle simulation; membrane rupture observed"
+                                            <img src="video/SIMULATION/High_rigidity_r50_a09_l2.5_b1.gif"
+                                                alt="High-rigidity DNA bundle simulation with a 2.5 nm linker; membrane rupture observed"
                                                 class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
                                             <span class="simulation-result-mark simulation-result-mark-positive"
                                                 aria-label="Membrane rupture observed" title="Membrane rupture: Observed">
@@ -316,9 +415,166 @@
                                 </div>
                             </div>
 
-                            <p class="text-secondary mb-0">Together, these simulations illustrate how DNA-bundle
-                                rigidity can affect the membrane response and whether rupture occurs under the modeled
-                                conditions.</p>
+                            <p class="text-secondary mb-0">
+                                This trend is consistent with the idea that a stiff DNA Bundle resists bending around
+                                the membrane, allowing linker deformation to produce more localized membrane
+                                extension. A more compliant Bundle can bend to accommodate the membrane shape,
+                                potentially reducing the load transmitted to any one membrane spring. These
+                                observations suggest that Bundle rigidity influences how mechanical stress is
+                                distributed; they do not establish it as the sole determinant of Rupture.
+                            </p>
+                        </div>
+
+                        <!-- Linker Length -->
+                        <div id="two-d-linker-length" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Linker Length</h4>
+                            <p class="text-secondary mb-4">
+                                Linker contour length determines how far the DNA bundle can move relative to the
+                                membrane before the linkers become fully extended. The simulations below compare
+                                shorter and longer linkers in the r = 50 simulation condition.
+                            </p>
+
+                            <div class="row g-4 align-items-center mb-4 simulation-rigidity-row">
+                                <div class="col-12 col-md-6 text-center">
+                                    <span class="simulation-feature-badge simulation-feature-low">Short</span>
+                                </div>
+                                <div class="simulation-rigidity-indicator">Linker length</div>
+                                <div class="col-12 col-md-6 text-center">
+                                    <span class="simulation-feature-badge simulation-feature-high">Long</span>
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-bold text-light">Short Linker (2.5 nm)</span>
+                                        </div>
+                                        <div class="ratio ratio-1x1 mb-3">
+                                            <img src="video/SIMULATION/shortlinker_r50_a09_l2.5_b1.gif"
+                                                alt="Simulation with a short, 2.5 nm linker and a = 0.9"
+                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                        </div>
+                                        <p class="text-secondary small mb-0">The linker contour length is 2.5 nm,
+                                            allowing less movement between the DNA bundle and the membrane before it
+                                            becomes fully extended.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="content-box h-100">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-bold text-light">Long Linker (15 nm)</span>
+                                        </div>
+                                        <div class="ratio ratio-1x1 mb-3">
+                                            <img src="video/SIMULATION/longlinker_r50_a08_l15.0_b1.gif"
+                                                alt="Simulation with a long, 15 nm linker"
+                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                        </div>
+                                        <p class="text-secondary small mb-0">The linker contour length is 15 nm,
+                                            allowing more movement between the DNA bundle and the membrane before it
+                                            becomes fully extended.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-secondary mb-0">Comparing these simulations shows how linker length changes
+                                the membrane response while the bundle conditions are kept the same.</p>
+                        </div>
+
+                        <!-- Rigidity and Linker Length Heatmap Comparison -->
+                        <div id="rigidity-linker-length" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Rigidity, Linker Length</h4>
+                            <div class="content-box mb-4">
+                                <p class="text-secondary mb-3">
+                                    Across the current parameter space, <strong>high DNA Bundle stiffness was a
+                                    common feature of conditions with elevated membrane Rupture probability.</strong>
+                                    In the heat maps obtained for the smaller-vesicle conditions, high-Rupture
+                                    regions were predominantly observed for a stiff DNA Bundle combined with a
+                                    short linker. In contrast, in the larger-vesicle conditions, the high-Rupture
+                                    region shifted toward combinations of a stiff DNA Bundle and a longer linker.
+                                </p>
+                                <p class="text-secondary mb-3">
+                                    We therefore describe the result as a
+                                    <strong>radius-dependent crossover within the present model</strong>, rather
+                                    than as a universal property of biological membranes.
+                                </p>
+                                <p class="text-secondary small mb-0">
+                                    The R = 150 nm heatmap is shown first; the remaining boxes are placeholders for
+                                    additional conditions.
+                                </p>
+                            </div>
+
+                            <div class="row g-4 mb-4">
+                                <div class="col-12 col-md-6">
+                                    <figure class="content-box h-100 mb-0">
+                                        <div class="ratio ratio-4x3 mb-3">
+                                            <img src="img/SIMULATION/rupture_heatmap_R150.png"
+                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 150 nm"
+                                                class="w-100 h-100 object-fit-contain bg-white" loading="lazy"
+                                                decoding="async">
+                                        </div>
+                                        <figcaption class="text-secondary small mb-0">
+                                            R = 150 nm: rupture probability across bending stiffness and linker length.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="content-box h-100 mb-0">
+                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
+                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 2<br>Image to be added</span>
+                                        </div>
+                                        <figcaption class="text-secondary small mb-0">
+                                            Placeholder for another rigidity and linker-length condition.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="content-box h-100 mb-0">
+                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
+                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 3<br>Image to be added</span>
+                                        </div>
+                                        <figcaption class="text-secondary small mb-0">
+                                            Placeholder for another rigidity and linker-length condition.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="content-box h-100 mb-0">
+                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
+                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 4<br>Image to be added</span>
+                                        </div>
+                                        <figcaption class="text-secondary small mb-0">
+                                            Placeholder for another rigidity and linker-length condition.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="content-box h-100 mb-0">
+                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
+                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 5<br>Image to be added</span>
+                                        </div>
+                                        <figcaption class="text-secondary small mb-0">
+                                            Placeholder for another rigidity and linker-length condition.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="content-box h-100 mb-0">
+                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
+                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 6<br>Image to be added</span>
+                                        </div>
+                                        <figcaption class="text-secondary small mb-0">
+                                            Placeholder for another rigidity and linker-length condition.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+
+                            <div class="content-box">
+                                <p class="text-secondary mb-0">
+                                    Use the five empty boxes for additional heatmaps so the effects of rigidity and
+                                    linker length can be compared side by side under different simulation conditions.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
