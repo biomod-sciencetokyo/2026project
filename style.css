@@ -1407,7 +1407,6 @@ section[id],
     /* run under the fixed navbar */
     height: 80vh;
     min-height: 500px;
-    background: radial-gradient(circle at right, rgba(127, 150, 194, 0.3) 0%, var(--primary-blue) 70%);
 }
 
 .hero-stage {
@@ -1429,241 +1428,250 @@ section[id],
 }
 
 
-    .hero-title-Lockup {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        max-width: 960px;
-    }
+.hero-title-Lockup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 960px;
+}
 
 
-        .hero-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 0.75rem;
-            font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
-            font-size: clamp(0.7rem, 0.9vw, 0.82rem);
-            font-weight: 600;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            text-shadow: 0 2px 20px rgba(4, 12, 26, 0.9);
-        }
+.hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+    font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(0.7rem, 0.9vw, 0.82rem);
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    text-shadow: 0 2px 20px rgba(4, 12, 26, 0.9);
+}
 
-        .hero-kicker::before {
-            content: "";
-            display: inline-block;
-            width: 32px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-gold));
-        }
+.hero-kicker::before {
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold));
+}
 
-        .hero-text h1.hero-heading {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            max-width: 960px;
-            margin: 0 0 1.35rem;
-            font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
-            -webkit-text-stroke: 0;
-        }
+.hero-text h1.hero-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 960px;
+    margin: 0 0 1.35rem;
+    font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-text-stroke: 0;
+}
 
-        .hero-title-main {
-            display: block;
-            font-size: clamp(2.8rem, 5.8vw, 5.2rem);
-            font-weight: 800;
-            line-height: 1.04;
-            letter-spacing: -0.015em;
-            background: linear-gradient(135deg, #ffffff 0%, #eaf3fb 52%, #9fc4dd 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            filter: drop-shadow(0 6px 32px rgba(4, 12, 26, 0.92));
-        }
+.hero-title-main {
+    display: block;
+    font-size: clamp(2.8rem, 5.8vw, 5.2rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    background: linear-gradient(135deg, #ffffff 0%, #eaf3fb 52%, #9fc4dd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 6px 32px rgba(4, 12, 26, 0.92));
+}
 
-        .hero-title-divider {
-            display: block;
-            width: min(260px, 38vw);
-            height: 1px;
-            margin: 1.05rem 0 1.1rem;
-            background: linear-gradient(90deg, rgba(98, 197, 213, 0), rgba(98, 197, 213, 0.65) 55%, var(--accent-gold) 100%);
-        }
+.hero-title-divider {
+    display: block;
+    width: min(260px, 38vw);
+    height: 1px;
+    margin: 1.05rem 0 1.1rem;
+    background: linear-gradient(90deg, rgba(98, 197, 213, 0), rgba(98, 197, 213, 0.65) 55%, var(--accent-gold) 100%);
+}
 
-        .hero-title-sub {
-            display: block;
-            font-size: clamp(1.1rem, 1.95vw, 1.72rem);
-            font-weight: 500;
-            line-height: 1.42;
-            letter-spacing: 0.03em;
-            color: #e4eef7;
-            text-shadow: 0 2px 32px rgba(4, 12, 26, 0.95);
-        }
+.hero-title-sub {
+    display: block;
+    font-size: clamp(1.1rem, 1.95vw, 1.72rem);
+    font-weight: 500;
+    line-height: 1.42;
+    letter-spacing: 0.03em;
+    color: #e4eef7;
+    text-shadow: 0 2px 32px rgba(4, 12, 26, 0.95);
+}
 
-        .hero-text p.hero-lead {
-            max-width: 680px;
-            font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
-            color: var(--accent-blue);
-            font-size: clamp(0.86rem, 1.05vw, 1.02rem);
-            font-weight: 400;
-            letter-spacing: 0.035em;
-            text-shadow: 0 2px 30px rgba(4, 12, 26, 0.95);
-        }
+.hero-text p.hero-lead {
+    max-width: 680px;
+    font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--accent-blue);
+    font-size: clamp(0.86rem, 1.05vw, 1.02rem);
+    font-weight: 400;
+    letter-spacing: 0.035em;
+    text-shadow: 0 2px 30px rgba(4, 12, 26, 0.95);
+}
 
-        /* Staggered entrance when the 3D bundle finishes assembling */
-        .hero--live .hero-kicker,
-        .hero--live .hero-title-main,
-        .hero--live .hero-title-divider,
-        .hero--live .hero-title-sub,
-        .hero--live .hero-lead {
-            opacity: 0;
-            transform: translateY(18px);
-            filter: blur(6px);
-            transition:
-                opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-        }
+/* Staggered entrance when the 3D bundle finishes assembling */
+.hero--live .hero-kicker,
+.hero--live .hero-title-main,
+.hero--live .hero-title-divider,
+.hero--live .hero-title-sub,
+.hero--live .hero-lead {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+    transition:
+        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-        .hero--live .hero-title-divider {
-            transform: scaleX(0.2);
-            transform-origin: right center;
-            filter: none;
-        }
+.hero--live .hero-title-divider {
+    transform: scaleX(0.2);
+    transform-origin: right center;
+    filter: none;
+}
 
-        .hero--live .hero-text.is-revealed .hero-kicker {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-            transition-delay: 0.02s;
-        }
+.hero--live .hero-text.is-revealed .hero-kicker {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.02s;
+}
 
-        .hero--live .hero-text.is-revealed .hero-title-main {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0) drop-shadow(0 6px 32px rgba(4, 12, 26, 0.92));
-            transition-delay: 0.10s;
-        }
+.hero--live .hero-text.is-revealed .hero-title-main {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0) drop-shadow(0 6px 32px rgba(4, 12, 26, 0.92));
+    transition-delay: 0.10s;
+}
 
-        .hero--live .hero-text.is-revealed .hero-title-divider {
-            opacity: 1;
-            transform: scaleX(1);
-            transition-delay: 0.22s;
-        }
+.hero--live .hero-text.is-revealed .hero-title-divider {
+    opacity: 1;
+    transform: scaleX(1);
+    transition-delay: 0.22s;
+}
 
-        .hero--live .hero-text.is-revealed .hero-title-sub {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-            transition-delay: 0.28s;
-        }
+.hero--live .hero-text.is-revealed .hero-title-sub {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.28s;
+}
 
-        .hero--live .hero-text.is-revealed .hero-lead {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-            transition-delay: 0.38s;
-        }
+.hero--live .hero-text.is-revealed .hero-lead {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.38s;
+}
 
-        .hero-scroll {
-            display: none;
-            position: absolute;
-            right: 7vw;
-            bottom: 5vh;
-            color: #7f93ad;
-            font-size: 0.7rem;
-            letter-spacing: 0.34em;
-        }
+.hero-scroll {
+    display: none;
+    position: absolute;
+    right: 7vw;
+    bottom: 5vh;
+    color: #7f93ad;
+    font-size: 0.7rem;
+    letter-spacing: 0.34em;
+}
 
-        .hero-scroll::after {
-            content: "";
-            display: block;
-            width: 1px;
-            height: 34px;
-            margin: 10px 0 0 auto;
-            background: linear-gradient(#7f93ad, transparent);
-        }
+.hero-scroll::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 34px;
+    margin: 10px 0 0 auto;
+    background: linear-gradient(#7f93ad, transparent);
+}
 
-        /* live: the scroll bar is the clock */
-        .hero.hero--live {
-            height: 320vh;
-            /* 2.2 screens of scroll for the whole cover */
-            min-height: 0;
-            background: none;
-        }
+/* live: the scroll bar is the clock */
+.hero.hero--live {
+    height: 400vh;
+    /* 3 screens of scroll for the whole cover; the last one is shared with the page, which rises over the stage */
+    margin-bottom: -100vh;
+    min-height: 0;
+}
 
-        .hero--live .hero-stage {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-        }
+/* while it plays, the cover is in front of the page that rises into its last screen (the page is seen
+   through the opening in the membrane); it takes no clicks, so the page underneath stays usable */
+.hero.hero--live:not(.hero--done) {
+    z-index: 2;
+    pointer-events: none;
+}
 
-        .hero--live .hero-stage canvas {
-            position: absolute;
-            inset: 0;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
+.hero--live .hero-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
 
-        /* a scrim so the words stay readable over the structure, without washing it out */
-        .hero--live .hero-stage::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            background: radial-gradient(ellipse 70% 55% at 50% 48%, rgba(7, 17, 32, 0.82), rgba(7, 17, 32, 0.35) 55%, rgba(7, 17, 32, 0) 78%);
-            transition: opacity 0.4s linear;
-        }
+.hero--live .hero-stage canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 
-        .hero--live.gone .hero-stage::after {
-            opacity: 0;
-        }
+/* a scrim so the words stay readable over the structure, without washing it out */
+.hero--live .hero-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(ellipse 70% 55% at 50% 48%, rgba(7, 17, 32, 0.82), rgba(7, 17, 32, 0.35) 55%, rgba(7, 17, 32, 0) 78%);
+    transition: opacity 0.4s linear;
+}
 
-        /* the script fades the title in when the bundle is built and out as the scroll begins */
-        .hero--live .hero-text {
-            position: fixed;
-            opacity: 0;
-        }
+.hero--live.gone .hero-stage::after {
+    opacity: 0;
+}
 
-        .hero--live .hero-scroll {
-            display: block;
-        }
+/* the script fades the title in when the bundle is built and out as the scroll begins */
+.hero--live .hero-text {
+    position: fixed;
+    opacity: 0;
+}
 
-        /* sealed: the camera has gone through the hole and the cover has closed behind it (height set by the script) */
-        .hero.hero--done {
-            min-height: 0;
-        }
+.hero--live .hero-scroll {
+    display: block;
+}
 
-        .hero--done .hero-stage,
-        .hero--done .hero-text {
-            display: none;
-        }
+/* sealed: the camera has gone through the hole and the cover has closed behind it */
+.hero.hero--done {
+    min-height: 0;
+}
 
-        /* ...and once that empty screen has scrolled away, the top of the page becomes a still title band */
-        .hero.hero--done.hero--titled {
-            height: auto;
-            padding: calc(60px + 12vh) 0 10vh;
-        }
+.hero--done .hero-stage,
+.hero--done .hero-text {
+    display: none;
+}
 
-        .hero--done.hero--titled .hero-text {
-            display: flex;
-            position: relative;
-            inset: auto;
-            opacity: 1;
-        }
+/* ...leaving a still title band at the top of the page */
+.hero.hero--done.hero--titled {
+    margin-bottom: 0;
+    height: auto;
+    padding: calc(60px + 12vh) 0 10vh;
+}
 
-        .hero--done.hero--titled .hero-kicker,
-        .hero--done.hero--titled .hero-title-main,
-        .hero--done.hero--titled .hero-title-divider,
-        .hero--done.hero--titled .hero-title-sub,
-        .hero--done.hero--titled .hero-lead {
-            opacity: 1;
-            transform: none;
-            filter: none;
-        }
+.hero--done.hero--titled .hero-text {
+    display: flex;
+    position: relative;
+    inset: auto;
+    opacity: 1;
+}
 
-        .hero--done.hero--titled .hero-scroll {
-            display: none;
-        }
+.hero--done.hero--titled .hero-kicker,
+.hero--done.hero--titled .hero-title-main,
+.hero--done.hero--titled .hero-title-divider,
+.hero--done.hero--titled .hero-title-sub,
+.hero--done.hero--titled .hero-lead {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+}
+
+.hero--done.hero--titled .hero-scroll {
+    display: none;
+}

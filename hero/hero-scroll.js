@@ -143,12 +143,13 @@ strands.forEach((s, si) => {
 });
 
 /* ---------- scene ---------- */
-const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#091426');
+const BG = new THREE.Color('#091426');
+scene.background = BG;
 scene.add(new THREE.HemisphereLight('#cfe6f5', '#10243c', 0.85));
 const sun = new THREE.DirectionalLight('#eaf6ff', 1.9); sun.position.set(-26, 42, 58); scene.add(sun);
 const rim = new THREE.DirectionalLight('#5fb6d8', 1.2); rim.position.set(50, -14, -46); scene.add(rim);
@@ -478,6 +479,7 @@ evGroup.add(heads, tails);
    It is kept well clear of the wall so the dimple the bundle presses in never reaches it. */
 const inside = new THREE.Mesh(new THREE.SphereGeometry(R_IN - 11, 48, 32),
   new THREE.MeshBasicMaterial({ color: 0x071120 }));
+inside.renderOrder = -1;   // drawn first, so that once it stops painting it still hides the far wall
 evGroup.add(inside);
 
 /* ---------- where the bundle goes in act two ----------
@@ -1265,8 +1267,11 @@ const HERO_A = GROW_B, HERO_B = PRO + A2 + T_RUP + 3.4;   // right through the r
    (which, seen from above, is mostly the camera swinging round) is passed over quickly.
    Times are given on act two's clock (te: 0 = the bundle is finished, T_RUP = the membrane tears). */
 const TE = te => PRO + A2 + te;
-const KNOTS = [[0, HERO_A], [0.22, TE(11)], [0.44, TE(17.2)],
-               [0.60, TE(19.0)], [0.86, TE(21.4)], [1, HERO_B]];
+/* The last third of the track is shared with the page: the text after the cover rises over the stage
+   while the camera passes through the opening, so the dive slows there and runs on until the torn rim has
+   left the frame - the inside of the hole and the page behind it are the same dark blue. */
+const KNOTS = [[0, HERO_A], [0.18, TE(11)], [0.36, TE(17.2)], [0.50, TE(19.0)],
+               [0.667, TE(20.6)], [0.92, TE(21.7)], [1, HERO_B]];
 function timeAt(p) {
   for (let i = 0; i < KNOTS.length - 1; i++) {
     const [pa, ta] = KNOTS[i], [pb, tb] = KNOTS[i + 1];
@@ -1359,7 +1364,12 @@ renderer.setAnimationLoop(() => {
   // into the page behind it, so nothing of the model is left on screen when the cover scrolls away
   // (also tied to the scroll bar itself, so on a slow device, where the eased clock lags, the scene is still
   // gone by the time the cover ends)
-  const out = Math.max(smooth((pc - 0.93) / 0.07), smooth((progress() - 0.92) / 0.08));
+  const out = Math.max(smooth((pc - 0.97) / 0.03), smooth((progress() - 0.88) / 0.10));
+  // the scene sits in front of the page, so once the page starts to rise the empty space goes clear: the
+  // page is seen only through the opening, and the torn rim passes in front of it
+  const clear = progress() > 0.45;   // switched while the membrane fills the frame, so it cannot be seen
+  scene.background = clear ? null : BG;
+  inside.material.colorWrite = !clear;   // the ball inside still hides the far wall, but paints nothing
   renderer.domElement.style.opacity = String(1 - out);
   fade();
   if (out >= 1) {                    // fully dissolved: nothing left to draw
@@ -1371,35 +1381,23 @@ renderer.setAnimationLoop(() => {
   renderer.render(scene, cam); note();
 });
 
-/* One way only: once the camera is through the hole the cover closes behind it. The part of the track
-   already scrolled past is cut away and the scroll position moved by the same amount in the same frame, so
-   nothing on screen moves - but scrolling up now stops at the top of the page instead of playing the film
-   backwards. The scene is shut down too, which hands the GPU back to the rest of the page. */
+/* One way only: once the camera is through the hole the cover closes behind it. The track is replaced by
+   a still title band and the scroll position moved by the difference in the same frame, so nothing on
+   screen moves - but scrolling up now ends at the title instead of playing the film backwards. The scene is shut down too, which hands the GPU back to the rest of the page. */
 let sealed = false;
 function seal() {
   if (sealed) return;
   sealed = true;
   renderer.setAnimationLoop(null);
   const next = hero.nextElementSibling, before = next ? next.getBoundingClientRect().top : 0;
-  const cut = Math.min(scrollY, hero.offsetHeight);   // everything of the cover above the viewport
-  hero.style.height = (hero.offsetHeight - cut) + 'px';
-  hero.classList.add('hero--done');
+  // the whole track is swapped, in one go, for a still title band above the page; the scroll is moved by
+  // whatever that changed, so the page stays exactly where it is on screen, and scrolling back up now
+  // ends at the title instead of the film
+  txt.style.cssText = '';           // drop the opacity / offset the scroll animation left on it
+  hero.classList.add('hero--done', 'hero--titled');
   // measure rather than trust the arithmetic: browsers that anchor the scroll may already have moved it
   // instant: Bootstrap makes the page scroll smoothly, which would turn this correction into a visible slide
   if (next) scrollBy({ top: next.getBoundingClientRect().top - before, behavior: 'instant' });
-  txt.style.visibility = 'hidden';
-  // what is left is one empty screen (the inside of the hole). Once it has scrolled out of sight it is swapped,
-  // the same way, for a still title band, so the top of the page keeps the project's title
-  const shut = () => {
-    if (!next || scrollY < hero.offsetHeight) return;
-    const b = next.getBoundingClientRect().top;
-    hero.style.height = '';
-    txt.style.cssText = '';           // drop the opacity / offset the scroll animation left on it
-    hero.classList.add('hero--titled');
-    scrollBy({ top: next.getBoundingClientRect().top - b, behavior: 'instant' });
-    removeEventListener('scroll', shut);
-  };
-  addEventListener('scroll', shut, { passive: true });
   renderer.dispose();
   renderer.forceContextLoss();
   renderer.domElement.remove();
@@ -1433,6 +1431,7 @@ function note() {
 }
 
 renderer.domElement.addEventListener('webglcontextlost', e => {
+  if (sealed) return;                    // our own shutdown after the seal, not a failure
   dbg.textContent = 'WEBGL CONTEXT LOST';
   document.body.appendChild(dbg);
   e.preventDefault(); console.warn('webgl context lost');
