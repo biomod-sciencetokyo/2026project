@@ -217,6 +217,22 @@ p {
     margin-bottom: 1.5rem;
 }
 
+/* Paragraph first-line indentation across all pages (~3.5–4 characters) */
+main p {
+    text-indent: 3.5ch;
+}
+
+main .text-center p,
+main p.text-center,
+main p[role="math"],
+main p[role="math"] + p,
+main .references-section p,
+main .team-member-card p,
+main p.fw-bold,
+main .sim-env-hint {
+    text-indent: 0;
+}
+
 a {
     color: var(--accent-blue);
     transition: color 0.2s ease;
