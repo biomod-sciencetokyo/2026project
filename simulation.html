@@ -392,15 +392,18 @@
                         <!-- Linker Length -->
                         <div id="two-d-linker-length" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Linker Length</h4>
-                            <p class="text-secondary mb-4">
-                                <strong>Three programmable parameters:</strong> vesicle radius (<em>R</em>), DNA Bundle
-                                bending rigidity (<i>B</i><sub>DNA</sub>), and linker rest length
-                                (<em>l</em><sub>0</sub>).
-                            </p>
-                            <p class="text-secondary mb-4">
-                                <strong>Goal:</strong> use the 2D model to map conditions that favor a model-defined
-                                local membrane opening.
-                            </p>
+                            <div class="sim-brief mb-4">
+                                <p class="text-secondary sim-brief-item">
+                                    <strong>Three programmable parameters:</strong> vesicle radius (<em
+                                        class="sim-sym">R</em>), DNA Bundle
+                                    bending rigidity (<span class="sim-sym"><i>B</i><sub>DNA</sub></span>), and linker
+                                    rest length (<span class="sim-sym"><em>l</em><sub>0</sub></span>).
+                                </p>
+                                <p class="text-secondary sim-brief-item">
+                                    <strong>Goal:</strong> use the 2D model to map conditions that favor a model-defined
+                                    local membrane opening.
+                                </p>
+                            </div>
                             <p class="text-secondary mb-4">
                                 DNA Bundle bending rigidity and linker rest length work together to shape membrane
                                 loading. A stiffer bundle resists bending and can concentrate stress locally, while a more
@@ -420,21 +423,33 @@
                                 </p>
                             </div>
 
-                            <div class="content-box p-3 p-md-4 mb-4">
-                                <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
-                                <p class="text-center fw-bold text-light mb-3">
-                                    Linker rest length, <em>l</em><sub>0</sub>: Short (2.5 nm) &rarr; Long (15.0 nm)
-                                </p>
-                                <p class="text-center text-secondary small mb-3">DNA Bundle bending rigidity: Higher &darr; Lower</p>
-                                <div class="row g-3 align-items-stretch">
-                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                            <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
+                            <div class="mb-4 sim-matrix">
+                                <div class="row g-3 align-items-stretch sim-matrix-grid">
+                                    <div class="sim-matrix-corner" aria-hidden="true">
+                                        <span class="sim-matrix-corner-col">Linker rest length (<em>l</em><sub>0</sub>) &rarr;</span>
+                                        <span class="sim-matrix-corner-row">&darr; DNA Bundle bending rigidity (<i>B</i><sub>DNA</sub>)</span>
+                                    </div>
+                                    <div class="sim-matrix-colhead">
+                                        <span class="sim-matrix-colhead-title">Short linker</span>
+                                        <span class="sim-matrix-colhead-sub"><em>l</em><sub>0</sub> = 2.5 nm</span>
+                                    </div>
+                                    <div class="sim-matrix-colhead">
+                                        <span class="sim-matrix-colhead-title">Long linker</span>
+                                        <span class="sim-matrix-colhead-sub"><em>l</em><sub>0</sub> = 15.0 nm</span>
+                                    </div>
+
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-high">
                                         <span class="fw-bold text-light">Higher effective bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 6.21 × 10<sup>5</sup> pN·nm<sup>2</sup></span>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Short linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-pos">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Short linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-positive" aria-label="Membrane rupture observed" title="Membrane rupture: Observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/shortlinker_highrigidity_r50_a09_l2.5.gif"
                                                     alt="Small vesicle R = 50 nm; DNA Bundle bending rigidity B DNA = 6.21 times 10 to the 5 pN nanometer squared; linker rest length l0 = 2.5 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -446,10 +461,13 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Long linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Long linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/longlinker_highrigidity_r50_a08_l15.0_b1.gif"
                                                     alt="Small vesicle R = 50 nm; available GIF bending rigidity B DNA approximately 4.36 times 10 to the 5 pN nanometer squared; linker rest length l0 = 15.0 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -462,14 +480,17 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-low">
                                         <span class="fw-bold text-light">Lower effective bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 9.51 × 10<sup>2</sup> pN·nm<sup>2</sup></span>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Short linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Short linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/shortlinker_lowrigidity_r50_a01_l2.5_b1.gif"
                                                     alt="Small vesicle R = 50 nm; DNA Bundle bending rigidity B DNA = 9.51 times 10 to the 2 pN nanometer squared; linker rest length l0 = 2.5 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -481,10 +502,13 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Long linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Long linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/longlinker_lowrigidity_r50_a01_l15.0_b1.gif"
                                                     alt="Small vesicle R = 50 nm; DNA Bundle bending rigidity B DNA = 9.51 times 10 to the 2 pN nanometer squared; linker rest length l0 = 15.0 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -500,21 +524,33 @@
                                 </div>
                             </div>
 
-                            <div class="content-box p-3 p-md-4 mb-4">
-                                <h5 class="fw-bold mb-3 section-subtitle">Large vesicle (<em>R</em> = 200 nm)</h5>
-                                <p class="text-center fw-bold text-light mb-3">
-                                    Linker rest length, <em>l</em><sub>0</sub>: Short (2.5 nm) &rarr; Long (15.0 nm)
-                                </p>
-                                <p class="text-center text-secondary small mb-3">DNA Bundle bending rigidity: Higher &darr; Lower</p>
-                                <div class="row g-3 align-items-stretch">
-                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                            <h5 class="fw-bold mb-3 section-subtitle">Large vesicle (<em>R</em> = 200 nm)</h5>
+                            <div class="mb-4 sim-matrix">
+                                <div class="row g-3 align-items-stretch sim-matrix-grid">
+                                    <div class="sim-matrix-corner" aria-hidden="true">
+                                        <span class="sim-matrix-corner-col">Linker rest length (<em>l</em><sub>0</sub>) &rarr;</span>
+                                        <span class="sim-matrix-corner-row">&darr; DNA Bundle bending rigidity (<i>B</i><sub>DNA</sub>)</span>
+                                    </div>
+                                    <div class="sim-matrix-colhead">
+                                        <span class="sim-matrix-colhead-title">Short linker</span>
+                                        <span class="sim-matrix-colhead-sub"><em>l</em><sub>0</sub> = 2.5 nm</span>
+                                    </div>
+                                    <div class="sim-matrix-colhead">
+                                        <span class="sim-matrix-colhead-title">Long linker</span>
+                                        <span class="sim-matrix-colhead-sub"><em>l</em><sub>0</sub> = 15.0 nm</span>
+                                    </div>
+
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-high">
                                         <span class="fw-bold text-light">Higher effective bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 6.21 × 10<sup>5</sup> pN·nm<sup>2</sup></span>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Short linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Short linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/shortlinker_highrigidity_r200_a08_l2.5_b1.gif"
                                                     alt="Large vesicle R = 200 nm; DNA Bundle bending rigidity B DNA approximately 4.36 times 10 to the 5 pN nanometer squared; linker rest length l0 = 2.5 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -527,10 +563,13 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Long linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-pos">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Long linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-positive" aria-label="Membrane rupture observed" title="Membrane rupture: Observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/LongLinker_highrigidity_r200_a09_l20.0_b1_pure_chained.gif"
                                                     alt="Large vesicle R = 200 nm; DNA Bundle bending rigidity B DNA = 6.21 times 10 to the 5 pN nanometer squared; available GIF linker rest length l0 = 20.0 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -542,14 +581,17 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-low">
                                         <span class="fw-bold text-light">Lower effective bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 9.51 × 10<sup>2</sup> pN·nm<sup>2</sup></span>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Short linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Short linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/shortlonker_lowrigidity_r200_a01_l2.5_b1.gif"
                                                     alt="Large vesicle R = 200 nm; DNA Bundle bending rigidity B DNA = 9.51 times 10 to the 2 pN nanometer squared; linker rest length l0 = 2.5 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
@@ -562,10 +604,13 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-5">
-                                        <div class="content-box h-100">
-                                            <div class="fw-bold text-light mb-2">Long linker</div>
-                                            <div class="ratio ratio-1x1 mb-3">
+                                    <div class="col-6 col-md-5">
+                                        <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
+                                            <div class="sim-matrix-cell-head">
+                                                <div class="fw-bold text-light sim-matrix-col">Long linker</div>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span>
+                                            </div>
+                                            <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <img src="video/SIMULATION/longlinker_lowrigidity_r200_a01_l20.0_b1.gif"
                                                     alt="Large vesicle R = 200 nm; DNA Bundle bending rigidity B DNA = 9.51 times 10 to the 2 pN nanometer squared; available GIF linker rest length l0 = 20.0 nm"
                                                     class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
