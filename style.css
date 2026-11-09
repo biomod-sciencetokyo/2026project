@@ -515,144 +515,238 @@ section[id],
     background-color: #eef4f7 !important;
 }
 
-.simulation-feature-badge {
-    display: inline-flex;
-    min-width: 140px;
-    justify-content: center;
-    padding: 12px 32px;
-    border: 3px solid;
-    border-radius: 999px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-}
-
-.simulation-feature-low {
-    color: #b9cde0;
-    background-color: rgba(74, 111, 148, 0.22);
-    border-color: #58799a;
-}
-
-.simulation-feature-high {
-    color: #b9cde0;
-    background-color: rgba(74, 111, 148, 0.22);
-    border-color: #58799a;
-}
-
-.simulation-rigidity-row {
-    flex-direction: column;
-}
-
-.simulation-rigidity-indicator {
-    width: calc(100% - 48px);
-}
-
-@media (min-width: 768px) {
-    .simulation-rigidity-row {
-        position: relative;
-        flex-direction: row;
-    }
-
-    .simulation-rigidity-row>.col-12 {
-        width: 50%;
-    }
-
-    .simulation-rigidity-row .simulation-rigidity-indicator {
-        position: absolute;
-        top: 50%;
-        left: 36%;
-        width: 28%;
-        margin: 0;
-        transform: translateY(-50%);
-    }
-}
-
-.simulation-rigidity-indicator {
-    position: relative;
+/* Comparison header: thin rules on both sides of a small label */
+.sim-compare-header-bar {
     display: flex;
-    min-height: 56px;
     align-items: center;
-    justify-content: center;
-    margin: 0 24px;
-    padding: 10px 28px;
-    border: 2px solid #58799a;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(74, 111, 148, 0.3), rgba(91, 137, 176, 0.2), rgba(74, 111, 148, 0.3));
-    color: #d5e3f0;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-align: center;
+    gap: 14px;
 }
 
-.simulation-rigidity-indicator::before,
-.simulation-rigidity-indicator::after {
-    position: absolute;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
+.sim-compare-header-bar::before,
+.sim-compare-header-bar::after {
     content: "";
-    transform: translateY(-50%);
+    flex: 1 1 auto;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(88, 121, 154, 0.08), rgba(98, 197, 213, 0.45));
+}
+
+.sim-compare-header-bar::after {
+    background: linear-gradient(90deg, rgba(98, 197, 213, 0.45), rgba(88, 121, 154, 0.08));
+}
+
+.simulation-rigidity-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    border: 1px solid rgba(98, 197, 213, 0.38);
+    background-color: rgba(15, 29, 54, 0.75);
+    color: var(--accent-blue);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .simulation-rigidity-indicator::before {
-    left: -14px;
-    border-right: 14px solid #58799a;
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-gold);
 }
 
-.simulation-rigidity-indicator::after {
-    right: -14px;
-    border-left: 14px solid #58799a;
-}
-
-.simulation-result-mark {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 48px;
-    height: 48px;
+/* Comparison cards */
+.sim-compare-card {
     display: flex;
+    flex-direction: column;
+}
+
+.sim-compare-card-favorable {
+    border-color: rgba(98, 197, 213, 0.55);
+    box-shadow: 0 4px 18px rgba(2, 9, 20, 0.28), inset 0 2px 0 rgba(98, 197, 213, 0.65);
+}
+
+.sim-compare-card-contrast {
+    border-color: rgba(72, 101, 138, 0.45);
+}
+
+.sim-compare-card-head {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.sim-compare-media {
+    background-color: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    padding: 6px;
+}
+
+.simulation-feature-badge {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    z-index: 2;
-    pointer-events: none;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+    padding: 3px 10px;
+    border: 1px solid;
+    border-radius: 2px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+.simulation-feature-low,
+.simulation-feature-high {
+    color: #b8cbe0;
+    background-color: rgba(56, 82, 115, 0.28);
+    border-color: rgba(120, 152, 186, 0.45);
+}
+
+.sim-compare-card-favorable .simulation-feature-badge {
+    color: #e6f9fc;
+    background-color: rgba(98, 197, 213, 0.18);
+    border-color: rgba(98, 197, 213, 0.65);
+}
+
+/* Rupture result mark in the card header */
+.simulation-result-mark {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .simulation-result-mark svg {
-    width: 100%;
-    height: 100%;
     display: block;
+    width: 18px;
+    height: 18px;
 }
 
-/* バツ: 膜破裂なし（ネガティブ） - ネオンローズ / サイバーピンク */
+/* バツ: 膜破裂なし（ネガティブ） */
 .simulation-result-mark-negative {
-    color: #ff3366;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(255, 51, 102, 0.75));
+    color: #ff5c82;
+    background-color: rgba(255, 51, 102, 0.12);
+    border: 1px solid rgba(255, 92, 130, 0.45);
 }
 
-/* マル: 膜破裂あり（ポジティブ） - エレクトリックシアン */
+/* マル: 膜破裂あり（ポジティブ） */
 .simulation-result-mark-positive {
     color: #00e5ff;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 10px rgba(0, 229, 255, 0.85));
+    background-color: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
 .content-box:hover .simulation-result-mark {
-    transform: scale(1.12);
+    transform: scale(1.06);
 }
 
-.content-box:hover .simulation-result-mark-negative {
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(255, 51, 102, 0.95));
+/* ===== 2D comparison layout (presentation only) ===== */
+/* Full content width. One shared frame per comparison: the header bar is its title row, the two cards sit inside */
+.sim-compare-header-bar,
+.sim-compare-header-bar + .row {
+    background-color: var(--surface-dark);
+    border: 1px solid #314763;
 }
 
-.content-box:hover .simulation-result-mark-positive {
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px rgba(0, 229, 255, 1));
+.sim-compare-header-bar {
+    margin-bottom: 0 !important;
+    padding: 16px 20px 0;
+    border-bottom: none;
+}
+
+.sim-compare-header-bar + .row {
+    position: relative;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    margin-top: 0;
+    padding: 6px 0 4px;
+    border-top: none;
+}
+
+/* Thin divider between the two cases */
+.sim-compare-header-bar + .row::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 22px;
+    bottom: 22px;
+    width: 1px;
+    background-color: rgba(148, 163, 184, 0.2);
+    pointer-events: none;
+}
+
+/* Inner cards lose their own box and share the frame */
+.sim-compare-header-bar + .row .sim-compare-card {
+    padding: 16px 20px 18px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.sim-compare-card-head {
+    margin-bottom: 14px !important;
+}
+
+.sim-compare-card .sim-compare-media {
+    margin-bottom: 12px !important;
+}
+
+.sim-compare-card p.small {
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+/* Favorable side: cyan tint and top line inside the shared frame */
+.sim-compare-header-bar + .row .sim-compare-card-favorable {
+    background: linear-gradient(180deg, rgba(0, 229, 255, 0.07), rgba(0, 229, 255, 0.02));
+    box-shadow: inset 0 2px 0 rgba(98, 197, 213, 0.75);
+}
+
+.sim-compare-card-favorable .fw-bold {
+    color: #e6f9fc !important;
+}
+
+.sim-compare-card-favorable .sim-compare-media {
+    border-color: rgba(0, 229, 255, 0.55);
+}
+
+.sim-compare-card-contrast .sim-compare-media {
+    opacity: 0.85;
+}
+
+.sim-compare-card .simulation-result-mark {
+    width: 34px;
+    height: 34px;
+}
+
+.sim-compare-card .simulation-result-mark svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 767.98px) {
+    .sim-compare-header-bar + .row::after {
+        display: none;
+    }
+
+    .sim-compare-header-bar + .row > .col-md-6 + .col-md-6 {
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .sim-compare-header-bar {
+        padding: 14px 14px 0;
+    }
+
+    .sim-compare-header-bar + .row .sim-compare-card {
+        padding: 14px;
+    }
 }
 
 .simulation-model-viewer {
