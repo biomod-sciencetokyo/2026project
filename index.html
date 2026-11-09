@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIOMOD 2026 | Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=hero-title-13">
+    <link rel="stylesheet" href="style.css?v=home-3">
 </head>
 
 <body>
@@ -38,6 +38,7 @@
                 <p class="hero-lead mb-0">
                     Targeted EV membrane disruption using rigid DNA bundles assembled via <em>in situ</em> HCR.
                 </p>
+                <a href="project.html" class="btn rounded-0 learn-more-btn hero-cta">Explore the Project &rarr;</a>
             </div>
             <span class="hero-scroll" aria-hidden="true">SCROLL</span>
         </div>
@@ -46,66 +47,99 @@
 
     <main class="w-100 overflow-hidden">
 
-        <!-- Abstract & Background -->
+        <!-- Abstract: the project told step by step, each step linking to its page -->
         <section class="fade-in-section pt-5 pb-5">
             <div class="container content-container px-3 px-md-0">
                 <h2 class="section-title">Abstract</h2>
-                <div class="row g-4 align-items-stretch">
-                    <div class="col-lg-6">
-                        <div class="h-100 p-4 d-flex flex-column">
-                            <p class="text-secondary mb-4">
+                <ol class="home-story">
+                    <li class="home-step">
+                        <figure class="home-media home-step-media">
+                            <img src="img/PROJECT/Background.png"
+                                alt="Background: extracellular vesicles carry molecular information behind a lipid bilayer"
+                                loading="lazy" decoding="async">
+                        </figure>
+                        <div class="home-step-body">
+                            <span class="home-step-num">01</span>
+                            <h3 class="home-step-title">Problem</h3>
+                            <p class="text-secondary">
                                 Extracellular vesicles (EVs) carry molecular cargo that is valuable for diagnosis, yet
                                 conventional disruption methods destroy origin information.
                             </p>
-                            <p class="text-secondary mb-0">
+                            <a href="project.html" class="home-step-link">Project &rarr;</a>
+                        </div>
+                    </li>
+                    <li class="home-step">
+                        <figure class="home-media home-step-media">
+                            <video src="video/PROJECT/hcr-trigger-grow-rupture-3d.mp4"
+                                poster="video/PROJECT/hcr-trigger-grow-rupture-poster.jpg" autoplay muted loop
+                                playsinline preload="metadata"
+                                aria-label="Animation: a trigger starts HCR, a DNA bundle grows on the vesicle and the membrane ruptures"></video>
+                        </figure>
+                        <div class="home-step-body">
+                            <span class="home-step-num">02</span>
+                            <h3 class="home-step-title">Approach</h3>
+                            <p class="text-secondary">
                                 This project uses a target-triggered Hybridization Chain Reaction (HCR) to assemble
                                 rigid DNA bundles on lipid membranes in situ, mechanically disrupting only the intended
                                 vesicles.
                             </p>
+                            <a href="project.html" class="home-step-link">Project &rarr;</a>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="ratio ratio-4x3">
-                            <div class="content-box p-0 bg-light d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Image Placeholder</span>
-                            </div>
+                    </li>
+                    <li class="home-step">
+                        <figure class="home-media home-step-media">
+                            <img src="video/SIMULATION/High_rigidity_r50_a09_l2.5_b1.gif"
+                                alt="2D simulation of a rigid DNA bundle deforming a vesicle membrane"
+                                loading="lazy" decoding="async">
+                        </figure>
+                        <div class="home-step-body">
+                            <span class="home-step-num">03</span>
+                            <h3 class="home-step-title">Simulation</h3>
+                            <p class="text-secondary">
+                                We use 2D coarse-grained molecular dynamics and 3D thermodynamic simulations to examine
+                                how DNA Bundle rigidity, linker length, and vesicle size influence membrane deformation
+                                and model-defined Rupture. We also investigate the self-assembly and reaction
+                                feasibility of the HCR system designed to build DNA bundles.
+                            </p>
+                            <a href="simulation.html" class="home-step-link">Simulation &rarr;</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Vision -->
-        <section class="fade-in-section pt-5 pb-5">
-            <div class="container content-container px-3 px-md-0">
-                <h2 class="section-title">Vision</h2>
-                <div class="row g-4 align-items-stretch">
-                    <div class="col-lg-6">
-                        <div class="ratio ratio-4x3">
-                            <div class="content-box p-0 bg-light d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Future Vision Image Placeholder</span>
-                            </div>
+                    </li>
+                    <li class="home-step">
+                        <figure class="home-media home-step-media home-media-placeholder">
+                            <span>Experiment Image Placeholder</span>
+                        </figure>
+                        <div class="home-step-body">
+                            <span class="home-step-num">04</span>
+                            <h3 class="home-step-title">Experiment</h3>
+                            <p class="text-secondary">
+                                In Experiment A, we evaluated the physical membrane-disrupting capability of
+                                cholesterol-modified 12-helix and 13-helix DNA bundles.
+                                In Experiment B, we investigated the reaction mechanism of Bundled HCR using a minimal
+                                model designed to elongate into a 6-helix DNA bundle.
+                            </p>
+                            <a href="experiment.html" class="home-step-link">Experiment &rarr;</a>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="h-100 p-4 d-flex flex-column">
-                            <p class="text-secondary mb-4">
+                    </li>
+                    <li class="home-step">
+                        <figure class="home-media home-step-media home-media-placeholder">
+                            <span>Future Image Placeholder</span>
+                        </figure>
+                        <div class="home-step-body">
+                            <span class="home-step-num">05</span>
+                            <h3 class="home-step-title">Future</h3>
+                            <p class="text-secondary">
                                 Potentially, our research may pave the way for molecular signal-responsive systems
-                                capable of lipid membrane
-                                disruption.
+                                capable of lipid membrane disruption.
                             </p>
-                            <p class="text-secondary mb-0">
+                            <p class="text-secondary">
                                 By using cell-free cancer-associated miRNAs as sequence-specific triggers, such systems
-                                could eventually be
-                                extended from lipid vesicles toward larger membrane-bound targets, including living
-                                cells.
+                                could eventually be extended from lipid vesicles toward larger membrane-bound targets,
+                                including living cells.
                             </p>
+                            <a href="future.html" class="home-step-link">Future &rarr;</a>
                         </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <a href="future.html" class="btn rounded-0 learn-more-btn">Learn More in Future</a>
-                </div>
+                    </li>
+                </ol>
             </div>
         </section>
 

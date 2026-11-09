@@ -1908,3 +1908,120 @@ section[id],
         font-size: 1.25rem;
     }
 }
+
+/* ===== Home ===== */
+.hero-text .hero-cta {
+    margin-top: 22px;
+    padding: 10px 22px;
+    pointer-events: auto;
+    background-color: rgba(9, 20, 38, 0.6);
+    letter-spacing: 0.04em;
+}
+
+.home-media {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid #314763;
+    background-color: #ffffff;
+    aspect-ratio: 16 / 9;
+}
+
+.home-media video,
+.home-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.home-media-placeholder {
+    display: grid;
+    place-items: center;
+    background-color: var(--surface-dark);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* What We Did: alternating figure / text rows joined by a timeline */
+.home-story {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.home-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 36px 0;
+}
+
+.home-step + .home-step {
+    border-top: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.home-step:nth-child(even) .home-step-media {
+    order: 2;
+}
+
+.home-step-num {
+    display: block;
+    color: var(--accent-gold);
+    font-family: 'DotGothic16', monospace;
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+.home-step-title {
+    margin: 8px 0 14px;
+    color: var(--accent-blue);
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.6rem;
+    -webkit-text-stroke: 0.6px currentColor;
+}
+
+.home-step-body p {
+    margin-bottom: 18px;
+}
+
+.home-step-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.home-step-link:hover,
+.home-step-link:focus-visible {
+    color: var(--primary-blue);
+    background-color: var(--accent-gold);
+}
+
+@media (max-width: 991.98px) {
+    .home-step {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 28px 0;
+    }
+
+    .home-step:nth-child(even) .home-step-media {
+        order: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-step-link {
+        transition: none;
+    }
+}
