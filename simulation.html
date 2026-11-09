@@ -364,194 +364,174 @@
                             </div>
                         </div>
 
-                        <!-- DNA Bundle Rigidity -->
-                        <div id="two-d-rigidity" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">DNA Bundle Rigidity</h4>
-                            <p class="text-secondary mb-4">
-                                Our simulation results identify DNA Bundle rigidity as a key factor influencing
-                                membrane Rupture probability across the conditions examined.
-                            </p>
-
-                            <div class="row g-4 align-items-center mb-4 simulation-rigidity-row">
-                                <div class="col-12 col-md-6 text-center">
-                                    <span class="simulation-feature-badge simulation-feature-low">Low</span>
-                                </div>
-                                <div class="simulation-rigidity-indicator">DNA bundle rigidity</div>
-                                <div class="col-12 col-md-6 text-center">
-                                    <span class="simulation-feature-badge simulation-feature-high">High</span>
-                                </div>
-                            </div>
-                            <div class="row g-4 mb-4">
-                                <div class="col-md-6">
-                                    <div class="content-box h-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-light">Low Rigidity</span>
-                                        </div>
-                                        <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/Lowr_igidity_r50_a01_l1.0_b1.gif"
-                                                alt="Low-rigidity DNA bundle simulation with a 1.0 nm linker; membrane rupture not observed"
-                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
-                                            <span class="simulation-result-mark simulation-result-mark-negative"
-                                                aria-label="Membrane rupture not observed" title="Membrane rupture: Not observed">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <p class="text-secondary small mb-0">Low rigidity: membrane rupture is not
-                                            observed in the simulation. The more flexible bundle deforms along with the
-                                            membrane instead of concentrating enough stress to disrupt it.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="content-box h-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-light">High Rigidity</span>
-                                        </div>
-                                        <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/High_rigidity_r50_a09_l2.5_b1.gif"
-                                                alt="High-rigidity DNA bundle simulation with a 2.5 nm linker; membrane rupture observed"
-                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
-                                            <span class="simulation-result-mark simulation-result-mark-positive"
-                                                aria-label="Membrane rupture observed" title="Membrane rupture: Observed">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                                                    <circle cx="12" cy="12" r="8.5"></circle>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <p class="text-secondary small mb-0">High rigidity: membrane rupture is
-                                            observed in the simulation. The stiffer bundle resists bending and
-                                            concentrates mechanical stress on the membrane.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p class="text-secondary mb-0">
-                                This trend is consistent with the idea that a stiff DNA Bundle resists bending around
-                                the membrane, allowing linker deformation to produce more localized membrane
-                                extension. A more compliant Bundle can bend to accommodate the membrane shape,
-                                potentially reducing the load transmitted to any one membrane spring. These
-                                observations suggest that Bundle rigidity influences how mechanical stress is
-                                distributed; they do not establish it as the sole determinant of Rupture.
-                            </p>
-                        </div>
-
                         <!-- Linker Length -->
                         <div id="two-d-linker-length" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Linker Length</h4>
                             <p class="text-secondary mb-4">
-                                Our simulation results identify linker length as a key factor influencing membrane
-                                Rupture probability across the conditions examined.
+                                <strong>Three programmable parameters:</strong> vesicle radius (<em>R</em>), DNA Bundle
+                                rigidity (&alpha;), and linker length (<em>l</em><sub>0</sub>).
                             </p>
                             <p class="text-secondary mb-4">
-                                Linker contour length determines how far the DNA bundle can move relative to the
-                                membrane before the linkers become fully extended. The simulations below compare
-                                linker lengths across two vesicle sizes. Linker length controls two competing
-                                properties in this model: local mechanical constraint and membrane-reaching
-                                capability. Therefore, the favorable linker length depends on vesicle size.
+                                <strong>Goal:</strong> use the 2D model to map conditions that favor a model-defined
+                                local membrane opening.
+                            </p>
+                            <p class="text-secondary mb-4">
+                                DNA Bundle rigidity and linker length work together to shape membrane loading.
+                                A stiffer bundle resists bending and can concentrate stress locally, while a more
+                                flexible bundle may deform with the membrane and distribute the load. Linker length
+                                affects how far the bundle can move relative to the membrane, so the influence of
+                                either parameter depends on vesicle radius and the other parameter.
                             </p>
 
-                            <h5 class="fw-bold mb-3 section-subtitle">
-                                Small vesicle: short linkers favor localized membrane loading
-                            </h5>
-                            <div class="row g-4 align-items-center mb-4 simulation-rigidity-row">
-                                <div class="col-12 col-md-6 text-center">
-                                    <span class="simulation-feature-badge simulation-feature-low">Short</span>
-                                </div>
-                                <div class="simulation-rigidity-indicator">Linker length</div>
-                                <div class="col-12 col-md-6 text-center">
-                                    <span class="simulation-feature-badge simulation-feature-high">Long</span>
-                                </div>
+                            <div class="content-box p-3 mb-4">
+                                <p class="text-secondary small mb-0">
+                                    GIFs are shown where available. Their actual parameters are listed on each card;
+                                    the small-vesicle low-rigidity GIF uses <em>l</em><sub>0</sub> = 1.0 nm instead
+                                    of 2.5 nm, and the large-vesicle long-linker GIF uses 20.0 nm instead of 15.0 nm.
+                                    Five GIFs are still needed to complete the target comparison: replace the two
+                                    mismatched files and add the three missing low-rigidity conditions.
+                                </p>
                             </div>
-                            <div class="row g-4 mb-3">
-                                <div class="col-md-6">
-                                    <div class="content-box h-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-light">Short Linker (2.5 nm)</span>
-                                        </div>
-                                        <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/shortlinker_r50_a09_l2.5_b1.gif"
-                                                alt="Simulation with a 50 nm vesicle, DNA Bundle stiffness α = 0.9, and a 2.5 nm linker"
-                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
-                                        </div>
-                                        <p class="text-secondary small mb-0">Vesicle radius: 50 nm; DNA Bundle
-                                            stiffness: α = 0.9. The short linker produces more localized membrane
-                                            loading in this condition.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="content-box h-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-light">Long Linker (15 nm)</span>
-                                        </div>
-                                        <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/longlinker_r50_a08_l15.0_b1.gif"
-                                                alt="Simulation with a 50 nm vesicle, DNA Bundle stiffness α = 0.8, and a 15 nm linker"
-                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
-                                        </div>
-                                        <p class="text-secondary small mb-0">Vesicle radius: 50 nm; DNA Bundle
-                                            stiffness: α = 0.8. The longer linker allows more geometric freedom and
-                                            less constrained local loading.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-secondary mb-4">
-                                For smaller vesicles, a short linker more readily produces a localized
-                                membrane-tension peak in the present model.
-                            </p>
 
-                            <h5 class="fw-bold mb-3 section-subtitle">
-                                Large vesicle: long linkers favor membrane-reaching coupling
-                            </h5>
-                            <div class="row g-4 align-items-center mb-4 simulation-rigidity-row">
-                                <div class="col-12 col-md-6 text-center">
-                                    <span class="simulation-feature-badge simulation-feature-low">Short</span>
-                                </div>
-                                <div class="simulation-rigidity-indicator">Linker length</div>
-                                <div class="col-12 col-md-6 text-center">
-                                    <span class="simulation-feature-badge simulation-feature-high">Long</span>
-                                </div>
-                            </div>
-                            <div class="row g-4 mb-3">
-                                <div class="col-md-6">
-                                    <div class="content-box h-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-light">Short Linker (2.5 nm)</span>
+                            <div class="content-box p-3 p-md-4 mb-4">
+                                <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
+                                <p class="text-center fw-bold text-light mb-3">
+                                    Linker length: Short (<em>l</em><sub>0</sub> = 2.5 nm) &rarr; Long (<em>l</em><sub>0</sub> = 15.0 nm)
+                                </p>
+                                <p class="text-center text-secondary small mb-3">DNA Bundle rigidity: High &darr; Low</p>
+                                <div class="row g-3 align-items-stretch">
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                                        <span class="fw-bold text-light">High rigidity (&alpha;)</span>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Short linker</div>
+                                            <div class="ratio ratio-1x1 mb-3">
+                                                <img src="video/SIMULATION/shortlinker_r50_a09_l2.5_b1.gif"
+                                                    alt="Small vesicle R = 50 nm; high rigidity alpha = 0.9; short linker l0 = 2.5 nm"
+                                                    class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <p class="text-secondary small mb-0">Available GIF: &alpha; = 0.9,
+                                                <em>l</em><sub>0</sub> = 2.5 nm.</p>
                                         </div>
-                                        <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/shortlinker_r200_a08_l2.5_b1.gif"
-                                                alt="Simulation with a 200 nm vesicle, DNA Bundle stiffness α = 0.8, and a 2.5 nm linker"
-                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Long linker</div>
+                                            <div class="ratio ratio-1x1 mb-3">
+                                                <img src="video/SIMULATION/longlinker_r50_a08_l15.0_b1.gif"
+                                                    alt="Small vesicle R = 50 nm; rigidity alpha = 0.8; long linker l0 = 15.0 nm"
+                                                    class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <p class="text-secondary small mb-0">Available GIF: &alpha; = 0.8,
+                                                <em>l</em><sub>0</sub> = 15.0 nm.</p>
                                         </div>
-                                        <p class="text-secondary small mb-0">Vesicle radius: 200 nm; DNA Bundle
-                                            stiffness: α = 0.8. The short linker limits the distance over which the
-                                            bundle can reach and couple to the membrane.</p>
+                                    </div>
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                                        <span class="fw-bold text-light">Low rigidity (&alpha;)</span>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Short linker</div>
+                                            <div class="ratio ratio-1x1 mb-3">
+                                                <img src="video/SIMULATION/Lowr_igidity_r50_a01_l1.0_b1.gif"
+                                                    alt="Small vesicle R = 50 nm; low rigidity alpha = 0.1; available short-linker GIF uses l0 = 1.0 nm"
+                                                    class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <p class="text-secondary small mb-0">Available GIF: &alpha; = 0.1,
+                                                <em>l</em><sub>0</sub> = 1.0 nm (target: 2.5 nm).</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Long linker</div>
+                                            <div class="ratio ratio-1x1 border border-secondary mb-3 d-flex align-items-center justify-content-center"
+                                                role="img" aria-label="Small-vesicle low-rigidity long-linker GIF placeholder">
+                                                <span class="text-secondary text-center">Low-rigidity, long-linker GIF<br>To be added</span>
+                                            </div>
+                                            <p class="text-secondary small mb-0">Target: &alpha; low,
+                                                <em>l</em><sub>0</sub> = 15.0 nm.</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="content-box h-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-light">Long Linker (20 nm)</span>
+                            </div>
+
+                            <div class="content-box p-3 p-md-4 mb-4">
+                                <h5 class="fw-bold mb-3 section-subtitle">Large vesicle (<em>R</em> = 200 nm)</h5>
+                                <p class="text-center fw-bold text-light mb-3">
+                                    Linker length: Short (<em>l</em><sub>0</sub> = 2.5 nm) &rarr; Long (<em>l</em><sub>0</sub> = 15.0 nm)
+                                </p>
+                                <p class="text-center text-secondary small mb-3">DNA Bundle rigidity: High &darr; Low</p>
+                                <div class="row g-3 align-items-stretch">
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                                        <span class="fw-bold text-light">High rigidity (&alpha;)</span>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Short linker</div>
+                                            <div class="ratio ratio-1x1 mb-3">
+                                                <img src="video/SIMULATION/shortlinker_r200_a08_l2.5_b1.gif"
+                                                    alt="Large vesicle R = 200 nm; rigidity alpha = 0.8; short linker l0 = 2.5 nm"
+                                                    class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <p class="text-secondary small mb-0">Available GIF: &alpha; = 0.8,
+                                                <em>l</em><sub>0</sub> = 2.5 nm.</p>
                                         </div>
-                                        <div class="ratio ratio-1x1 mb-3 position-relative">
-                                            <img src="video/SIMULATION/LongLinker_r200_a09_l20.0_b1_pure_chained.gif"
-                                                alt="Simulation with a 200 nm vesicle, DNA Bundle stiffness α = 0.9, and a 20 nm linker"
-                                                class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Long linker</div>
+                                            <div class="ratio ratio-1x1 mb-3">
+                                                <img src="video/SIMULATION/LongLinker_r200_a09_l20.0_b1_pure_chained.gif"
+                                                    alt="Large vesicle R = 200 nm; high rigidity alpha = 0.9; available long-linker GIF uses l0 = 20.0 nm"
+                                                    class="w-100 h-100 object-fit-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <p class="text-secondary small mb-0">Available GIF: &alpha; = 0.9,
+                                                <em>l</em><sub>0</sub> = 20.0 nm (target: 15.0 nm).</p>
                                         </div>
-                                        <p class="text-secondary small mb-0">Vesicle radius: 200 nm; DNA Bundle
-                                            stiffness: α = 0.9. The long linker extends membrane reach and can
-                                            maintain membrane coupling across a larger gap.</p>
+                                    </div>
+                                    <div class="col-12 col-md-2 d-flex align-items-center justify-content-md-center">
+                                        <span class="fw-bold text-light">Low rigidity (&alpha;)</span>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Short linker</div>
+                                            <div class="ratio ratio-1x1 border border-secondary mb-3 d-flex align-items-center justify-content-center"
+                                                role="img" aria-label="Large-vesicle low-rigidity short-linker GIF placeholder">
+                                                <span class="text-secondary text-center">Low-rigidity, short-linker GIF<br>To be added</span>
+                                            </div>
+                                            <p class="text-secondary small mb-0">Target: &alpha; low,
+                                                <em>l</em><sub>0</sub> = 2.5 nm.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <div class="content-box h-100">
+                                            <div class="fw-bold text-light mb-2">Long linker</div>
+                                            <div class="ratio ratio-1x1 border border-secondary mb-3 d-flex align-items-center justify-content-center"
+                                                role="img" aria-label="Large-vesicle low-rigidity long-linker GIF placeholder">
+                                                <span class="text-secondary text-center">Low-rigidity, long-linker GIF<br>To be added</span>
+                                            </div>
+                                            <p class="text-secondary small mb-0">Target: &alpha; low,
+                                                <em>l</em><sub>0</sub> = 15.0 nm.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-secondary mb-4">
-                                For larger vesicles, a long linker can maintain membrane capture and force
-                                transmission, leading to a higher probability of a model-defined local membrane opening.
-                            </p>
+
+                            <div class="content-box p-3 p-md-4 mb-4">
+                                <h5 class="fw-bold mb-3 section-subtitle">Observed trend in the present 2D model</h5>
+                                <p class="text-secondary mb-3">
+                                    For the small-vesicle condition, short linkers tend to promote more localized
+                                    membrane loading when the DNA Bundle is sufficiently rigid.
+                                </p>
+                                <p class="text-secondary mb-0">
+                                    For the large-vesicle condition, longer linkers can better preserve
+                                    membrane-reaching coupling, shifting the favorable linker-length range.
+                                </p>
+                            </div>
                             <p class="text-secondary small mb-0">
-                                This comparison describes a model-defined local membrane opening, not resolved pore
-                                growth or complete vesicle lysis.
+                                These results describe the tendency for a model-defined local membrane opening,
+                                rather than complete membrane rupture or vesicle lysis.
                             </p>
                         </div>
 
@@ -573,8 +553,8 @@
                                     than as a universal property of biological membranes.
                                 </p>
                                 <p class="text-secondary small mb-0">
-                                    The R = 150 nm and R = 200 nm heatmaps are shown in the third and fourth boxes,
-                                    respectively.
+                                    Heatmaps for R = 100, 150, 200, and 250 nm are shown in the second, third,
+                                    fourth, and fifth boxes, respectively.
                                 </p>
                             </div>
 
@@ -591,11 +571,14 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="content-box h-100 mb-0">
-                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
-                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 2<br>Image to be added</span>
+                                        <div class="ratio ratio-4x3 mb-3">
+                                            <img src="img/SIMULATION/rupture_heatmap_R100.png"
+                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 100 nm"
+                                                class="w-100 h-100 object-fit-contain bg-white" loading="lazy"
+                                                decoding="async">
                                         </div>
                                         <figcaption class="text-secondary small mb-0">
-                                            Placeholder for another rigidity and linker-length condition.
+                                            R = 100 nm: rupture probability across bending stiffness and linker length.
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -627,11 +610,14 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="content-box h-100 mb-0">
-                                        <div class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
-                                            <span class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap 5<br>Image to be added</span>
+                                        <div class="ratio ratio-4x3 mb-3">
+                                            <img src="img/SIMULATION/rupture_heatmap_R250.png"
+                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 250 nm"
+                                                class="w-100 h-100 object-fit-contain bg-white" loading="lazy"
+                                                decoding="async">
                                         </div>
                                         <figcaption class="text-secondary small mb-0">
-                                            Placeholder for another rigidity and linker-length condition.
+                                            R = 250 nm: rupture probability across bending stiffness and linker length.
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -649,7 +635,7 @@
 
                             <div class="content-box">
                                 <p class="text-secondary mb-0">
-                                    Use the four empty boxes for additional heatmaps so the effects of rigidity and
+                                    Use the two empty boxes for additional heatmaps so the effects of rigidity and
                                     linker length can be compared side by side under different simulation conditions.
                                 </p>
                             </div>
