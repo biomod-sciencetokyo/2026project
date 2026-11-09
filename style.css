@@ -225,11 +225,10 @@ main p {
 main .text-center p,
 main p.text-center,
 main p[role="math"],
-main p[role="math"] + p,
+main p[role="math"]+p,
 main .references-section p,
 main .team-member-card p,
-main p.fw-bold,
-main .sim-env-hint {
+main p.fw-bold {
     text-indent: 0;
 }
 
@@ -515,102 +514,7 @@ section[id],
     background-color: #eef4f7 !important;
 }
 
-/* Comparison header: thin rules on both sides of a small label */
-.sim-compare-header-bar {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.sim-compare-header-bar::before,
-.sim-compare-header-bar::after {
-    content: "";
-    flex: 1 1 auto;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(88, 121, 154, 0.08), rgba(98, 197, 213, 0.45));
-}
-
-.sim-compare-header-bar::after {
-    background: linear-gradient(90deg, rgba(98, 197, 213, 0.45), rgba(88, 121, 154, 0.08));
-}
-
-.simulation-rigidity-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 14px;
-    border: 1px solid rgba(98, 197, 213, 0.38);
-    background-color: rgba(15, 29, 54, 0.75);
-    color: var(--accent-blue);
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.simulation-rigidity-indicator::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent-gold);
-}
-
-/* Comparison cards */
-.sim-compare-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.sim-compare-card-favorable {
-    border-color: rgba(98, 197, 213, 0.55);
-    box-shadow: 0 4px 18px rgba(2, 9, 20, 0.28), inset 0 2px 0 rgba(98, 197, 213, 0.65);
-}
-
-.sim-compare-card-contrast {
-    border-color: rgba(72, 101, 138, 0.45);
-}
-
-.sim-compare-card-head {
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
-}
-
-.sim-compare-media {
-    background-color: #ffffff;
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    padding: 6px;
-}
-
-.simulation-feature-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 10px;
-    border: 1px solid;
-    border-radius: 2px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    line-height: 1.3;
-}
-
-.simulation-feature-low,
-.simulation-feature-high {
-    color: #b8cbe0;
-    background-color: rgba(56, 82, 115, 0.28);
-    border-color: rgba(120, 152, 186, 0.45);
-}
-
-.sim-compare-card-favorable .simulation-feature-badge {
-    color: #e6f9fc;
-    background-color: rgba(98, 197, 213, 0.18);
-    border-color: rgba(98, 197, 213, 0.65);
-}
-
-/* Rupture result mark in the card header */
+/* Rupture result mark (○ observed / ✕ not observed) */
 .simulation-result-mark {
     display: inline-flex;
     flex-shrink: 0;
@@ -645,108 +549,6 @@ section[id],
 
 .content-box:hover .simulation-result-mark {
     transform: scale(1.06);
-}
-
-/* ===== 2D comparison layout (presentation only) ===== */
-/* Full content width. One shared frame per comparison: the header bar is its title row, the two cards sit inside */
-.sim-compare-header-bar,
-.sim-compare-header-bar + .row {
-    background-color: var(--surface-dark);
-    border: 1px solid #314763;
-}
-
-.sim-compare-header-bar {
-    margin-bottom: 0 !important;
-    padding: 16px 20px 0;
-    border-bottom: none;
-}
-
-.sim-compare-header-bar + .row {
-    position: relative;
-    --bs-gutter-x: 0;
-    --bs-gutter-y: 0;
-    margin-top: 0;
-    padding: 6px 0 4px;
-    border-top: none;
-}
-
-/* Thin divider between the two cases */
-.sim-compare-header-bar + .row::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 22px;
-    bottom: 22px;
-    width: 1px;
-    background-color: rgba(148, 163, 184, 0.2);
-    pointer-events: none;
-}
-
-/* Inner cards lose their own box and share the frame */
-.sim-compare-header-bar + .row .sim-compare-card {
-    padding: 16px 20px 18px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-}
-
-.sim-compare-card-head {
-    margin-bottom: 14px !important;
-}
-
-.sim-compare-card .sim-compare-media {
-    margin-bottom: 12px !important;
-}
-
-.sim-compare-card p.small {
-    font-size: 0.82rem;
-    line-height: 1.6;
-}
-
-/* Favorable side: cyan tint and top line inside the shared frame */
-.sim-compare-header-bar + .row .sim-compare-card-favorable {
-    background: linear-gradient(180deg, rgba(0, 229, 255, 0.07), rgba(0, 229, 255, 0.02));
-    box-shadow: inset 0 2px 0 rgba(98, 197, 213, 0.75);
-}
-
-.sim-compare-card-favorable .fw-bold {
-    color: #e6f9fc !important;
-}
-
-.sim-compare-card-favorable .sim-compare-media {
-    border-color: rgba(0, 229, 255, 0.55);
-}
-
-.sim-compare-card-contrast .sim-compare-media {
-    opacity: 0.85;
-}
-
-.sim-compare-card .simulation-result-mark {
-    width: 34px;
-    height: 34px;
-}
-
-.sim-compare-card .simulation-result-mark svg {
-    width: 20px;
-    height: 20px;
-}
-
-@media (max-width: 767.98px) {
-    .sim-compare-header-bar + .row::after {
-        display: none;
-    }
-
-    .sim-compare-header-bar + .row > .col-md-6 + .col-md-6 {
-        border-top: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .sim-compare-header-bar {
-        padding: 14px 14px 0;
-    }
-
-    .sim-compare-header-bar + .row .sim-compare-card {
-        padding: 14px;
-    }
 }
 
 .simulation-model-viewer {
@@ -908,10 +710,6 @@ section[id],
     box-shadow: 0 5px 14px rgba(2, 9, 20, 0.22);
 }
 
-.sim-env-hint {
-    display: none;
-}
-
 .sim-env-panels {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -982,7 +780,6 @@ section[id],
     box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.28), 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
-
 .sim-env-marker {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -1013,7 +810,6 @@ section[id],
     transition: opacity 0.15s ease;
 }
 
-
 .sim-env-num {
     flex: 0 0 auto;
     width: 9px;
@@ -1040,7 +836,6 @@ section[id],
 .sim-env.has-active .sim-env-marker {
     opacity: 0.22;
 }
-
 
 .sim-env.has-active .sim-env-marker.is-active {
     opacity: 1;
@@ -1086,7 +881,6 @@ section[id],
     color: #a4b3c5;
 }
 
-
 /* Minimal Component Bar above the panels */
 .sim-env-parts {
     list-style: none;
@@ -1110,21 +904,17 @@ section[id],
     transition: opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
 }
 
-
 .sim-env-part[data-part="linker"] {
     --c: var(--part-linker);
 }
-
 
 .sim-env-part[data-part="chol"] {
     --c: var(--part-chol);
 }
 
-
 .sim-env-part[data-part="membrane"] {
     --c: var(--part-membrane);
 }
-
 
 .sim-env-part:focus {
     outline: none;
@@ -1140,7 +930,6 @@ section[id],
     background-color: rgba(30, 48, 80, 0.85);
     border-color: rgba(226, 232, 240, 0.55);
 }
-
 
 .sim-env-part-title {
     font-size: 0.82rem;
@@ -1506,7 +1295,6 @@ section[id],
     }
 }
 
-
 /* =============================================================================
    Cover (index.html). Still by default; hero/hero-scroll.js adds .hero--live once its 3D scene is up,
    which turns the header into a tall scroll track with the scene pinned to the viewport.
@@ -1537,14 +1325,12 @@ section[id],
     pointer-events: none;
 }
 
-
 .hero-title-Lockup {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     max-width: 960px;
 }
-
 
 .hero-kicker {
     display: inline-flex;
@@ -1785,10 +1571,11 @@ section[id],
 .hero--done.hero--titled .hero-scroll {
     display: none;
 }
+
 /* ===== Simulation page readability (presentation only, whole page) ===== */
 /* Third-level blocks (inside 1.1 / 1.2, incl. GUV Environment) start with a divider; x.y sections do not */
-.simulation-page #two-d-md > .simulation-subblock,
-.simulation-page #three-d > .simulation-subblock,
+.simulation-page #two-d-md>.simulation-subblock,
+.simulation-page #three-d>.simulation-subblock,
 .simulation-page #guv-env {
     position: relative;
     margin-top: 1rem;
@@ -1800,8 +1587,8 @@ section[id],
     padding-top: 2.25rem !important;
 }
 
-.simulation-page #two-d-md > .simulation-subblock::before,
-.simulation-page #three-d > .simulation-subblock::before,
+.simulation-page #two-d-md>.simulation-subblock::before,
+.simulation-page #three-d>.simulation-subblock::before,
 .simulation-page #guv-env::before {
     content: "";
     position: absolute;
@@ -1831,13 +1618,12 @@ section[id],
 }
 
 /* Captions inside cards: no paragraph indent, aligned with the title */
-.simulation-page .sim-compare-card p,
 .simulation-page main figure p {
     text-indent: 0;
 }
 
 /* Notes in small type read as notes */
-.simulation-page .simulation-subblock > p.small {
+.simulation-page .simulation-subblock>p.small {
     padding: 10px 14px;
     border-left: 2px solid rgba(148, 163, 184, 0.35);
     background-color: rgba(20, 41, 69, 0.45);
@@ -1960,7 +1746,7 @@ section[id],
     padding: 36px 0;
 }
 
-.home-step + .home-step {
+.home-step+.home-step {
     border-top: 1px solid rgba(148, 163, 184, 0.14);
 }
 
@@ -2023,5 +1809,328 @@ section[id],
 @media (prefers-reduced-motion: reduce) {
     .home-step-link {
         transition: none;
+    }
+}
+
+/* ===== 2D results: vesicle-size matrices, notes and heatmaps (presentation only) ===== */
+/* Each vesicle size is one unframed matrix: rows = rigidity, columns = linker length */
+.sim-matrix {
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* 3x3 CSS Grid on desktop: [Corner / Row headers] + [Short linker col] + [Long linker col] */
+@media (min-width: 768px) {
+    .sim-matrix-grid {
+        display: grid !important;
+        grid-template-columns: 168px minmax(0, 1fr) minmax(0, 1fr);
+        gap: 14px;
+        margin: 0 !important;
+        align-items: stretch;
+    }
+
+    .sim-matrix-grid > * {
+        width: auto !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Top-left corner axis indicator cell */
+.sim-matrix-corner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 10px 12px;
+    background:
+        linear-gradient(to top right,
+            transparent calc(50% - 1px),
+            rgba(148, 163, 184, 0.25) 50%,
+            transparent calc(50% + 1px)),
+        rgba(15, 31, 58, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+}
+
+.sim-matrix-corner-col {
+    align-self: flex-end;
+    text-align: right;
+    color: #cbd5e1;
+}
+
+.sim-matrix-corner-row {
+    align-self: flex-start;
+    text-align: left;
+    color: #cbd5e1;
+}
+
+/* Column headers (Short linker / Long linker) */
+.sim-matrix-colhead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 10px 16px;
+    background: rgba(15, 31, 58, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.sim-matrix-colhead-title {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.sim-matrix-colhead-sub {
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Row headers (High rigidity / Low rigidity) */
+.sim-matrix-rowhead {
+    padding: 14px 12px !important;
+    background: rgba(15, 31, 58, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 4px;
+}
+
+.sim-matrix-rowhead > span {
+    color: #ffffff !important;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    text-align: center;
+    line-height: 1.35;
+}
+
+/* Cells: unified quadrant cards inside the 2x2 matrix */
+.sim-matrix .sim-matrix-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px 14px !important;
+    background: rgba(15, 31, 58, 0.75);
+    background-image: none !important;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(2, 9, 20, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sim-matrix .sim-matrix-cell:hover {
+    transform: none;
+    border-color: rgba(148, 163, 184, 0.28);
+    box-shadow: 0 2px 10px rgba(2, 9, 20, 0.2);
+}
+
+.sim-matrix .sim-matrix-cell::before,
+.sim-matrix .sim-matrix-cell::after {
+    display: none;
+}
+
+/* Cell header bar: condition title on the left, result badge on the right */
+.sim-matrix-cell-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 36px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.sim-matrix-col {
+    margin: 0 !important;
+    padding: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #cbd5e1 !important;
+}
+
+.sim-matrix-cell .simulation-result-mark {
+    position: static;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    box-shadow: none;
+}
+
+.sim-matrix-cell .simulation-result-mark svg {
+    width: 18px;
+    height: 18px;
+}
+
+.sim-matrix-media {
+    background-color: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 2px;
+}
+
+.sim-matrix-media > img {
+    padding: 6px;
+}
+
+.sim-matrix-cell p {
+    margin-top: auto;
+    text-indent: 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.sim-matrix-placeholder,
+.heatmap-placeholder {
+    background-color: rgba(20, 41, 69, 0.35);
+    border: 1px dashed rgba(148, 163, 184, 0.4) !important;
+}
+
+.sim-matrix-placeholder > span,
+.heatmap-placeholder > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted) !important;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+}
+
+/* Notes (caveats, editing hints) read as notes, not results */
+.sim-note {
+    padding: 12px 16px !important;
+    background: rgba(20, 41, 69, 0.45) !important;
+    background-image: none !important;
+    border: none !important;
+    border-left: 2px solid rgba(148, 163, 184, 0.45) !important;
+}
+
+.sim-note p {
+    text-indent: 0;
+    color: var(--text-muted) !important;
+}
+
+/* Heatmaps: white plot frame, captions aligned */
+.sim-heatmap {
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.sim-heatmap .ratio:not(.heatmap-placeholder) {
+    background-color: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.sim-heatmap .ratio > img {
+    padding: 6px;
+}
+
+.sim-heatmap figcaption {
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+/* Parameters and goal: a two-part brief instead of two plain sentences */
+.sim-brief {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.sim-brief-item {
+    margin: 0;
+    padding: 18px 22px;
+    text-indent: 0;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--text-main) !important;
+}
+
+.sim-brief-item + .sim-brief-item {
+    border-left: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.sim-brief-item strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--accent-gold);
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.sim-sym {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+    .sim-brief {
+        grid-template-columns: 1fr;
+    }
+
+    .sim-brief-item {
+        padding: 14px 4px;
+    }
+
+    .sim-brief-item + .sim-brief-item {
+        border-left: none;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .sim-matrix {
+        padding: 0 !important;
+    }
+
+    .sim-matrix-corner,
+    .sim-matrix-colhead {
+        display: none;
+    }
+
+    .sim-matrix-rowhead {
+        justify-content: flex-start !important;
+        padding: 8px 12px !important;
+    }
+
+    .sim-matrix .sim-matrix-cell {
+        padding: 10px 10px 12px !important;
+    }
+
+    .sim-matrix-cell-head {
+        min-height: 28px;
+        padding-bottom: 6px;
+        margin-bottom: 8px;
+    }
+
+    .sim-matrix-col {
+        font-size: 0.72rem;
+    }
+
+    .sim-matrix-cell .simulation-result-mark {
+        width: 24px;
+        height: 24px;
+    }
+
+    .sim-matrix-cell .simulation-result-mark svg {
+        width: 14px;
+        height: 14px;
     }
 }
