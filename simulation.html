@@ -7,6 +7,56 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=sim-env-15">
+    <style>
+        /* Keep the numerical heatmap pixels intact while replacing legacy
+           event labels baked into the original image exports. */
+        .heatmap-plot {
+            position: relative;
+            background: #fff;
+            line-height: 1;
+        }
+
+        .heatmap-plot>img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .heatmap-title-overlay {
+            position: absolute;
+            inset: 0 0 auto;
+            z-index: 1;
+            display: grid;
+            height: 8.5%;
+            place-content: center;
+            background: #fff;
+            color: #000;
+            font-size: clamp(0.48rem, 1vw, 1rem);
+            font-weight: 700;
+            line-height: 1.05;
+            text-align: center;
+        }
+
+        .heatmap-colorbar-overlay {
+            position: absolute;
+            top: 8.5%;
+            right: 0;
+            bottom: 2.4%;
+            z-index: 1;
+            display: flex;
+            width: 5.5%;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #000;
+            font-size: clamp(0.38rem, 0.72vw, 0.78rem);
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 
 <body class="simulation-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -51,7 +101,7 @@
                         This page presents computational studies of DNA-bundle-mediated membrane disruption and
                         HCR reactions. We use 2D coarse-grained molecular dynamics and 3D thermodynamic simulations
                         to examine how DNA Bundle rigidity, linker length, and vesicle size influence membrane
-                        deformation and model-defined Rupture. We also investigate the self-assembly and reaction
+                        deformation and model-defined local pore-formation events. We also investigate the self-assembly and reaction
                         feasibility of the HCR system designed to build DNA bundles.
                     </p>
                 </section>
@@ -65,7 +115,7 @@
                         <h3 class="h4 fw-bold mb-4">1.1 MD-CG Simulation in 2D
                             Environment</h3>
                         <p class="text-secondary mb-4">
-                            To understand how DNA bundles deform and rupture extracellular vesicle (EV) membranes, we
+                            To understand how DNA bundles deform EV membranes and promote local pore-formation events, we
                             established a two-dimensional coarse-grained molecular dynamics (CG-MD) simulation. This
                             cross-sectional model lets us examine the competition between DNA-bundle bending stiffness
                             and lipid-membrane elasticity. The model represents groups of atoms as single beads and
@@ -114,7 +164,7 @@
                                         <span class="sim-env-legend-bar sim-env-legend-strain"
                                             aria-hidden="true"></span>
                                         <span class="sim-env-legend-ends"><span>relaxed</span><span>overstretched &rarr;
-                                                breaks</span></span>
+                                                local pore-formation event</span></span>
                                     </div>
                                 </figure>
                             </div>
@@ -198,7 +248,7 @@
                                         <i>k</i><sub>area</sub> = 160. This term stabilizes the two-dimensional ring
                                         against global area drift. It is a planar enclosed-area constraint, not a
                                         three-dimensional volume, osmotic-pressure, or area-per-lipid constraint.
-                                        Once a membrane spring undergoes Rupture, this area-restoring term is removed
+                                        Once a model-defined local pore-formation event is registered, this area-restoring term is removed
                                         in subsequent updates.
                                     </p>
 
@@ -347,8 +397,8 @@
                                         to an experimentally specified viscosity, code time must not be converted
                                         directly into seconds.</p>
 
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">3. Parameter sweep and Rupture
-                                        definition</h5>
+                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">3. Parameter sweep and local
+                                        pore-formation event definition</h5>
                                     <h6 class="fw-bold mt-3">3.1 Sweep protocol</h6>
                                     <p class="text-secondary">The current aligned sweep examines <i>R</i> = 150 and
                                         200 nm, eight internal rigidity-parameter values spanning 0.1 to 1.0
@@ -356,18 +406,18 @@
                                         <i>l</i><sub>0</sub> from 2 to 20 nm. Each parameter cell contains 50
                                         stochastic trajectories. A trajectory contains 100 frames, each composed
                                         of 100 substeps, giving a fixed observation window for all cells. The result
-                                        is the fraction of the 50 trajectories in which a first membrane-spring
-                                        Rupture occurs during that window.
+                                        is the fraction of the 50 trajectories in which a first model-defined local
+                                        pore-formation event occurs during that window.
                                     </p>
                                     <p class="text-secondary">The single-trajectory GIF code accepts the same
                                         radius, internal rigidity setting, linker rest length, seed, number of frames,
                                         substeps, and time step through its settings, allowing a representative GIF
                                         to be generated for a selected probability-map cell. Before the first
-                                        Rupture, the single-run and sweep implementations have been confirmed to
+                                        local pore-formation event, the single-run and sweep implementations have been confirmed to
                                         yield identical states for validation conditions.</p>
-                                    <h6 class="fw-bold mt-3">3.2 Operational definition of membrane Rupture</h6>
+                                    <h6 class="fw-bold mt-3">3.2 Operational definition of a local pore-formation event</h6>
                                     <p class="text-secondary">At the start of each substep, all intact membrane
-                                        springs are examined. A membrane Rupture event is registered as soon as one
+                                        springs are examined. A model-defined local pore-formation event is registered as soon as one
                                         spring satisfies</p>
                                     <p class="text-secondary text-center fs-5 my-3" role="math"
                                         aria-label="T i greater than 150">
@@ -380,19 +430,21 @@
                                         tension in mN m<sup>−1</sup>, and it should not be labelled as a calibrated
                                         pN value without an explicit unit-mapping procedure.</p>
                                     <p class="text-secondary mb-0">The current criterion is instantaneous and
-                                        local: one sufficiently extended membrane spring anywhere on the ring causes
-                                        Rupture. It contains no time-persistence condition, contact-zone restriction,
+                                        local: one sufficiently extended membrane spring anywhere on the ring registers
+                                        a local pore-formation event. It contains no time-persistence condition, contact-zone restriction,
                                         spatial averaging, or area-per-lipid criterion. The reported maps should
-                                        therefore be described as probabilities of <em>model-defined first
-                                            membrane-spring Rupture</em>, not as direct predictions of pore nucleation,
-                                        pore growth, or complete EV lysis.</p>
+                                        therefore be described as probabilities of <em>model-defined local
+                                            pore-formation events</em>, which serve as a pore-initiation proxy rather than a direct prediction of physical pore nucleation,
+                                        pore growth, pore resealing, or complete EV lysis.</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Linker Length -->
                         <div id="two-d-linker-length" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Linker Length</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">
+                                2D Comparison: <i>l</i><sub>0</sub>, <i>B</i><sub>DNA</sub>, and <i>R</i>
+                            </h4>
                             <div class="sim-brief mb-4">
                                 <p class="text-secondary sim-brief-item">
                                     <strong>Three programmable parameters:</strong> vesicle radius (<em
@@ -402,7 +454,7 @@
                                 </p>
                                 <p class="text-secondary sim-brief-item">
                                     <strong>Goal:</strong> use the 2D model to map conditions that favor a model-defined
-                                    local membrane opening.
+                                    local pore-formation event.
                                 </p>
                             </div>
                             <p class="text-secondary mb-4">
@@ -453,8 +505,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-positive"
-                                                    aria-label="Membrane rupture observed"
-                                                    title="Membrane rupture: Observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event observed"
+                                                    title="Local pore-formation event: Observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <circle cx="12" cy="12" r="8.5"></circle>
@@ -479,8 +531,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Membrane rupture not observed"
-                                                    title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event not observed"
+                                                    title="Local pore-formation event: Not observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -512,8 +564,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Membrane rupture not observed"
-                                                    title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event not observed"
+                                                    title="Local pore-formation event: Not observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -539,8 +591,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Membrane rupture not observed"
-                                                    title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event not observed"
+                                                    title="Local pore-formation event: Not observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -592,8 +644,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Membrane rupture not observed"
-                                                    title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event not observed"
+                                                    title="Local pore-formation event: Not observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -620,8 +672,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-positive"
-                                                    aria-label="Membrane rupture observed"
-                                                    title="Membrane rupture: Observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event observed"
+                                                    title="Local pore-formation event: Observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <circle cx="12" cy="12" r="8.5"></circle>
@@ -652,8 +704,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Membrane rupture not observed"
-                                                    title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event not observed"
+                                                    title="Local pore-formation event: Not observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -679,8 +731,8 @@
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
                                                 <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Membrane rupture not observed"
-                                                    title="Membrane rupture: Not observed"><svg viewBox="0 0 24 24"
+                                                    aria-label="Model-defined local pore-formation event not observed"
+                                                    title="Local pore-formation event: Not observed"><svg viewBox="0 0 24 24"
                                                         fill="none" stroke="currentColor" stroke-width="2.4"
                                                         stroke-linecap="round" stroke-linejoin="round">
                                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -717,22 +769,25 @@
                                 </p>
                             </div>
                             <p class="text-secondary small mb-0">
-                                These results describe the tendency for a model-defined local membrane opening,
-                                rather than complete membrane rupture or vesicle lysis.
+                                These results describe the tendency for model-defined local pore-formation events,
+                                which act as a pore-initiation proxy rather than evidence of complete membrane rupture
+                                or vesicle lysis.
                             </p>
                         </div>
 
                         <!-- Rigidity and Linker Length Heatmap Comparison -->
                         <div id="rigidity-linker-length" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Rigidity, Linker Length</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">
+                                Local-Opening Probability: <i>B</i><sub>DNA</sub> vs <i>l</i><sub>0</sub>
+                            </h4>
                             <div class="mb-4">
                                 <p class="text-secondary mb-3">
                                     Across the current parameter space, <strong>high DNA Bundle stiffness was a
-                                        common feature of conditions with elevated membrane Rupture
-                                        probability.</strong>
-                                    In the heat maps obtained for the smaller-vesicle conditions, high-Rupture
+                                        common feature of conditions with elevated probabilities of model-defined
+                                        local pore-formation events.</strong>
+                                    In the heat maps obtained for the smaller-vesicle conditions, high-probability
                                     regions were predominantly observed for a stiff DNA Bundle combined with a
-                                    short linker. In contrast, in the larger-vesicle conditions, the high-Rupture
+                                    short linker. In contrast, in the larger-vesicle conditions, the high-probability
                                     region shifted toward combinations of a stiff DNA Bundle and a longer linker.
                                 </p>
                                 <p class="text-secondary mb-3">
@@ -749,70 +804,75 @@
                                             <div class="row g-4 mb-4">
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="ratio ratio-4x3 mb-3">
+                                                        <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R50.png"
-                                                                alt="Membrane rupture probability heatmap by DNA-Bundle bending stiffness and linker length at R = 50 nm"
-                                                                class="w-100 h-100 object-fit-contain bg-white"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bending rigidity vs linker rest length (R = 50 nm)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
                                                         </div>
                                                         <figcaption class="text-secondary small mb-0">
-                                                            R = 50 nm: rupture probability across bending stiffness and
+                                                            R = 50 nm: model-defined local pore-formation-event probability across bending stiffness and
                                                             linker length.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="ratio ratio-4x3 mb-3">
+                                                        <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R100.png"
-                                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 100 nm"
-                                                                class="w-100 h-100 object-fit-contain bg-white"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bending rigidity vs linker rest length (R = 100 nm)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
                                                         </div>
                                                         <figcaption class="text-secondary small mb-0">
-                                                            R = 100 nm: rupture probability across bending stiffness and
+                                                            R = 100 nm: model-defined local pore-formation-event probability across bending stiffness and
                                                             linker length.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="ratio ratio-4x3 mb-3">
+                                                        <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R150.png"
-                                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 150 nm"
-                                                                class="w-100 h-100 object-fit-contain bg-white"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bending rigidity vs linker rest length (R = 150 nm)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
                                                         </div>
                                                         <figcaption class="text-secondary small mb-0">
-                                                            R = 150 nm: rupture probability across bending stiffness and
+                                                            R = 150 nm: model-defined local pore-formation-event probability across bending stiffness and
                                                             linker length.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="ratio ratio-4x3 mb-3">
+                                                        <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R200.png"
-                                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 200 nm"
-                                                                class="w-100 h-100 object-fit-contain bg-white"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bending rigidity vs linker rest length (R = 200 nm)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
                                                         </div>
                                                         <figcaption class="text-secondary small mb-0">
-                                                            R = 200 nm: rupture probability across bending stiffness and
+                                                            R = 200 nm: model-defined local pore-formation-event probability across bending stiffness and
                                                             linker length.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="ratio ratio-4x3 mb-3">
+                                                        <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R250.png"
-                                                                alt="Membrane rupture probability heatmap by DNA-bundle stiffness and linker length at R = 250 nm"
-                                                                class="w-100 h-100 object-fit-contain bg-white"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bending rigidity vs linker rest length (R = 250 nm)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
                                                         </div>
                                                         <figcaption class="text-secondary small mb-0">
-                                                            R = 250 nm: rupture probability across bending stiffness and
+                                                            R = 250 nm: model-defined local pore-formation-event probability across bending stiffness and
                                                             linker length.
                                                         </figcaption>
                                                     </figure>
