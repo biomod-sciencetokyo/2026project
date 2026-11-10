@@ -4,97 +4,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPEND | BIOMOD 2026 Team Science Tokyo</title>
+    <title>APPENDIX | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=css-cleanup-15">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=simulation-methods-16">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
-
     <div class="ambient-particles" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span>
     </div>
 
-    <!-- ヘッダー読み込み位置 -->
     <div id="header-placeholder"></div>
 
     <main class="container content-container px-3 px-md-0">
-
-        <!-- ページタイトルデザイン -->
         <div class="text-center mb-5 pb-4">
             <h1 class="page-title">APPENDIX</h1>
             <div class="page-title-underline"></div>
         </div>
 
         <div class="row gx-5">
-            <!-- サイドバーデザイン -->
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
-                    <a class="nav-link fw-bold" href="#multi-bundle-simulation">1. Dry Lab: Multi-Bundle Simulation</a>
-                    <a class="nav-link fw-bold mt-2" href="#protocols">2. XXXXX</a>
-                    <a class="nav-link fw-bold mt-2" href="#supplementary-data">3. XXX</a>
+                    <a class="nav-link fw-bold" href="#two-d-method">1. 2D Method</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#parameter-reference">Parameter Reference</a>
+                        <a class="nav-link" href="#one-run">One-run Procedure</a>
+                        <a class="nav-link" href="#stochastic-record">Reproducibility</a>
+                        <a class="nav-link" href="#numerical-checks">Numerical Checks</a>
+                    </div>
+                    <a class="nav-link fw-bold mt-2" href="#three-d-optimization">2. 3D Model</a>
+                    <a class="nav-link fw-bold mt-2" href="#supplementary-guv">3. Supplementary GUV Analysis</a>
+                    <a class="nav-link fw-bold mt-2" href="#future-work">4. Future Work</a>
                 </nav>
             </div>
 
-            <!-- 右側：メインコンテンツ -->
             <div class="col-lg-10">
-
-                <section id="multi-bundle-simulation" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">1. Dry Lab: Multi-Bundle Simulation</h2>
+                <section id="two-d-method" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">1. 2D MD-CG Method and Provenance</h2>
                     <p class="text-secondary mb-4">
-                        We will investigate how membrane disruption changes when two or more DNA bundles interact
-                        with one another at the membrane.
+                        This reference consolidates values stated on the Simulation page. The repository does not
+                        contain the 2D simulator source, run manifests, or output CSVs; values below are therefore
+                        a record of the published model description, not an independent code audit. Unspecified
+                        units and provenance are identified rather than inferred.
                     </p>
 
-                    <div id="multi-bundle-2d" class="simulation-subblock mb-5">
-                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.1 2D Simulation</h3>
-                        <p class="text-secondary mb-4">
-                            This section will describe how multiple bundles affect the probability of
-                            model-defined membrane rupture in the 2D simulation.
+                    <div id="parameter-reference" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.1 Complete Parameter Reference</h3>
+                        <p class="text-secondary mb-3">
+                            “Complete” here means all parameters and settings documented in the current website
+                            text. It cannot certify completeness against the absent simulation source.
                         </p>
-                        <div class="content-box p-3 p-md-4">
-                            <div class="ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center"
-                                role="img" aria-label="Placeholder for 2D multi-bundle simulation results">
-                                <span class="text-secondary text-center">2D multi-bundle simulation image<br>To be added</span>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-bordered table-sm align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Symbol / setting</th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Unit or code unit</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Source or rationale</th>
+                                        <th scope="col">Classification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><i>R</i></th>
+                                        <td>Displayed heatmaps: 50, 100, 150, 200, 250, 300; documented aligned
+                                            sweep: 150 and 200</td>
+                                        <td>nm</td>
+                                        <td>Initial 2D membrane radius</td>
+                                        <td>Map labels and sweep description on the Simulation page; individual
+                                            map manifests are absent</td>
+                                        <td>Intentionally varied; data provenance differs by map</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>B</i><sub>DNA</sub></th>
+                                        <td>Documented sweep: eight internal settings spanning 0.1–1.0; GIF target
+                                            rows: 6.21 × 10<sup>5</sup> and 9.51 × 10<sup>2</sup></td>
+                                        <td>Target values: pN·nm<sup>2</sup>; internal settings are dimensionless</td>
+                                        <td>Effective DNA Bundle bending rigidity</td>
+                                        <td>GIF cards and sweep description; per-cell conversion table and run
+                                            output are absent</td>
+                                        <td>Intentionally varied; some GIFs show an available value different
+                                            from the row target</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>l</i><sub>0</sub></th>
+                                        <td>Documented sweep: eight values from 2–20; representative GIFs: 2.5
+                                            and 15.0</td>
+                                        <td>nm</td>
+                                        <td>Linker rest length; also sets the membrane-capture range</td>
+                                        <td>Simulation page; no per-map parameter files</td>
+                                        <td>Intentionally varied</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>N</i><sub>mem</sub></th>
+                                        <td>int(240 <i>R</i> / 150 nm)</td>
+                                        <td>Beads</td>
+                                        <td>Discretization of the periodic membrane ring</td>
+                                        <td>Documented rule; initial spacing is reported as about 3.927 nm at
+                                            <i>R</i> = 150 and 200 nm</td>
+                                        <td>Automatically co-varies with <i>R</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>r</i><sub>0,mem</sub></th>
+                                        <td>2<i>R</i> sin(π / <i>N</i><sub>mem</sub>); approximately 3.927 at
+                                            <i>R</i> = 150 and 200</td>
+                                        <td>nm</td>
+                                        <td>Initial neighbor spacing of the ring</td>
+                                        <td>Derived from the documented discretization rule</td>
+                                        <td>Automatically co-varies with <i>R</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>L</i><sub>Bundle</sub></th>
+                                        <td>3<i>R</i></td>
+                                        <td>nm when <i>R</i> is in nm</td>
+                                        <td>2D DNA Bundle length</td>
+                                        <td>Documented geometric scaling rule</td>
+                                        <td>Automatically co-varies with <i>R</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bundle geometry</th>
+                                        <td>12 chains; five connected constant-curvature arcs;
+                                            <i>r</i><sub>DNA</sub> = 1.25√12 = 4.330</td>
+                                        <td>Chains, arcs, nm</td>
+                                        <td>2D Bundle cross-section and generalized-coordinate representation</td>
+                                        <td>Geometry stated on the Simulation page</td>
+                                        <td>Fixed model structure</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>N</i><sub>anchor</sub></th>
+                                        <td>int(<i>L</i><sub>Bundle</sub>/5.1) + 1; reported as 89 at
+                                            <i>R</i> = 150 and 118 at <i>R</i> = 200</td>
+                                        <td>Anchors; spacing 5.1 nm</td>
+                                        <td>Cholesterol-anchor count and spacing</td>
+                                        <td>Documented placement rule</td>
+                                        <td>Automatically co-varies with <i>R</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>N</i><sub>rep</sub></th>
+                                        <td>max(15, int(<i>L</i><sub>Bundle</sub>/3)); reported as 150 and 200
+                                            at <i>R</i> = 150 and 200</td>
+                                        <td>Evaluation points</td>
+                                        <td>DNA–membrane repulsion sampling</td>
+                                        <td>Documented rule; forces are summed without an explicit arc-length
+                                            weight</td>
+                                        <td>Automatically co-varies with <i>R</i>; also changes discrete force
+                                            representation</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>T</i><sub>i</sub> threshold</th>
+                                        <td><i>T</i><sub>i</sub> &gt; 150</td>
+                                        <td>Force-like code quantity; physical unit mapping unspecified</td>
+                                        <td>Registers the first model-defined local event when any intact spring
+                                            exceeds the threshold</td>
+                                        <td>Operational criterion stated on the Simulation page; not calibrated
+                                            to membrane tension</td>
+                                        <td>Fixed event-definition setting</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>k</i><sub>mem</sub></th>
+                                        <td>150</td>
+                                        <td>Code spring units; dimensional mapping unspecified</td>
+                                        <td>Hookean membrane spring coefficient</td>
+                                        <td>Documented spring law</td>
+                                        <td>Fixed model constant</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><i>k</i><sub>bend,mem</sub>,
+                                            <i>k</i><sub>area</sub></th>
+                                        <td>25<i>k</i><sub>B</sub><i>T</i>/<i>r</i><sub>0,mem</sub>;
+                                            160</td>
+                                        <td>Code units; dimensional mapping unspecified</td>
+                                        <td>Contour smoothing and planar enclosed-area restoration</td>
+                                        <td>Documented model terms; area restoration is removed in updates
+                                            following event registration</td>
+                                        <td>Fixed model constants / derived coefficient</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Linker force law</th>
+                                        <td>Slopes 3, 10, and 18; transition at <i>l</i><sub>0</sub> and
+                                            <i>l</i><sub>0</sub> + 6; middle-branch offset 60</td>
+                                        <td>Code force and distance units; exact mapping unspecified</td>
+                                        <td>Piecewise-linear, strain-stiffening linker response</td>
+                                        <td>Piecewise law documented on the Simulation page; not an exact WLC or
+                                            FENE potential</td>
+                                        <td>Fixed model form</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Capture and reaction</th>
+                                        <td><i>r</i><sub>mc</sub> &lt; 24 + <i>l</i><sub>0</sub> nm; reaction
+                                            weights 0.40, 0.20, 0.20, 0.10, 0.10</td>
+                                        <td>nm; dimensionless weights</td>
+                                        <td>Membrane capture and distribution of reaction over five beads</td>
+                                        <td>Documented range is 26–44 nm for <i>l</i><sub>0</sub> = 2–20 nm</td>
+                                        <td>Capture range co-varies with <i>l</i><sub>0</sub>; weights fixed</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">DNA–membrane repulsion</th>
+                                        <td>Activates within <i>r</i><sub>DNA</sub> + 1 nm;
+                                            <i>r</i><sub>DNA</sub> = 4.330 nm for the documented 12-chain bundle</td>
+                                        <td>nm; force-law units unspecified</td>
+                                        <td>Normal harmonic overlap repulsion</td>
+                                        <td>Documented geometry and cutoff</td>
+                                        <td>Fixed cutoff; evaluation-point count co-varies with <i>R</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Thermal energy and friction</th>
+                                        <td><i>k</i><sub>B</sub><i>T</i> = 4.11; γ<sub>mem</sub> = 1.0;
+                                            γ<sub>chol</sub> = 0.2; γ<sub>trans</sub> = 1.5(<i>L</i>/100);
+                                            γ<sub>rot</sub> = <i>L</i><sup>2</sup>/12</td>
+                                        <td>Code energy and friction units; physical calibration unspecified</td>
+                                        <td>Brownian noise and overdamped mobility</td>
+                                        <td>Documented update description</td>
+                                        <td>Fixed or derived; DNA translation/rotation frictions co-vary with
+                                            <i>L</i><sub>Bundle</sub></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Time step and window</th>
+                                        <td>Δ<i>t</i> = 10<sup>−4</sup>; 100 frames × 100 substeps</td>
+                                        <td>Code-time units; frames and substeps</td>
+                                        <td>Finite observation window for one trajectory</td>
+                                        <td>Documented for the aligned <i>R</i> = 150/200 nm sweep only</td>
+                                        <td>Fixed numerical settings for that documented sweep</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Trajectories per cell</th>
+                                        <td><i>n</i> = 50</td>
+                                        <td>Trajectories</td>
+                                        <td>Event fraction used as the model-defined local event probability</td>
+                                        <td>Documented for the aligned <i>R</i> = 150/200 nm sweep only;
+                                            not independently verified against run files</td>
+                                        <td>Sampling setting for that documented sweep</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Rigidity mapping parameter</th>
+                                        <td><i>L</i><sub>p,eff</sub> = 2<i>N</i><sub>chains</sub> +
+                                            120(<i>N</i><sub>chains</sub>α)<sup>3</sup>;
+                                            <i>B</i><sub>DNA</sub> = <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>;
+                                            <i>N</i><sub>chains</sub> = 12</td>
+                                        <td>Dimensionless α; rigidity target units pN·nm<sup>2</sup></td>
+                                        <td>Maps a phenomenological internal parameter to effective rigidity</td>
+                                        <td>Formula stated on the Simulation page; α is not a measured
+                                            constitutive parameter</td>
+                                        <td>Internal phenomenological parameter, moved here for transparency</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <div id="multi-bundle-3d" class="simulation-subblock mb-0">
-                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.2 3D Simulation</h3>
-                        <p class="text-secondary mb-4">
-                            This section will describe how multiple bundles affect the membrane curvature
-                            distribution in the 3D simulation.
+                    <div id="one-run" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.2 One-run Numerical Procedure</h3>
+                        <ol class="text-secondary">
+                            <li class="mb-2">Initialize a periodic membrane ring and one 12-chain DNA Bundle. The
+                                documented Bundle uses five connected constant-curvature arcs and length
+                                <i>L</i><sub>Bundle</sub> = 3<i>R</i>.</li>
+                            <li class="mb-2">Apply the model's approach drive to bring the DNA Bundle toward the
+                                membrane. The drive schedule, initial coordinates, and magnitude are not recorded
+                                in this repository.</li>
+                            <li class="mb-2">Evaluate membrane spring, contour-smoothing, area-restoring, linker,
+                                anchor-reaction, and DNA–membrane repulsion terms using the documented settings.</li>
+                            <li class="mb-2">Advance membrane beads and captured cholesterol particles using the
+                                overdamped Brownian update. Update the Bundle's eight generalized coordinates with
+                                the documented semi-implicit linear system.</li>
+                            <li class="mb-2">At each substep, inspect intact membrane springs. Register the first
+                                local event if any spring satisfies <i>T</i><sub>i</sub> &gt; 150.</li>
+                            <li>After registration, the documented procedure removes the planar area-restoring
+                                term in subsequent updates. Whether an individual run stops at that point is not
+                                specified in the repository.</li>
+                        </ol>
+                    </div>
+
+                    <div id="stochastic-record" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.3 Stochastic Reproducibility</h3>
+                        <p class="text-secondary">
+                            The Simulation page documents <i>n</i> = 50 trajectories per parameter cell for the
+                            aligned <i>R</i> = 150/200 nm sweep. It also says the single-trajectory GIF settings
+                            accept a seed. However, the repository contains no seed policy, per-run seed list,
+                            script version, heatmap-specific settings, or output CSV. The six displayed heatmap
+                            radii (50–300 nm) therefore cannot be tied to the documented sample size or to a
+                            reproducible run manifest from the checked-in files.
                         </p>
-                        <div class="content-box p-3 p-md-4">
-                            <div class="ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center"
-                                role="img" aria-label="Placeholder for 3D multi-bundle simulation model and results">
-                                <span class="text-secondary text-center">3D multi-bundle model or curvature image<br>To be added</span>
-                            </div>
-                        </div>
+                        <p class="text-secondary mb-2">For a reproducible release, preserve and publish at least:</p>
+                        <ul class="text-secondary mb-0">
+                            <li>the simulator source revision or immutable script hash;</li>
+                            <li>the master seed and the mapping from parameter cell and replicate to each seed;</li>
+                            <li><i>R</i>, <i>B</i><sub>DNA</sub>, <i>l</i><sub>0</sub>, all fixed settings, Δ<i>t</i>,
+                                frame and substep counts, and any initialization/drive settings;</li>
+                            <li>the output CSV row or file corresponding to each seed and parameter cell, including
+                                event status and event substep/time when available; and</li>
+                            <li>the aggregation rule used to convert replicate outcomes to each heatmap cell.</li>
+                        </ul>
+                    </div>
+
+                    <div id="numerical-checks" class="simulation-subblock mb-0">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.4 Numerical Checks and Limits</h3>
+                        <p class="text-secondary mb-3">
+                            The documented membrane discretization gives an initial spacing of approximately
+                            3.927 nm at <i>R</i> = 150 and 200 nm. This is a geometric property of the stated
+                            discretization rule, not evidence of convergence.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            No reproducible convergence or sensitivity results are included for time step,
+                            membrane segmentation, DNA–membrane repulsion evaluation-point count, or observation
+                            duration. Those checks remain future validation, not established results.
+                        </p>
+                        <p class="text-secondary small mb-0">
+                            The website repository does not include simulator source, test logs, or run outputs
+                            with which to independently reproduce additional numerical checks.
+                        </p>
                     </div>
                 </section>
 
-                <section id="protocols" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">2. XXXXX</h2>
+                <section id="three-d-optimization" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">2. 3D Thermodynamic Model</h2>
+                    <p class="text-secondary mb-4">
+                        The documented equilibrium calculation minimizes adhesion, DNA Bundle bending, and
+                        membrane deformation energies for an <i>R</i><sub>0</sub> = 50 nm reference liposome.
+                        It is separate from the large-GUV discussion and does not simulate dynamic pore formation
+                        or membrane rupture.
+                    </p>
+                    <p class="text-secondary">
+                        The stated objective is
+                        <i>F</i><sub>total</sub> =
+                        <i>E</i><sub>adhesion</sub> +
+                        <i>E</i><sub>DNA bend</sub> +
+                        <i>E</i><sub>membrane</sub>.
+                        The documented beam contribution is
+                        <i>E</i><sub>DNA bend</sub> =
+                        ½<i>B</i><sub>DNA</sub>(1/<i>R</i><sub>bend</sub>)<sup>2</sup><i>L</i><sub>Bundle</sub>.
+                        The model description says adhesion scales with the contact area; the exact implemented
+                        membrane and contact-area expressions are not included in the repository.
+                    </p>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-dark table-bordered table-sm align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Symbol / setting</th>
+                                    <th scope="col">Value</th>
+                                    <th scope="col">Unit</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Source or rationale</th>
+                                    <th scope="col">Classification</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><i>R</i><sub>0</sub></th>
+                                    <td>50</td>
+                                    <td>nm</td>
+                                    <td>Reference liposome radius</td>
+                                    <td>3D model description on the Simulation page</td>
+                                    <td>Fixed reference condition</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>T</i>, <i>k</i><sub>B</sub><i>T</i></th>
+                                    <td>300; approximately 4.11 × 10<sup>−21</sup></td>
+                                    <td>K; J</td>
+                                    <td>Thermal energy scale</td>
+                                    <td>Documented model conditions</td>
+                                    <td>Fixed</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>κ</i><sub>m</sub></th>
+                                    <td>20<i>k</i><sub>B</sub><i>T</i></td>
+                                    <td>Thermal-energy units</td>
+                                    <td>Membrane bending rigidity</td>
+                                    <td>Rawicz et al., <em>Biophysical Journal</em> (2000), as cited on the
+                                        Simulation page</td>
+                                    <td>Fixed model input</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>B</i><sub>DNA</sub>, Bundle radius</th>
+                                    <td>Rigidity levels not tabulated; existing deformation images are labeled
+                                        with radii 4 and 10</td>
+                                    <td>Rigidity units not recorded; radius in nm</td>
+                                    <td>Bundle bending resistance and cross-sectional size</td>
+                                    <td>The page describes both as explored but does not publish a full
+                                        3D parameter grid or run manifest</td>
+                                    <td>Explored dimensions; exact conditions unavailable</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>γ</i><sub>m</sub></th>
+                                    <td>1.0 × 10<sup>−4</sup></td>
+                                    <td>mN/m</td>
+                                    <td>Membrane fluctuation tension</td>
+                                    <td>Value stated on the Simulation page</td>
+                                    <td>Fixed model input</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>ε</i><sub>chol</sub></th>
+                                    <td>4.5<i>k</i><sub>B</sub><i>T</i> per cholesterol</td>
+                                    <td>Thermal-energy units</td>
+                                    <td>Cholesterol-anchor adhesion scale</td>
+                                    <td>Baumgart et al., <em>Nature</em> (2003), as cited on the Simulation
+                                        page</td>
+                                    <td>Fixed model input</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>L</i><sub>Bundle</sub>,
+                                        <i>N</i><sub>chol</sub></th>
+                                    <td>60; 22</td>
+                                    <td>nm; anchors</td>
+                                    <td>Bundle length and cholesterol count; theoretical adhesion total is
+                                        99<i>k</i><sub>B</sub><i>T</i></td>
+                                    <td>Values stated on the Simulation page</td>
+                                    <td>Fixed model configuration</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>z</i><sub>indent</sub>,
+                                        <i>R</i><sub>bend</sub>, <i>w</i><sub>y</sub></th>
+                                    <td>Values, initial guesses, and bounds not recorded</td>
+                                    <td>Not fully specified</td>
+                                    <td>Documented optimization variables</td>
+                                    <td>Simulation page names these variables but provides no source or run
+                                        record</td>
+                                    <td>Optimization variables; initialization and bounds unavailable</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Optimizer and stopping rule</th>
+                                    <td>L-BFGS-B is named; tolerances, stopping condition, and solution-selection
+                                        rule not recorded</td>
+                                    <td>—</td>
+                                    <td>Minimization of total free energy</td>
+                                    <td>Only the optimizer name and objective are stated in the repository</td>
+                                    <td>Procedure partially documented; details unavailable</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Curvature proxy</th>
+                                    <td>0.067</td>
+                                    <td>nm<sup>−1</sup></td>
+                                    <td>Selected curvature-exceedance comparison threshold</td>
+                                    <td>Value stated on the Simulation page; it is not a pore or rupture
+                                        criterion</td>
+                                    <td>Model interpretation proxy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="h4 fw-bold mb-3 section-subtitle">2.1 Optimization Procedure: Known and Unreported</h3>
+                    <ol class="text-secondary">
+                        <li class="mb-2">The stated objective is the sum of cholesterol-anchor adhesion, DNA
+                            Bundle bending, and membrane bending/tension contributions.</li>
+                        <li class="mb-2">The stated optimization variables are indentation depth
+                            <i>z</i><sub>indent</sub>, Bundle bend radius <i>R</i><sub>bend</sub>, and deformation
+                            width <i>w</i><sub>y</sub>.</li>
+                        <li class="mb-2">The Simulation page names SciPy L-BFGS-B as the optimizer. It does not
+                            report initial values, bounds, tolerances, stopping conditions, or how competing
+                            solutions were compared.</li>
+                        <li>The repository has no 3D calculation code or optimization logs. These missing details
+                            are not inferred here and must be recorded before the optimization can be independently
+                            reproduced.</li>
+                    </ol>
+
+                    <div class="content-box p-3 p-md-4 mt-4">
+                        <h3 class="h5 fw-bold section-subtitle">Bundle-size sensitivity</h3>
+                        <p class="text-secondary">
+                            The number-of-helices curvature graphs are presented with the main 3D results on the
+                            <a href="simulation.html#three-d-crosslinking">Simulation page</a>. Their crossings
+                            describe a membrane-curvature proxy for the <i>R</i><sub>0</sub> = 50 nm reference
+                            condition, not a physical pore-formation or rupture threshold.
+                        </p>
+                    </div>
+
+                    <p class="text-secondary mt-4 mb-0">
+                        The GUV-scale material is presented separately below as a supplementary exploratory
+                        visualization. It is not a continuation or extrapolation of the
+                        <i>R</i><sub>0</sub> = 50 nm reference calculation.
+                    </p>
                 </section>
 
-                <section id="supplementary-data" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">3. XXX</h2>
+                <section id="supplementary-guv" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">3. Supplementary GUV Environment Analysis</h2>
+                    <p class="text-secondary mb-4">
+                        This supplementary, exploratory section shows the existing interactive GUV-scale
+                        environment model for vesicles with radii of at least 300 nm. The display is a
+                        visualization only: this repository contains no GUV-specific free-energy optimization,
+                        curvature result data, convergence analysis, or pore/rupture prediction. It is a
+                        separate size regime and is not interpreted as a direct continuation of the
+                        <i>R</i><sub>0</sub> = 50 nm reference calculation.
+                    </p>
+                    <div class="row g-3 mb-4 align-items-stretch">
+                        <div class="col-md-9">
+                            <model-viewer class="simulation-model-viewer"
+                                src="img/SIMULATION/GUV_environment_liposome_model.glb"
+                                alt="Interactive visualization of the GUV-scale liposome environment"
+                                camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1"
+                                loading="lazy">
+                            </model-viewer>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="simulation-colorbar-panel">
+                                <img src="img/SIMULATION/curvature_colorbar.png"
+                                    alt="Local membrane curvature color scale in inverse nanometers"
+                                    class="simulation-colorbar" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-secondary small mb-0">
+                        No additional GUV result plots or future-figure placeholders are included.
+                    </p>
                 </section>
 
+                <section id="future-work" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">4. Future Work: Multi-Bundle Simulation</h2>
+                    <p class="text-secondary mb-0">
+                        Multi-bundle 2D event-probability and 3D curvature calculations are planned extensions.
+                        No multi-bundle model, result, or validation data are included in this repository.
+                    </p>
+                </section>
             </div>
         </div>
     </main>
 
-    <!-- フッター読み込み位置 -->
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
     <script src="main.js"></script>
 </body>
 

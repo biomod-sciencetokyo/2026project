@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=sim-env-15">
+    <link rel="stylesheet" href="style.css?v=simulation-methods-16">
     <style>
         /* Keep the numerical heatmap pixels intact while replacing legacy
            event labels baked into the original image exports. */
@@ -80,11 +80,11 @@
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
                     <a class="nav-link fw-bold" href="#simulation-overview">Overview</a>
-                    <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Disruption</a>
+                    <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Deformation Models</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
                         <a class="nav-link" href="#three-d">1.2 3D Thermodynamic Simulation</a>
-                        <a class="nav-link" href="#guv-env">GUV Environment</a>
+                        <a class="nav-link" href="appendix.html#supplementary-guv">Supplementary GUV Analysis</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Reaction</a>
                     <div class="nav flex-column sidebar-toc-subnav">
@@ -98,31 +98,22 @@
                 <section id="simulation-overview" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-0">
-                        This page presents computational studies of DNA-bundle-mediated membrane disruption and
-                        HCR reactions. We use 2D coarse-grained molecular dynamics and 3D thermodynamic simulations
-                        to examine how DNA Bundle rigidity, linker length, and vesicle size influence membrane
-                        deformation and model-defined local pore-formation events. We also investigate the self-assembly and reaction
-                        feasibility of the HCR system designed to build DNA bundles.
+                        This page presents two distinct mechanical models: a finite-time 2D coarse-grained
+                        simulation that screens for a model-defined local pore-formation event, and a 3D
+                        equilibrium calculation that compares stable deformation and curvature. Neither model
+                        directly predicts complete membrane rupture or vesicle lysis. We also assess the
+                        thermodynamic feasibility of the HCR design for building DNA Bundles.
                     </p>
                 </section>
 
                 <!-- 1. Membrane Disruption -->
                 <section id="membrane-disruption" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">1. Membrane Disruption</h2>
+                    <h2 class="section-title">1. Membrane Deformation Models</h2>
 
                     <!-- 1.1 2D MD-CG Simulation -->
                     <div id="two-d-md" class="mb-5 pb-4 pt-3">
                         <h3 class="h4 fw-bold mb-4">1.1 MD-CG Simulation in 2D
                             Environment</h3>
-                        <p class="text-secondary mb-4">
-                            To understand how DNA bundles deform EV membranes and produce model-defined local
-                            pore-formation events, we
-                            established a two-dimensional coarse-grained molecular dynamics (CG-MD) simulation. This
-                            cross-sectional model lets us examine the competition between DNA-bundle bending stiffness
-                            and lipid-membrane elasticity. The model represents groups of atoms as single beads and
-                            includes the DNA bundle, cholesterol anchors, flexible linkers, and the EV membrane lipid
-                            bilayer, enabling large-scale structural dynamics to be observed over extended timescales.
-                        </p>
 
                         <!-- Real system vs. 2D model -->
                         <div class="sim-env mb-5" data-sim-env>
@@ -190,283 +181,34 @@
                             </ol>
                         </div>
 
-                        <!-- Accordion: More about 2D MD-CG simulation -->
-                        <div class="custom-accordion">
-                            <button class="custom-accordion-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#more-2d-md" aria-expanded="false" aria-controls="more-2d-md">
-                                <span class="accordion-icon-badge">&#9656;</span>
-                                <span>More about 2D MD-CG Simulation</span>
-                            </button>
-                            <div class="collapse" id="more-2d-md">
-                                <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 section-subtitle">2.1 Membrane representation</h5>
-                                    <p class="text-secondary">The EV-like membrane is represented by a closed
-                                        periodic ring of <i>N</i><sub>mem</sub> beads with initial radius
-                                        <i>R</i>:
-                                    </p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="N mem equals integer part of 240 times R divided by 150 nanometers; r i at zero equals R times cosine theta i, sine theta i">
-                                        <i>N</i><sub>mem</sub> =
-                                        int(240 <i>R</i> / 150 nm),
-                                        &nbsp;&nbsp;
-                                        <strong>r</strong><sub>i</sub>(0) =
-                                        <i>R</i>(cos θ<sub>i</sub>, sin θ<sub>i</sub>)
-                                    </p>
-                                    <p class="text-secondary">The initial spacing of neighboring membrane beads is</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="r zero mem equals 2 R sine of pi divided by N mem">
-                                        <i>r</i><sub>0,mem</sub> =
-                                        2<i>R</i> sin(π / <i>N</i><sub>mem</sub>).
-                                    </p>
-                                    <p class="text-secondary">This prescription yields an initial spacing of
-                                        approximately 3.927 nm at both <i>R</i> = 150 and 200 nm. Thus,
-                                        radius-dependent trends are not caused simply by a change in the initial
-                                        membrane discretization length.</p>
-                                    <p class="text-secondary">Each pair of intact neighboring beads is connected by a
-                                        Hookean spring. If <i>ℓ</i><sub>i</sub> is the length of edge <i>i</i>, the
-                                        model-defined membrane tension is</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="T i equals k mem times ell i minus r zero mem; k mem equals 150">
-                                        <i>T</i><sub>i</sub> =
-                                        <i>k</i><sub>mem</sub>(<i>ℓ</i><sub>i</sub> −
-                                        <i>r</i><sub>0,mem</sub>),
-                                        &nbsp;&nbsp;
-                                        <i>k</i><sub>mem</sub> = 150.
-                                    </p>
-                                    <p class="text-secondary">This term represents in-plane membrane extension in the
-                                        discrete contour. A curvature-smoothing contribution based on the discrete
-                                        second difference
-                                        <strong>r</strong><sub>i−1</sub> − 2<strong>r</strong><sub>i</sub> +
-                                        <strong>r</strong><sub>i+1</sub> suppresses unphysical sharp kinks. Its
-                                        coefficient is <i>k</i><sub>bend,mem</sub> =
-                                        25<i>k</i><sub>B</sub><i>T</i>/<i>r</i><sub>0,mem</sub>. The term is
-                                        inspired by Helfrich-type membrane elasticity, but it is not the exact
-                                        variational force of a three-dimensional Helfrich surface.
-                                    </p>
-                                    <p class="text-secondary">While the membrane remains intact, an additional
-                                        pressure-like restoring force constrains the enclosed planar area relative
-                                        to <i>A</i><sub>0</sub> = π<i>R</i><sup>2</sup>, with
-                                        <i>k</i><sub>area</sub> = 160. This term stabilizes the two-dimensional ring
-                                        against global area drift. It is a planar enclosed-area constraint, not a
-                                        three-dimensional volume, osmotic-pressure, or area-per-lipid constraint.
-                                        Once a model-defined local pore-formation event is registered, this area-restoring term is removed
-                                        in subsequent updates.
-                                    </p>
-
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">2.2 DNA Bundle geometry and bending
-                                        mechanics</h5>
-                                    <p class="text-secondary">The simulation contains one DNA Bundle of length</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="L bundle equals 3 R">
-                                        <i>L</i><sub>Bundle</sub> = 3<i>R</i>.
-                                    </p>
-                                    <p class="text-secondary">The DNA Bundle is represented by five connected
-                                        constant-curvature arcs. Its generalized-coordinate vector is</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="q equals X, Y, theta, kappa zero through kappa four, transposed">
-                                        <strong>q</strong> =
-                                        (<i>X</i>, <i>Y</i>, θ, κ<sub>0</sub>, κ<sub>1</sub>, κ<sub>2</sub>,
-                                        κ<sub>3</sub>, κ<sub>4</sub>)<sup>T</sup>,
-                                    </p>
-                                    <p class="text-secondary">where (<i>X</i>, <i>Y</i>) is the bundle position, θ
-                                        is the overall orientation, and κ<sub>m</sub> are the local curvatures. The
-                                        construction enforces continuous position and tangent direction at segment
-                                        junctions, allowing the DNA Bundle to bend smoothly without treating it as
-                                        freely hinged rods.</p>
-                                    <p class="text-secondary">The DNA Bundle is treated as a 12-chain assembly with
-                                        effective radius</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="r DNA equals 1.25 square root of 12 equals 4.330 nanometers">
-                                        <i>r</i><sub>DNA</sub> = 1.25√12 = 4.330 nm.
-                                    </p>
-                                    <p class="text-secondary">Its effective persistence length and bending modulus
-                                        depend on the dimensionless internal cross-linking-efficiency parameter α.
-                                        For the 2D comparison below, rigidity is reported as the effective DNA Bundle
-                                        bending rigidity, <i>B</i><sub>DNA</sub>:</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="L p effective equals 2 N chains plus 120 times N chains alpha cubed; B DNA equals L p effective k B T">
-                                        <i>L</i><sub>p,eff</sub> =
-                                        2<i>N</i><sub>chains</sub> +
-                                        120(<i>N</i><sub>chains</sub>α)<sup>3</sup>,
-                                        &nbsp;&nbsp;
-                                        <i>B</i><sub>DNA</sub> =
-                                        <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>.
-                                    </p>
-                                    <p class="text-secondary">Here <i>N</i><sub>chains</sub> = 12. Increasing the
-                                        internal parameter increases the bending modulus, so a DNA Bundle with higher
-                                        <i>B</i><sub>DNA</sub> resists
-                                        conforming to the membrane. The persistence-length/bending-modulus relation
-                                        follows the usual worm-like-chain idea, whereas the cubic dependence on the
-                                        internal parameter is a phenomenological rule used to model the sharp
-                                        stiffening expected when inter-chain sliding is suppressed. In this 12-chain
-                                        model, the higher comparison value corresponds to α = 0.9, and the lower
-                                        value corresponds to α = 0.1. This mapping should not be presented as a
-                                        directly measured constitutive law.
-                                    </p>
-
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">2.3 Cholesterol anchors, linkers, and
-                                        membrane capture</h5>
-                                    <p class="text-secondary">Cholesterol anchors are placed every 15 base pairs
-                                        (5.1 nm) along the DNA Bundle:</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="N anchor equals integer part of L Bundle divided by 5.1 plus 1">
-                                        <i>N</i><sub>anchor</sub> =
-                                        int(<i>L</i><sub>Bundle</sub>/5.1) + 1.
-                                    </p>
-                                    <p class="text-secondary">The number of anchors is therefore 89 at
-                                        <i>R</i> = 150 nm and 118 at <i>R</i> = 200 nm. For an anchor–cholesterol
-                                        separation <i>d</i>, the linker force is represented by a piecewise-linear,
-                                        strain-stiffening law:
-                                    </p>
-                                    <div class="table-responsive my-3">
-                                        <table class="table table-sm table-dark table-bordered align-middle mb-0">
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">d &lt; l<sub>0</sub></th>
-                                                    <td><i>F</i><sub>link</sub>(<i>d</i>) =
-                                                        3(<i>d</i> − <i>l</i><sub>0</sub>)</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">l<sub>0</sub> ≤ d &lt; l<sub>0</sub> + 6</th>
-                                                    <td><i>F</i><sub>link</sub>(<i>d</i>) =
-                                                        10(<i>d</i> − <i>l</i><sub>0</sub>)</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">d ≥ l<sub>0</sub> + 6</th>
-                                                    <td><i>F</i><sub>link</sub>(<i>d</i>) =
-                                                        60 + 18[<i>d</i> − (<i>l</i><sub>0</sub> + 6)]</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <p class="text-secondary">The linker is therefore softer in compression, stiffer
-                                        under ordinary extension, and still stiffer after exceeding the nominal
-                                        contour length <i>l</i><sub>0</sub> + 6 nm. This form is an effective,
-                                        numerically stable spring law; it is not an exact WLC or FENE linker
-                                        potential.</p>
-                                    <p class="text-secondary">A cholesterol particle becomes mechanically coupled to
-                                        the nearest membrane bead when its separation satisfies</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="r m c less than 24 plus l zero nanometers">
-                                        <i>r</i><sub>mc</sub> &lt; 24 + <i>l</i><sub>0</sub> nm.
-                                    </p>
-                                    <p class="text-secondary">The membrane reaction is applied in the local normal
-                                        direction and distributed over five beads with weights 0.40, 0.20, 0.20,
-                                        0.10, and 0.10. A key consequence is that <i>l</i><sub>0</sub> alters two
-                                        aspects of the model at the same time: it changes the linker rest length and
-                                        expands the membrane-capture range from 26 to 44 nm across the present
-                                        sweep. Thus, any apparent linker-length effect must be interpreted as the
-                                        effect of this coupled design variable.</p>
-                                    <p class="text-secondary">To avoid unphysical overlap, the DNA Bundle experiences
-                                        a normal harmonic repulsion when points along its centerline approach the
-                                        membrane more closely than <i>r</i><sub>DNA</sub> + 1 nm. The number of
-                                        evaluation points is</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="N rep equals maximum of 15 and integer part of L Bundle divided by 3">
-                                        <i>N</i><sub>rep</sub> =
-                                        max{15, int(<i>L</i><sub>Bundle</sub>/3)}.
-                                    </p>
-                                    <p class="text-secondary">This count increases from 150 at <i>R</i> = 150 nm to
-                                        200 at <i>R</i> = 200 nm. Because point forces are summed without an
-                                        explicit arc-length weight, this parameter is both a numerical-resolution
-                                        setting and part of the discrete representation of the total repulsive
-                                        interaction.</p>
-
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">2.4 Dynamical update</h5>
-                                    <p class="text-secondary">Membrane beads and captured cholesterol particles are
-                                        propagated by an overdamped Brownian update:</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="Delta r equals F over gamma times delta t plus square root of 2 k B T delta t over gamma times xi">
-                                        Δ<strong>r</strong> =
-                                        (<strong>F</strong>/γ)Δ<i>t</i> +
-                                        √(2<i>k</i><sub>B</sub><i>T</i>Δ<i>t</i>/γ) ξ.
-                                    </p>
-                                    <p class="text-secondary">Here <i>k</i><sub>B</sub><i>T</i> = 4.11 in the
-                                        code energy units, γ<sub>mem</sub> = 1.0, and γ<sub>chol</sub> = 0.2.
-                                        The DNA Bundle is not advanced by an additional explicit translation or
-                                        rotation step. Instead, its eight generalized coordinates are updated by a
-                                        semi-implicit 8 × 8 linear system including the linker tangent stiffness and
-                                        DNA Bundle bending stiffness. The translational and rotational frictions are</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="gamma trans equals 1.5 times L Bundle over 100; gamma rot equals L Bundle squared over 12">
-                                        γ<sub>trans</sub> = 1.5(<i>L</i><sub>Bundle</sub>/100),
-                                        &nbsp;&nbsp;
-                                        γ<sub>rot</sub> = <i>L</i><sub>Bundle</sub><sup>2</sup>/12.
-                                    </p>
-                                    <p class="text-secondary">The simulation time step is Δ<i>t</i> = 10<sup>−4</sup>
-                                        code-time units. Because the friction coefficients have not been calibrated
-                                        to an experimentally specified viscosity, code time must not be converted
-                                        directly into seconds.</p>
-
-                                    <h5 class="fw-bold mb-3 mt-4 section-subtitle">3. Parameter sweep and
-                                        model-defined local pore-formation-event criterion</h5>
-                                    <h6 class="fw-bold mt-3">3.1 Sweep protocol</h6>
-                                    <p class="text-secondary">The current aligned sweep examines <i>R</i> = 150 and
-                                        200 nm, eight internal rigidity-parameter values spanning 0.1 to 1.0
-                                        (reported as effective <i>B</i><sub>DNA</sub>), and eight values of
-                                        <i>l</i><sub>0</sub> from 2 to 20 nm. Each parameter cell contains 50
-                                        stochastic trajectories. A trajectory contains 100 frames, each composed
-                                        of 100 substeps, giving a fixed observation window for all cells. The result
-                                        is the fraction of the 50 trajectories in which a first model-defined local
-                                        pore-formation event occurs during that window. This fraction is the
-                                        model-defined local pore-formation-event probability.
-                                    </p>
-                                    <p class="text-secondary">The single-trajectory GIF code accepts the same
-                                        radius, internal rigidity setting, linker rest length, seed, number of frames,
-                                        substeps, and time step through its settings, allowing a representative GIF
-                                        to be generated for a selected probability-map cell. Before the first
-                                        model-defined local pore-formation event, the single-run and sweep implementations have been confirmed to
-                                        yield identical states for validation conditions.</p>
-                                    <h6 class="fw-bold mt-3">3.2 Operational definition of a model-defined local pore-formation event</h6>
-                                    <p class="text-secondary">At the start of each substep, all intact membrane
-                                        springs are examined. A model-defined local pore-formation event is registered as soon as one
-                                        spring satisfies</p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="T i greater than 150">
-                                        <i>T</i><sub>i</sub> &gt; 150.
-                                    </p>
-                                    <p class="text-secondary">Since <i>k</i><sub>mem</sub> = 150, this corresponds
-                                        to an extension greater than 1.0 nm, or approximately 25.5% of the initial
-                                        spring spacing. The threshold 150 is a force-like quantity in the code's
-                                        discrete-spring model. It is not directly a physical membrane surface
-                                        tension in mN m<sup>−1</sup>, and it should not be labelled as a calibrated
-                                        pN value without an explicit unit-mapping procedure.</p>
-                                    <p class="text-secondary mb-0">The local pore-formation-event criterion is
-                                        instantaneous and local: one sufficiently extended membrane spring anywhere
-                                        on the ring registers an event. It contains no time-persistence condition,
-                                        contact-zone restriction, spatial averaging, or area-per-lipid criterion.
-                                        The resulting model-defined local pore-formation-event probability is a
-                                        pore-initiation proxy, not evidence of physical pore formation, complete
-                                        membrane rupture, or vesicle lysis. The model does not resolve pore growth,
-                                        pore resealing, or membrane leakage.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-secondary mb-3">
+                            The 2D model is used as a computational screening system. Its <strong>GOAL</strong> is
+                            to examine how the <strong>THREE PROGRAMMABLE PARAMETERS</strong>—vesicle radius
+                            (<i>R</i>), DNA Bundle bending rigidity (<i>B</i><sub>DNA</sub>), and linker rest length
+                            (<i>l</i><sub>0</sub>)—shape DNA Bundle–membrane interactions. Because changing
+                            <i>R</i> also rescales the membrane discretization, Bundle length, anchor number, and
+                            other geometry-dependent quantities, radius-dependent trends should be interpreted as
+                            the response of the jointly scaled model system rather than as curvature alone.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            Each trajectory is evolved as a finite-time overdamped Brownian coarse-grained
+                            calculation while the DNA Bundle approaches the membrane. The readout is the occurrence
+                            of a model-defined local pore-formation event: a local spring-extension threshold in
+                            the discrete membrane model. This event is used only as a pore-initiation proxy; the
+                            2D model does not resolve physical pore growth, resealing, leakage, or vesicle lysis.
+                            Detailed equations, parameters, and procedure are in the
+                            <a href="appendix.html#two-d-method">Appendix</a>.
+                        </p>
 
                         <!-- Linker Length -->
                         <div id="two-d-linker-length" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">
                                 2D Comparison: Linker Length, Bundle Stiffness, and Vesicle Size
                             </h4>
-                            <div class="sim-brief mb-4">
-                                <p class="text-secondary sim-brief-item">
-                                    <strong>Three programmable parameters:</strong> vesicle radius (<em
-                                        class="sim-sym">R</em>), DNA Bundle
-                                    bending rigidity (<span class="sim-sym"><i>B</i><sub>DNA</sub></span>), and linker
-                                    rest length (<span class="sim-sym"><em>l</em><sub>0</sub></span>).
-                                </p>
-                                <p class="text-secondary sim-brief-item">
-                                    <strong>Goal:</strong> use the 2D model to map conditions that favor a model-defined
-                                    local pore-formation event.
-                                </p>
-                            </div>
                             <p class="text-secondary mb-4">
-                                DNA Bundle bending rigidity and linker rest length work together to shape membrane
-                                loading. A stiffer bundle resists bending and can concentrate stress locally, while a
-                                more
-                                flexible bundle may deform with the membrane and distribute the load. Linker length
-                                affects how far the bundle can move relative to the membrane, so the influence of
-                                either parameter depends on vesicle radius and the other parameter.
+                                Linker rest length <i>l</i><sub>0</sub> changes both linker mechanics and the
+                                membrane-capture range (26–44 nm across the documented sweep); its influence is
+                                not limited to flexibility or distance.
                             </p>
 
                             <h5 class="fw-bold mb-3 section-subtitle">Representative GIFs: Broad Trends</h5>
@@ -475,7 +217,6 @@
                                 Bundle stiffness can affect membrane loading. Use these examples to compare broad
                                 trends; they do not show the probability across all tested conditions.
                             </p>
-
                             <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
                             <div class="mb-4 sim-matrix">
                                 <div class="row g-3 align-items-stretch sim-matrix-grid">
@@ -792,12 +533,13 @@
                                 </p>
                                 <p class="text-secondary mb-3">
                                     We therefore describe the result as a
-                                    <strong>radius-dependent crossover within the present model</strong>, rather
-                                    than as a universal property of biological membranes.
+                                    <strong>radius-dependent crossover within the present model</strong>. Because
+                                    changing <i>R</i> also changes Bundle length, anchor count, repulsion
+                                    discretization, and friction, this is not an isolated curvature effect.
                                 </p>
                                 <p class="text-secondary small mb-0">
-                                    Heatmaps for R = 50, 100, 150, 200, and 250 nm are shown in the first through
-                                    fifth boxes, respectively.
+                                    Heatmaps for R = 50, 100, 150, 200, 250, and 300 nm are shown in the first
+                                    through sixth boxes, respectively.
                                 </p>
                             </div>
 
@@ -879,15 +621,16 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div
-                                                            class="ratio ratio-4x3 heatmap-placeholder border border-secondary mb-3">
-                                                            <span
-                                                                class="d-flex align-items-center justify-content-center text-secondary text-center">Heatmap
-                                                                6<br>Image to be added</span>
+                                                        <div class="heatmap-plot mb-3">
+                                                            <img src="img/SIMULATION/ruputure_heatmap_r300.png"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 300 nm"
+                                                                loading="lazy" decoding="async">
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 300 nm)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
                                                         </div>
                                                         <figcaption class="text-secondary small mb-0">
-                                                            Placeholder for another rigidity and linker-length
-                                                            condition.
+                                                            R = 300 nm: model-defined local pore-formation-event probability across bending stiffness and
+                                                            linker length.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -900,135 +643,16 @@
                     <div id="three-d" class="mb-5 pb-4 pt-3">
                         <h3 class="h4 fw-bold mb-4">1.2 3D Thermodynamic Simulation
                         </h3>
-                        <p class="text-secondary mb-4">We performed a 3D thermodynamic stabilization
-                            calculation to examine equilibrium membrane deformation. The standard liposome
-                            configuration in this analysis has an initial radius of
-                            <i>R</i><sub>0</sub> = 50 nm. The model identifies stable DNA Bundle and
-                            liposome configurations by minimizing the combined membrane-bending,
-                            membrane-tension, DNA-bending, and cholesterol-anchor adhesion energies. Its
-                            curvature results therefore describe this 50 nm reference vesicle; they should
-                            not be generalized to other vesicle radii without a separate calculation. The
-                            GUV discussion below concerns a separate large-vesicle analysis.</p>
-
-                        <div class="sim-brief mb-4">
-                            <p class="text-secondary sim-brief-item">
-                                <strong>THREE FREE-ENERGY CONTRIBUTIONS:</strong>
-                                Membrane elasticity (Helfrich bending + membrane tension), DNA Bundle bending,
-                                and cholesterol-anchor adhesion.
-                            </p>
-                            <p class="text-secondary sim-brief-item">
-                                <strong>GOAL:</strong>
-                                Determine the thermodynamically stable DNA Bundle–membrane configuration and
-                                identify how the balance of these free-energy contributions shapes membrane
-                                deformation.
-                            </p>
-                        </div>
-
-                        <!-- Accordion: More about 3D simulation -->
-                        <div class="custom-accordion">
-                            <button class="custom-accordion-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#more-3d" aria-expanded="false" aria-controls="more-3d">
-                                <span class="accordion-icon-badge">&#9656;</span>
-                                <span>More about 3D Simulation</span>
-                            </button>
-                            <div class="collapse" id="more-3d">
-                                <div class="custom-accordion-body">
-                                    <h5 class="fw-bold mb-3 section-subtitle">Details of the 3D
-                                        Thermodynamic Simulation Equations and Parameter Settings</h5>
-                                    <p class="text-secondary">This simulation models the search for a
-                                        thermodynamic
-                                        equilibrium state that minimizes the total free energy of the
-                                        system,
-                                        <i>F</i><sub>total</sub>. <i>F</i><sub>total</sub> is defined as
-                                        the sum of
-                                        three energy terms:
-                                    </p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="F total equals E adhesion plus E DNA bend plus E membrane">
-                                        <i>F</i><sub>total</sub> =
-                                        <i>E</i><sub>adhesion</sub> +
-                                        <i>E</i><sub>dna_bend</sub> +
-                                        <i>E</i><sub>membrane</sub>
-                                    </p>
-                                    <p class="text-secondary">The calculations are based on the thermal
-                                        energy at room
-                                        temperature (300 K), <i>k</i><sub>B</sub><i>T</i> ≈ 4.11 ×
-                                        10<sup>−21</sup> J.</p>
-
-                                    <h6 class="fw-bold mt-4">Cholesterol Adhesion Energy
-                                        (<i>E</i><sub>adhesion</sub>)</h6>
-                                    <p class="text-secondary">The adhesion energy per cholesterol
-                                        molecule due to
-                                        hydrophobic insertion, <i>ε</i><sub>chol</sub>, was set to 4.5
-                                        <i>k</i><sub>B</sub><i>T</i> (Baumgart et al., <em>Nature</em>,
-                                        2003). For a
-                                        DNA bundle of length <i>L</i><sub>bundle</sub> = 60 nm modified
-                                        with
-                                        <i>N</i><sub>chol</sub> = 22 cholesterols, the total theoretical
-                                        adhesion
-                                        energy is:
-                                    </p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="E adhesion total equals 22 times 4.5 k B T equals 99 k B T">
-                                        <i>E</i><sub>adh,total</sub> = 22 × 4.5
-                                        <i>k</i><sub>B</sub><i>T</i> =
-                                        99 <i>k</i><sub>B</sub><i>T</i>
-                                    </p>
-                                    <p class="text-secondary">The simulation calculates the actual
-                                        energy gained
-                                        proportionally to the contact area, which depends on the
-                                        membrane indentation
-                                        depth (<i>z</i><sub>indent</sub>) and the bundle radius
-                                        (<i>r</i><sub>dna</sub>).</p>
-
-                                    <h6 class="fw-bold mt-4">DNA Bundle Bending Energy
-                                        (<i>E</i><sub>dna_bend</sub>)</h6>
-                                    <p class="text-secondary">The DNA bundle is treated as an elastic
-                                        beam based on
-                                        Euler-Bernoulli beam theory. The energy cost for a bundle with
-                                        rigidity
-                                        <i>B</i><sub>dna</sub> to bend at a radius of curvature
-                                        <i>R</i><sub>bend</sub> is:
-                                    </p>
-                                    <p class="text-secondary text-center fs-5 my-3" role="math"
-                                        aria-label="E DNA bend equals one half B DNA times one over R bend squared times L bundle">
-                                        <i>E</i><sub>dna_bend</sub> =
-                                        ½ <i>B</i><sub>dna</sub>
-                                        (1/<i>R</i><sub>bend</sub>)<sup>2</sup>
-                                        <i>L</i><sub>bundle</sub>
-                                    </p>
-
-                                    <h6 class="fw-bold mt-4">Membrane Deformation Energy
-                                        (<i>E</i><sub>membrane</sub>)</h6>
-                                    <p class="text-secondary">Based on Helfrich theory, we calculate the
-                                        deformation
-                                        cost of the target liposome with an initial radius
-                                        <i>R</i><sub>0</sub> = 50 nm.
-                                        We used a membrane bending rigidity <i>κ</i><sub>m</sub> = 20
-                                        <i>k</i><sub>B</sub><i>T</i> (Rawicz et al., <em>Biophysical
-                                            Journal</em>,
-                                        2000) and a membrane fluctuation tension <i>γ</i><sub>m</sub> =
-                                        1.0 × 10<sup>−4</sup>
-                                        mN/m. The bending and tension penalties are calculated using the
-                                        effective
-                                        deformation depth (<i>z</i><sub>eff</sub>), which accounts for
-                                        the geometric
-                                        mismatch between the straight DNA rod and the spherical
-                                        liposome, and the width
-                                        of the membrane deformation pocket (<i>w</i><sub>y</sub>).
-                                    </p>
-
-                                    <p class="text-secondary mb-0">Using SciPy's <code>L-BFGS-B</code>
-                                        optimization
-                                        algorithm, we simultaneously optimize these three variables—
-                                        <i>z</i><sub>indent</sub>, <i>R</i><sub>bend</sub>, and
-                                        <i>w</i><sub>y</sub>—
-                                        to find the geometric solution where <i>F</i><sub>total</sub> is
-                                        minimized.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-secondary mb-4">
+                            The 3D model evaluates equilibrium membrane deformation by balancing membrane elasticity
+                            (Helfrich bending and membrane tension), DNA Bundle bending, and cholesterol-anchor
+                            adhesion. Its purpose is to identify mechanically favorable DNA Bundle–membrane
+                            configurations and associated curvature patterns; it does not directly predict pore
+                            formation or membrane rupture. The reference calculation uses
+                            <i>R</i><sub>0</sub> = 50 nm; the separate GUV-scale extension is described in the
+                            Technical Appendix. Energy terms and documented optimization details are in the
+                            <a href="appendix.html#three-d-optimization">Appendix</a>.
+                        </p>
 
                         <!-- Modeling Objectives & Structural Scale -->
                         <div id="three-d-modeling" class="simulation-subblock">
@@ -1134,11 +758,6 @@
                         <div id="three-d-deformation" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Deformation Analysis &amp;
                                 Bundle Radius</h4>
-                            <p class="text-secondary mb-4">
-                                [Present various modes of membrane deformation across different
-                                stiffness and radius
-                                conditions.]
-                            </p>
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
@@ -1183,129 +802,53 @@
                             </p>
                         </div>
 
-                        <!-- Required Bundle Helices & Cross-linking Efficiency -->
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Size and Cross-linking
-                                Effects</h4>
-                            <p class="text-secondary mb-4">
-                                We performed a scaling analysis, plotting the number of strands
-                                (<em>N</em>) on the X-axis against the maximum membrane curvature
-                                (<em>H</em><sub>max</sub>) on the Y-axis. Assuming an ideal rigid DNA
-                                bundle (cross-linking efficiency &alpha; = 1.0), the bundle's radius is
-                                calculated as <em>r</em> &asymp; 1.25&radic;<em>N</em>, and its bending
-                                rigidity increases proportionally to the square of the number of
-                                strands, <em>B</em> &prop; &alpha; &middot; <em>N</em><sup>2</sup>. When
-                                these parameters are fed back into our 3D stabilization simulation, the
-                                curvature initially increases with rigidity,
-                                but eventually, the stress dispersion from the increasing radius takes
-                                over, creating a "convex saturation curve." In this calculation, the
-                                curve reaches the selected curvature-exceedance proxy
-                                (0.067 nm<sup>&minus;1</sup>) near 6 DNA helices for the
-                                <i>R</i><sub>0</sub> = 50 nm reference liposome. Under the idealized
-                                assumptions of this model, this is a design hypothesis about local
-                                curvature, not direct evidence of pore formation or complete membrane
-                                rupture.
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Size and Membrane Curvature</h4>
+                            <p class="text-secondary mb-3">
+                                This analysis connects DNA Bundle design to membrane deformation by examining how
+                                the number of helices (<i>N</i>) changes DNA Bundle radius and effective DNA Bundle
+                                bending rigidity (<i>B</i><sub>DNA</sub>). It provides a design-level bridge between
+                                HCR-mediated Bundle assembly and the 3D membrane-deformation calculation.
                             </p>
-                            <figure class="mb-5 pb-3">
+                            <p class="text-secondary mb-3">
+                                For the <i>R</i><sub>0</sub> = 50 nm reference liposome, the model's curvature
+                                proxy reaches its selected comparison level near six helices, matching the designed
+                                6-helix Bundle. Under reduced effective rigidity assumptions, the plotted crossing
+                                shifts to approximately 10–13 helices. These are model-based deformation
+                                comparisons, not predictions of pore formation or membrane rupture.
+                            </p>
+                            <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph1.png"
-                                    alt="Membrane deformation analysis showing maximum local curvature by number of DNA helices in a bundle"
+                                    alt="Modeled maximum membrane curvature by DNA Bundle helix count under the idealized rigidity assumption"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    <strong>Figure: Curvature Proxy with Ideal Cross-linking (&alpha;
-                                        = 1.0).</strong>
-                                    This graph illustrates modeled curvature assuming ideal
-                                    inter-helix bundling where individual helices cannot slip past one
-                                    another.
+                                    Membrane-curvature proxy versus number of DNA helices for the idealized
+                                    effective Bundle rigidity assumption. The selected proxy level is reached near
+                                    six helices in the <i>R</i><sub>0</sub> = 50 nm reference calculation.
                                 </figcaption>
                             </figure>
-                            <figure class="mb-0">
+                            <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph2.png"
-                                    alt="Effect of cross-linking efficiency on modeled membrane curvature by number of DNA helices in a DNA Bundle"
+                                    alt="Modeled membrane curvature by DNA Bundle helix count under reduced effective rigidity assumptions"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    <strong>Figure: Dependency on Cross-linking Efficiency
-                                        (&alpha;).</strong> In
-                                    experimental conditions, inter-helix slipping reduces effective
-                                    bending stiffness
-                                    (&alpha; &asymp; 0.5&ndash;0.7). As cross-linking efficiency
-                                    decreases, the bundle size needed to reach the selected
-                                    curvature-exceedance proxy increases to approximately
-                                    10&ndash;13 helices in this model.
+                                    Sensitivity of the membrane-curvature proxy to reduced effective DNA Bundle
+                                    bending rigidity. The reported crossing is approximately 10–13 helices;
+                                    this is not a physical pore-formation or rupture threshold.
                                 </figcaption>
                             </figure>
+                            <a class="btn btn-sm learn-more-btn"
+                                href="appendix.html#three-d-optimization">3D optimization details in the Technical Appendix</a>
                         </div>
 
-                        <!-- GUV environment within the 3D simulation -->
-                        <div id="guv-env" class="mb-5 pb-4 pt-3">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">GUV Environment</h4>
-                            <p class="text-secondary mb-4">
-                                While the ultimate target of this project is extracellular vesicles
-                                (EVs), laboratory
-                                validation experiments utilize giant unilamellar vesicles (GUVs, radius
-                                <em>r</em> &ge; 300
-                                nm). We therefore extended the 3D thermodynamic simulation to examine
-                                DNA bundle behavior
-                                and membrane deformation on large-diameter GUVs.
-                            </p>
-
-                            <!-- 3D Simulation on GUV -->
-                            <div id="guv-3d" class="simulation-subblock mb-0">
-                                <h5 class="fw-bold mb-3 section-subtitle">3D Simulation on GUV</h5>
-                                <div class="row g-3 mb-4 align-items-stretch">
-                                    <div class="col-md-9">
-                                        <model-viewer class="simulation-model-viewer"
-                                            src="img/SIMULATION/GUV_environment_liposome_model.glb"
-                                            alt="Interactive 3D liposome model for the GUV simulation" camera-controls
-                                            touch-action="pan-y" shadow-intensity="1" exposure="1" loading="lazy">
-                                        </model-viewer>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="simulation-colorbar-panel">
-                                            <img src="img/SIMULATION/curvature_colorbar.png"
-                                                alt="Local membrane curvature color scale in inverse nanometers"
-                                                class="simulation-colorbar" loading="lazy" decoding="async">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-4 mb-4">
-                                    <div class="col-md-6">
-                                        <div class="content-box h-100">
-                                            <div
-                                                class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                                <span class="text-muted">3D GUV increased helices figure
-                                                    placeholder</span>
-                                            </div>
-                                            <p class="text-secondary small mb-0">[Add caption: Testing
-                                                high-helix bundles
-                                                against GUV membrane curvature.]</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="content-box h-100">
-                                            <div
-                                                class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                                <span class="text-muted">3D GUV wrapping profile figure
-                                                    placeholder</span>
-                                            </div>
-                                            <p class="text-secondary small mb-0">[Add caption:
-                                                Cross-sectional wrapping
-                                                profile on large-scale membrane.]</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-secondary mb-0 small">
-                                    <em>Observation:</em> 3D simulations similarly confirmed that even
-                                    when increasing helix
-                                    count significantly, complete rupture of GUVs remains extremely
-                                    challenging solely
-                                    through mechanical bundling, emphasizing the distinct physics
-                                    between small EVs and
-                                    giant vesicles.
-                                </p>
-                            </div>
-                        </div>
+                        <p class="text-secondary mt-4 mb-0">
+                            An exploratory extension to the GUV-scale regime is provided in the
+                            <a href="appendix.html#supplementary-guv">Technical Appendix</a>. Because this analysis
+                            concerns a separate size regime, it is not interpreted as a direct continuation of the
+                            <i>R</i> = 50 nm reference calculation.
+                        </p>
                     </div>
                 </section>
 
