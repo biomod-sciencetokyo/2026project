@@ -2280,3 +2280,9 @@ section[id],
         padding-left: 1.3rem;
     }
 }
+
+/* Keep the pixel font for page titles, navigation, and footer only. */
+main :not(h1):not(.page-title) {
+    font-family: inherit !important;
+    -webkit-text-stroke: 0 !important;
+}
