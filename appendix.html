@@ -35,9 +35,9 @@
                         <a class="nav-link" href="#stochastic-record">Reproducibility</a>
                         <a class="nav-link" href="#numerical-checks">Numerical Checks</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#three-d-optimization">2. 3D Model</a>
+                    <a class="nav-link fw-bold mt-2" href="#three-d-optimization">2. 3D Reduced Free-Energy Model</a>
                     <a class="nav-link fw-bold mt-2" href="#supplementary-guv">3. Supplementary GUV Analysis</a>
-                    <a class="nav-link fw-bold mt-2" href="#future-work">4. Future Work</a>
+                    <a class="nav-link fw-bold mt-2" href="#future-work">4. Multi-Bundle Extension</a>
                 </nav>
             </div>
 
@@ -321,12 +321,16 @@
                 </section>
 
                 <section id="three-d-optimization" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">2. 3D Thermodynamic Model</h2>
+                    <h2 class="h3 section-title">2. 3D Reduced Free-Energy Model</h2>
                     <p class="text-secondary mb-4">
-                        The documented equilibrium calculation minimizes adhesion, DNA Bundle bending, and
-                        membrane deformation energies for an <i>R</i><sub>0</sub> = 50 nm reference liposome.
-                        It is separate from the large-GUV discussion and does not simulate dynamic pore formation
-                        or membrane rupture.
+                        For the <i>R</i><sub>0</sub> = 50 nm reference condition, a constrained reduced
+                        free-energy model optimizes indentation depth <i>z</i><sub>indent</sub>, Bundle bend radius
+                        <i>R</i><sub>bend</sub>, and deformation-pocket width <i>w</i><sub>y</sub>. Its objective
+                        includes aggregate cholesterol adhesion, DNA Bundle bending, and an approximate membrane
+                        bending/tension penalty. A static parametric membrane indentation is constructed from the
+                        optimized quantities and exported as a rotatable GLB visualization. This is a qualitative
+                        deformation/local-curvature comparison, not a dynamic membrane simulation or a full Helfrich
+                        shape minimization; pore formation and rupture are outside the claims of this model.
                     </p>
                     <p class="text-secondary">
                         The stated objective is
@@ -337,8 +341,15 @@
                         The documented beam contribution is
                         <i>E</i><sub>DNA bend</sub> =
                         ½<i>B</i><sub>DNA</sub>(1/<i>R</i><sub>bend</sub>)<sup>2</sup><i>L</i><sub>Bundle</sub>.
-                        The model description says adhesion scales with the contact area; the exact implemented
-                        membrane and contact-area expressions are not included in the repository.
+                        Cholesterol adhesion is represented as an aggregate term: individual cholesterol
+                        positions and linkers are not explicitly resolved in 3D.
+                    </p>
+                    <p class="text-secondary mb-4">
+                        The GLB's local curvature is calculated from the parametric mesh after optimization, with
+                        <i>H</i> = |<i>H</i>| and display clipping to 0.015–0.075 nm<sup>−1</sup>; the color scale
+                        spans 0.018–0.065 nm<sup>−1</sup>. These colors show a qualitative local-curvature
+                        distribution. They are not the optimization target, an average-curvature result, or a
+                        threshold-exceedance/rupture measurement.
                     </p>
 
                     <div class="table-responsive mb-4">
@@ -380,96 +391,108 @@
                                     <td>Fixed model input</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><i>B</i><sub>DNA</sub>, Bundle radius</th>
-                                    <td>Rigidity levels not tabulated; existing deformation images are labeled
-                                        with radii 4 and 10</td>
-                                    <td>Rigidity units not recorded; radius in nm</td>
-                                    <td>Bundle bending resistance and cross-sectional size</td>
-                                    <td>The page describes both as explored but does not publish a full
-                                        3D parameter grid or run manifest</td>
-                                    <td>Explored dimensions; exact conditions unavailable</td>
+                                    <th scope="row"><i>r</i><sub>DNA</sub>, Bundle diameter</th>
+                                    <td>4; 8</td>
+                                    <td>nm; nm</td>
+                                    <td>Reference Bundle radius and corresponding diameter</td>
+                                    <td>3D reference implementation values</td>
+                                    <td>Fixed reference geometry</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i>γ</i><sub>m</sub></th>
-                                    <td>1.0 × 10<sup>−4</sup></td>
+                                    <td>0.1 (implementation-equivalent value)</td>
                                     <td>mN/m</td>
-                                    <td>Membrane fluctuation tension</td>
-                                    <td>Value stated on the Simulation page</td>
+                                    <td>Membrane tension parameter</td>
+                                    <td>3D reference implementation</td>
                                     <td>Fixed model input</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i>ε</i><sub>chol</sub></th>
                                     <td>4.5<i>k</i><sub>B</sub><i>T</i> per cholesterol</td>
                                     <td>Thermal-energy units</td>
-                                    <td>Cholesterol-anchor adhesion scale</td>
-                                    <td>Baumgart et al., <em>Nature</em> (2003), as cited on the Simulation
-                                        page</td>
-                                    <td>Fixed model input</td>
+                                    <td>Per-cholesterol scale in aggregate adhesion term</td>
+                                    <td>3D reference implementation; individual positions/linkers are not resolved</td>
+                                    <td>Fixed model parameter</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i>L</i><sub>Bundle</sub>,
                                         <i>N</i><sub>chol</sub></th>
-                                    <td>60; 22</td>
+                                    <td>150; 22</td>
                                     <td>nm; anchors</td>
-                                    <td>Bundle length and cholesterol count; theoretical adhesion total is
-                                        99<i>k</i><sub>B</sub><i>T</i></td>
-                                    <td>Values stated on the Simulation page</td>
-                                    <td>Fixed model configuration</td>
+                                    <td>Bundle length and cholesterol count per Bundle; aggregate adhesion scale
+                                        is 99<i>k</i><sub>B</sub><i>T</i></td>
+                                    <td>3D reference implementation values</td>
+                                    <td>Fixed reference configuration</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i>P</i><sub>L</sub></th>
+                                    <td>5</td>
+                                    <td>nm</td>
+                                    <td>Model length parameter</td>
+                                    <td>3D reference implementation</td>
+                                    <td>Fixed model input</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i>z</i><sub>indent</sub>,
                                         <i>R</i><sub>bend</sub>, <i>w</i><sub>y</sub></th>
-                                    <td>Values, initial guesses, and bounds not recorded</td>
-                                    <td>Not fully specified</td>
-                                    <td>Documented optimization variables</td>
-                                    <td>Simulation page names these variables but provides no source or run
-                                        record</td>
-                                    <td>Optimization variables; initialization and bounds unavailable</td>
+                                    <td>Bounds: 0.5–7.2; 35–250; 3.2–12. Initial: [4.0, 50.0, 6.0].
+                                        Current result: [7.2, 250, 12]</td>
+                                    <td>nm; nm; nm</td>
+                                    <td>Constrained optimization variables; each current result is at its upper
+                                        bound</td>
+                                    <td>Current R<sub>0</sub> = 50 nm reference calculation</td>
+                                    <td>Bounds, initial guess, and current optimized result</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Optimizer and stopping rule</th>
-                                    <td>L-BFGS-B is named; tolerances, stopping condition, and solution-selection
-                                        rule not recorded</td>
+                                    <td>L-BFGS-B</td>
                                     <td>—</td>
-                                    <td>Minimization of total free energy</td>
-                                    <td>Only the optimizer name and objective are stated in the repository</td>
-                                    <td>Procedure partially documented; details unavailable</td>
+                                    <td>Bounded minimization of reduced free energy</td>
+                                    <td>Current R<sub>0</sub> = 50 nm reference calculation</td>
+                                    <td>Optimizer; stopping tolerances not specified here</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Curvature proxy</th>
+                                    <th scope="row"><i>H</i><sub>crit</sub> (helix-count scaling only)</th>
                                     <td>0.067</td>
                                     <td>nm<sup>−1</sup></td>
-                                    <td>Selected curvature-exceedance comparison threshold</td>
-                                    <td>Value stated on the Simulation page; it is not a pore or rupture
-                                        criterion</td>
-                                    <td>Model interpretation proxy</td>
+                                    <td>Selected curvature-comparison level</td>
+                                    <td>Separate phenomenological helix-count scaling analysis, not a GLB output</td>
+                                    <td>Manually selected comparison level</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <h3 class="h4 fw-bold mb-3 section-subtitle">2.1 Optimization Procedure: Known and Unreported</h3>
+                    <h3 class="h4 fw-bold mb-3 section-subtitle">2.1 Optimization Procedure and Boundary-Limited Result</h3>
                     <ol class="text-secondary">
                         <li class="mb-2">The stated objective is the sum of cholesterol-anchor adhesion, DNA
-                            Bundle bending, and membrane bending/tension contributions.</li>
+                            Bundle bending, and an approximate membrane bending/tension penalty.</li>
                         <li class="mb-2">The stated optimization variables are indentation depth
                             <i>z</i><sub>indent</sub>, Bundle bend radius <i>R</i><sub>bend</sub>, and deformation
-                            width <i>w</i><sub>y</sub>.</li>
-                        <li class="mb-2">The Simulation page names SciPy L-BFGS-B as the optimizer. It does not
-                            report initial values, bounds, tolerances, stopping conditions, or how competing
-                            solutions were compared.</li>
-                        <li>The repository has no 3D calculation code or optimization logs. These missing details
-                            are not inferred here and must be recorded before the optimization can be independently
-                            reproduced.</li>
+                            pocket width <i>w</i><sub>y</sub>. L-BFGS-B starts from [4.0, 50.0, 6.0] with bounds
+                            [0.5, 35, 3.2] to [7.2, 250, 12] nm.</li>
+                        <li>The current result, [7.2 nm, 250 nm, 12 nm], is at the upper bound for all three
+                            variables.</li>
                     </ol>
+                    <p class="text-secondary">
+                        The current result is a minimum within the prescribed bounds. Because all optimized
+                        variables reach their upper bounds, it should be interpreted as a directional tendency of
+                        the present ansatz rather than as a uniquely determined equilibrium geometry.
+                    </p>
 
                     <div class="content-box p-3 p-md-4 mt-4">
-                        <h3 class="h5 fw-bold section-subtitle">Bundle-size sensitivity</h3>
+                        <h3 class="h5 fw-bold section-subtitle">Phenomenological Helix-Count Scaling Analysis</h3>
                         <p class="text-secondary">
-                            The number-of-helices curvature graphs are presented with the main 3D results on the
-                            <a href="simulation.html#three-d-crosslinking">Simulation page</a>. Their crossings
-                            describe a membrane-curvature proxy for the <i>R</i><sub>0</sub> = 50 nm reference
-                            condition, not a physical pore-formation or rupture threshold.
+                            The graphs on the <a href="simulation.html#three-d-crosslinking">Simulation page</a>
+                            are a separate phenomenological helix-count scaling analysis, not output of the 3D
+                            indentation optimization. For <i>R</i><sub>0</sub> = 50 nm and
+                            <i>L</i><sub>bundle</sub> = 60 nm, they illustrate how the assumed effective-rigidity
+                            scaling <i>B</i><sub>eff</sub> ∝ α<i>N</i><sup>2</sup> shifts the manually selected
+                            comparison level <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>: the crossings are
+                            approximately 6 helices for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1. Here α is a
+                            phenomenological effective-rigidity coefficient, not a measured cross-linking
+                            efficiency; these crossings are scaling comparisons, not evidence that pores form or
+                            membranes rupture.
                         </p>
                     </div>
 
@@ -483,9 +506,9 @@
                 <section id="supplementary-guv" class="fade-in-section mb-5 pt-4">
                     <h2 class="h3 section-title">3. Supplementary GUV Environment Analysis</h2>
                     <p class="text-secondary mb-4">
-                        This supplementary, exploratory section shows the existing interactive GUV-scale
-                        environment model for vesicles with radii of at least 300 nm. The display is a
-                        visualization only: this repository contains no GUV-specific free-energy optimization,
+                        This supplementary, exploratory section shows the existing static, rotatable GLB
+                        visualization of the GUV-scale environment for vesicles with radii of at least 300 nm.
+                        The display is visualization only: this repository contains no GUV-specific free-energy optimization,
                         curvature result data, convergence analysis, or pore/rupture prediction. It is a
                         separate size regime and is not interpreted as a direct continuation of the
                         <i>R</i><sub>0</sub> = 50 nm reference calculation.
@@ -494,7 +517,7 @@
                         <div class="col-md-9">
                             <model-viewer class="simulation-model-viewer"
                                 src="img/SIMULATION/GUV_environment_liposome_model.glb"
-                                alt="Interactive visualization of the GUV-scale liposome environment"
+                                alt="Rotatable static GLB visualization of the GUV-scale liposome environment"
                                 camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1"
                                 loading="lazy">
                             </model-viewer>
@@ -513,10 +536,14 @@
                 </section>
 
                 <section id="future-work" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">4. Future Work: Multi-Bundle Simulation</h2>
+                    <h2 class="h3 section-title">4. Multi-Bundle Extension and Limitations</h2>
                     <p class="text-secondary mb-0">
-                        Multi-bundle 2D event-probability and 3D curvature calculations are planned extensions.
-                        No multi-bundle model, result, or validation data are included in this repository.
+                        The 3D implementation can set the number of independent DNA Bundles with
+                        <code>SIM_NUM_BUNDLES</code>. In the current multi-Bundle extension, Bundles are arranged
+                        as an independent parallel array and their free-energy contributions are added
+                        independently. Bundle–Bundle interactions, membrane-mediated cooperativity, and
+                        overlap-dependent mechanics are not yet included. This extension is not direct evidence
+                        that multiple Bundles enhance membrane rupture.
                     </p>
                 </section>
             </div>

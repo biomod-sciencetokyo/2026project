@@ -83,7 +83,7 @@
                     <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Deformation Models</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
-                        <a class="nav-link" href="#three-d">1.2 3D Thermodynamic Simulation</a>
+                        <a class="nav-link" href="#three-d">1.2 3D Reduced Free-Energy Model</a>
                         <a class="nav-link" href="appendix.html#supplementary-guv">Supplementary GUV Analysis</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Reaction</a>
@@ -100,8 +100,9 @@
                     <p class="text-secondary mb-0">
                         This page presents two distinct mechanical models: a finite-time 2D coarse-grained
                         simulation that screens for a model-defined local pore-formation event, and a 3D
-                        equilibrium calculation that compares stable deformation and curvature. Neither model
-                        directly predicts complete membrane rupture or vesicle lysis. We also assess the
+                        constrained reduced free-energy optimization that generates a static deformation
+                        visualization. The 3D visualization is not a time-evolving simulation; neither model
+                        establishes complete membrane rupture or vesicle lysis. We also assess the
                         thermodynamic feasibility of the HCR design for building DNA Bundles.
                     </p>
                 </section>
@@ -639,18 +640,20 @@
                         </div>
                     </div>
 
-                    <!-- 1.2 3D Thermodynamic Simulation -->
+                    <!-- 1.2 3D Reduced Free-Energy Model -->
                     <div id="three-d" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4">1.2 3D Thermodynamic Simulation
+                        <h3 class="h4 fw-bold mb-4">1.2 3D Reduced Free-Energy Model
                         </h3>
                         <p class="text-secondary mb-4">
-                            The 3D model evaluates equilibrium membrane deformation by balancing membrane elasticity
-                            (Helfrich bending and membrane tension), DNA Bundle bending, and cholesterol-anchor
-                            adhesion. Its purpose is to identify mechanically favorable DNA Bundle–membrane
-                            configurations and associated curvature patterns; it does not directly predict pore
-                            formation or membrane rupture. The reference calculation uses
-                            <i>R</i><sub>0</sub> = 50 nm; the separate GUV-scale extension is described in the
-                            Technical Appendix. Energy terms and documented optimization details are in the
+                            For the <i>R</i><sub>0</sub> = 50 nm reference condition, a constrained reduced
+                            free-energy model optimizes indentation depth, Bundle bend radius, and deformation-pocket
+                            width using aggregate cholesterol adhesion, DNA Bundle bending, and an approximate
+                            membrane bending/tension penalty. A static parametric membrane indentation is then
+                            constructed from the optimized quantities and exported as a 3D visualization. It
+                            supports qualitative comparison of deformation and local curvature; it is not a dynamic
+                            membrane simulation or a full Helfrich shape minimization. Pore formation and rupture
+                            are outside the claims of this model. The separate GUV-scale extension is described in
+                            the Technical Appendix; optimization details are also available in the
                             <a href="appendix.html#three-d-optimization">Appendix</a>.
                         </p>
 
@@ -658,14 +661,14 @@
                         <div id="three-d-modeling" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Modeling Objectives &amp;
                                 Structural Scale</h4>
-                            <p class="text-secondary mb-4">For the standard 3D calculation with an initial
-                                liposome radius of <i>R</i><sub>0</sub> = 50 nm, the model finds the
-                                thermodynamically stable configuration by minimizing the total free energy
-                                contributed by membrane bending and tension, DNA bending, and
-                                cholesterol-anchor adhesion. The selected average curvature of
-                                0.067 nm<sup>-1</sup> is a model-defined curvature-exceedance proxy for
-                                comparing strongly deformed states under this 50 nm reference condition;
-                                it does not determine whether the membrane will rupture.</p>
+                            <p class="text-secondary mb-4">
+                                The GLB is a rotatable static visualization, not a time-evolving model. Its membrane
+                                geometry is constructed after optimization; local curvature is then calculated on
+                                that parametric mesh as <i>H</i> = |<i>H</i>| and clipped to 0.015–0.075 nm<sup>−1</sup>
+                                for display, with a color scale of 0.018–0.065 nm<sup>−1</sup>. The colors therefore
+                                show a qualitative local-curvature distribution, not an optimized curvature,
+                                threshold exceedance, or mean-curvature result.
+                            </p>
                             <!-- Real system vs. 3D model -->
                             <div class="sim-env mb-4" data-sim-env>
                                 <div class="sim-env-panels">
@@ -729,18 +732,19 @@
                             </div>
                         </div>
 
-                        <!-- 3D Dynamic Model -->
+                        <!-- Static 3D visualization -->
                         <div id="three-d-interactive" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">3D Dynamic Model for EV
-                                Environment</h4>
-                            <p class="text-secondary mb-4">Explore the liposome model by dragging to
-                                rotate and using
-                                the viewer controls to zoom.</p>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Interactive 3D Deformation Visualization</h4>
+                            <p class="text-secondary mb-4">
+                                Rotate the static GLB visualization by dragging and zoom with the viewer controls;
+                                it does not show time evolution.
+                            </p>
                             <div class="row g-3 mb-4 align-items-stretch">
                                 <div class="col-md-9">
                                     <model-viewer class="simulation-model-viewer"
                                         src="img/SIMULATION/EV_environmentliposome_3Dmodel.glb"
-                                        alt="Interactive 3D liposome model for the EV environment" camera-controls
+                                        alt="Rotatable static 3D deformation visualization for the R0 = 50 nm reference liposome"
+                                        camera-controls
                                         touch-action="pan-y" shadow-intensity="1" exposure="1" loading="lazy">
                                     </model-viewer>
                                 </div>
@@ -780,63 +784,60 @@
                                 </div>
                             </div>
                             <p class="text-secondary mb-3">
-                                By using the L-BFGS-B optimization algorithm to solve for the
-                                equilibrium state where
-                                the membrane's elastic energy (based on Helfrich theory) competes with
-                                the DNA's
-                                bending energy (based on Euler-Bernoulli beam theory), we constructed 3D
-                                curvature
-                                heatmaps for the <i>R</i><sub>0</sub> = 50 nm reference liposome.
-                                Within this calculation, the results predict that when a highly rigid,
-                                straight DNA Bundle adheres
-                                to a liposome, the membrane is sharply folded at the bundle's edges,
-                                indicating concentrated curvature near the bundle edges.
+                                In the <i>R</i><sub>0</sub> = 50 nm reference model, the constrained L-BFGS-B
+                                optimization varies indentation depth, Bundle bend radius, and deformation-pocket
+                                width. The static membrane indentation is constructed from those optimized values;
+                                its local curvature is computed from the resulting parametric mesh for visualization.
+                                The reference uses <i>L</i><sub>bundle</sub> = 150 nm and
+                                <i>r</i><sub>DNA</sub> = 4 nm (8 nm diameter).
                             </p>
                             <p class="text-secondary mb-0">
-                                For this 50 nm reference liposome, parameter exploration suggests that
-                                both bending rigidity and DNA Bundle radius (thickness) affect the modeled
-                                deformation. Higher rigidity can intensify local deformation, while a
-                                thicker Bundle may spread loading over a wider contact area and reduce
-                                local curvature. These calculations provide a testable hypothesis about
-                                how Bundle size affects curvature, not a determination of membrane rupture.
+                                The radius-labeled views above are geometric comparisons; the 10 nm-radius view is
+                                not the <i>R</i><sub>0</sub> = 50 nm reference input. The reference model represents
+                                the 22 cholesterol anchors per Bundle through an aggregate adhesion term rather than
+                                explicitly resolving individual cholesterol positions or linkers in 3D.
                             </p>
                         </div>
 
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Size and Membrane Curvature</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological Helix-Count Scaling Analysis</h4>
                             <p class="text-secondary mb-3">
                                 This analysis connects DNA Bundle design to membrane deformation by examining how
                                 the number of helices (<i>N</i>) changes DNA Bundle radius and effective DNA Bundle
                                 bending rigidity (<i>B</i><sub>DNA</sub>). It provides a design-level bridge between
-                                HCR-mediated Bundle assembly and the 3D membrane-deformation calculation.
+                                HCR-mediated Bundle assembly and membrane-deformation comparison, but is separate
+                                from the 3D indentation optimization.
                             </p>
                             <p class="text-secondary mb-3">
-                                For the <i>R</i><sub>0</sub> = 50 nm reference liposome, the model's curvature
-                                proxy reaches its selected comparison level near six helices, matching the designed
-                                6-helix Bundle. Under reduced effective rigidity assumptions, the plotted crossing
-                                shifts to approximately 10–13 helices. These are model-based deformation
-                                comparisons, not predictions of pore formation or membrane rupture.
+                                The plot uses <i>R</i><sub>0</sub> = 50 nm, <i>L</i><sub>bundle</sub> = 60 nm, the
+                                assumed scaling <i>B</i><sub>eff</sub> ∝ α<i>N</i><sup>2</sup>, and the manually
+                                selected curvature-comparison level <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>.
+                                The crossing is near 6 helices for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1;
+                                α is a phenomenological effective-rigidity scaling coefficient, not a measured
+                                cross-linking efficiency. These crossings are scaling comparisons, not evidence
+                                that pores form or membranes rupture.
                             </p>
                             <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph1.png"
-                                    alt="Modeled maximum membrane curvature by DNA Bundle helix count under the idealized rigidity assumption"
+                                    alt="Phenomenological helix-count scaling of a selected membrane-curvature comparison level under idealized effective rigidity"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    Membrane-curvature proxy versus number of DNA helices for the idealized
-                                    effective Bundle rigidity assumption. The selected proxy level is reached near
-                                    six helices in the <i>R</i><sub>0</sub> = 50 nm reference calculation.
-                                </figcaption>
+                                        Phenomenological Helix-Count Scaling Analysis: membrane-curvature comparison
+                                        versus DNA helix number under the idealized rigidity scaling. This is separate
+                                        from the 3D indentation optimization and crosses the selected comparison level
+                                        near six helices.
+                                    </figcaption>
                             </figure>
                             <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph2.png"
-                                    alt="Modeled membrane curvature by DNA Bundle helix count under reduced effective rigidity assumptions"
+                                    alt="Phenomenological helix-count scaling sensitivity to reduced effective DNA Bundle rigidity"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    Sensitivity of the membrane-curvature proxy to reduced effective DNA Bundle
-                                    bending rigidity. The reported crossing is approximately 10–13 helices;
-                                    this is not a physical pore-formation or rupture threshold.
+                                        Sensitivity of the phenomenological helix-count scaling to reduced effective
+                                        rigidity. For α = 0.5 and 0.1, the selected comparison level is crossed near
+                                        8.5 and 19 helices, respectively; α is not a measured cross-linking efficiency.
                                 </figcaption>
                             </figure>
                             <a class="btn btn-sm learn-more-btn"
