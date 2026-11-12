@@ -1576,8 +1576,7 @@ section[id],
 /* Third-level blocks (inside 1.1 / 1.2, incl. GUV Environment) start with a divider; x.y sections do not */
 .simulation-page #two-d-md>.simulation-subblock,
 .simulation-page #three-d>.simulation-subblock,
-.simulation-page #guv-env,
-.experiment-page .exp-subsection>.simulation-subblock {
+.simulation-page #guv-env {
     position: relative;
     margin-top: 1rem;
     padding-top: 2.25rem;
@@ -1590,8 +1589,7 @@ section[id],
 
 .simulation-page #two-d-md>.simulation-subblock::before,
 .simulation-page #three-d>.simulation-subblock::before,
-.simulation-page #guv-env::before,
-.experiment-page .exp-subsection>.simulation-subblock::before {
+.simulation-page #guv-env::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -1601,8 +1599,7 @@ section[id],
     background-color: var(--accent-gold);
 }
 
-.simulation-page main h4.section-subtitle,
-.experiment-page main h4.section-subtitle {
+.simulation-page main h4.section-subtitle {
     font-size: 1.45rem;
     margin-bottom: 1.1rem !important;
 }
@@ -1694,8 +1691,7 @@ section[id],
         font-size: 1.05rem !important;
     }
 
-    .simulation-page main h4.section-subtitle,
-    .experiment-page main h4.section-subtitle {
+    .simulation-page main h4.section-subtitle {
         font-size: 1.25rem;
     }
 }
@@ -2347,19 +2343,144 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
     color: #d7f3f8;
 }
 
-.exp-seq-table .exp-seq {
-    min-width: 22rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.02em;
-    word-spacing: 0.25em;
-}
-
-.exp-seq-table .exp-seq-mod,
 .exp-seq-table .exp-seq-note {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 0.78rem;
     color: var(--text-muted);
-    letter-spacing: 0;
-    word-spacing: 0;
     font-weight: 400;
+}
+
+.experiment-page .exp-seq-link {
+    text-indent: 0;
+}
+
+/* Side-by-side images: same box size, whole image visible */
+.experiment-page img.exp-fit {
+    object-fit: contain;
+}
+
+.experiment-page img.exp-fit-light {
+    background-color: #fff;
+}
+
+.experiment-page img.exp-fit-dark {
+    background-color: #000;
+}
+
+.experiment-page img.exp-fit-4x3 {
+    aspect-ratio: 4 / 3;
+}
+
+.experiment-page img.exp-fit-1x1 {
+    aspect-ratio: 1 / 1;
+}
+
+.experiment-page img.exp-fit-hairpin {
+    aspect-ratio: 9 / 8;
+}
+
+/* ===== Experiment page: readability ===== */
+.experiment-page main section > h2.section-title {
+    margin-bottom: 1.5rem;
+}
+
+/* Numbered subsections: clear start, one divider each */
+.experiment-page .exp-subsection {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.experiment-page section > h2 + .exp-subsection {
+    margin-top: 0;
+    padding-top: 0.5rem;
+    border-top: none;
+}
+
+/* Overview / Results / Discussion: compact labels instead of separators */
+.exp-block {
+    margin-top: 2rem;
+}
+
+.exp-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+}
+
+.exp-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: rgba(216, 185, 111, 0.25);
+}
+
+/* Comfortable reading measure and contrast for prose */
+.experiment-page .exp-subsection p.text-secondary,
+.experiment-page .exp-subsection ul.text-secondary {
+    max-width: 760px;
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: #d0dae6 !important;
+}
+
+.experiment-page .exp-subsection p.small {
+    font-size: 0.88rem;
+}
+
+/* Figures */
+.experiment-page figure figcaption {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted) !important;
+}
+
+.experiment-page figure figcaption strong {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.experiment-page .exp-subsection figure,
+.experiment-page .exp-subsection .row {
+    margin-top: 1.25rem;
+}
+
+/* Placeholders: compact, clearly "to do" */
+.exp-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    max-width: 760px;
+    min-height: 160px;
+    padding: 20px;
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    background-color: rgba(20, 41, 69, 0.35);
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.exp-placeholder span {
+    font-size: 0.85rem;
+    color: #d7f3f8;
+}
+
+.exp-placeholder-square {
+    max-width: none;
+    min-height: 140px;
+}
+
+@media (max-width: 767.98px) {
+    .experiment-page .exp-subsection {
+        margin-top: 2rem;
+        padding-top: 1.75rem;
+    }
 }
