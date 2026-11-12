@@ -1658,6 +1658,12 @@ section[id],
     margin-bottom: 1.1rem;
 }
 
+.math-display {
+    margin: 1rem 0;
+    overflow-x: auto;
+    text-align: center;
+}
+
 /* Equations stand apart from the prose */
 .simulation-page .custom-accordion-body p[role="math"] {
     margin: 1.25rem 0 !important;

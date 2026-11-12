@@ -7,8 +7,20 @@
     <title>APPENDIX | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261112-3">
+    <link rel="stylesheet" href="style.css?v=20261112-4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -30,26 +42,36 @@
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
-                    <a class="nav-link fw-bold" href="#two-d-method">1. 2D Method</a>
+                    <a class="nav-link fw-bold" href="#two-d-method">1. 2D CG Model: Mathematical Formulation</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#parameter-reference">Parameter Reference</a>
-                        <a class="nav-link" href="#one-run">One-run Procedure</a>
-                        <a class="nav-link" href="#stochastic-record">Reproducibility</a>
-                        <a class="nav-link" href="#numerical-checks">Numerical Checks</a>
+                        <a class="nav-link" href="#geometry-state">1.1 Geometry and state variables</a>
+                        <a class="nav-link" href="#membrane-force-model">1.2 Membrane-force model</a>
+                        <a class="nav-link" href="#linker-capture-repulsion">1.3 Linker, capture, and repulsion</a>
+                        <a class="nav-link" href="#numerical-update">1.4 Numerical update</a>
+                        <a class="nav-link" href="#local-event">1.5 Local pore-formation event</a>
+                        <a class="nav-link" href="#parameter-reference">1.6 Parameter reference and provenance</a>
+                        <a class="nav-link" href="#numerical-procedure">1.7 Procedure, reproducibility, and limits</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#three-d-optimization">2. 3D Reduced Free-Energy Model</a>
-                    <a class="nav-link fw-bold mt-2" href="#future-work">3. Multi-Bundle Extension</a>
-                    <a class="nav-link fw-bold mt-2" href="#protocols">4. Wet Lab: Experimental Protocols</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#wet-exp-a">4.1 Experiment A</a>
-                        <a class="nav-link" href="#wet-exp-b">4.2 Experiment B</a>
+                        <a class="nav-link" href="#three-d-functional">2.1 Variables and free energy</a>
+                        <a class="nav-link" href="#three-d-minimization">2.2 Minimization and shape</a>
+                        <a class="nav-link" href="#three-d-curvature">2.3 Curvature visualization</a>
+                        <a class="nav-link" href="#three-d-helix-screen">2.4 Helix-count screening and α</a>
+                    </div>
+                    <a class="nav-link fw-bold mt-2" href="#source-code-inventory">3. Source Code Inventory</a>
+                    <a class="nav-link fw-bold mt-2" href="#future-work">4. Multi-Bundle Extension</a>
+                    <a class="nav-link fw-bold mt-2" href="#protocols">5. Wet Lab: Experimental Protocols</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#wet-exp-a">5.1 Experiment A</a>
+                        <a class="nav-link" href="#wet-exp-b">5.2 Experiment B</a>
                     </div>
                 </nav>
             </div>
 
             <div class="col-lg-10">
                 <section id="two-d-method" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">1. 2D MD-CG Method and Provenance</h2>
+                    <h2 class="h3 section-title">1. 2D CG Model: Mathematical Formulation</h2>
                     <p class="text-secondary mb-4">
                         The repository now includes two 2D source versions and six heatmap CSV datasets. Their
                         presence enables source and data inspection, but no complete run manifest maps every
@@ -58,8 +80,180 @@
                         rather than inferred.
                     </p>
 
+                    <div id="geometry-state" class="simulation-subblock mb-4">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.1 Geometry and state variables</h3>
+                        <p class="text-secondary mb-2">
+                            The membrane is represented by bead positions \(\mathbf r_i\) on a closed periodic ring.
+                            The DNA Bundle state comprises translation, rotation, and five piecewise-constant
+                            curvatures:
+                        </p>
+                        <div class="math-display">\[
+                            \mathbf q =
+                            (x_{\mathrm{DNA}},y_{\mathrm{DNA}},\theta,
+                            \kappa_1,\kappa_2,\kappa_3,\kappa_4,\kappa_5)
+                        \]</div>
+                        <p class="text-secondary mb-2">The ring discretization is defined by:</p>
+                        <div class="math-display">\[
+                            N_{\mathrm{mem}} =
+                            \operatorname{int}\!\left(\frac{240R}{150}\right)
+                        \]</div>
+                        <div class="math-display">\[
+                            r_{0,\mathrm{mem}} =
+                            2R\sin\!\left(\frac{\pi}{N_{\mathrm{mem}}}\right)
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            The 2D DNA Bundle contains 12 chains and is represented by five connected
+                            constant-curvature arcs, with length \(L_{\mathrm{Bundle}}=3R\). Its effective
+                            bending rigidity is mapped from an internal parameter by:
+                        </p>
+                        <div class="math-display">\[
+                            L_{\mathrm{p,eff}} =
+                            2N_{\mathrm{chains}}+
+                            120\left(N_{\mathrm{chains}}\alpha\right)^3
+                        \]</div>
+                        <div class="math-display">\[
+                            B_{\mathrm{DNA}}=L_{\mathrm{p,eff}}k_{\mathrm B}T
+                        \]</div>
+                        <p class="text-secondary mb-0">
+                            The α used in the 2D model is an internal phenomenological rigidity-mapping parameter.
+                            It is not numerically equivalent to α in the separate 3D helix-count screening analysis.
+                        </p>
+                    </div>
+
+                    <div id="membrane-force-model" class="simulation-subblock mb-4">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.2 Membrane-force model</h3>
+                        <p class="text-secondary mb-2">For an intact spring, let \(r_i=\lVert\mathbf r_{i+1}-\mathbf r_i\rVert\). Its local tension and force are:</p>
+                        <div class="math-display">\[
+                            T_i=k_{\mathrm{mem}}\left(r_i-r_{0,\mathrm{mem}}\right)
+                        \]</div>
+                        <div class="math-display">\[
+                            \mathbf F_i^{\mathrm{spring}}=
+                            T_i\frac{\mathbf r_{i+1}-\mathbf r_i}{r_i}
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            Contour smoothing uses the discrete second difference below to construct a
+                            discrete contour-smoothing force. This implementation-level force is not a complete
+                            continuous Helfrich energy.
+                        </p>
+                        <div class="math-display">\[
+                            \mathbf C_i=
+                            \mathbf r_{i-1}-2\mathbf r_i+\mathbf r_{i+1}
+                        \]</div>
+                        <p class="text-secondary mb-2">The enclosed polygon area and relative area strain are:</p>
+                        <div class="math-display">\[
+                            A=\frac12\left|
+                            \sum_i(x_i y_{i+1}-x_{i+1}y_i)
+                            \right|
+                        \]</div>
+                        <div class="math-display">\[
+                            \epsilon_A=\frac{A-A_0}{A_0}
+                        \]</div>
+                        <p class="text-secondary mb-2">The area-restoring force is applied along the membrane normal \(\mathbf n_i\):</p>
+                        <div class="math-display">\[
+                            \mathbf F_i^{\mathrm{area}}=
+                            -k_{\mathrm{area}}\epsilon_A r_{0,\mathrm{mem}}\mathbf n_i
+                        \]</div>
+                    </div>
+
+                    <div id="linker-capture-repulsion" class="simulation-subblock mb-4">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.3 Linker, cholesterol capture, and steric repulsion</h3>
+                        <p class="text-secondary mb-2">
+                            For linker distance \(d\), rest length \(l_0\), and extension
+                            \(\Delta=d-l_0\), the current piecewise force magnitude is:
+                        </p>
+                        <div class="math-display">\[
+                            f_{\mathrm{linker}}(\Delta)=
+                            \begin{cases}
+                            3\Delta, & \Delta<0,\\
+                            10\Delta, & 0\leq\Delta<6,\\
+                            60+18(\Delta-6), & \Delta\geq6
+                            \end{cases}
+                        \]</div>
+                        <div class="math-display">\[
+                            \mathbf F_{\mathrm{linker}}=
+                            -f_{\mathrm{linker}}(\Delta)
+                            \frac{\mathbf r_{\mathrm{chol}}-\mathbf r_{\mathrm{anchor}}}{d}
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            This is a piecewise-linear strain-stiffening force law approximating compression,
+                            ordinary extension, and strong extension; it is not a WLC or FENE model.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            Cholesterol–membrane capture acts when the nearest membrane point is within
+                            \(r_{\mathrm{mc}}<24+l_0\). Its normal force is distributed to the nearest bead and
+                            two beads on either side with weights \((0.10,\,0.20,\,0.40,\,0.20,\,0.10)\).
+                        </p>
+                        <p class="text-secondary mb-2">
+                            DNA–membrane repulsion is a normal harmonic repulsion within the cutoff
+                            \(r_{\mathrm{cut}}=r_{\mathrm{DNA}}+1\) nm, where \(d\) is the nearest
+                            DNA-surface-to-membrane distance and \(\hat{\mathbf d}\) is its unit direction:
+                        </p>
+                        <div class="math-display">\[
+                            \mathbf F_{\mathrm{rep}}=
+                            k_{\mathrm{rep}}(r_{\mathrm{cut}}-d)_+
+                            \left[(\hat{\mathbf d}\cdot\mathbf n)\mathbf n\right]
+                        \]</div>
+                    </div>
+
+                    <div id="numerical-update" class="simulation-subblock mb-4">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.4 Numerical update</h3>
+                        <p class="text-secondary mb-2">Membrane beads use an overdamped Brownian update:</p>
+                        <div class="math-display">\[
+                            \mathbf r_i^{n+1}=
+                            \mathbf r_i^n+
+                            \frac{\Delta t}{\gamma_{\mathrm{mem}}}\mathbf F_i^n+
+                            \sqrt{\frac{2k_{\mathrm B}T\Delta t}{\gamma_{\mathrm{mem}}}}
+                            \boldsymbol{\xi}_i^n
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            The DNA Bundle is not advanced by explicit Euler. Its generalized-coordinate
+                            increment is obtained from a semi-implicit linear system:
+                        </p>
+                        <div class="math-display">\[
+                            \left(\frac{\boldsymbol{\Gamma}}{\Delta t}+\mathbf H\right)
+                            \Delta\mathbf q=\mathbf f_q
+                        \]</div>
+                        <div class="math-display">\[
+                            \mathbf q^{n+1}=\mathbf q^n+\Delta\mathbf q
+                        \]</div>
+                        <p class="text-secondary mb-0">
+                            In the current 2D sweep source, stochastic noise enters the membrane and cholesterol
+                            updates, while no direct Brownian-noise term is explicitly added to the DNA Bundle's
+                            generalized coordinates.
+                        </p>
+                    </div>
+
+                    <div id="local-event" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.5 Model-defined local pore-formation event</h3>
+                        <p class="text-secondary mb-2">The local event indicator is evaluated from intact membrane springs:</p>
+                        <div class="math-display">\[
+                            \mathrm{event}=
+                            \mathbb{1}\!\left[\max_iT_i>T_{\mathrm{crit}}\right]
+                        \]</div>
+                        <div class="math-display">\[
+                            T_{\mathrm{crit}}=150
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            For \(n_{\mathrm{trial}}\) trajectories, the reported event fraction is:
+                        </p>
+                        <div class="math-display">\[
+                            P_{\mathrm{event}}=
+                            \frac{1}{n_{\mathrm{trial}}}
+                            \sum_{j=1}^{n_{\mathrm{trial}}}\mathrm{event}_j
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            This is a model-defined local pore-formation event, not a direct prediction of physical
+                            membrane rupture, lysis, or complete pore growth.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            Changing \(R\) also changes membrane-bead count, Bundle length, anchor count, and the
+                            number of DNA–membrane repulsion evaluation points. The current 2D sweep is therefore
+                            not a comparison in which radius alone is varied independently.
+                        </p>
+                    </div>
+
                     <div id="parameter-reference" class="simulation-subblock mb-5">
-                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.1 Complete Parameter Reference</h3>
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.6 Parameter reference and provenance</h3>
                         <p class="text-secondary mb-3">
                             “Complete” here means all parameters and settings documented in the current website
                             text. It does not certify completeness across the supplied source versions or their
@@ -265,8 +459,11 @@
                         </div>
                     </div>
 
-                    <div id="one-run" class="simulation-subblock mb-5">
-                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.2 One-run Numerical Procedure</h3>
+                    <h3 id="numerical-procedure" class="h4 fw-bold mb-3 section-subtitle">
+                        1.7 Numerical procedure, reproducibility, and limits
+                    </h3>
+                    <div id="one-run" class="simulation-subblock mb-4">
+                        <h4 class="h5 fw-bold mb-3 section-subtitle">One-run procedure</h4>
                         <ol class="text-secondary">
                             <li class="mb-2">Initialize a periodic membrane ring and one 12-chain DNA Bundle. The
                                 documented Bundle uses five connected constant-curvature arcs and length
@@ -288,13 +485,11 @@
                     </div>
 
                     <div id="stochastic-record" class="simulation-subblock mb-5">
-                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.3 Stochastic Reproducibility</h3>
+                        <h4 class="h5 fw-bold mb-3 section-subtitle">Reproducibility</h4>
                         <p class="text-secondary">
-                            The repository includes
-                            <a href="code/freelipo_tyouryoku14_chat6_tansaku_2axis_auto2.py">the 2D heatmap
-                                generator</a>,
-                            <a href="code/freelipo_tyouryoku14_chat6_kanseiban.py">another 2D source version</a>,
-                            and raw CSVs for <i>R</i> = 50, 100, 150, 200, 250, and 300 nm. Each CSV contains
+                            The source scripts are listed separately in the
+                            <a href="#source-code-inventory">Source Code Inventory</a>. The repository also
+                            includes raw CSVs for <i>R</i> = 50, 100, 150, 200, 250, and 300 nm. Each CSV contains
                             3,200 rows: 8 bending-rigidity values × 8 linker lengths × 50 trials. The files record
                             `Alpha`, `B_dna(pN.nm^2)`, `Linker_Length_nm`, `Trial`, `Rupture_Success`, and
                             `Rupture_Frame`; the legacy `Rupture_*` column names denote the model-defined local
@@ -324,7 +519,7 @@
                     </div>
 
                     <div id="numerical-checks" class="simulation-subblock mb-0">
-                        <h3 class="h4 fw-bold mb-3 section-subtitle">1.4 Numerical Checks and Limits</h3>
+                        <h4 class="h5 fw-bold mb-3 section-subtitle">Numerical checks and limits</h4>
                         <p class="text-secondary mb-3">
                             The documented membrane discretization gives an initial spacing of approximately
                             3.927 nm at <i>R</i> = 150 and 200 nm. This is a geometric property of the stated
@@ -345,44 +540,72 @@
 
                 <section id="three-d-optimization" class="fade-in-section mb-5 pt-4">
                     <h2 class="h3 section-title">2. 3D Reduced Free-Energy Model</h2>
+                    <div id="three-d-functional" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">2.1 Model variables and free-energy functional</h3>
                     <p class="text-secondary mb-4">
-                        For the <i>R</i><sub>0</sub> = 50 nm reference condition, a constrained reduced
-                        free-energy model optimizes indentation depth <i>z</i><sub>indent</sub>, Bundle bend radius
-                        <i>R</i><sub>bend</sub>, and deformation-pocket width <i>w</i><sub>y</sub>. Its objective
-                        includes aggregate cholesterol adhesion, DNA Bundle bending, and an approximate membrane
-                        bending/tension penalty. A static parametric membrane indentation is constructed from the
-                        optimized quantities and exported as a rotatable GLB visualization. This is a qualitative
-                        deformation/local-curvature comparison, not a dynamic membrane simulation or a full Helfrich
-                        shape minimization; pore formation and rupture are outside the claims of this model.
+                        For the \(R_0=50\) nm reference condition, the optimization variables are indentation
+                        depth \(z_{\mathrm{indent}}\), Bundle bend radius \(R_{\mathrm{bend}}\), and deformation
+                        pocket width \(w_y\). The reduced free energy combines aggregate cholesterol adhesion,
+                        DNA Bundle bending, membrane bending, and membrane tension.
                     </p>
-                    <p class="text-secondary mb-4">
-                        The supplied <a href="code/3dliposome_final2.py">3D source snapshot</a> is not confirmed as
-                        the version used for the current page visualization and differs from its stated reference
-                        dimensions: it sets <i>L</i><sub>bundle</sub> = 100 nm rather than 150 nm. It sets
-                        <i>r</i><sub>DNA</sub> = 4 nm in the geometry (an 8 nm diameter), while a source comment
-                        labels the diameter inconsistently as 16 nm. These source-level discrepancies are flagged,
-                        not used to silently replace the documented page values.
+                    <p class="text-secondary mb-2">The contact geometry is defined by:</p>
+                    <div class="math-display">\[
+                        \theta_{\mathrm{contact}}=
+                        \cos^{-1}\!\left(1-\frac{z_{\mathrm{indent}}}{r_{\mathrm{DNA}}}\right)
+                    \]</div>
+                    <div class="math-display">\[
+                        A_{\mathrm{contact}}=
+                        N_{\mathrm{Bundle}}L_{\mathrm{Bundle}}
+                        \left(2r_{\mathrm{DNA}}\theta_{\mathrm{contact}}\right)
+                    \]</div>
+                    <p class="text-secondary mb-2">
+                        Let \(E_{\mathrm{adh,Bundle}}\) denote the positive aggregate adhesion scale per Bundle.
+                        The adhesion contribution to free energy is:
                     </p>
-                    <p class="text-secondary">
-                        The stated objective is
-                        <i>F</i><sub>total</sub> =
-                        <i>E</i><sub>adhesion</sub> +
-                        <i>E</i><sub>DNA bend</sub> +
-                        <i>E</i><sub>membrane</sub>.
-                        The documented beam contribution is
-                        <i>E</i><sub>DNA bend</sub> =
-                        ½<i>B</i><sub>DNA</sub>(1/<i>R</i><sub>bend</sub>)<sup>2</sup><i>L</i><sub>Bundle</sub>.
-                        Cholesterol adhesion is represented as an aggregate term: individual cholesterol
-                        positions and linkers are not explicitly resolved in 3D.
-                    </p>
-                    <p class="text-secondary mb-4">
-                        The GLB's local curvature is calculated from the parametric mesh after optimization, with
-                        <i>H</i> = |<i>H</i>| and display clipping to 0.015–0.075 nm<sup>−1</sup>; the color scale
-                        spans 0.018–0.065 nm<sup>−1</sup>. These colors show a qualitative local-curvature
-                        distribution. They are not the optimization target, an average-curvature result, or a
-                        threshold-exceedance/rupture measurement.
+                    <div class="math-display">\[
+                        E_{\mathrm{adhesion}}=
+                        -\frac{E_{\mathrm{adh,Bundle}}}
+                        {L_{\mathrm{Bundle}}r_{\mathrm{DNA}}}
+                        A_{\mathrm{contact}}
+                    \]</div>
+                    <div class="math-display">\[
+                        E_{\mathrm{DNA,bend}}=
+                        N_{\mathrm{Bundle}}\frac12B_{\mathrm{DNA}}
+                        \left(\frac{1}{R_{\mathrm{bend}}}\right)^2
+                        L_{\mathrm{Bundle}}
+                    \]</div>
+                    <div class="math-display">\[
+                        \lambda_{\mathrm m}=
+                        \sqrt{\frac{\kappa_{\mathrm m}}{\gamma_{\mathrm m}}}
+                    \]</div>
+                    <div class="math-display">\[
+                        E_{\mathrm{membrane,bend}}=
+                        \frac12\kappa_{\mathrm m}
+                        \left(\frac{z_{\mathrm{indent}}}{w_y^2}\right)^2
+                        A_{\mathrm{contact}}
+                    \]</div>
+                    <div class="math-display">\[
+                        E_{\mathrm{membrane,tension}}=
+                        \frac12\gamma_{\mathrm m}
+                        \left(\frac{z_{\mathrm{indent}}}{w_y}\right)^2
+                        A_{\mathrm{contact}}
+                        \left(\frac{\lambda_{\mathrm m}}{w_y}\right)
+                    \]</div>
+                    <div class="math-display">\[
+                        F_{\mathrm{total}}=
+                        E_{\mathrm{adhesion}}+
+                        E_{\mathrm{DNA,bend}}+
+                        E_{\mathrm{membrane,bend}}+
+                        E_{\mathrm{membrane,tension}}
+                    \]</div>
+                    <p class="text-secondary mb-0">
+                        Cholesterol positions and linker conformations are not individually resolved in 3D;
+                        adhesion enters as an aggregate term. The supplied source snapshots and their parameter
+                        differences from the page reference are recorded in the
+                        <a href="#source-code-inventory">Source Code Inventory</a>.
                     </p>
 
+                    <h4 class="h5 fw-bold section-subtitle">Reference settings and provenance</h4>
                     <div class="table-responsive mb-4">
                         <table class="table table-dark table-bordered table-sm align-middle">
                             <thead>
@@ -495,43 +718,149 @@
                         </table>
                     </div>
 
-                    <h3 class="h4 fw-bold mb-3 section-subtitle">2.1 Optimization Procedure and Boundary-Limited Result</h3>
-                    <ol class="text-secondary">
-                        <li class="mb-2">The stated objective is the sum of cholesterol-anchor adhesion, DNA
-                            Bundle bending, and an approximate membrane bending/tension penalty.</li>
-                        <li class="mb-2">The stated optimization variables are indentation depth
-                            <i>z</i><sub>indent</sub>, Bundle bend radius <i>R</i><sub>bend</sub>, and deformation
-                            pocket width <i>w</i><sub>y</sub>. L-BFGS-B starts from [4.0, 50.0, 6.0] with bounds
-                            [0.5, 35, 3.2] to [7.2, 250, 12] nm.</li>
-                        <li>The current result, [7.2 nm, 250 nm, 12 nm], is at the upper bound for all three
-                            variables.</li>
-                    </ol>
-                    <p class="text-secondary">
-                        The current result is a minimum within the prescribed bounds. Because all optimized
-                        variables reach their upper bounds, it should be interpreted as a directional tendency of
-                        the present ansatz rather than as a uniquely determined equilibrium geometry.
-                    </p>
+                    </div>
 
-                    <div class="content-box p-3 p-md-4 mt-4">
-                        <h3 class="h5 fw-bold section-subtitle">Phenomenological Helix-Count Scaling Analysis</h3>
-                        <p class="text-secondary">
-                            The graphs on the <a href="simulation.html#three-d-crosslinking">Simulation page</a>
-                            are a separate phenomenological helix-count scaling analysis, not output of the 3D
-                            indentation optimization. For <i>R</i><sub>0</sub> = 50 nm and
-                            <i>L</i><sub>bundle</sub> = 60 nm, they illustrate how the assumed effective-rigidity
-                            scaling <i>B</i><sub>eff</sub> ∝ α<i>N</i><sup>2</sup> shifts the manually selected
-                            comparison level <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>: the crossings are
-                            approximately 6 helices for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1. Here α is a
-                            phenomenological effective-rigidity coefficient, not a measured cross-linking
-                            efficiency; these crossings are scaling comparisons, not evidence that pores form or
-                            membranes rupture.
+                    <div id="three-d-minimization" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">2.2 Constrained minimization and static shape construction</h3>
+                        <p class="text-secondary mb-2">
+                            The three geometric variables are minimized using bounded L-BFGS-B:
+                        </p>
+                        <div class="math-display">\[
+                            \underset{
+                            z_{\mathrm{indent}},\,R_{\mathrm{bend}},\,w_y
+                            }{\operatorname{minimize}}
+                            \quad \frac{F_{\mathrm{total}}}{k_{\mathrm B}T}
+                        \]</div>
+                        <p class="text-secondary mb-2">
+                            The initial guess is \([4.0,\,50.0,\,6.0]\) nm, with bounds
+                            \(z_{\mathrm{indent}}\in[0.5,7.2]\) nm,
+                            \(R_{\mathrm{bend}}\in[35,250]\) nm, and \(w_y\in[3.2,12]\) nm.
+                            The current reference solution is \([7.2,\,250,\,12]\) nm, at the upper bound
+                            for all three variables.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            After optimization, a static parametric membrane surface and DNA Bundle shape are
+                            constructed and exported as a GLB visualization. This is not a time-evolving 3D MD
+                            or CG-MD simulation, and it is not a full Helfrich surface minimization.
+                        </p>
+                        <p class="text-secondary mb-2">The reduced model does not include:</p>
+                        <ul class="text-secondary mb-3">
+                            <li>area conservation or volume conservation;</li>
+                            <li>osmotic pressure or lipid diffusion;</li>
+                            <li>pore nucleation, pore growth, or membrane repair.</li>
+                        </ul>
+                        <p class="text-secondary mb-0">
+                            Because the current optimized reference solution reaches all specified upper bounds,
+                            it indicates a bound-limited tendency within this ansatz, not a uniquely identified
+                            physical equilibrium.
+                        </p>
+                    </div>
+
+                    <div id="three-d-curvature" class="simulation-subblock mb-5">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">2.3 Curvature visualization and limits</h3>
+                        <p class="text-secondary mb-0">
+                            The GLB colors visualize local curvature calculated in post-processing from the
+                            parametric surface after optimization; curvature is not the minimized target.
+                            The calculation uses absolute curvature and clips displayed values to
+                            \(0.015\text{–}0.075\ \mathrm{nm}^{-1}\), with the color scale spanning
+                            \(0.018\text{–}0.065\ \mathrm{nm}^{-1}\). The color map does not identify pore
+                            formation, membrane rupture, or a critical-curvature crossing. Individual cholesterol
+                            positions and linker conformations are not resolved; cholesterol adhesion remains an
+                            aggregate term.
+                        </p>
+                    </div>
+
+                    <div id="three-d-helix-screen" class="simulation-subblock mb-0">
+                        <h3 class="h4 fw-bold mb-3 section-subtitle">2.4 Phenomenological helix-count screening and α</h3>
+                        <p class="text-secondary mb-2">
+                            This is a separate screening analysis, not the output of the static 3D deformation
+                            optimization. Its effective-rigidity scaling is:
+                        </p>
+                        <div class="math-display">\[
+                            B_{\mathrm{eff}}=
+                            \alpha C N^2L_{\mathrm{Bundle}}
+                        \]</div>
+                        <p class="text-secondary mb-2">The screening model defines a Bundle curvature indicator and a maximum local-curvature indicator by:</p>
+                        <div class="math-display">\[
+                            \kappa_{\mathrm{Bundle}}=
+                            \frac{k_{\mathrm{mem,eff}}}
+                            {B_{\mathrm{eff}}+k_{\mathrm{mem,eff}}}
+                            \frac{1}{R_0}
+                        \]</div>
+                        <div class="math-display">\[
+                            H_{\mathrm{max}}=
+                            \frac{1}{R_0}+
+                            3\left(\frac{1}{R_0}-\kappa_{\mathrm{Bundle}}\right)
+                        \]</div>
+                        <p class="text-secondary mb-2">The crossing is defined by:</p>
+                        <div class="math-display">\[
+                            N_{\mathrm{crit}}:
+                            \quad H_{\mathrm{max}}(N,\alpha)=H_{\mathrm{crit}}
+                        \]</div>
+                        <p class="text-secondary mb-0">
+                            The settings \(\alpha=1.0,\,0.5,\,0.1\) represent model-defined high-,
+                            intermediate-, and low-effective coupling scenarios; α is not an experimentally
+                            measured cross-linking efficiency. \(H_{\mathrm{crit}}=0.067\ \mathrm{nm}^{-1}\)
+                            is a selected comparison level, not a rupture threshold. \(N_{\mathrm{crit}}\) is a
+                            rigidity-based design estimate, not a prediction of membrane rupture. This screening
+                            formula does not include a physical radius function \(r_{\mathrm{Bundle}}(N)\), so it
+                            does not quantitatively combine radius-dependent geometry with helix-number-dependent
+                            rigidity. The current Figure 2 and the available α-sweep source also differ in their
+                            displayed crossing values; see the
+                            <a href="#source-code-inventory">Source Code Inventory</a> for the provenance note.
                         </p>
                     </div>
 
                 </section>
 
+                <section id="source-code-inventory" class="fade-in-section mb-5 pt-4">
+                    <h2 class="h3 section-title">3. Source Code Inventory</h2>
+                    <p class="text-secondary mb-4">
+                        These are the Python source files currently included in the repository. A listed script is
+                        not necessarily the exact version used to generate every displayed image or dataset.
+                    </p>
+                    <h3 class="h5 fw-bold section-subtitle">2D Brownian Coarse-Grained Simulation</h3>
+                    <ul class="text-secondary mb-4">
+                        <li><a href="code/freelipo_tyouryoku14_chat6_kanseiban.py">
+                            freelipo_tyouryoku14_chat6_kanseiban.py</a> — 2D simulation source version.</li>
+                        <li><a href="code/freelipo_tyouryoku14_chat6_tansaku_2axis_auto2.py">
+                            freelipo_tyouryoku14_chat6_tansaku_2axis_auto2.py</a> — 2D parameter-sweep,
+                            CSV-output, and heatmap-generation version.</li>
+                    </ul>
+
+                    <h3 class="h5 fw-bold section-subtitle">3D Reduced Free-Energy Model</h3>
+                    <ul class="text-secondary mb-4">
+                        <li><a href="code/3dliposome_final2.py">3dliposome_final2.py</a> and
+                            <a href="code/3dliposome_final2%20copy.py">3dliposome_final2 copy.py</a> — two
+                            3D free-energy model source snapshots. The supplied snapshots set
+                            <i>L</i><sub>bundle</sub> = 100 nm, while their geometry uses
+                            <i>r</i><sub>DNA</sub> = 4 nm (8 nm diameter); one source comment instead states
+                            16 nm. The 100 nm Bundle length differs from the page's 150 nm reference value;
+                            the snapshots are not confirmed as the exact GLB-generation revision.</li>
+                    </ul>
+
+                    <h3 class="h5 fw-bold section-subtitle">Helix-Count Screening Graphs</h3>
+                    <ul class="text-secondary mb-0">
+                        <li><a href="code/rigiddna6.py">rigiddna6.py</a> — source for Figure 1 on the
+                            Simulation page. It uses <i>R</i><sub>0</sub> = 50 nm,
+                            <i>L</i><sub>bundle</sub> = 150 nm,
+                            <i>B</i><sub>eff</sub> = 50<i>N</i><sup>2</sup><i>L</i><sub>bundle</sub>,
+                            <i>k</i><sub>mem,eff</sub> = 30000, and the selected comparison level
+                            <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>. Its interpolated crossing is
+                            <i>N</i> ≈ 3.8, rounded to 4 in the graph label. Although the source labels this
+                            level as a pore-formation limit, it is not an experimentally calibrated threshold.</li>
+                        <li><a href="code/ahikaku4.py">ahikaku4.py</a> — α-dependent helix-count screening
+                            source. It uses <i>R</i><sub>0</sub> = 50 nm,
+                            <i>L</i><sub>bundle</sub> = 60 nm, and α = 1.0, 0.5, and 0.1. With its stated
+                            <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give crossings of
+                            approximately 6, 8.5, and 19 helices. The current Figure 2 displays crossings near
+                            3.8, 5.4, and 12; therefore, the available script does not reproduce that figure's
+                            displayed values, and its exact generating source is unconfirmed.</li>
+                    </ul>
+                </section>
+
                 <section id="future-work" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">3. Multi-Bundle Extension and Limitations</h2>
+                    <h2 class="h3 section-title">4. Multi-Bundle Extension and Limitations</h2>
                     <p class="text-secondary mb-0">
                         The 3D implementation can set the number of independent DNA Bundles with
                         <code>SIM_NUM_BUNDLES</code>. In the current multi-Bundle extension, Bundles are arranged
@@ -543,12 +872,12 @@
                 </section>
 
                 <section id="protocols" class="fade-in-section wet-protocol mb-5 pt-4">
-                    <h2 class="h3 section-title">4. Wet Lab: Experimental Protocols</h2>
+                    <h2 class="h3 section-title">5. Wet Lab: Experimental Protocols</h2>
                     <p class="text-secondary mb-4">
                         Detailed materials, methods, results and discussion for each wet lab experiment.
                     </p>
 
-                    <h3 id="wet-exp-a" class="h4 fw-bold mb-4 section-subtitle">4.1 Experiment A: Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR</h3>
+                    <h3 id="wet-exp-a" class="h4 fw-bold mb-4 section-subtitle">5.1 Experiment A: Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR</h3>
 
                     <div class="simulation-subblock mb-5">
                         <p class="wet-label">Materials</p>
@@ -819,7 +1148,7 @@
                         <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment A-3</span>Observation of DNA Bundles by AFM</h4>
                     </div>
 
-                    <h3 id="wet-exp-b" class="h4 fw-bold mb-4 section-subtitle">4.2 Experiment B: Lipid membrane disruption by 12-helix and 13-helix DNA bundles</h3>
+                    <h3 id="wet-exp-b" class="h4 fw-bold mb-4 section-subtitle">5.2 Experiment B: Lipid membrane disruption by 12-helix and 13-helix DNA bundles</h3>
 
                     <div class="simulation-subblock mb-5">
                         <p class="wet-label">Materials</p>

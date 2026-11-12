@@ -7,8 +7,20 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261112-3">
+    <link rel="stylesheet" href="style.css?v=20261112-4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <style>
         /* Keep the numerical heatmap pixels intact while replacing legacy
            event labels baked into the original image exports. */
@@ -694,6 +706,32 @@
                                 effective adhesion, DNA Bundle bending, membrane bending, and membrane tension.
                                 It is a constrained reduced model, not a time-evolving 3D simulation.
                             </p>
+                            <div class="math-display">
+                                \[
+                                F_{\mathrm{total}} =
+                                E_{\mathrm{adhesion}} +
+                                E_{\mathrm{DNA,bend}} +
+                                E_{\mathrm{membrane,bend}} +
+                                E_{\mathrm{membrane,tension}}
+                                \]
+                            </div>
+                            <p class="text-secondary mb-2">
+                                \(E_{\mathrm{adhesion}}\) represents cholesterol-mediated effective adhesion.
+                            </p>
+                            <p class="text-secondary mb-2">
+                                \(E_{\mathrm{DNA,bend}}\) is the energetic cost of bending the DNA Bundle.
+                            </p>
+                            <p class="text-secondary mb-2">
+                                \(E_{\mathrm{membrane,bend}}\) is the local membrane-curvature cost.
+                            </p>
+                            <p class="text-secondary mb-3">
+                                \(E_{\mathrm{membrane,tension}}\) is the cost of deforming a tension-bearing membrane.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                The full mathematical formulation, numerical update rules, and model-specific
+                                assumptions are described in the
+                                <a href="appendix.html#three-d-optimization">Technical Appendix</a>.
+                            </p>
                         </div>
 
                         <!-- 3D deformation visualization -->
@@ -827,86 +865,14 @@
                             </p>
                         </div>
 
-                        <p class="text-secondary mb-3">
-                            The radius comparison suggests an important DNA Bundle design trade-off. A smaller
-                            Bundle radius concentrates membrane deformation within a narrower contact region and
-                            is therefore expected to favor the localized membrane deformation associated with the
-                            local pore-formation proxy used in this study. However, a DNA Bundle composed of fewer
-                            helices is also expected to have a lower effective bending rigidity.
-                        </p>
-                        <p class="text-secondary mb-3">
-                            Our 2D screening model indicated that, under comparable conditions, a mechanically
-                            stiffer DNA Bundle more readily produces the model-defined local pore-formation event.
-                            Therefore, the optimal design is not simply the smallest possible Bundle. Instead, the
-                            Bundle should remain sufficiently narrow to localize membrane deformation while
-                            containing enough DNA helices to retain the mechanical rigidity required for effective
-                            loading.
-                        </p>
-                        <p class="text-secondary mb-2">
-                            We therefore performed a helix-number screening analysis to estimate the minimum number
-                            of DNA helices required to reach a selected local-curvature comparison level under each
-                            α condition. Here, <i>N</i> denotes the number of DNA helices within one DNA Bundle, not
-                            the number of independently attacking DNA Bundles around a vesicle.
-                        </p>
-                        <p class="text-secondary mb-3">
-                            This threshold is a rigidity-based design estimate. The present analysis does not yet
-                            quantitatively combine the radius-dependent geometric effect with the
-                            helix-number-dependent stiffness effect; instead, it identifies a practical lower bound
-                            on Bundle size needed to maintain sufficient effective rigidity.
-                        </p>
-                        <p class="text-secondary mb-2">
-                            To explore how incomplete coupling between helices may alter Bundle mechanics, we
-                            introduced α as a dimensionless, model-defined cross-linking-efficiency parameter. In
-                            this screening model, the effective Bundle-rigidity factor is defined as:
-                        </p>
-                        <p class="text-center my-2" role="math"
-                            aria-label="B effective equals alpha C N squared L bundle">
-                            <i>B</i><sub>eff</sub> = α <i>C N</i><sup>2</sup>
-                            <i>L</i><sub>bundle</sub>
-                        </p>
-                        <p class="text-secondary mb-2">
-                            Here, <i>N</i> is the number of DNA helices, <i>L</i><sub>bundle</sub> is the Bundle
-                            length, and <i>C</i> is a fixed model scaling constant. A larger α represents a more
-                            mechanically integrated DNA Bundle and therefore a larger effective bending-rigidity
-                            factor.
-                        </p>
-                        <p class="text-secondary mb-2">
-                            The predicted local-curvature indicator is then calculated from the mechanical balance
-                            between the Bundle and membrane:
-                        </p>
-                        <p class="text-center my-2" role="math"
-                            aria-label="kappa Bundle equals k membrane divided by B effective plus k membrane, multiplied by one over R zero">
-                            <i>κ</i><sub>Bundle</sub> =
-                            <span>[<i>k</i><sub>mem</sub> /
-                            (<i>B</i><sub>eff</sub> + <i>k</i><sub>mem</sub>)]</span>
-                            × (1 / <i>R</i><sub>0</sub>)
-                        </p>
-                        <p class="text-center my-2" role="math"
-                            aria-label="H maximum equals one over R zero plus three times one over R zero minus kappa Bundle">
-                            <i>H</i><sub>max</sub> = (1 / <i>R</i><sub>0</sub>) + 3
-                            [(1 / <i>R</i><sub>0</sub>) − <i>κ</i><sub>Bundle</sub>]
-                        </p>
-                        <p class="text-secondary mb-3">
-                            This is a phenomenological screening model rather than a calibrated material law. We
-                            used α = 1.0, 0.5, and 0.1 as high-, intermediate-, and low-effective cross-linking
-                            conditions. These values were selected to test sensitivity over a broad range of assumed
-                            mechanical coupling; they are not experimentally measured cross-linking efficiencies.
-                        </p>
-
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological Helix-Count Scaling Analysis</h4>
                             <p class="text-secondary mb-3">
-                                This is a separate design-screening analysis, not a direct output of the 3D
-                                free-energy minimization. It estimates the helix number required to reach a
-                                model-defined local-curvature comparison level under different assumed effective
-                                bending-rigidity scenarios.
-                            </p>
-                            <p class="text-secondary mb-3">
-                                The plot uses <i>R</i><sub>0</sub> = 50 nm and <i>L</i><sub>bundle</sub> = 60 nm.
-                                The manually selected <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup> is a
-                                selected local-curvature comparison level, not a physical event threshold. The
-                                selected level is reached at about 4 helices for α = 1.0, and at about 5.4 and 12
-                                helices for α = 0.5 and 0.1, respectively, in the updated plots.
+                                This is a separate design-screening analysis, not a direct output of the static 3D
+                                free-energy model. The two graphs illustrate how assumed DNA Bundle helix-count and
+                                coupling scenarios relate to a selected local-curvature comparison level. Detailed
+                                equations, assumptions, and source provenance are provided in the
+                                <a href="appendix.html#three-d-optimization">Technical Appendix</a>.
                             </p>
                             <figure class="mb-4">
                                 <img src="img/SIMULATION/3Dpore-formation.png"
@@ -914,9 +880,9 @@
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    1. Maximum local-curvature indicator versus helix number for the displayed
-                                    scenario. The marked value is a selected comparison level, not a calibrated
-                                    physical event threshold.
+                                    1. Single-condition screening curve from <a
+                                        href="code/rigiddna6.py">rigiddna6.py</a>. The comparison level is a
+                                    selected model value, not a calibrated physical event threshold.
                                 </figcaption>
                             </figure>
                             <figure class="mb-4">
@@ -931,6 +897,8 @@
                             </figure>
                             <a class="btn btn-sm learn-more-btn"
                                 href="appendix.html#three-d-optimization">3D optimization details in the Technical Appendix</a>
+                            <a class="btn btn-sm learn-more-btn"
+                                href="appendix.html#source-code-inventory">Source code list</a>
                         </div>
 
                         <p class="text-secondary mb-0">
