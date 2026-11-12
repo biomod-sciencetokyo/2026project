@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ヘッダーの読み込み
-    fetch('header.html')
+    fetch('header.html?v=20261112-2')
         .then(response => response.text())
         .then(data => {
             const headerPlaceholder = document.getElementById('header-placeholder');
