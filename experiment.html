@@ -6,10 +6,10 @@
     <title>EXPERIMENT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261112-2">
+    <link rel="stylesheet" href="style.css?v=20261112-3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
+<body class="experiment-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
 
     <div class="ambient-particles" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
@@ -29,125 +29,515 @@
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
-                    <a class="nav-link fw-bold" href="#design">1. Experimental Design</a>
-                    <a class="nav-link fw-bold mt-2" href="#assembly">2. Experiment A</a>
+                    <a class="nav-link fw-bold" href="#overview">Overview</a>
+                    <a class="nav-link fw-bold mt-2" href="#exp-a">2. Experiment A</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#exp-2-1">2.1 Annealing &amp; Electrophoresis</a>
-                        <a class="nav-link" href="#exp-2-2">2.2 AFM Observation</a>
-                        <a class="nav-link" href="#exp-2-3">2.3 Membrane Anchoring</a>
-                        <a class="nav-link" href="#exp-2-4">2.4 Membrane Disruption</a>
+                        <a class="nav-link" href="#exp-a-materials">Materials</a>
+                        <a class="nav-link" href="#exp-2-1">2.1 Seed Formation (PAGE)</a>
+                        <a class="nav-link" href="#exp-2-2">2.2 Bundled HCR (Agarose Gel)</a>
+                        <a class="nav-link" href="#exp-2-3">2.3 AFM Observation</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#disruption">3. Experiment B</a>
+                    <a class="nav-link fw-bold mt-2" href="#exp-b">3. Experiment B</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#exp-3-1">3.1 Gel Electrophoresis</a>
+                        <a class="nav-link" href="#exp-b-materials">Materials</a>
+                        <a class="nav-link" href="#exp-3-1">3.1 Bundle Formation (PAGE)</a>
                         <a class="nav-link" href="#exp-3-2">3.2 AFM Observation</a>
+                        <a class="nav-link" href="#exp-3-3">3.3 Membrane Anchoring</a>
+                        <a class="nav-link" href="#exp-3-4">3.4 Membrane Disruption</a>
                     </div>
                 </nav>
             </div>
 
             <div class="col-lg-10">
-                <!-- 1. Experimental Design -->
-                <section id="design" class="fade-in-section mb-5 pb-4 pt-4">
-                    <h2 class="section-title">1. Experimental Design</h2>
+                <!-- Overview -->
+                <section id="overview" class="fade-in-section mb-5 pb-4 pt-4">
+                    <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-4">
-                        To efficiently establish a proof of concept given time and cost constraints, we divided the experimental validation into two modules.<br>
-                       
+                        We divided the experimental validation into two modules.
                     </p>
 
                     <!-- Experiment A の四角枠 -->
                     <div class="content-box mb-4">
                         <h4 class="h5 fw-bold mb-3">Experiment A: <br>
-                            Lipid membrane disruption by 12-helix and 13-helix DNA bundles.</h4>
+                            Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR.</h4>
                         <p class="text-secondary mb-0">
-                            In Experiment A, we evaluated the physical membrane-disrupting capability of cholesterol-modified 12-helix and 13-helix DNA bundles. These structures, which possess sufficient rigidity to deform and rupture lipid membranes as indicated by our simulation results, were pre-assembled via thermal annealing.
+                            In Experiment A, we investigated the reaction mechanism of Bundled HCR using a minimal model designed to elongate into a 6-helix DNA bundle. Given the high scalability of the Bundled HCR architecture, successful synthesis of the 6-helix bundle indicates that the system can be readily scaled up to 12-helix and 13-helix bundles.
                         </p>
                     </div>
 
                     <!-- Experiment B の四角枠 -->
                     <div class="content-box">
                         <h4 class="h5 fw-bold mb-3">Experiment B: <br>
-                            Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR.</h4>
+                            Lipid membrane disruption by 12-helix and 13-helix DNA bundles.</h4>
                         <p class="text-secondary mb-0">
-                            In Experiment B, we investigated the reaction mechanism of Bundled HCR using a minimal model designed to elongate into a 6-helix DNA bundle. Given the high scalability of the Bundled HCR architecture, successful synthesis of the 6-helix bundle indicates that the system can be readily scaled up to 12-helix and 13-helix bundles.
+                            In Experiment B, we evaluated the physical membrane-disrupting capability of cholesterol-modified 12-helix and 13-helix DNA bundles. These structures, which possess sufficient rigidity to deform and rupture lipid membranes as indicated by our simulation results, were pre-assembled via thermal annealing.
                         </p>
                     </div>
                 </section>
 
-                <!-- 2.Experiment A -->
-                <section id="assembly" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">2. Experiment A: Lipid membrane disruption</h2>
+                <!-- 2. Experiment A -->
+                <section id="exp-a" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">2. Experiment A: Synthesis and Elongation of a 6-Helix DNA Bundle via Bundled HCR</h2>
+
+                    <!-- Materials -->
+                    <div id="exp-a-materials" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">Materials</h3>
+                        <p class="text-secondary mb-3">
+                            As the materials for Bundled HCR, we prepared a seed and six double-hairpin DNA strands
+                            (H1–H6).
+                        </p>
+                        <p class="text-secondary mb-4">
+                            The seed consists of the single-stranded DNAs S1–S6 shown in Table 1 and assembles into
+                            the structure shown in Figure 1 by annealing. In Table 1, a domain labeled “a1*”
+                            hybridizes complementarily to domain “a1”.
+                        </p>
+                        <div id="table-seed-strands" class="table-responsive mb-4">
+                            <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
+                                <caption class="caption-top text-secondary"><strong>Table 1.</strong> Sequences of S1–S6.</caption>
+                                <thead>
+                                    <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th><th scope="col">Sequence (5′→3′)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">S1</th><td>42 nt</td><td class="exp-seq-domains">a1 – b1 – a2 – b2</td><td class="font-monospace exp-seq">GGCGATTAGG ACGCTAAGCCA CCTTTAGATC CTGTATCTGGT</td></tr>
+                                    <tr><th scope="row">S2</th><td>84 nt</td><td class="exp-seq-domains">B – A – b2<sup>*</sup> – a2<sup>*</sup> – b3<sup>*</sup> – a3<sup>*</sup> – C – D</td><td class="font-monospace exp-seq">GTTCCAGCATAG TTTCAGATT ACCAGATACAG GATCTAAAGG TGACATCTTGT CCACTCTTCC ACAGACTCA CCATCGCATACC</td></tr>
+                                    <tr><th scope="row">S3</th><td>42 nt</td><td class="exp-seq-domains">a3 – b3 – a4 – b4</td><td class="font-monospace exp-seq">GGAAGAGTGG ACAAGATGTCA CCGTGAGAAC CTGCAATGCGT</td></tr>
+                                    <tr><th scope="row">S4</th><td>84 nt</td><td class="exp-seq-domains">F – E – b4<sup>*</sup> – a4<sup>*</sup> – b5<sup>*</sup> – a5<sup>*</sup> – G – H</td><td class="font-monospace exp-seq">GCTACAGAATCC AGATACCGA ACGCATTGCAG GTTCTCACGG CTGATAGAAGT CCAACGATGC TAAGCACTT GATACGACCTCC</td></tr>
+                                    <tr><th scope="row">S5</th><td>42 nt</td><td class="exp-seq-domains">a5 – b5 – a6 – b6</td><td class="font-monospace exp-seq">GCATCGTTGG ACTTCTATCAG GCATCGTTGG ACTTCTATCAG</td></tr>
+                                    <tr><th scope="row">S6</th><td>84 nt</td><td class="exp-seq-domains">J – I – b6<sup>*</sup> – a6<sup>*</sup> – b1<sup>*</sup> – a1<sup>*</sup> – K – L</td><td class="font-monospace exp-seq">GACCTTTGAACC AGACGATAA CTGATAGAAGT CCAACGATGC TGGCTTAGCGT CCTAATCGCC TCGGACATT GTAAGCATAACG</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <figure class="mb-4 exp-figure">
+                            <img src="img/EXPERIMENT/seed_structure.jpg"
+                                alt="Assembly of strands S1–S6 into the seed structure"
+                                class="img-fluid w-100 border" loading="lazy" decoding="async">
+                            <figcaption class="text-secondary mt-3"><strong>Figure 1.</strong> Structure of the seed.</figcaption>
+                        </figure>
+                        <p class="text-secondary mb-4">
+                            The sequences of the six double-hairpin DNAs (H1–H6) are shown in Table 2, and the
+                            structures they adopt in solution at 25 °C are shown in Figure 2.
+                        </p>
+                        <div id="table-hairpins" class="table-responsive mb-4">
+                            <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
+                                <caption class="caption-top text-secondary"><strong>Table 2.</strong> Sequences of H1–H6.</caption>
+                                <thead>
+                                    <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th><th scope="col">Sequence (5′→3′)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">H1</th><td>84 nt</td><td class="exp-seq-domains">L – R – L – K – A<sup>*</sup> – B<sup>*</sup> – M – B</td><td class="font-monospace exp-seq">GTAAGCATAACG TGCGACTAT CGTTATGCTTAC AATGTCCGA AATCTGAAA CTATGCTGGAAC AGTCGCAAA GTTCCAGCATAG</td></tr>
+                                    <tr><th scope="row">H2</th><td>84 nt</td><td class="exp-seq-domains">D – N – D – C – E<sup>*</sup> – F<sup>*</sup> – O – F</td><td class="font-monospace exp-seq">CCATCGCATACC TGTCAGAAT GGTATGCGATGG TGAGTCTGT TCGGTATCT GGATTCTGTAGC ACGATGCTA GCTACAGAATCC</td></tr>
+                                    <tr><th scope="row">H3</th><td>84 nt</td><td class="exp-seq-domains">H – P – H – G – I<sup>*</sup> – J<sup>*</sup> – Q – J</td><td class="font-monospace exp-seq">GATACGACCTCC AGAACTGGA GGAGGTCGTATC AAGTGCTTA TTATCGTCT GGTTCAAAGGTC TACCTGACT GACCTTTGAACC</td></tr>
+                                    <tr><th scope="row">H4</th><td>84 nt</td><td class="exp-seq-domains">B – A – B – M – N<sup>*</sup> – D<sup>*</sup> – C – D</td><td class="font-monospace exp-seq">GTTCCAGCATAG TTTCAGATT CTATGCTGGAAC TTTGCGACT ATTCTGACA GGTATGCGATGG ACAGACTCA CCATCGCATACC</td></tr>
+                                    <tr><th scope="row">H5</th><td>84 nt</td><td class="exp-seq-domains">F – E – F – O – P<sup>*</sup> – H<sup>*</sup> – G – H</td><td class="font-monospace exp-seq">GCTACAGAATCC AGATACCGA GGATTCTGTAGC TAGCATCGT TCCAGTTCT GGAGGTCGTATC TAAGCACTT GATACGACCTCC</td></tr>
+                                    <tr><th scope="row">H6</th><td>84 nt</td><td class="exp-seq-domains">J – I – J – Q – R<sup>*</sup> – L<sup>*</sup> – K – L</td><td class="font-monospace exp-seq">GACCTTTGAACC AGACGATAA GGTTCAAAGGTC AGTCAGGTA ATAGTCGCA CGTTATGCTTAC TCGGACATT GTAAGCATAACG</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 下書きでは「図4－図10」と記載。画像は6枚のため、H1〜H6の順と仮定して1つの図にまとめた -->
+                        <figure class="mb-4">
+                            <div class="row g-3">
+                                <div class="col-6 col-md-4">
+                                    <img src="img/EXPERIMENT/hairpin_H1.png" alt="Predicted secondary structure of H1 at 25 °C"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <p class="exp-panel-label text-secondary small mb-0">(a) H1</p>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <img src="img/EXPERIMENT/hairpin_H2.png" alt="Predicted secondary structure of H2 at 25 °C"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <p class="exp-panel-label text-secondary small mb-0">(b) H2</p>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <img src="img/EXPERIMENT/hairpin_H3.png" alt="Predicted secondary structure of H3 at 25 °C"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <p class="exp-panel-label text-secondary small mb-0">(c) H3</p>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <img src="img/EXPERIMENT/hairpin_H4.png" alt="Predicted secondary structure of H4 at 25 °C"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <p class="exp-panel-label text-secondary small mb-0">(d) H4</p>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <img src="img/EXPERIMENT/hairpin_H5.png" alt="Predicted secondary structure of H5 at 25 °C"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <p class="exp-panel-label text-secondary small mb-0">(e) H5</p>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <img src="img/EXPERIMENT/hairpin_H6.png" alt="Predicted secondary structure of H6 at 25 °C"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <p class="exp-panel-label text-secondary small mb-0">(f) H6</p>
+                                </div>
+                            </div>
+                            <figcaption class="text-secondary mt-3"><strong>Figure 2.</strong> Structures of H1–H6 in
+                                solution at 25 °C.</figcaption>
+                        </figure>
+                    </div>
 
                     <!-- 2.1 -->
-                    <div id="exp-2-1" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4">2.1 Annealing and Verification by Electrophoresis</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for annealing and electrophoresis.]</p>
-                        <div class="content-box">
-                            <div class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Experimental Figure Placeholder</span>
-                            </div>
-                            <p class="text-secondary mb-0">[Add a description of the figure.]</p>
+                    <div id="exp-2-1" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">2.1 Verification of Seed Formation by PAGE Electrophoresis</h3>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Overview</h4>
+                            <p class="text-secondary mb-0">
+                                To confirm that the seed annealing proceeded properly, we performed PAGE. Each of the
+                                single-stranded DNAs S1–S6 and the annealed seed were electrophoresed to check for a
+                                difference in molecular weight. Electrophoresis was performed in 1× TBE buffer
+                                containing 12 mM MgCl<sub>2</sub> at 150 V for 60 minutes at 4 °C.
+                            </p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results</h4>
+                            <figure class="mb-0 exp-figure">
+                                <img src="img/EXPERIMENT/page_seed.jpg"
+                                    alt="PAGE gel of S1–S6 and the annealed seed with DNA ladders"
+                                    class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                <figcaption class="text-secondary mt-3"><strong>Figure 3.</strong> PAGE of S1–S6 and
+                                    the seed.</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion</h4>
+                            <p class="text-secondary mb-0">
+                                Only the seed lane showed high-molecular-weight bands that were not observed in the
+                                S1–S6 lanes. The bands were identified from the relationship between migration
+                                distance and molecular weight calculated from the ladder.
+                            </p>
                         </div>
                     </div>
 
                     <!-- 2.2 -->
-                    <div id="exp-2-2" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4">2.2 Observation of 12.13-helix DNA Bundles by AFM</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for AFM observation.]</p>
-                        <div class="content-box">
-                            <div class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Experimental Figure Placeholder</span>
+                    <div id="exp-2-2" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">2.2 Verification of Bundled HCR Progression by Gel Electrophoresis</h3>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Overview</h4>
+                            <p class="text-secondary mb-3">
+                                Agarose gel electrophoresis was performed on samples in which the seed and H1–H6 were
+                                mixed, to confirm whether Bundled HCR proceeded and the bundle elongated.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                After mixing the seed with H1–H6, the samples were left at room temperature for
+                                approximately 22 hours. Electrophoresis was performed in 1× TAE buffer containing
+                                5 mM MgCl<sub>2</sub> at 100 V for 40 minutes at 4 °C.
+                            </p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results</h4>
+                            <div class="content-box">
+                                <div class="ratio ratio-16x9 d-flex justify-content-center align-items-center">
+                                    <span class="text-muted">Experimental Figure Placeholder</span>
+                                </div>
                             </div>
-                            <p class="text-secondary mb-0">[Add a description of the figure.]</p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion</h4>
+                            <p class="text-secondary mb-0">[Add discussion.]</p>
                         </div>
                     </div>
 
                     <!-- 2.3 -->
-                    <div id="exp-2-3" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4">2.3 Fluorescence Observation of DNA Bundle Anchoring to Lipid Membranes</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for membrane anchoring observation.]</p>
-                        <div class="content-box">
-                            <div class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Experimental Figure Placeholder</span>
+                    <div id="exp-2-3" class="exp-subsection pt-3">
+                        <h3 class="h4 fw-bold mb-4">2.3 Observation of DNA Bundles by AFM</h3>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results</h4>
+                            <div class="content-box">
+                                <div class="ratio ratio-16x9 d-flex justify-content-center align-items-center">
+                                    <span class="text-muted">Experimental Figure Placeholder</span>
+                                </div>
                             </div>
-                            <p class="text-secondary mb-0">[Add a description of the figure.]</p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion</h4>
+                            <p class="text-secondary mb-0">[Add discussion.]</p>
                         </div>
                     </div>
-
-                    <!-- 2.4 -->
-                    <div id="exp-2-4" class="pt-3">
-                        <h3 class="h4 fw-bold mb-4">2.4 Verification of Membrane Disruption by 12.13 Bundles Using Fluorescence Microscopy</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for membrane disruption verification.]</p>
-                        <div class="content-box">
-                            <div class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Experimental Figure Placeholder</span>
-                            </div>
-                            <p class="text-secondary mb-0">[Add a description of the figure.]</p>
-                        </div>
-                    </div>
-
                 </section>
 
-                <!-- 3.  Experiment B -->
-                <section id="disruption" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">3. Experiment B: Bundled HCR</h2>
-                    <p class="text-secondary mb-4">[Add the membrane disruption assay methods, controls, and results.]</p>
+                <!-- 3. Experiment B -->
+                <section id="exp-b" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">3. Experiment B: Lipid Membrane Disruption by 12-Helix and 13-Helix DNA Bundles</h2>
+
+                    <!-- Materials -->
+                    <div id="exp-b-materials" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">Materials</h3>
+                        <!-- 下書き: 「○○の論文を参考に」→ 文献名を入れる -->
+                        <p class="text-secondary mb-3">
+                            Following the design reported in [reference], the 12-helix and 13-helix bundles were
+                            synthesized by annealing the single-stranded DNAs V1–V12, T12, and T13 shown in
+                            Table 3.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            In the 12-helix bundle, V1–V11 and T12 hybridize as shown in Figure 4; in the 13-helix
+                            bundle, V1–V12 and T13 hybridize as shown in Figure 5. Each assembles into a bundle
+                            hundreds to thousands of nanometers long.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            Because cholesterol was attached to the 3′ end of the 42-nt strand V1, the resulting
+                            12- and 13-helix bundles carry a cholesterol modification every 21 nucleotides.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            For the cholesterol-free 12- and 13-helix bundles prepared as controls, unmodified V1 was
+                            used instead.
+                        </p>
+                        <div id="table-bundle-strands" class="table-responsive mb-4">
+                            <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
+                                <caption class="caption-top text-secondary"><strong>Table 3.</strong> Sequences of V1–V12, T12, and T13.</caption>
+                                <thead>
+                                    <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th><th scope="col">Sequence (5′→3′)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">V1<br><span class="exp-seq-note">(cholesterol-modified)</span></th><td>42 nt</td><td class="exp-seq-domains">a1<sup>*</sup> – b1<sup>*</sup> – a2 – b2</td><td class="font-monospace exp-seq">GGCGATTAGG ACGCTAAGCCA CCTTTAGATC CTGTATCTGGT <span class="exp-seq-mod">– TEG linker – cholesterol</span></td></tr>
+                                    <tr><th scope="row">V2</th><td>42 nt</td><td class="exp-seq-domains">a2<sup>*</sup> – b2<sup>*</sup> – a3 – b3</td><td class="font-monospace exp-seq">GATCTAAAGG ACCAGATACAG CCACTCTTCC TGACATCTTGT</td></tr>
+                                    <tr><th scope="row">V3</th><td>42 nt</td><td class="exp-seq-domains">a3<sup>*</sup> – b3<sup>*</sup> – a4 – b4</td><td class="font-monospace exp-seq">GGAAGAGTGG ACAAGATGTCA CCGTGAGAAC CTGCAATGCGT</td></tr>
+                                    <tr><th scope="row">V4</th><td>42 nt</td><td class="exp-seq-domains">a4<sup>*</sup> – b4<sup>*</sup> – a5 – b5</td><td class="font-monospace exp-seq">GTTCTCACGG ACGCATTGCAG CCGCACGACC TGTTCGACAGT</td></tr>
+                                    <tr><th scope="row">V5</th><td>42 nt</td><td class="exp-seq-domains">a5<sup>*</sup> – b5<sup>*</sup> – a6 – b6</td><td class="font-monospace exp-seq">GGTCGTGCGG ACTGTCGAACA CCAACGATGC CTGATAGAAGT</td></tr>
+                                    <tr><th scope="row">V6</th><td>42 nt</td><td class="exp-seq-domains">a6<sup>*</sup> – b6<sup>*</sup> – a7 – b7</td><td class="font-monospace exp-seq">GCATCGTTGG ACTTCTATCAG ATGCACCTCC AGCTTTGAATG</td></tr>
+                                    <tr><th scope="row">V7</th><td>42 nt</td><td class="exp-seq-domains">a7<sup>*</sup> – b7<sup>*</sup> – a8 – b8</td><td class="font-monospace exp-seq">GGAGGTGCAT CATTCAAAGCT AACGGTAACT ATGACTTGGGA</td></tr>
+                                    <tr><th scope="row">V8</th><td>42 nt</td><td class="exp-seq-domains">a8<sup>*</sup> – b8<sup>*</sup> – a9 – b9</td><td class="font-monospace exp-seq">AGTTACCGTT TCCCAAGTCAT AACACTAGAC ACATGCTCCTA</td></tr>
+                                    <tr><th scope="row">V9</th><td>42 nt</td><td class="exp-seq-domains">a9<sup>*</sup> – b9<sup>*</sup> – a10 – b10</td><td class="font-monospace exp-seq">GTCTAGTGTT TAGGAGCATGT CGAGACTACA CCCTTGCCACC</td></tr>
+                                    <tr><th scope="row">V10</th><td>42 nt</td><td class="exp-seq-domains">a10<sup>*</sup> – b10<sup>*</sup> – a11 – b11</td><td class="font-monospace exp-seq">TGTAGTCTCG GGTGGCAAGGG TACTACCGCT CCATTAAGAAT</td></tr>
+                                    <tr><th scope="row">V11</th><td>42 nt</td><td class="exp-seq-domains">a11<sup>*</sup> – b11<sup>*</sup> – a12 – b12</td><td class="font-monospace exp-seq">AGCGGTAGTA ATTCTTAATGG ATCCGTCTAT CTACACTATCA</td></tr>
+                                    <tr><th scope="row">V12</th><td>42 nt</td><td class="exp-seq-domains">a12<sup>*</sup> – b12<sup>*</sup> – a13 – b13</td><td class="font-monospace exp-seq">ATAGACGGAT TGATAGTGTAG AGACGAAATC AGCAGAACTAA</td></tr>
+                                    <tr><th scope="row">T12</th><td>42 nt</td><td class="exp-seq-domains">a12<sup>*</sup> – b12<sup>*</sup> – a1 – b1</td><td class="font-monospace exp-seq">ATAGACGGAT TGATAGTGTAG CCTAATCGCC TGGCTTAGCGT</td></tr>
+                                    <tr><th scope="row">T13</th><td>42 nt</td><td class="exp-seq-domains">a13<sup>*</sup> – b13<sup>*</sup> – a1 – b1</td><td class="font-monospace exp-seq">GATTTCGTCT TTAGTTCTGCT CCTAATCGCC TGGCTTAGCGT</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row g-4 mb-4">
+                            <div class="col-12 col-md-6">
+                                <figure class="mb-0 exp-figure">
+                                    <img src="img/EXPERIMENT/bundle_12helix_assembly.png"
+                                        alt="Assembly of the 12-helix bundle from V1–V11 and T12"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <figcaption class="text-secondary mt-3"><strong>Figure 4.</strong> Assembly of
+                                        the 12-helix bundle.</figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <figure class="mb-0 exp-figure">
+                                    <img src="img/EXPERIMENT/bundle_13helix_assembly.png"
+                                        alt="Assembly of the 13-helix bundle from V1–V12 and T13"
+                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                    <figcaption class="text-secondary mt-3"><strong>Figure 5.</strong> Assembly of
+                                        the 13-helix bundle.</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-0">
+                            As Figure 5 shows, in the 13-helix bundle V1 and T13 hybridize while twisting, so the
+                            bundle becomes twisted and cholesterol protrudes in all directions around it. In the
+                            12-helix bundle, by contrast, V1 and T12 hybridize without twisting, so cholesterol
+                            protrudes in only one direction.
+                        </p>
+                    </div>
 
                     <!-- 3.1 -->
-                    <div id="exp-3-1" class="mb-5 pb-4 pt-3">
-                        <h3 class="h4 fw-bold mb-4">3.1 Verification of Bundled HCR Progression by Gel Electrophoresis</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for Bundled HCR electrophoresis.]</p>
-                        <div class="content-box">
-                            <div class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
-                                <span class="text-muted">Experimental Figure Placeholder</span>
+                    <div id="exp-3-1" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">3.1 Verification of Bundle Formation by PAGE Electrophoresis</h3>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Overview</h4>
+                            <p class="text-secondary mb-3">
+                                To confirm that annealing proceeded properly and the 12- and 13-helix bundles formed,
+                                we performed PAGE. Each of the single-stranded DNAs V1–V12, T12, and T13 and the
+                                annealed cholesterol-modified 12- and 13-helix bundles were electrophoresed to check
+                                for a difference in molecular weight.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                Electrophoresis was performed in 1× TAE buffer containing 12 mM MgCl<sub>2</sub> at
+                                100 V for 60 minutes at 4 °C.
+                            </p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results</h4>
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/page_V1-V8.jpg"
+                                            alt="PAGE gel of single strands V1–V8 with DNA ladders"
+                                            class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 6.</strong> PAGE of
+                                            V1–V8.</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/page_V9-T13_bundles.jpg"
+                                            alt="PAGE gel of V9–V12, T12, T13 and the 12- and 13-helix bundles"
+                                            class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 7.</strong> PAGE of
+                                            V9–T13 and the 12- and 13-helix bundles.</figcaption>
+                                    </figure>
+                                </div>
                             </div>
-                            <p class="text-secondary mb-0">[Add a description of the figure.]</p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion</h4>
+                            <p class="text-secondary mb-3">
+                                Only in the 12-bundle and 13-bundle lanes was a band observed at the top of the gel
+                                that had not entered the gel. This indicates that large structures were present only
+                                in the 12-bundle and 13-bundle samples, suggesting that annealing proceeded properly
+                                and the DNA bundles were synthesized.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                Because V1–T13 are 42-nt ssDNAs, bands appearing at 20–30 bp are reasonable. The faint
+                                bands observed at 40–50 bp in the V4, V5, V9, and V12 lanes are thought to be ssDNA
+                                that formed dimers.
+                            </p>
                         </div>
                     </div>
 
                     <!-- 3.2 -->
-                    <div id="exp-3-2" class="pt-3">
-                        <h3 class="h4 fw-bold mb-4">3.2 Observation of DNA Bundles by AFM</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for AFM observation.]</p>
+                    <div id="exp-3-2" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">3.2 Observation of 12- and 13-Helix DNA Bundles by AFM</h3>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Overview</h4>
+                            <p class="text-secondary mb-0">
+                                To confirm that the high-molecular-weight structures observed in the 12-bundle and
+                                13-bundle lanes by electrophoresis were DNA bundles, we observed them by AFM. The
+                                cholesterol-free 12- and 13-helix bundles, which are used as controls in the
+                                following experiments, were also observed.
+                            </p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results</h4>
+                            <!-- 下書きメモ: 4枚はる、幅を計測 -->
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <div class="content-box">
+                                        <div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted text-center">12-helix bundle with cholesterol<br>AFM image placeholder</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="content-box">
+                                        <div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted text-center">12-helix bundle without cholesterol<br>AFM image placeholder</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="content-box">
+                                        <div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted text-center">13-helix bundle with cholesterol<br>AFM image placeholder</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="content-box">
+                                        <div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
+                                            <span class="text-muted text-center">13-helix bundle without cholesterol<br>AFM image placeholder</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion</h4>
+                            <!-- 下書きメモ: 3×ｎのやつ -->
+                            <p class="text-secondary mb-0">Elongated structures were observed in all samples.</p>
+                        </div>
+                    </div>
+
+                    <!-- 3.3 -->
+                    <div id="exp-3-3" class="exp-subsection mb-5 pb-4 pt-3">
+                        <h3 class="h4 fw-bold mb-4">3.3 Fluorescence Observation of DNA Bundle Anchoring to Lipid Membranes</h3>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Overview</h4>
+                            <p class="text-secondary mb-3">
+                                The aim was to confirm whether DNA bundles anchor to lipid membranes via cholesterol.
+                                Cholesterol-modified and unmodified DNA bundles were each mixed with liposomes (GUVs)
+                                and observed by fluorescence microscopy to compare whether they bound to the liposomes.
+                            </p>
+                            <ul class="text-secondary mb-0">
+                                <li class="mb-2">
+                                    <strong>GUVs</strong> — stained with Nile Red (red fluorescence). The GUVs in this
+                                    experiment were prepared by gentle hydration, using a lipid film solution of 1 mM
+                                    DOPC with 0.2 mol% Nile Red (in CHCl<sub>3</sub>) and 1 mM glucose solution mixed
+                                    at 2:1.
+                                </li>
+                                <li>
+                                    <strong>12- and 13-helix DNA bundles</strong> — stained with SYBR Green I (green
+                                    fluorescence).
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results 1</h4>
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/guv_12helix_chol.jpg"
+                                            alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with liposomes (red)"
+                                            class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 8.</strong>
+                                            Cholesterol-modified 12-helix bundles and liposomes.</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/guv_12helix_nochol.jpg"
+                                            alt="Fluorescence image of unmodified 12-helix bundles (green) with liposomes (red)"
+                                            class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 9.</strong>
+                                            Unmodified (cholesterol-free) 12-helix bundles and liposomes.</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion 1</h4>
+                            <p class="text-secondary mb-0">[Add discussion.]</p>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Results 2</h4>
+                            <!-- 下書きでは画像2枚のみでキャプションなし -->
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/guv_result2_a.jpg"
+                                            alt="Fluorescence microscopy image of DNA bundles with liposomes, result 2 (left)"
+                                            class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 10.</strong> [Add caption.]</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/guv_result2_b.jpg"
+                                            alt="Fluorescence microscopy image of DNA bundles with liposomes, result 2 (right)"
+                                            class="img-fluid w-100 border" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 11.</strong> [Add caption.]</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Discussion 2</h4>
+                            <p class="text-secondary mb-0">[Add discussion.]</p>
+                        </div>
+                    </div>
+
+                    <!-- 3.4 -->
+                    <div id="exp-3-4" class="exp-subsection pt-3">
+                        <h3 class="h4 fw-bold mb-4">3.4 Verification of Membrane Disruption by 12- and 13-Helix Bundles Using Fluorescence Microscopy</h3>
+                        <p class="text-secondary mb-4">[Add methods and results for membrane disruption verification.]</p>
                         <div class="content-box">
                             <div class="ratio ratio-16x9 mb-3 d-flex justify-content-center align-items-center">
                                 <span class="text-muted">Experimental Figure Placeholder</span>

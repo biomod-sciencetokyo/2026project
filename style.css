@@ -1576,7 +1576,8 @@ section[id],
 /* Third-level blocks (inside 1.1 / 1.2, incl. GUV Environment) start with a divider; x.y sections do not */
 .simulation-page #two-d-md>.simulation-subblock,
 .simulation-page #three-d>.simulation-subblock,
-.simulation-page #guv-env {
+.simulation-page #guv-env,
+.experiment-page .exp-subsection>.simulation-subblock {
     position: relative;
     margin-top: 1rem;
     padding-top: 2.25rem;
@@ -1589,7 +1590,8 @@ section[id],
 
 .simulation-page #two-d-md>.simulation-subblock::before,
 .simulation-page #three-d>.simulation-subblock::before,
-.simulation-page #guv-env::before {
+.simulation-page #guv-env::before,
+.experiment-page .exp-subsection>.simulation-subblock::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -1599,7 +1601,8 @@ section[id],
     background-color: var(--accent-gold);
 }
 
-.simulation-page main h4.section-subtitle {
+.simulation-page main h4.section-subtitle,
+.experiment-page main h4.section-subtitle {
     font-size: 1.45rem;
     margin-bottom: 1.1rem !important;
 }
@@ -1618,7 +1621,8 @@ section[id],
 }
 
 /* Captions inside cards: no paragraph indent, aligned with the title */
-.simulation-page main figure p {
+.simulation-page main figure p,
+.experiment-page main figure p {
     text-indent: 0;
 }
 
@@ -1690,7 +1694,8 @@ section[id],
         font-size: 1.05rem !important;
     }
 
-    .simulation-page main h4.section-subtitle {
+    .simulation-page main h4.section-subtitle,
+    .experiment-page main h4.section-subtitle {
         font-size: 1.25rem;
     }
 }
@@ -2286,4 +2291,75 @@ section[id],
 main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
     font-family: inherit !important;
     -webkit-text-stroke: 0 !important;
+}
+
+/* ===== Experiment page figures ===== */
+.experiment-page main figure img.border,
+.experiment-page main .row img.border {
+    border-color: #314763 !important;
+}
+
+.experiment-page .exp-figure {
+    max-width: 760px;
+}
+
+.experiment-page .exp-figure-narrow {
+    max-width: 480px;
+}
+
+.experiment-page .exp-panel-label {
+    margin-top: 6px;
+    text-align: center;
+    text-indent: 0;
+}
+
+/* Sequence tables (text instead of images) */
+.exp-seq-table {
+    --bs-table-bg: rgba(20, 41, 69, 0.6);
+    --bs-table-border-color: rgba(148, 163, 184, 0.22);
+    font-size: 0.86rem;
+}
+
+.exp-seq-table caption {
+    padding-top: 0;
+    color: var(--text-main) !important;
+}
+
+.exp-seq-table thead th {
+    --bs-table-bg: rgba(98, 197, 213, 0.12);
+    color: #d7f3f8;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.exp-seq-table th,
+.exp-seq-table td {
+    padding: 6px 10px;
+}
+
+.exp-seq-table tbody th,
+.exp-seq-table tbody td:nth-child(2) {
+    white-space: nowrap;
+}
+
+.exp-seq-table .exp-seq-domains {
+    white-space: nowrap;
+    color: #d7f3f8;
+}
+
+.exp-seq-table .exp-seq {
+    min-width: 22rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    word-spacing: 0.25em;
+}
+
+.exp-seq-table .exp-seq-mod,
+.exp-seq-table .exp-seq-note {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: 400;
 }
