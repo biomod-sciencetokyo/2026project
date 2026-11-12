@@ -1912,7 +1912,7 @@ section[id],
 
 .sim-matrix-rowhead > span {
     color: #ffffff !important;
-    font-size: 0.85rem;
+    font-size: 1rem;
     letter-spacing: 0.01em;
     text-align: center;
     line-height: 1.45;
@@ -2042,7 +2042,7 @@ section[id],
 }
 
 .sim-heatmap figcaption {
-    font-size: 0.82rem;
+    font-size: 1rem;
     line-height: 1.55;
 }
 

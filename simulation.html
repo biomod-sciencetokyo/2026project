@@ -33,9 +33,9 @@
             place-content: center;
             background: #fff;
             color: #000;
-            font-size: clamp(0.48rem, 1vw, 1rem);
+            font-size: clamp(0.75rem, 1.2vw, 1rem);
             font-weight: 700;
-            line-height: 1.05;
+            line-height: 1.15;
             text-align: center;
         }
 
@@ -46,17 +46,44 @@
             bottom: 2.4%;
             z-index: 1;
             display: flex;
-            width: 5.5%;
+            width: 3.6%;
             align-items: center;
             justify-content: center;
             background: #fff;
             color: #000;
-            font-size: clamp(0.38rem, 0.72vw, 0.78rem);
+            font-size: clamp(0.75rem, 1.05vw, 0.9rem);
             font-weight: 600;
-            line-height: 1;
+            line-height: 1.1;
             text-align: center;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
+        }
+
+        .heatmap-axis-y,
+        .heatmap-axis-x {
+            position: absolute;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #000;
+            font-size: clamp(0.78rem, 1.2vw, 1rem);
+            font-weight: 600;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .heatmap-axis-y {
+            inset: 24% auto 22% 0;
+            width: 3.5%;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .heatmap-axis-x {
+            inset: auto 16% 0 14%;
+            height: 4.5%;
         }
     </style>
 </head>
@@ -206,7 +233,7 @@
                         <!-- Linker Length -->
                         <div id="two-d-linker-length" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">
-                                2D Comparison: Linker Length, Bundle Stiffness, and Vesicle Size
+                                2D Comparison: Linker Length, Bundle Bending Rigidity, and Vesicle Size
                             </h4>
                             <p class="text-secondary mb-4">
                                 Linker rest length <i>l</i><sub>0</sub> changes both linker mechanics and the
@@ -217,7 +244,7 @@
                             <h5 class="fw-bold mb-3 section-subtitle">Representative GIFs: Broad Trends</h5>
                             <p class="text-secondary mb-4">
                                 Each GIF shows one representative simulation, illustrating how linker length and
-                                Bundle stiffness can affect membrane loading. Use these examples to compare broad
+                                Bundle bending rigidity can affect membrane loading. Use these examples to compare broad
                                 trends; they do not show the probability across all tested conditions.
                             </p>
                             <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
@@ -240,7 +267,7 @@
 
                                     <div
                                         class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-high">
-                                        <span class="fw-bold text-light">Higher effective bending rigidity<br>
+                                        <span class="fw-bold text-light">Bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 6.21 × 10<sup>5</sup> pN·nm<sup>2</sup></span>
                                     </div>
                                     <div class="col-6 col-md-5">
@@ -299,7 +326,7 @@
                                     </div>
                                     <div
                                         class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-low">
-                                        <span class="fw-bold text-light">Lower effective bending rigidity<br>
+                                        <span class="fw-bold text-light">Bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 9.51 × 10<sup>2</sup> pN·nm<sup>2</sup></span>
                                     </div>
                                     <div class="col-6 col-md-5">
@@ -379,7 +406,7 @@
 
                                     <div
                                         class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-high">
-                                        <span class="fw-bold text-light">Higher effective bending rigidity<br>
+                                        <span class="fw-bold text-light">Bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 6.21 × 10<sup>5</sup> pN·nm<sup>2</sup></span>
                                     </div>
                                     <div class="col-6 col-md-5">
@@ -439,7 +466,7 @@
                                     </div>
                                     <div
                                         class="col-12 col-md-2 d-flex align-items-center justify-content-md-center sim-matrix-rowhead sim-matrix-rowhead-low">
-                                        <span class="fw-bold text-light">Lower effective bending rigidity<br>
+                                        <span class="fw-bold text-light">Bending rigidity<br>
                                             <i>B</i><sub>DNA</sub> = 9.51 × 10<sup>2</sup> pN·nm<sup>2</sup></span>
                                     </div>
                                     <div class="col-6 col-md-5">
@@ -522,17 +549,17 @@
                                 <p class="text-secondary mb-3">
                                     Unlike the representative GIFs, each heatmap summarizes the
                                     model-defined local pore-formation-event probability across simulated
-                                    trajectories for combinations of linker length and Bundle stiffness. Each map
+                                    trajectories for combinations of linker length and Bundle bending rigidity. Each map
                                     shows a different vesicle radius.
                                 </p>
                                 <p class="text-secondary mb-3">
-                                    Across the current parameter space, <strong>high DNA Bundle stiffness was a
+                                    Across the current parameter space, <strong>high DNA Bundle bending rigidity was a
                                         common feature of conditions with elevated model-defined local
                                         pore-formation-event probabilities.</strong>
                                     In the heat maps obtained for the smaller-vesicle conditions, high-probability
-                                    regions were predominantly observed for a stiff DNA Bundle combined with a
+                                    regions were predominantly observed for a DNA Bundle with high bending rigidity combined with a
                                     short linker. In contrast, in the larger-vesicle conditions, the high-probability
-                                    region shifted toward combinations of a stiff DNA Bundle and a longer linker.
+                                    region shifted toward combinations of a DNA Bundle with high bending rigidity and a longer linker.
                                 </p>
                                 <p class="text-secondary mb-3">
                                     We therefore describe the result as a
@@ -551,14 +578,15 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R50.png"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 50 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 50 nm)</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
+                                                            <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <figcaption class="text-secondary small mb-0">
-                                                            R = 50 nm: model-defined local pore-formation-event probability across bending stiffness and
-                                                            linker length.
+                                                        <figcaption class="text-secondary mb-0">
+                                                            Vesicle radius: <i>R</i> = 50 nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -566,14 +594,15 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R100.png"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 100 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 100 nm)</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
+                                                            <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <figcaption class="text-secondary small mb-0">
-                                                            R = 100 nm: model-defined local pore-formation-event probability across bending stiffness and
-                                                            linker length.
+                                                        <figcaption class="text-secondary mb-0">
+                                                            Vesicle radius: <i>R</i> = 100 nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -581,14 +610,15 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R150.png"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 150 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 150 nm)</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
+                                                            <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <figcaption class="text-secondary small mb-0">
-                                                            R = 150 nm: model-defined local pore-formation-event probability across bending stiffness and
-                                                            linker length.
+                                                        <figcaption class="text-secondary mb-0">
+                                                            Vesicle radius: <i>R</i> = 150 nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -596,14 +626,15 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R200.png"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 200 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 200 nm)</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
+                                                            <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <figcaption class="text-secondary small mb-0">
-                                                            R = 200 nm: model-defined local pore-formation-event probability across bending stiffness and
-                                                            linker length.
+                                                        <figcaption class="text-secondary mb-0">
+                                                            Vesicle radius: <i>R</i> = 200 nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -611,14 +642,15 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R250.png"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 250 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 250 nm)</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
+                                                            <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <figcaption class="text-secondary small mb-0">
-                                                            R = 250 nm: model-defined local pore-formation-event probability across bending stiffness and
-                                                            linker length.
+                                                        <figcaption class="text-secondary mb-0">
+                                                            Vesicle radius: <i>R</i> = 250 nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -626,14 +658,15 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/ruputure_heatmap_r300.png"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending stiffness and linker length at R = 300 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 300 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local pore-formation-event probability<br>Bundle stiffness vs linker length (R = 300 nm)</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Pore-formation-event probability (%)</span>
+                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
+                                                            <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <figcaption class="text-secondary small mb-0">
-                                                            R = 300 nm: model-defined local pore-formation-event probability across bending stiffness and
-                                                            linker length.
+                                                        <figcaption class="text-secondary mb-0">
+                                                            Vesicle radius: <i>R</i> = 300 nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -806,7 +839,7 @@
                             <p class="text-secondary mb-3">
                                 This analysis connects DNA Bundle design to membrane deformation by examining how
                                 the number of helices (<i>N</i>) changes DNA Bundle radius and effective DNA Bundle
-                                bending rigidity (<i>B</i><sub>DNA</sub>). It provides a design-level bridge between
+                                effective bending rigidity (<i>B</i><sub>DNA</sub>). It provides a design-level bridge between
                                 HCR-mediated Bundle assembly and membrane-deformation comparison, but is separate
                                 from the 3D indentation optimization.
                             </p>
@@ -815,18 +848,18 @@
                                 assumed scaling <i>B</i><sub>eff</sub> ∝ α<i>N</i><sup>2</sup>, and the manually
                                 selected curvature-comparison level <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>.
                                 The crossing is near 6 helices for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1;
-                                α is a phenomenological effective-rigidity scaling coefficient, not a measured
+                                α is a phenomenological effective bending-rigidity scaling coefficient, not a measured
                                 cross-linking efficiency. These crossings are scaling comparisons, not evidence
                                 that pores form or membranes rupture.
                             </p>
                             <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph1.png"
-                                    alt="Phenomenological helix-count scaling of a selected membrane-curvature comparison level under idealized effective rigidity"
+                                    alt="Phenomenological helix-count scaling of a selected membrane-curvature comparison level under idealized effective bending rigidity"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
                                         Phenomenological Helix-Count Scaling Analysis: membrane-curvature comparison
-                                        versus DNA helix number under the idealized rigidity scaling. This is separate
+                                        versus DNA helix number under the idealized bending-rigidity scaling. This is separate
                                         from the 3D indentation optimization and crosses the selected comparison level
                                         near six helices.
                                     </figcaption>
@@ -838,7 +871,7 @@
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
                                         Sensitivity of the phenomenological helix-count scaling to reduced effective
-                                        rigidity. For α = 0.5 and 0.1, the selected comparison level is crossed near
+                                        bending rigidity. For α = 0.5 and 0.1, the selected comparison level is crossed near
                                         8.5 and 19 helices, respectively; α is not a measured cross-linking efficiency.
                                 </figcaption>
                             </figure>
