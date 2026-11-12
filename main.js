@@ -163,12 +163,18 @@ document.addEventListener('DOMContentLoaded', () => {
             approachPlayer.classList.toggle('is-paused', video.paused);
             toggle.setAttribute('aria-label', video.paused ? 'Play animation' : 'Pause animation');
         };
+        // 描画ループは常に1本だけ（play と playing の両方で呼ばれても二重にならない）
+        let rafId = 0;
         const loop = () => {
+            rafId = 0;
             render();
-            if (!video.paused) requestAnimationFrame(loop);
+            if (!video.paused) startLoop();
         };
-        video.addEventListener('play', () => requestAnimationFrame(loop));
-        video.addEventListener('playing', () => requestAnimationFrame(loop));
+        const startLoop = () => {
+            if (!rafId) rafId = requestAnimationFrame(loop);
+        };
+        video.addEventListener('play', startLoop);
+        video.addEventListener('playing', startLoop);
         video.addEventListener('timeupdate', render);
         video.addEventListener('pause', render);
         video.addEventListener('seeked', render);
@@ -203,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.2 }).observe(video);
         render();
-        if (!video.paused) requestAnimationFrame(loop);
+        if (!video.paused) startLoop();
     }
 
     sections.forEach(section => {

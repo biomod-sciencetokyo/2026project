@@ -143,7 +143,9 @@ strands.forEach((s, si) => {
 });
 
 /* ---------- scene ---------- */
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+// preserveDrawingBuffer is left off: __seek reads the canvas straight after its own render, which works
+// without it, and keeping the buffer costs a copy on every frame
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -156,13 +158,78 @@ const rim = new THREE.DirectionalLight('#5fb6d8', 1.2); rim.position.set(50, -14
 const fill = new THREE.DirectionalLight('#9fb6cd', 0.3); fill.position.set(30, -20, -30); scene.add(fill);
 const model = new THREE.Group(); scene.add(model);
 
+/* The atoms are placed on the GPU. Every frame the CPU works out where each nucleotide is (five thousand of
+   them) and hands that over as a small texture; the vertex shader then puts each of the hundred thousand
+   atoms on its nucleotide, with the same sag and flex the bundle is given, so the arithmetic is the one
+   that used to run in JavaScript, done where it costs nothing. */
+const NT_W = 256, NT_H = Math.ceil(2 * NNT / NT_W);
+const ntData = new Float32Array(NT_W * NT_H * 4);
+const ntTex = new THREE.DataTexture(ntData, NT_W, NT_H, THREE.RGBAFormat, THREE.FloatType);
+ntTex.magFilter = ntTex.minFilter = THREE.NearestFilter;
+const AU = { uNt: { value: ntTex }, uBend: { value: 0 }, uWave: { value: 0 }, uWaveT: { value: 0 } };
+// built when the shader is first compiled, by which time the bundle's axis and bend are known
+const atomVS = () => `
+attribute vec3 aLocal;
+attribute float aNt;
+uniform sampler2D uNt;
+uniform float uBend, uWave, uWaveT, uR;
+vec4 ntTexel(int k) { return texelFetch(uNt, ivec2(k % ${NT_W}, k / ${NT_W}), 0); }
+vec3 atomAt() {
+  int n = int(aNt + 0.5);
+  vec4 q = ntTexel(2 * n), pn = ntTexel(2 * n + 1);
+  vec3 t = 2.0 * cross(q.xyz, aLocal);
+  vec3 p = aLocal + q.w * t + cross(q.xyz, t) + pn.xyz;
+  float X = p.x - ${XMID.toFixed(6)};
+  const vec3 FACE = vec3(${FACE_VEC.x.toFixed(8)}, ${FACE_VEC.y.toFixed(8)}, ${FACE_VEC.z.toFixed(8)});
+  const vec3 SIDE = vec3(${SIDE_VEC.x.toFixed(8)}, ${SIDE_VEC.y.toFixed(8)}, ${SIDE_VEC.z.toFixed(8)});
+  if (uBend > 0.0) p += FACE * (uBend * X * X / ${(2 * RBEND).toFixed(1)});
+  if (uWave > 0.002) {
+    float w = 6.283185307179586;
+    p += FACE * (uWave * (0.75 * sin(w * X / 170.0 + 0.55 * uWaveT) + 0.3 * sin(w * X / 95.0 - 0.9 * uWaveT + 1.7)));
+    p += SIDE * (uWave * 0.5 * sin(w * X / 140.0 - 0.7 * uWaveT + 2.4));
+  }
+  return p;
+}
+`;
+function atomMaterial(r) {
+  const m = new THREE.MeshStandardMaterial({ roughness: 0.55, metalness: 0 });
+  m.onBeforeCompile = sh => {
+    Object.assign(sh.uniforms, AU, { uR: { value: r } });
+    sh.vertexShader = sh.vertexShader
+      .replace('#include <common>', '#include <common>\n' + atomVS())
+      .replace('#include <begin_vertex>', `vec4 atomOn = ntTexel(2 * int(aNt + 0.5) + 1);
+vec3 transformed = position * (atomOn.w > 0.5 ? uR : 0.0) + atomAt();`);
+  };
+  m.customProgramCacheKey = () => 'atom';
+  return m;
+}
+/* How finely an atom's sphere is cut follows how large it is on screen: the full 16 x 10 while it is big
+   enough for the facets to show, fewer once it is only a few pixels across, where a finer sphere draws the
+   same disc. [segments around, segments down, smallest on-screen radius in device pixels] */
+const ATOM_LOD = [[16, 10, 9], [11, 7, 4.5], [8, 5, 0]];
+function pickLOD() {
+  const px = renderer.domElement.height / (cam.top - cam.bottom);   // device pixels per nm
+  for (const { mesh, r } of meshes) {
+    const rp = r * px, k = ATOM_LOD.findIndex(l => rp >= l[2]);
+    mesh.geometry = mesh.userData.lods[k];
+  }
+}
+function draw() { pickLOD(); renderer.render(scene, cam); }
 const white = new THREE.Color('#f2f6fb');   // what a base is tinted towards
 const meshes = [];
 for (const el of 'CNOP') {
   const idx = [];
   for (let i = 0; i < NAT; i++) if (D.el[i] === el) idx.push(i);
-  const mesh = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 16, 10),
-    new THREE.MeshStandardMaterial({ roughness: 0.55, metalness: 0 }), idx.length);
+  const loc = new Float32Array(3 * idx.length), nts = new Float32Array(idx.length);
+  idx.forEach((ai, j) => { loc.set([LOCAL[3 * ai], LOCAL[3 * ai + 1], LOCAL[3 * ai + 2]], 3 * j); nts[j] = D.atomNt[ai]; });
+  const aLoc = new THREE.InstancedBufferAttribute(loc, 3), aNt = new THREE.InstancedBufferAttribute(nts, 1);
+  const lods = ATOM_LOD.map(([ws, hs]) => {
+    const geo = new THREE.SphereGeometry(1, ws, hs);
+    geo.setAttribute('aLocal', aLoc); geo.setAttribute('aNt', aNt);
+    return geo;
+  });
+  const mesh = new THREE.InstancedMesh(lods[0], atomMaterial(VDW[el]), idx.length);
+  mesh.userData.lods = lods;
   mesh.frustumCulled = false;
   idx.forEach((i, j) => {
     const c = new THREE.Color(colorOf(D.names[D.ntStrand[D.atomNt[i]]]));
@@ -321,8 +388,12 @@ const etframe = (x, y, z, e1, e2) => {
   e2[0] = y * e1[2] - z * e1[1]; e2[1] = z * e1[0] - x * e1[2]; e2[2] = x * e1[1] - y * e1[0];
 };
 function evSurf(x, y, z, pos, nrm) {
-  const h = 0.01;
   evS(pos, x, y, z);
+  evNormal(x, y, z, pos, nrm);
+}
+// the normal at a point whose position (pos) has already been worked out
+function evNormal(x, y, z, pos, nrm) {
+  const h = 0.01;
   etframe(x, y, z, EF1, EF2);
   evS(EPa, x + h * EF1[0], y + h * EF1[1], z + h * EF1[2]);
   evS(EPb, x + h * EF2[0], y + h * EF2[1], z + h * EF2[2]);
@@ -459,7 +530,7 @@ function patchLipid(i, tau, out, nrm) {
   nrm.copy(PN).normalize();
 }
 const fragPos = new THREE.Vector3(), fragNrm = new THREE.Vector3();
-const BREAK_UP = false;   // set true to carry on past the pore and let the pieces curl into small vesicles
+const BREAK_UP = false;   // the source film can carry on past the pore and curl the pieces into small vesicles; the cover stops before that, and its GPU-posed lipids do not do it
 
 /* ---------- the vesicle's lipids ---------- */
 const evGroup = new THREE.Group();
@@ -468,9 +539,134 @@ evGroup.position.copy(EVC);
 scene.add(evGroup);
 const HEAD_COL = new THREE.Color('#5d7390'), TAIL_COL = new THREE.Color('#3a4d65');   // slate-blue heads, pale periwinkle tails
 const HEAD_IN = new THREE.Color('#78839b');
-const heads = new THREE.InstancedMesh(new THREE.SphereGeometry(0.45, 10, 7), new THREE.MeshStandardMaterial({ roughness: 0.6 }), NL);
+/* The lipids are posed on the GPU as well: each carries its direction on the undeformed vesicle, and the
+   vertex shader runs the same surface (stretch, trough, deflation), the same opening (its area-keeping
+   retraction and ragged rim) and the same turn of the leaflets at the rim that used to run here for each of
+   them, three surface evaluations apiece. All the CPU does is hand over the handful of numbers that shape
+   the membrane this frame. */
+const LU = { uE: { value: 0 }, uLc: { value: 0 }, uKc: { value: 0 }, uDef: { value: 0 }, uLa: { value: 8 }, uLb: { value: 20 },
+  uG: { value: 0 }, uPa: { value: 0.4 }, uPb: { value: 0.2 } };
+const glf = x => Number(x).toFixed(8);
+const glv = a => `vec3(${glf(a[0])}, ${glf(a[1])}, ${glf(a[2])})`;
+const lipidLib = () => `
+uniform float uE, uLc, uKc, uDef, uLa, uLb, uG, uPa, uPb;
+const float RM_ = ${glf(RM)}, HT_ = ${glf(HALF_T)}, W_OUT_ = ${glf(W_OUT)}, D_BASIN_ = ${glf(D_BASIN)};
+const float R_C_ = ${glf(R_C)}, R_S_ = ${glf(R_S)}, TH1_ = ${glf(TH1)}, D_CORE_ = ${glf(D_CORE)}, Y1_ = ${glf(Y1)}, Y2_ = ${glf(Y2)};
+const vec3 PC_ = ${glv(PC)}, PX_ = ${glv(PX)}, PY_ = ${glv(PY)};
+float lsm(float t) { t = clamp(t, 0.0, 1.0); return t * t * (3.0 - 2.0 * t); }
+float lsm2(float a, float b, float x) { return lsm((x - a) / (b - a)); }
+float coreDepthG(float y) {
+  if (y >= Y2_) return 0.0;
+  if (y <= Y1_) return D_CORE_ - (R_C_ - sqrt(max(0.0, R_C_ * R_C_ - y * y)));
+  float sf = sin(TH1_) - (y - Y1_) / R_S_, cf = sqrt(max(0.0, 1.0 - sf * sf));
+  return D_CORE_ - R_C_ * (1.0 - cos(TH1_)) - R_S_ * (cf - cos(TH1_));
+}
+vec3 evSG(vec3 d) {
+  d = normalize(d);
+  float s = 1.0 / sqrt(1.0 + uE);
+  float ax = RM_ * (1.0 + uE) * (1.0 + 0.12 * uDef), by = RM_ * s * (1.0 - 0.3 * uDef), cz = by;
+  float X = ax * d.x, Y = by * d.y, Z = cz * d.z + (RM_ - cz);
+  if (uDef > 0.0 && d.z > 0.0) Z += uDef * 0.35 * (RM_ - Z) * exp(-((Y / 24.0) * (Y / 24.0))) * (1.0 - lsm2(uLc, uLc + 15.0, abs(X)));
+  float along = d.z > 0.0 ? (1.0 - lsm2(uLa, uLb, abs(X))) : 0.0;
+  float basin = (1.0 - lsm2(0.0, W_OUT_, abs(Y))) * along;
+  float dip = uKc * (coreDepthG(abs(Y)) * along + D_BASIN_ * basin);
+  return vec3(X, Y, Z) - dip * d;
+}
+vec3 qrot(vec4 q, vec3 v) { vec3 t = 2.0 * cross(q.xyz, v); return v + q.w * t + cross(q.xyz, t); }
+vec3 lipidPos; vec4 lipidQ;
+void poseLipidAt(vec3 dir0, int id) {
+  vec3 d = dir0, w = vec3(0.0);
+  float rim = -1.0, cd = dot(d, PC_);
+  if (uG > 0.0 && cd > 0.1) {
+    float dx = RM_ * dot(d, PX_), dy = RM_ * dot(d, PY_);
+    if (length(vec2(dx, dy)) < 1e-3) { float fi = float(id); dx = 1e-3 * cos(fi); dy = 1e-3 * sin(fi); }
+    float psi = atan(dy / uPb, dx / uPa);
+    float rag = 1.0 + 0.22 * sin(3.0 * psi + 1.0) + 0.12 * sin(5.0 * psi + 2.3) + 0.06 * sin(11.0 * psi);
+    float rho = length(vec2(dx / uPa, dy / uPb)) / rag, per = length(vec2(dx, dy)) / rho;
+    float fade = lsm2(0.1, 0.6, cd), k = mix(1.0, sqrt(rho * rho + 1.0) / rho, fade);
+    float ddx = dx * (k - 1.0), ddy = dy * (k - 1.0);
+    d = normalize(d + (ddx * PX_ + ddy * PY_) / RM_);
+    float e = (sqrt(rho * rho + 1.0) - 1.0) * per;
+    if (fade > 0.99 && e < HT_) { rim = e; w = normalize(-(dx * PX_ + dy * PY_)); }
+  }
+  vec3 pos = evSG(d);
+  // the normal, from two nearby points on the surface, as on the CPU
+  vec3 a = abs(d.z) < 0.9 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
+  vec3 e1 = normalize(cross(d, a)), e2 = cross(d, e1);
+  vec3 n = cross(evSG(d + 0.01 * e1) - pos, evSG(d + 0.01 * e2) - pos);
+  n = normalize(n) * (dot(n, d) < 0.0 ? -1.0 : 1.0);
+  vec3 o = (id < ${NO} ? 1.0 : -1.0) * n;
+  if (rim >= 0.0) { float ph = (1.0 - rim / HT_) * 1.5707963267948966; o = o * cos(ph) + w * sin(ph); }
+  lipidPos = pos + HT_ * o;
+  vec3 nv = normalize(o);
+  float r = nv.y + 1.0;
+  lipidQ = r < 1e-7 ? vec4(0.0, 0.0, 1.0, 0.0) : normalize(vec4(nv.z, 0.0, -nv.x, r));
+}
+`;
+/* Each lipid's pose depends only on the lipid, not on the vertex, so it is worked out once per lipid per
+   frame, in a pass of its own that writes position and turn into a float texture (two texels a lipid);
+   the meshes then just read it. Where float render targets are not available the meshes work the pose out
+   themselves, vertex by vertex - the same result, only slower. */
+const POSE_W = 512, POSE_H = Math.ceil(NL / POSE_W);
+const poseOK = renderer.capabilities.isWebGL2 && renderer.extensions.has('EXT_color_buffer_float');
+const poseRT = poseOK ? new THREE.WebGLRenderTarget(2 * POSE_W, POSE_H,
+  { type: THREE.FloatType, format: THREE.RGBAFormat, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: false }) : null;
+const dirData = new Float32Array(POSE_W * POSE_H * 4);
+for (let i = 0; i < NL; i++) dirData.set([LDIR[3 * i], LDIR[3 * i + 1], LDIR[3 * i + 2], 0], 4 * i);
+const dirTex = new THREE.DataTexture(dirData, POSE_W, POSE_H, THREE.RGBAFormat, THREE.FloatType);
+dirTex.needsUpdate = true;
+const poseCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), poseScene = new THREE.Scene();
+if (poseOK) poseScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+  uniforms: Object.assign({ uDir: { value: dirTex } }, LU),
+  vertexShader: 'void main() { gl_Position = vec4(position.xy, 0.0, 1.0); }',
+  fragmentShader: 'void main() { gl_FragColor = vec4(0.0); }',   // replaced on first use, once its constants exist
+})));
+let poseReady = false;
+function poseLipids() {               // the per-frame pass; called from updateEV
+  if (!poseOK) return;
+  if (!poseReady) {
+    const m = poseScene.children[0].material;
+    m.fragmentShader = `precision highp float;\nuniform sampler2D uDir;\n${lipidLib()}
+void main() {
+  ivec2 px = ivec2(gl_FragCoord.xy);
+  int id = px.y * ${POSE_W} + px.x / 2;
+  if (id >= ${NL}) { gl_FragColor = vec4(0.0); return; }
+  poseLipidAt(texelFetch(uDir, ivec2(id % ${POSE_W}, id / ${POSE_W}), 0).xyz, id);
+  gl_FragColor = (px.x % 2 == 0) ? vec4(lipidPos, 1.0) : lipidQ;
+}`;
+    m.needsUpdate = true; poseReady = true;
+  }
+  const prev = renderer.getRenderTarget();
+  renderer.setRenderTarget(poseRT);
+  renderer.render(poseScene, poseCam);
+  renderer.setRenderTarget(prev);
+}
+function lipidMaterial(opts) {
+  const m = new THREE.MeshStandardMaterial(opts);
+  m.onBeforeCompile = sh => {
+    Object.assign(sh.uniforms, LU, { uPose: { value: poseRT && poseRT.texture } });
+    const pose = poseOK
+      ? `uniform sampler2D uPose;
+void poseLipid() {
+  int id = gl_InstanceID;
+  ivec2 c = ivec2(2 * (id % ${POSE_W}), id / ${POSE_W});
+  lipidPos = texelFetch(uPose, c, 0).xyz; lipidQ = texelFetch(uPose, c + ivec2(1, 0), 0);
+}`
+      : 'attribute vec3 aDir;\nvoid poseLipid() { poseLipidAt(aDir, gl_InstanceID); }';
+    sh.vertexShader = sh.vertexShader
+      .replace('#include <common>', '#include <common>\n' + lipidLib() + pose)
+      .replace('#include <beginnormal_vertex>', 'poseLipid();\nvec3 objectNormal = qrot(lipidQ, normal);')
+      .replace('#include <begin_vertex>', 'vec3 transformed = qrot(lipidQ, position) + lipidPos;');
+  };
+  m.customProgramCacheKey = () => 'lipid';
+  return m;
+}
+const aDir = new THREE.InstancedBufferAttribute(LDIR, 3);
+const headGeo = new THREE.SphereGeometry(0.45, 10, 7); headGeo.setAttribute('aDir', aDir);
+const heads = new THREE.InstancedMesh(headGeo, lipidMaterial({ roughness: 0.6 }), NL);
 const tailGeo = mergeGeometries([-0.2, 0.2].map(dx => new THREE.CylinderGeometry(0.17, 0.12, 1.6, 6, 1).translate(dx, -1.25, 0)));
-const tails = new THREE.InstancedMesh(tailGeo, new THREE.MeshStandardMaterial({ roughness: 0.7, color: TAIL_COL }), NL);
+tailGeo.setAttribute('aDir', aDir);
+const tails = new THREE.InstancedMesh(tailGeo, lipidMaterial({ roughness: 0.7, color: TAIL_COL }), NL);
 heads.frustumCulled = tails.frustumCulled = false;
 for (let i = 0; i < NL; i++) heads.setColorAt(i, i < NO ? HEAD_COL : HEAD_IN);
 evGroup.add(heads, tails);
@@ -807,20 +1003,14 @@ function update(T) {
     for (let i = m; i > a; i--) fix(i, i - 1);
   });
   posePrologue(tAll);
-  for (const { mesh, idx, r } of meshes) {
-    const a = mesh.instanceMatrix.array;
-    idx.forEach((ai, j) => {
-      const n = D.atomNt[ai], o = j * 16, sc = ntOn[n] ? r : 0;
-      v.set(LOCAL[3 * ai], LOCAL[3 * ai + 1], LOCAL[3 * ai + 2]).applyQuaternion(ntQ[n]).add(ntP[n]);
-      if (BEND > 0) v.addScaledVector(FACE_VEC, BEND * sagF(v.x));
-      if (WAVE > 0.002) flexAt(v);
-      a[o] = sc; a[o + 1] = 0; a[o + 2] = 0; a[o + 3] = 0;
-      a[o + 4] = 0; a[o + 5] = sc; a[o + 6] = 0; a[o + 7] = 0;
-      a[o + 8] = 0; a[o + 9] = 0; a[o + 10] = sc; a[o + 11] = 0;
-      a[o + 12] = v.x; a[o + 13] = v.y; a[o + 14] = v.z; a[o + 15] = 1;
-    });
-    mesh.instanceMatrix.needsUpdate = true;
+  // the atoms themselves are placed by the GPU: it only needs every nucleotide's pose
+  for (let n = 0; n < NNT; n++) {
+    const q = ntQ[n], p = ntP[n], o = 8 * n;
+    ntData[o] = q.x; ntData[o + 1] = q.y; ntData[o + 2] = q.z; ntData[o + 3] = q.w;
+    ntData[o + 4] = p.x; ntData[o + 5] = p.y; ntData[o + 6] = p.z; ntData[o + 7] = ntOn[n];
   }
+  ntTex.needsUpdate = true;
+  AU.uBend.value = BEND; AU.uWave.value = WAVE; AU.uWaveT.value = WAVE_T;
   updateMods();
   if (!act2) {   // act one: the tube turns on its own
     model.rotation.x = -0.3 * t;
@@ -853,8 +1043,7 @@ let CUR = { hold: null, u: 0 };
 
 
 /* ---------- the vesicle, frame by frame ---------- */
-const esp = [0, 0, 0], esn = [0, 0, 0], EY = new THREE.Vector3(0, 1, 0), env = new THREE.Vector3(), ehv = new THREE.Vector3(), etq = new THREE.Quaternion();
-const em4 = new THREE.Matrix4(), escl = new THREE.Vector3(1, 1, 1);
+const esp = [0, 0, 0], esn = [0, 0, 0];   // a point on the membrane and its normal, for the captions
 
 function setEVShape(te) {
   const pin = ease((te - T_INSERT[0]) / (T_INSERT[1] - T_INSERT[0]));
@@ -874,9 +1063,9 @@ function setEVShape(te) {
 let curvKey = '';
 const tmpJ = new THREE.Color();
 function refreshCurv() {
-  const key = `${EVSH.Lc.toFixed(1)}|${Math.round(EVSH.kc * 50)}|${Math.round(EVSH.e * 100)}|${Math.round(EVSH.def * 50)}`;
-  if (key === curvKey) return false;
-  curvKey = key;
+  // no curvature map on the cover, so the colour never changes: painted once
+  if (curvKey) return false;
+  curvKey = 'flat';
   for (let i = 0; i < NO; i++) {
     const c = [0.365, 0.451, 0.565];   // no curvature map on the cover: one slate for every head
     heads.setColorAt(i, tmpJ.setRGB(c[0], c[1], c[2], THREE.SRGBColorSpace));
@@ -884,56 +1073,13 @@ function refreshCurv() {
   return true;
 }
 function updateEV(te) {
-  const T = evTension(te);
-  let tintChanged = refreshCurv();
-
+  if (refreshCurv()) heads.instanceColor.needsUpdate = true;
+  // the shape of the membrane and the size of the opening this frame; the lipids are posed from these on the GPU
   const g = poreSize(te - T_RUP);
-  const pa2 = PORE.along * g + 0.4, pb2 = PORE.across * g + 0.2;
-  const hm = heads.instanceMatrix.array, tm = tails.instanceMatrix.array;
-  for (let i = 0; i < NL; i++) {
-    let x = LDIR[3 * i], y = LDIR[3 * i + 1], z = LDIR[3 * i + 2], rim = -1, wx = 0, wy = 0, wz = 0;
-    const cd = x * PC[0] + y * PC[1] + z * PC[2];
-    if (g > 0 && cd > 0.1) {
-      // area-keeping retraction from the pore (rho' = sqrt(rho^2 + 1)); the rim is ragged
-      let dx = RM * (x * PX[0] + y * PX[1] + z * PX[2]), dy = RM * (x * PY[0] + y * PY[1] + z * PY[2]);
-      if (Math.hypot(dx, dy) < 1e-3) { dx = 1e-3 * Math.cos(i); dy = 1e-3 * Math.sin(i); }
-      const psi = Math.atan2(dy / pb2, dx / pa2);
-      const rag = 1 + 0.22 * Math.sin(3 * psi + 1) + 0.12 * Math.sin(5 * psi + 2.3) + 0.06 * Math.sin(11 * psi);
-      const rho = Math.hypot(dx / pa2, dy / pb2) / rag, per = Math.hypot(dx, dy) / rho;
-      const fade = smooth2(0.1, 0.6, cd), k = lerp(1, Math.sqrt(rho * rho + 1) / rho, fade);
-      const ddx = dx * (k - 1), ddy = dy * (k - 1);
-      x += (ddx * PX[0] + ddy * PY[0]) / RM; y += (ddx * PX[1] + ddy * PY[1]) / RM; z += (ddx * PX[2] + ddy * PY[2]) / RM;
-      const l = Math.hypot(x, y, z); x /= l; y /= l; z /= l;
-      const e = (Math.sqrt(rho * rho + 1) - 1) * per;   // distance from the rim, nm
-      if (fade > 0.99 && e < HALF_T) {
-        rim = e;
-        const tx = -(dx * PX[0] + dy * PY[0]), ty = -(dx * PX[1] + dy * PY[1]), tz = -(dx * PX[2] + dy * PY[2]), lt = Math.hypot(tx, ty, tz);
-        wx = tx / lt; wy = ty / lt; wz = tz / lt;   // towards the pore
-      }
-    }
-    evSurf(x, y, z, esp, esn);
-    const s = i < NO ? 1 : -1;
-    let ox = s * esn[0], oy = s * esn[1], oz = s * esn[2];   // from the mid-plane out to the head
-    if (rim >= 0) {   // at the rim the leaflets bend round towards the pore and meet, sealing the edge
-      const ph = (1 - rim / HALF_T) * Math.PI / 2, c = Math.cos(ph), sn2 = Math.sin(ph);
-      ox = ox * c + wx * sn2; oy = oy * c + wy * sn2; oz = oz * c + wz * sn2;
-    }
-    ehv.set(esp[0] + HALF_T * ox, esp[1] + HALF_T * oy, esp[2] + HALF_T * oz);
-    env.set(ox, oy, oz).normalize();
-    if (BREAK_UP) {   // the torn membrane would come apart here; the film stops before that
-      const pk = PK[i], tau = te - PAT[pk].tb;
-      if (pk !== STRIP && tau > 0) {
-        patchLipid(i, tau, fragPos, fragNrm);
-        const b = smooth(tau / 0.5);
-        ehv.lerp(fragPos, b); env.lerp(fragNrm, b).normalize();
-      }
-    }
-    etq.setFromUnitVectors(EY, env);
-    em4.compose(ehv, etq, escl);
-    em4.toArray(hm, 16 * i); em4.toArray(tm, 16 * i);
-  }
-  heads.instanceMatrix.needsUpdate = tails.instanceMatrix.needsUpdate = true;
-  if (tintChanged) heads.instanceColor.needsUpdate = true;
+  LU.uE.value = EVSH.e; LU.uLc.value = EVSH.Lc; LU.uKc.value = EVSH.kc; LU.uDef.value = EVSH.def;
+  LU.uLa.value = EVSH.la; LU.uLb.value = EVSH.lb;
+  LU.uG.value = g; LU.uPa.value = PORE.along * g + 0.4; LU.uPb.value = PORE.across * g + 0.2;
+  poseLipids();
 }
 
 /* ---------- act two's camera: the shots of hcr-ev-rupture-3d.html, on the same camera as act one ----------
@@ -1013,7 +1159,8 @@ function setCam(dir, up, half, target) {
    that kept running at sixty frames a second with nothing on it. */
 // no ambient occlusion on the cover: it is the most expensive pass and it holds several full-size
 // buffers open even when disabled, which is what a small GPU runs out of first
-addEventListener('resize', () => renderer.setSize(innerWidth, innerHeight));
+let dirty = true;                    // set when something other than the scroll changes the frame
+addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); dirty = true; });
 
 /* ---------- the captions, drawn over the render ---------- */
 const AW = new THREE.Vector3();
@@ -1279,6 +1426,7 @@ function timeAt(p) {
   }
   return HERO_B;
 }
+let lastCur = NaN, lastProg = NaN, lastClear = null;
 let cur = HERO_A, want = HERO_A, phase = 1, started = performance.now() / 1000;
 // update() is fed the playback clock, which runs longer than the animation clock by every pause in it
 const realFor = a => a + STOPS.reduce((n, st) => n + (st.a <= a ? st.dur : 0), 0);
@@ -1352,7 +1500,7 @@ renderer.setAnimationLoop(() => {
     if (scrollY > 4) e = 1;                      // a scroll means: get on with it
     e = clamp(e, 0, 1);
     const a = GROW_A + (GROW_B - GROW_A) * ease(e);
-    update(realFor(a)); introCam(e, a); renderer.render(scene, cam); note();
+    update(realFor(a)); introCam(e, a); draw(); note();
     titleAt(clamp((e - 0.74) / 0.26, 0, 1));
     if (e >= 1) { phase = 2; cur = want = HERO_A; }
     return;
@@ -1376,9 +1524,13 @@ renderer.setAnimationLoop(() => {
     if (progress() >= 1) seal();      // and through the hole: there is no way back out
     return;
   }
+  // the frame is a function of cur and the scroll alone: when neither has moved, the last one still stands
+  const prog = progress();
+  if (!dirty && Math.abs(cur - lastCur) < 1e-4 && prog === lastProg && clear === lastClear) return;
+  dirty = false; lastCur = cur; lastProg = prog; lastClear = clear;
   update(realFor(cur));
   coverCam(pc);
-  renderer.render(scene, cam); note();
+  draw(); note();
 });
 
 /* One way only: once the camera is through the hole the cover closes behind it. The track is replaced by
@@ -1398,6 +1550,7 @@ function seal() {
   // measure rather than trust the arithmetic: browsers that anchor the scroll may already have moved it
   // instant: Bootstrap makes the page scroll smoothly, which would turn this correction into a visible slide
   if (next) scrollBy({ top: next.getBoundingClientRect().top - before, behavior: 'instant' });
+  if (poseRT) poseRT.dispose();
   renderer.dispose();
   renderer.forceContextLoss();
   renderer.domElement.remove();
@@ -1412,8 +1565,9 @@ window.__seek = u => {
   if (u < 0.5) { const e = u * 2, a = GROW_A + (GROW_B - GROW_A) * ease(e);
     update(realFor(a)); introCam(e, a); titleAt(clamp((e - 0.74) / 0.26, 0, 1)); }
   else { const p = (u - 0.5) * 2; cur = want = timeAt(p);
-    update(realFor(cur)); coverCam(clamp((cur - HERO_A) / (HERO_B - HERO_A), 0, 1)); titleAt(clamp(1 - p / 0.2, 0, 1)); }
-  renderer.render(scene, cam); return renderer.domElement.toDataURL('image/png');
+    const pc = clamp((cur - HERO_A) / (HERO_B - HERO_A), 0, 1);
+      update(realFor(cur)); coverCam(clamp((cur - HERO_A) / (HERO_B - HERO_A), 0, 1)); titleAt(clamp(1 - p / 0.2, 0, 1)); }
+  draw(); return renderer.domElement.toDataURL('image/png');
 };
 const dbg = document.createElement('div');
 dbg.style.cssText = 'position:fixed;left:10px;top:10px;z-index:9;font:12px/1.6 monospace;color:#62c5d5;' +
