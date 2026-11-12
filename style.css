@@ -1862,7 +1862,7 @@ section[id],
         rgba(15, 31, 58, 0.75);
     border: 1px solid rgba(148, 163, 184, 0.28);
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: 0.02em;
@@ -1919,7 +1919,7 @@ section[id],
 
 .sim-matrix-rowhead > span {
     color: #ffffff !important;
-    font-size: 1rem;
+    font-size: 1.15rem;
     letter-spacing: 0.01em;
     text-align: center;
     line-height: 1.45;
@@ -1954,7 +1954,7 @@ section[id],
 .sim-matrix-cell-head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 10px;
     min-height: 36px;
     padding-bottom: 10px;
@@ -1963,12 +1963,7 @@ section[id],
 }
 
 .sim-matrix-col {
-    margin: 0 !important;
-    padding: 0;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #cbd5e1 !important;
+    display: none;
 }
 
 .sim-matrix-cell .simulation-result-mark {
@@ -1997,8 +1992,8 @@ section[id],
 .sim-matrix-cell p {
     margin-top: auto;
     text-indent: 0;
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .sim-matrix-placeholder,
@@ -2058,14 +2053,32 @@ section[id],
         padding: 0 !important;
     }
 
-    .sim-matrix-corner,
-    .sim-matrix-colhead {
+    .sim-matrix-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 0 !important;
+    }
+
+    .sim-matrix-grid > * {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+    }
+
+    .sim-matrix-corner {
         display: none;
     }
 
     .sim-matrix-rowhead {
+        grid-column: 1 / -1;
         justify-content: flex-start !important;
         padding: 8px 12px !important;
+    }
+
+    .sim-matrix-rowhead > span {
+        font-size: 1.05rem;
+        text-align: left;
     }
 
     .sim-matrix .sim-matrix-cell {
@@ -2076,10 +2089,6 @@ section[id],
         min-height: 28px;
         padding-bottom: 6px;
         margin-bottom: 8px;
-    }
-
-    .sim-matrix-col {
-        font-size: 0.72rem;
     }
 
     .sim-matrix-cell .simulation-result-mark {
