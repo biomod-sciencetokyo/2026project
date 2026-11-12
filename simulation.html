@@ -695,7 +695,20 @@
                                 effective adhesion, DNA Bundle bending, membrane bending, and membrane tension.
                                 It is a constrained reduced model, not a time-evolving 3D simulation.
                             </p>
-                            <!-- Real system vs. 3D model -->
+                        </div>
+
+                        <!-- 3D deformation visualization -->
+                        <div id="three-d-interactive" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Interactive 3D Deformation Visualization</h4>
+                            <p class="text-secondary mb-4">
+                                The GLB and deformation views show local membrane deformation at the DNA Bundle
+                                contact region. Its shape reflects the competition between effective adhesion,
+                                Bundle flexibility, membrane bending elasticity, and membrane tension. The GLB can
+                                be rotated for viewing but is static, not a time-evolving simulation. Its color
+                                shows visualization-only local curvature, not a pore-formation test or rupture
+                                threshold.
+                            </p>
+                            <!-- Existing real-system and continuum comparison -->
                             <div class="sim-env mb-4" data-sim-env>
                                 <div class="sim-env-panels">
                                     <figure class="sim-env-panel">
@@ -756,19 +769,6 @@
                                     </li>
                                 </ol>
                             </div>
-                        </div>
-
-                        <!-- 3D deformation visualization -->
-                        <div id="three-d-interactive" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Interactive 3D Deformation Visualization</h4>
-                            <p class="text-secondary mb-4">
-                                The GLB and deformation views show local membrane deformation at the DNA Bundle
-                                contact region. Its shape reflects the competition between effective adhesion,
-                                Bundle flexibility, membrane bending elasticity, and membrane tension. The GLB can
-                                be rotated for viewing but is static, not a time-evolving simulation. Its color
-                                shows visualization-only local curvature, not a pore-formation test or rupture
-                                threshold.
-                            </p>
                             <div class="row g-3 mb-4 align-items-stretch">
                                 <div class="col-md-9">
                                     <model-viewer class="simulation-model-viewer"
@@ -791,6 +791,13 @@
                         <!-- Bundle radius as a geometric design parameter -->
                         <div id="three-d-deformation" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Radius as a Geometric Design Parameter</h4>
+                            <p class="text-secondary mb-3">
+                                DNA Bundle geometry is an important factor in three-dimensional membrane deformation.
+                                The Bundle radius determines the width of the membrane-contact region and the geometric
+                                extent over which the membrane must bend around the Bundle. In contrast, effective
+                                bending rigidity determines how strongly the Bundle itself resists bending. These two
+                                Bundle properties therefore affect deformation through different mechanisms.
+                            </p>
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
@@ -813,12 +820,79 @@
                                 </div>
                             </div>
                             <p class="text-secondary mb-0">
-                                Bundle radius changes the contact geometry, contact width, and membrane wrapping
-                                geometry; therefore, it is an important design parameter for future 3D parameter
-                                sweeps. These <i>r</i> = 4 nm and <i>r</i> = 10 nm views are geometric comparisons,
-                                not results from a quantitative radius sweep.
+                                A wider DNA Bundle changes the contact geometry and distributes membrane deformation
+                                across a broader region. This radius comparison is a qualitative geometric
+                                illustration, not a quantitative radius-sweep result or a prediction of pore
+                                formation. Bundle radius is a geometrically important input parameter to include in
+                                future parameter sweeps.
                             </p>
                         </div>
+
+                        <p class="text-secondary mb-3">
+                            The radius comparison suggests an important DNA Bundle design trade-off. A smaller
+                            Bundle radius concentrates membrane deformation within a narrower contact region and
+                            is therefore expected to favor the localized membrane deformation associated with the
+                            local pore-formation proxy used in this study. However, a DNA Bundle composed of fewer
+                            helices is also expected to have a lower effective bending rigidity.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            Our 2D screening model indicated that, under comparable conditions, a mechanically
+                            stiffer DNA Bundle more readily produces the model-defined local pore-formation event.
+                            Therefore, the optimal design is not simply the smallest possible Bundle. Instead, the
+                            Bundle should remain sufficiently narrow to localize membrane deformation while
+                            containing enough DNA helices to retain the mechanical rigidity required for effective
+                            loading.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            We therefore performed a helix-number screening analysis to estimate the minimum number
+                            of DNA helices required to reach a selected local-curvature comparison level under each
+                            α condition. Here, <i>N</i> denotes the number of DNA helices within one DNA Bundle, not
+                            the number of independently attacking DNA Bundles around a vesicle.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            This threshold is a rigidity-based design estimate. The present analysis does not yet
+                            quantitatively combine the radius-dependent geometric effect with the
+                            helix-number-dependent stiffness effect; instead, it identifies a practical lower bound
+                            on Bundle size needed to maintain sufficient effective rigidity.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            To explore how incomplete coupling between helices may alter Bundle mechanics, we
+                            introduced α as a dimensionless, model-defined cross-linking-efficiency parameter. In
+                            this screening model, the effective Bundle-rigidity factor is defined as:
+                        </p>
+                        <p class="text-center my-2" role="math"
+                            aria-label="B effective equals alpha C N squared L bundle">
+                            <i>B</i><sub>eff</sub> = α <i>C N</i><sup>2</sup>
+                            <i>L</i><sub>bundle</sub>
+                        </p>
+                        <p class="text-secondary mb-2">
+                            Here, <i>N</i> is the number of DNA helices, <i>L</i><sub>bundle</sub> is the Bundle
+                            length, and <i>C</i> is a fixed model scaling constant. A larger α represents a more
+                            mechanically integrated DNA Bundle and therefore a larger effective bending-rigidity
+                            factor.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            The predicted local-curvature indicator is then calculated from the mechanical balance
+                            between the Bundle and membrane:
+                        </p>
+                        <p class="text-center my-2" role="math"
+                            aria-label="kappa Bundle equals k membrane divided by B effective plus k membrane, multiplied by one over R zero">
+                            <i>κ</i><sub>Bundle</sub> =
+                            <span>[<i>k</i><sub>mem</sub> /
+                            (<i>B</i><sub>eff</sub> + <i>k</i><sub>mem</sub>)]</span>
+                            × (1 / <i>R</i><sub>0</sub>)
+                        </p>
+                        <p class="text-center my-2" role="math"
+                            aria-label="H maximum equals one over R zero plus three times one over R zero minus kappa Bundle">
+                            <i>H</i><sub>max</sub> = (1 / <i>R</i><sub>0</sub>) + 3
+                            [(1 / <i>R</i><sub>0</sub>) − <i>κ</i><sub>Bundle</sub>]
+                        </p>
+                        <p class="text-secondary mb-3">
+                            This is a phenomenological screening model rather than a calibrated material law. We
+                            used α = 1.0, 0.5, and 0.1 as high-, intermediate-, and low-effective cross-linking
+                            conditions. These values were selected to test sensitivity over a broad range of assumed
+                            mechanical coupling; they are not experimentally measured cross-linking efficiencies.
+                        </p>
 
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological Helix-Count Scaling Analysis</h4>
@@ -829,15 +903,10 @@
                                 bending-rigidity scenarios.
                             </p>
                             <p class="text-secondary mb-3">
-                                The plot uses <i>R</i><sub>0</sub> = 50 nm, <i>L</i><sub>bundle</sub> = 60 nm, the
-                                assumed scaling <i>B</i><sub>eff</sub> ∝ α<i>N</i><sup>2</sup>, and the manually
-                                selected curvature-comparison level <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>.
-                                Here, α is a dimensionless, model-defined cross-linking-efficiency parameter that
-                                scales the effective DNA Bundle bending rigidity in the helix-number analysis.
-                                α = 1.0, 0.5, and 0.1 represent assumed high-, intermediate-, and low-effective
-                                cross-linking conditions. These values are scenario settings, not experimentally
-                                measured cross-linking efficiencies. The estimated helix numbers are near 6 for
-                                α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1.
+                                The plot uses <i>R</i><sub>0</sub> = 50 nm and <i>L</i><sub>bundle</sub> = 60 nm.
+                                The manually selected <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup> is a
+                                selected local-curvature comparison level, not a physical event threshold. The
+                                estimated helix numbers are near 6 for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1.
                             </p>
                             <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph1.png"
