@@ -2316,9 +2316,21 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
     font-size: 0.86rem;
 }
 
+.experiment-page .exp-seq-table caption,
+.experiment-page figure figcaption {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted) !important;
+}
+
+.experiment-page .exp-seq-table caption strong,
+.experiment-page figure figcaption strong {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
 .exp-seq-table caption {
     padding-top: 0;
-    color: var(--text-main) !important;
 }
 
 .exp-seq-table thead th {
@@ -2426,19 +2438,40 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
 
 /* Figures */
 .experiment-page figure figcaption {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text-muted) !important;
+    margin-top: 0.75rem !important;
 }
 
-.experiment-page figure figcaption strong {
-    color: var(--accent-blue);
-    font-weight: 600;
-}
-
-.experiment-page .exp-subsection figure,
-.experiment-page .exp-subsection .row {
+.experiment-page .exp-subsection > figure,
+.experiment-page .exp-subsection > .row,
+.experiment-page .exp-block > figure,
+.experiment-page .exp-block > .row {
     margin-top: 1.25rem;
+}
+
+.experiment-page .exp-subsection .seed-structure-layout,
+.experiment-page .exp-subsection .seed-structure-layout figure {
+    margin-top: 0;
+}
+
+.experiment-page .seed-structure-layout .exp-seq-table {
+    margin-bottom: 0;
+}
+
+.experiment-page .seed-structure-layout .table-responsive {
+    margin-bottom: 0.25rem !important;
+}
+
+.experiment-page .seed-structure-layout .exp-seq-table caption {
+    padding-bottom: 0;
+}
+
+.experiment-page .seed-structure-layout figcaption {
+    margin: 0.5rem 0 0 !important;
+}
+
+.experiment-page .bundle-assembly-layout .exp-figure {
+    width: 92%;
+    margin-inline: auto;
 }
 
 /* Placeholders: compact, clearly "to do" */
