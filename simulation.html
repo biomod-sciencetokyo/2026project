@@ -113,7 +113,6 @@
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
                         <a class="nav-link" href="#three-d">1.2 3D Reduced Free-Energy Model</a>
-                        <a class="nav-link" href="appendix.html#supplementary-guv">Supplementary GUV Analysis</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Reaction</a>
                     <div class="nav flex-column sidebar-toc-subnav">
@@ -906,39 +905,34 @@
                                 The plot uses <i>R</i><sub>0</sub> = 50 nm and <i>L</i><sub>bundle</sub> = 60 nm.
                                 The manually selected <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup> is a
                                 selected local-curvature comparison level, not a physical event threshold. The
-                                estimated helix numbers are near 6 for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1.
+                                selected level is reached at about 4 helices for α = 1.0, and at about 5.4 and 12
+                                helices for α = 0.5 and 0.1, respectively, in the updated plots.
                             </p>
                             <figure class="mb-4">
-                                <img src="img/SIMULATION/3D_graph1.png"
-                                    alt="Phenomenological helix-count scaling of a selected membrane-curvature comparison level under idealized effective bending rigidity"
+                                <img src="img/SIMULATION/3Dpore-formation.png"
+                                    alt="Illustrative maximum local-curvature indicator versus the number of DNA helices in one Bundle, with a selected comparison level near four helices"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    Helix number required to reach a model-defined local-curvature comparison level
-                                    under the idealized effective-rigidity scenario; this is separate from the 3D
-                                    free-energy minimization.
-                                    </figcaption>
+                                    1. Maximum local-curvature indicator versus helix number for the displayed
+                                    scenario. The marked value is a selected comparison level, not a calibrated
+                                    physical event threshold.
+                                </figcaption>
                             </figure>
                             <figure class="mb-4">
-                                <img src="img/SIMULATION/3D_graph2.png"
-                                    alt="Phenomenological helix-count scaling sensitivity to reduced effective DNA Bundle rigidity"
+                                <img src="img/SIMULATION/3D_pore-formation.png"
+                                    alt="Phenomenological local-curvature comparison across cross-linking-efficiency scenarios, with selected helix numbers near 3.8, 5.4, and 12"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    Helix number required to reach the model-defined local-curvature comparison
-                                    level under intermediate and low effective-rigidity scenarios.
+                                    2. Helix-number scaling across α scenarios. The selected curvature-comparison
+                                    level illustrates model sensitivity and is not a physical pore-formation threshold.
                                 </figcaption>
                             </figure>
                             <a class="btn btn-sm learn-more-btn"
                                 href="appendix.html#three-d-optimization">3D optimization details in the Technical Appendix</a>
                         </div>
 
-                        <p class="text-secondary mt-4 mb-3">
-                            An exploratory extension to the GUV-scale regime is provided in the
-                            <a href="appendix.html#supplementary-guv">Technical Appendix</a>. Because this analysis
-                            concerns a separate size regime, it is not interpreted as a direct continuation of the
-                            <i>R</i> = 50 nm reference calculation.
-                        </p>
                         <p class="text-secondary mb-0">
                             This model does not resolve lipid diffusion, thermal fluctuations, pore nucleation, pore
                             growth, or membrane repair. The static 3D model and helix-number scaling analysis are

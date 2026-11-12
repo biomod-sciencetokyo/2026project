@@ -38,12 +38,11 @@
                         <a class="nav-link" href="#numerical-checks">Numerical Checks</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#three-d-optimization">2. 3D Reduced Free-Energy Model</a>
-                    <a class="nav-link fw-bold mt-2" href="#supplementary-guv">3. Supplementary GUV Analysis</a>
-                    <a class="nav-link fw-bold mt-2" href="#future-work">4. Multi-Bundle Extension</a>
-                    <a class="nav-link fw-bold mt-2" href="#protocols">5. Wet Lab: Experimental Protocols</a>
+                    <a class="nav-link fw-bold mt-2" href="#future-work">3. Multi-Bundle Extension</a>
+                    <a class="nav-link fw-bold mt-2" href="#protocols">4. Wet Lab: Experimental Protocols</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#wet-exp-a">5.1 Experiment A</a>
-                        <a class="nav-link" href="#wet-exp-b">5.2 Experiment B</a>
+                        <a class="nav-link" href="#wet-exp-a">4.1 Experiment A</a>
+                        <a class="nav-link" href="#wet-exp-b">4.2 Experiment B</a>
                     </div>
                 </nav>
             </div>
@@ -529,47 +528,10 @@
                         </p>
                     </div>
 
-                    <p class="text-secondary mt-4 mb-0">
-                        The GUV-scale material is presented separately below as a supplementary exploratory
-                        visualization. It is not a continuation or extrapolation of the
-                        <i>R</i><sub>0</sub> = 50 nm reference calculation.
-                    </p>
-                </section>
-
-                <section id="supplementary-guv" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">3. Supplementary GUV Environment Analysis</h2>
-                    <p class="text-secondary mb-4">
-                        This supplementary, exploratory section shows the existing static, rotatable GLB
-                        visualization of the GUV-scale environment for vesicles with radii of at least 300 nm.
-                        The display is visualization only: this repository contains no GUV-specific free-energy optimization,
-                        curvature result data, convergence analysis, or pore/rupture prediction. It is a
-                        separate size regime and is not interpreted as a direct continuation of the
-                        <i>R</i><sub>0</sub> = 50 nm reference calculation.
-                    </p>
-                    <div class="row g-3 mb-4 align-items-stretch">
-                        <div class="col-md-9">
-                            <model-viewer class="simulation-model-viewer"
-                                src="img/SIMULATION/GUV_environment_liposome_model.glb"
-                                alt="Rotatable static GLB visualization of the GUV-scale liposome environment"
-                                camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1"
-                                loading="lazy">
-                            </model-viewer>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="simulation-colorbar-panel">
-                                <img src="img/SIMULATION/curvature_colorbar.png"
-                                    alt="Local membrane curvature color scale in inverse nanometers"
-                                    class="simulation-colorbar" loading="lazy" decoding="async">
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-secondary small mb-0">
-                        No additional GUV result plots or future-figure placeholders are included.
-                    </p>
                 </section>
 
                 <section id="future-work" class="fade-in-section mb-5 pt-4">
-                    <h2 class="h3 section-title">4. Multi-Bundle Extension and Limitations</h2>
+                    <h2 class="h3 section-title">3. Multi-Bundle Extension and Limitations</h2>
                     <p class="text-secondary mb-0">
                         The 3D implementation can set the number of independent DNA Bundles with
                         <code>SIM_NUM_BUNDLES</code>. In the current multi-Bundle extension, Bundles are arranged
@@ -581,12 +543,12 @@
                 </section>
 
                 <section id="protocols" class="fade-in-section wet-protocol mb-5 pt-4">
-                    <h2 class="h3 section-title">5. Wet Lab: Experimental Protocols</h2>
+                    <h2 class="h3 section-title">4. Wet Lab: Experimental Protocols</h2>
                     <p class="text-secondary mb-4">
                         Detailed materials, methods, results and discussion for each wet lab experiment.
                     </p>
 
-                    <h3 id="wet-exp-a" class="h4 fw-bold mb-4 section-subtitle">5.1 Experiment A: Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR</h3>
+                    <h3 id="wet-exp-a" class="h4 fw-bold mb-4 section-subtitle">4.1 Experiment A: Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR</h3>
 
                     <div class="simulation-subblock mb-5">
                         <p class="wet-label">Materials</p>
@@ -857,7 +819,7 @@
                         <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment A-3</span>Observation of DNA Bundles by AFM</h4>
                     </div>
 
-                    <h3 id="wet-exp-b" class="h4 fw-bold mb-4 section-subtitle">5.2 Experiment B: Lipid membrane disruption by 12-helix and 13-helix DNA bundles</h3>
+                    <h3 id="wet-exp-b" class="h4 fw-bold mb-4 section-subtitle">4.2 Experiment B: Lipid membrane disruption by 12-helix and 13-helix DNA bundles</h3>
 
                     <div class="simulation-subblock mb-5">
                         <p class="wet-label">Materials</p>
