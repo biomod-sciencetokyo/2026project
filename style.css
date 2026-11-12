@@ -2420,15 +2420,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
     background-color: rgba(216, 185, 111, 0.25);
 }
 
-/* Comfortable reading measure and contrast for prose */
-.experiment-page .exp-subsection p.text-secondary,
-.experiment-page .exp-subsection ul.text-secondary {
-    max-width: 760px;
-    font-size: 1.02rem;
-    line-height: 1.85;
-    color: #d0dae6 !important;
-}
-
 .experiment-page .exp-subsection p.small {
     font-size: 0.88rem;
 }
