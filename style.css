@@ -2281,8 +2281,9 @@ section[id],
     }
 }
 
-/* Keep the pixel font for page titles, navigation, and footer only. */
-main :not(h1):not(.page-title) {
+/* Keep the pixel font for page titles, navigation, and footer only.
+   Font Awesome icons are left out: they need their own icon font to show. */
+main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
     font-family: inherit !important;
     -webkit-text-stroke: 0 !important;
 }
