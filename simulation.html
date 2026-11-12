@@ -679,30 +679,21 @@
                     <div id="three-d" class="mb-5 pb-4 pt-3">
                         <h3 class="h4 fw-bold mb-4">1.2 3D Reduced Free-Energy Model
                         </h3>
-                        <p class="text-secondary mb-4">
-                            For the <i>R</i><sub>0</sub> = 50 nm reference condition, a constrained reduced
-                            free-energy model optimizes indentation depth, Bundle bend radius, and deformation-pocket
-                            width using aggregate cholesterol adhesion, DNA Bundle bending, and an approximate
-                            membrane bending/tension penalty. A static parametric membrane indentation is then
-                            constructed from the optimized quantities and exported as a 3D visualization. It
-                            supports qualitative comparison of deformation and local curvature; it is not a dynamic
-                            membrane simulation or a full Helfrich shape minimization. Pore formation and rupture
-                            are outside the claims of this model. The separate GUV-scale extension is described in
-                            the Technical Appendix; optimization details are also available in the
-                            <a href="appendix.html#three-d-optimization">Appendix</a>.
-                        </p>
-
-                        <!-- Modeling Objectives & Structural Scale -->
                         <div id="three-d-modeling" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Modeling Objectives &amp;
-                                Structural Scale</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Why a reduced 3D model?</h4>
                             <p class="text-secondary mb-4">
-                                The GLB is a rotatable static visualization, not a time-evolving model. Its membrane
-                                geometry is constructed after optimization; local curvature is then calculated on
-                                that parametric mesh as <i>H</i> = |<i>H</i>| and clipped to 0.015–0.075 nm<sup>−1</sup>
-                                for display, with a color scale of 0.018–0.065 nm<sup>−1</sup>. The colors therefore
-                                show a qualitative local-curvature distribution, not an optimized curvature,
-                                threshold exceedance, or mean-curvature result.
+                                The 2D CG-MD model compares how DNA Bundle and membrane conditions affect local
+                                interactions, but it does not show how the membrane wraps around a Bundle or how
+                                deformation spreads in three dimensions. Evaluating every condition with time-evolving
+                                3D CG-MD would be computationally demanding for this project, so we use a
+                                <strong>3D Reduced Free-Energy Model</strong> instead.
+                            </p>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">What the model calculates</h4>
+                            <p class="text-secondary mb-4">
+                                For the <i>R</i><sub>0</sub> = 50 nm reference condition, the model finds a static
+                                candidate shape that minimizes its reduced free energy, balancing cholesterol-mediated
+                                effective adhesion, DNA Bundle bending, membrane bending, and membrane tension.
+                                It is a constrained reduced model, not a time-evolving 3D simulation.
                             </p>
                             <!-- Real system vs. 3D model -->
                             <div class="sim-env mb-4" data-sim-env>
@@ -767,12 +758,16 @@
                             </div>
                         </div>
 
-                        <!-- Static 3D visualization -->
+                        <!-- 3D deformation visualization -->
                         <div id="three-d-interactive" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Interactive 3D Deformation Visualization</h4>
                             <p class="text-secondary mb-4">
-                                Rotate the static GLB visualization by dragging and zoom with the viewer controls;
-                                it does not show time evolution.
+                                The GLB and deformation views show local membrane deformation at the DNA Bundle
+                                contact region. Its shape reflects the competition between effective adhesion,
+                                Bundle flexibility, membrane bending elasticity, and membrane tension. The GLB can
+                                be rotated for viewing but is static, not a time-evolving simulation. Its color
+                                shows visualization-only local curvature, not a pore-formation test or rupture
+                                threshold.
                             </p>
                             <div class="row g-3 mb-4 align-items-stretch">
                                 <div class="col-md-9">
@@ -793,10 +788,9 @@
                             </div>
                         </div>
 
-                        <!-- Deformation Analysis -->
+                        <!-- Bundle radius as a geometric design parameter -->
                         <div id="three-d-deformation" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Deformation Analysis &amp;
-                                Bundle Radius</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Radius as a Geometric Design Parameter</h4>
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
@@ -818,39 +812,32 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-secondary mb-3">
-                                In the <i>R</i><sub>0</sub> = 50 nm reference model, the constrained L-BFGS-B
-                                optimization varies indentation depth, Bundle bend radius, and deformation-pocket
-                                width. The static membrane indentation is constructed from those optimized values;
-                                its local curvature is computed from the resulting parametric mesh for visualization.
-                                The reference uses <i>L</i><sub>bundle</sub> = 150 nm and
-                                <i>r</i><sub>DNA</sub> = 4 nm (8 nm diameter).
-                            </p>
                             <p class="text-secondary mb-0">
-                                The radius-labeled views above are geometric comparisons; the 10 nm-radius view is
-                                not the <i>R</i><sub>0</sub> = 50 nm reference input. The reference model represents
-                                the 22 cholesterol anchors per Bundle through an aggregate adhesion term rather than
-                                explicitly resolving individual cholesterol positions or linkers in 3D.
+                                Bundle radius changes the contact geometry, contact width, and membrane wrapping
+                                geometry; therefore, it is an important design parameter for future 3D parameter
+                                sweeps. These <i>r</i> = 4 nm and <i>r</i> = 10 nm views are geometric comparisons,
+                                not results from a quantitative radius sweep.
                             </p>
                         </div>
 
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological Helix-Count Scaling Analysis</h4>
                             <p class="text-secondary mb-3">
-                                This analysis connects DNA Bundle design to membrane deformation by examining how
-                                the number of helices (<i>N</i>) changes DNA Bundle radius and effective DNA Bundle
-                                effective bending rigidity (<i>B</i><sub>DNA</sub>). It provides a design-level bridge between
-                                HCR-mediated Bundle assembly and membrane-deformation comparison, but is separate
-                                from the 3D indentation optimization.
+                                This is a separate design-screening analysis, not a direct output of the 3D
+                                free-energy minimization. It estimates the helix number required to reach a
+                                model-defined local-curvature comparison level under different assumed effective
+                                bending-rigidity scenarios.
                             </p>
                             <p class="text-secondary mb-3">
                                 The plot uses <i>R</i><sub>0</sub> = 50 nm, <i>L</i><sub>bundle</sub> = 60 nm, the
                                 assumed scaling <i>B</i><sub>eff</sub> ∝ α<i>N</i><sup>2</sup>, and the manually
                                 selected curvature-comparison level <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>.
-                                The crossing is near 6 helices for α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1;
-                                α is a phenomenological effective bending-rigidity scaling coefficient, not a measured
-                                cross-linking efficiency. These crossings are scaling comparisons, not evidence
-                                that pores form or membranes rupture.
+                                Here, α is a dimensionless, model-defined cross-linking-efficiency parameter that
+                                scales the effective DNA Bundle bending rigidity in the helix-number analysis.
+                                α = 1.0, 0.5, and 0.1 represent assumed high-, intermediate-, and low-effective
+                                cross-linking conditions. These values are scenario settings, not experimentally
+                                measured cross-linking efficiencies. The estimated helix numbers are near 6 for
+                                α = 1.0, 8.5 for α = 0.5, and 19 for α = 0.1.
                             </p>
                             <figure class="mb-4">
                                 <img src="img/SIMULATION/3D_graph1.png"
@@ -858,10 +845,9 @@
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                        Phenomenological Helix-Count Scaling Analysis: membrane-curvature comparison
-                                        versus DNA helix number under the idealized bending-rigidity scaling. This is separate
-                                        from the 3D indentation optimization and crosses the selected comparison level
-                                        near six helices.
+                                    Helix number required to reach a model-defined local-curvature comparison level
+                                    under the idealized effective-rigidity scenario; this is separate from the 3D
+                                    free-energy minimization.
                                     </figcaption>
                             </figure>
                             <figure class="mb-4">
@@ -870,20 +856,25 @@
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                        Sensitivity of the phenomenological helix-count scaling to reduced effective
-                                        bending rigidity. For α = 0.5 and 0.1, the selected comparison level is crossed near
-                                        8.5 and 19 helices, respectively; α is not a measured cross-linking efficiency.
+                                    Helix number required to reach the model-defined local-curvature comparison
+                                    level under intermediate and low effective-rigidity scenarios.
                                 </figcaption>
                             </figure>
                             <a class="btn btn-sm learn-more-btn"
                                 href="appendix.html#three-d-optimization">3D optimization details in the Technical Appendix</a>
                         </div>
 
-                        <p class="text-secondary mt-4 mb-0">
+                        <p class="text-secondary mt-4 mb-3">
                             An exploratory extension to the GUV-scale regime is provided in the
                             <a href="appendix.html#supplementary-guv">Technical Appendix</a>. Because this analysis
                             concerns a separate size regime, it is not interpreted as a direct continuation of the
                             <i>R</i> = 50 nm reference calculation.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            This model does not resolve lipid diffusion, thermal fluctuations, pore nucleation, pore
+                            growth, or membrane repair. The static 3D model and helix-number scaling analysis are
+                            complementary but separate analyses; their predicted helix numbers are model-dependent
+                            design guides, not experimental rupture thresholds.
                         </p>
                     </div>
                 </section>
