@@ -6,7 +6,7 @@
     <title>DISCUSSION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-21">
+    <link rel="stylesheet" href="style.css?v=20261114-23">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -114,13 +114,49 @@
 
                 <section id="limitations" class="fade-in-section mb-5 pt-4">
                     <h2 class="h3 section-title">2. Limitations</h2>
-                    <p class="text-secondary mb-0">
-                    In the current prototype, the HCR initiation complex (“seed”) does not incorporate a molecular
-                    gate mechanism, and there is concern that the cholesterol anchor may bind to off-target lipid
-                    membranes. Without precise spatial control, DNA bundles may form unintentionally in solution
-                    or anchor to off-target vesicles. To overcome this challenge, a reliable molecular switch is
-                    needed that initiates HCR only on the surface of the target membrane.
+                    <p class="text-secondary mb-5">
+                        Our goal is to develop a physical membrane disruption system that becomes active only near
+                        target EVs, enabling us to access the molecules inside specific EVs without losing their origin
+                        information. Compared to this goal, our current prototype has three main limitations:
                     </p>
+
+                    <div class="point-stack">
+                        <div class="point-box content-box">
+                            <div class="point-box-num" aria-hidden="true">01</div>
+                            <div class="point-box-body">
+                                <h3 class="point-box-title"><i class="fa-solid fa-toggle-off" aria-hidden="true"></i>Lack of Target-Specific Activation</h3>
+                            <p class="text-secondary mb-0">
+                                The current HCR seed has no activation control mechanism, and the cholesterol anchors can
+                                bind non-specifically to any lipid membrane. Without target-specific regulation, DNA bundles
+                                may form in bulk solution or attach to non-target vesicles.
+                            </p>
+                            </div>
+                        </div>
+                        <div class="point-box content-box">
+                            <div class="point-box-num" aria-hidden="true">02</div>
+                            <div class="point-box-body">
+                                <h3 class="point-box-title"><i class="fa-solid fa-burst" aria-hidden="true"></i>Unverified Membrane Rupture on EV-Sized Vesicles</h3>
+                            <p class="text-secondary mb-0">
+                                So far, we have only confirmed bundle elongation and membrane anchoring on GUVs. We have
+                                not yet experimentally demonstrated actual membrane rupture (such as via a calcein leakage
+                                assay) or tested our system on small vesicles comparable in size to EVs (40–160 nm in
+                                diameter).
+                            </p>
+                            </div>
+                        </div>
+                        <div class="point-box content-box">
+                            <div class="point-box-num" aria-hidden="true">03</div>
+                            <div class="point-box-body">
+                                <h3 class="point-box-title"><i class="fa-solid fa-box-open" aria-hidden="true"></i>Access to Released Internal Molecules</h3>
+                            <p class="text-secondary mb-0">
+                                Even if target EVs are selectively disrupted, the released internal molecules (such as RNA
+                                and proteins) will diffuse into the surrounding solution. A method to collect or analyze
+                                these molecules while preserving information about which EV they came from is still
+                                needed.
+                            </p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="future" class="fade-in-section mb-5 pt-4">
@@ -128,70 +164,133 @@
 
                     <div id="improvements" class="subsection">
                         <h3 class="h4 fw-bold mb-4">3.1 Improved Future Design</h3>
-                        <p class="text-secondary mb-0">
-                        To prevent unintended background reactions and binding to off-target membranes, we are
-                        conceptualizing a molecular switch that integrates on-off control of the “seed” with recognition
-                        of the target membrane surface. First, by pre-conjugating a complementary blocking strand to
-                        the reaction initiation site of the “seed,” we keep the HCR reaction completely “OFF” in the
-                        initial state. Furthermore, to activate this switch only on the membrane of specific
-                        extracellular vesicles (EVs), we either modify the trigger strand at the terminal end of an
-                        antibody or design it as a DNA aptamer that selectively binds to the surface antigen of the
-                        target EV. When the trigger bound to the membrane of the target EV binds to the tow-hold region
-                        of the blocking strand, the blocking strand is released via a tow-hold strand displacement
-                        reaction, and the “seed” switches to the “ON” state. As a result, DNA bundles form locally
-                        only on the membrane of the target EV, physically disrupting the membrane. This makes it
-                        possible to recover the contents while retaining biomarker colocalization information at the
-                        single-particle level.
+                        <p class="text-secondary mb-5">
+                            To overcome each of the limitations above, we propose three improvements:
                         </p>
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle topic-num" data-num="01">Selective Seed Activation via Blocking Strands and Target Recognition</h4>
+                            <p class="lead-callout">
+                                <span class="concept-highlight">Approach:</span> Combine molecular recognition on the
+                                target EV surface with toehold-mediated strand displacement so that the seed turns on
+                                only near the target EV.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                <span class="concept-highlight">Mechanism:</span> A complementary blocking strand is
+                                pre-hybridized to the initiation site of the seed to keep it in an inactive (“OFF”)
+                                state [<a href="#ref-1">1</a>]. The Trigger DNA is attached to an antibody or designed
+                                as a DNA aptamer that binds to a specific surface antigen on the target EV
+                                [<a href="#ref-2">2</a>, <a href="#ref-3">3</a>]. By designing a short toehold domain on
+                                the blocking strand, unwanted strand displacement is suppressed in dilute bulk solution;
+                                once the Trigger binds and accumulates on the target EV surface, the increased local
+                                proximity drives toehold-mediated strand displacement, switching the seed “ON” only on
+                                the target membrane [<a href="#ref-4">4</a>].
+                            </p>
+                        </div>
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle topic-num" data-num="02">Optimization for EV-Sized Membrane Rupture</h4>
+                            <p class="lead-callout">
+                                <span class="concept-highlight">Approach:</span> Apply the mechanical parameters
+                                identified in our simulations to achieve and verify physical membrane rupture on small
+                                vesicles.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                <span class="concept-highlight">Mechanism:</span> Based on our 3D model
+                                (<a href="simulation.html#three-d">Simulation, Section 1.2</a>), we will expand the
+                                hairpin design to 12 helices to obtain sufficient bending rigidity
+                                (<i>B</i><sub>DNA</sub>). Guided by our 2D simulations
+                                (<a href="simulation.html#two-d-md">Simulation, Section 1.1</a>, Figs. 2 and 4), we will
+                                also use a short linker (<i>l</i><sub>0</sub> ≈ 2.5 nm) to effectively transmit
+                                mechanical stress to small, highly curved vesicles (<i>R</i> ≈ 50 nm). We will then
+                                evaluate membrane rupture on nanopore-extruded small vesicles using a calcein leakage
+                                assay.
+                            </p>
+                        </div>
+                        <div class="simulation-subblock mb-0">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle topic-num" data-num="03">Compartmentalization for Recovering Internal Molecules</h4>
+                            <p class="lead-callout">
+                                <span class="concept-highlight">Approach:</span> Combine selective disruption with
+                                micro-compartmentalization so that target EVs can be lysed without interference from
+                                co-existing non-target EVs.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                <span class="concept-highlight">Mechanism:</span> In biological fluids, non-target EVs
+                                vastly outnumber target EVs, meaning multiple vesicles are often encapsulated together
+                                within a single microfluidic droplet or microwell [<a href="#ref-5">5</a>]. Unlike
+                                surfactants that would lyse all co-encapsulated vesicles indiscriminately, our system
+                                selectively disrupts only the target EVs inside each compartment, allowing their
+                                internal molecules to be recovered and analyzed while keeping their origin information
+                                intact.
+                            </p>
+                        </div>
                     </div>
 
                     <div id="application" class="subsection">
                         <h3 class="h4 fw-bold mb-4">3.2 Applications</h3>
-                        <div class="simulation-subblock mb-5">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Selective, Physical Destruction of Cancer Cells</h4>
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle"><i class="fa-solid fa-crosshairs subtitle-icon" aria-hidden="true"></i>Selective Physical Disruption of Cancer Cells</h4>
                             <p class="text-secondary mb-0">
-                            Cancer remains a global health crisis. Conventional molecularly targeted drugs face
-                            challenges such as difficulty in escaping endosomes, delivery limitations, and the
-                            development of drug resistance. We envision applying this system as a physical,
-                            non-chemical molecular therapy. By programming the HCR initiation complex to recognize
-                            cancer-specific biomarkers such as miR-21, the reaction is triggered only upon contact with
-                            malignant cells. The rigid DNA bundles formed then pierce and destroy the cancer cell
-                            membrane through pure mechanical force, thereby circumventing conventional chemical drug
-                            resistance pathways.
+                                Conventional chemotherapies and molecularly targeted drugs often face acquired drug
+                                resistance caused by drug-efflux pumps, target mutations, and altered intracellular
+                                signaling pathways [<a href="#ref-6">6</a>]. Therefore, physical approaches that directly
+                                disrupt cancer cell membranes using mechanical force or membrane-perturbing
+                                nanostructures are being explored as a way to overcome biochemical resistance
+                                [<a href="#ref-7">7</a>, <a href="#ref-8">8</a>]. By attaching the Trigger DNA to
+                                antibodies or DNA aptamers that recognize cancer-specific cell-surface antigens
+                                [<a href="#ref-9">9</a>], our blocked HCR seed can be activated only upon contact with
+                                cancer cells. <mark class="key-line">The resulting rigid DNA bundles mechanically rupture the plasma membrane,
+                                offering a physical therapeutic approach independent of intracellular chemical pathways.</mark>
                             </p>
                         </div>
-                        <div class="simulation-subblock mb-5">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Stimulus-Responsive Drug Delivery Systems (DDS)</h4>
+                        <div class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle"><i class="fa-solid fa-capsules subtitle-icon" aria-hidden="true"></i>Stimuli-Responsive Drug Delivery Systems (DDS)</h4>
                             <p class="text-secondary mb-0">
-                            Conventional liposome-based drug carriers face challenges that lead to systemic side
-                            effects due to premature drug leakage into the bloodstream and difficulties in controlling
-                            drug release at the target site. To maximize therapeutic efficacy, a mechanism that releases
-                            the drug in strict response to signals specific to the lesion site is essential. We envision
-                            developing the HCR-driven membrane disruption mechanism of this system into a smart,
-                            stimulus-responsive release switch for DDS. By incorporating masked HCR “seeds” onto the
-                            surface of drug-encapsulated liposomes, the carrier remains stable during circulation in
-                            the bloodstream. Upon encountering disease-specific biomarkers in the target lesion
-                            microenvironment, the trigger initiates the formation of DNA bundles on the liposome
-                            surface, physically disrupting the lipid bilayer to enable on-demand, localized drug
-                            release.
+                                Conventional liposomal drug carriers often suffer from premature drug leakage in the
+                                bloodstream and poor control over release at disease sites, leading to systemic side
+                                effects [<a href="#ref-10">10</a>]. <mark class="key-line">To achieve controlled release, we propose anchoring
+                                blocked HCR seeds onto drug-loaded liposomes.</mark> The carriers remain stable until
+                                encountering disease-specific extracellular biomarkers at the target site, where Trigger
+                                binding initiates <i>in situ</i> DNA bundle assembly and physically ruptures the
+                                liposomal membrane to release the drug locally. For future <i>in vivo</i> bloodstream
+                                applications, protecting surface-exposed DNA seeds and triggers against nuclease
+                                degradation—such as through chemical backbone modifications or PEG shielding—will also
+                                be an important consideration [<a href="#ref-11">11</a>].
                             </p>
                         </div>
                         <div class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Programmable Control of Artificial Cell Deformation</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle"><i class="fa-solid fa-shapes subtitle-icon" aria-hidden="true"></i>Programmable Membrane Remodeling in Artificial Cells</h4>
                             <p class="text-secondary mb-0">
-                            In bottom-up synthetic biology and molecular robotics, reproducing dynamic cellular
-                            behaviors such as division, budding, and morphological adaptation remains a major
-                            challenge. Unlike rigid, static structures, living cells dynamically remodel their membrane
-                            morphology in response to external signals. We envision utilizing this system as a
-                            programmable, stimulus-responsive “artificial cytoskeleton.” Simulations in this study
-                            suggest that local membrane curvature changes when the bending stiffness or cross-linking
-                            efficiency of DNA bundles is varied, indicating the potential to induce membrane
-                            deformation within a range below the membrane rupture threshold. In the future, by
-                            optimizing these structural parameters, we expect to be able to induce morphological
-                            changes—such as bending and budding of giant liposomes—in response to chemical stimuli,
-                            thereby paving the way for programmable shape remodeling in artificial cells.
+                                Physical membrane disruption and non-destructive membrane deformation lie on a
+                                continuous mechanical spectrum: below the critical stress threshold required to open a
+                                pore, localized mechanical loading bends and reshapes the lipid bilayer without breaking
+                                it [<a href="#ref-12">12</a>]. Using this principle, <mark class="key-line">our system can be applied as a
+                                stimuli-responsive “artificial cytoskeleton” in bottom-up synthetic biology</mark>
+                                [<a href="#ref-13">13</a>]. Our 3D reduced free-energy simulations show that changing
+                                the DNA bundle helix count (bending rigidity) and cholesterol-mediated adhesion energy
+                                (<i>α</i>) alters local membrane curvature
+                                (<a href="simulation.html#three-d">Simulation, Section 1.2</a>, Figs. 12–14). Operating
+                                below the rupture threshold will enable chemically triggered bending, budding, and shape
+                                changes in giant liposomes.
                             </p>
                         </div>
+                    </div>
+
+                </section>
+                <section id="references" class="references-section">
+                    <h2 class="references-title">References</h2>
+                    <div class="references-list">
+                        <p id="ref-1">[1] Yurke, B., Turberfield, A. J., Mills, A. P. Jr, Simmel, F. C. &amp; Neumann, J. L. A DNA-fuelled molecular machine made of DNA. <i>Nature</i> <b>406</b>, 605–608 (2000). <a class="ref-doi" href="https://doi.org/10.1038/35020524">DOI</a></p>
+                        <p id="ref-2">[2] Ko, J., Wang, Y., Sheng, K., Weitz, D. A. &amp; Weissleder, R. Sequencing-Based Protein Analysis of Single Extracellular Vesicles. <i>ACS Nano</i> <b>15</b>, 5631–5638 (2021). <a class="ref-doi" href="https://doi.org/10.1021/acsnano.1c00782">DOI</a></p>
+                        <p id="ref-3">[3] Jiang, Y. et al. Aptamer/AuNP Biosensor for Colorimetric Profiling of Exosomal Proteins. <i>Angew. Chem. Int. Ed.</i> <b>56</b>, 11916–11920 (2017). <a class="ref-doi" href="https://doi.org/10.1002/anie.201703807">DOI</a></p>
+                        <p id="ref-4">[4] Tang, J. et al. Recognition-Driven Remodeling of Dual-Split Aptamer Triggering In Situ Hybridization Chain Reaction for Activatable and Autonomous Identification of Cancer Cells. <i>Anal. Chem.</i> <b>92</b>, 10839–10846 (2020). <a class="ref-doi" href="https://doi.org/10.1021/acs.analchem.0c02524">DOI</a></p>
+                        <p id="ref-5">[5] Liu, C. et al. Single-Exosome-Counting Immunoassays for Cancer Diagnostics. <i>Nano Lett.</i> <b>18</b>, 4226–4232 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.nanolett.8b01184">DOI</a></p>
+                        <p id="ref-6">[6] Holohan, C., Van Schaeybroeck, S., Longley, D. B. &amp; Johnston, P. G. Cancer drug resistance: an evolving paradigm. <i>Nat. Rev. Cancer</i> <b>13</b>, 714–726 (2013). <a class="ref-doi" href="https://doi.org/10.1038/nrc3599">DOI</a></p>
+                        <p id="ref-7">[7] Wu, Y. et al. Predesigned DNA Origami Nanodrills Mediate Controlled Pore Formation on a Plasma Membrane and Cell Death. <i>Nano Lett.</i> <b>25</b>, 8220–8226 (2025). <a class="ref-doi" href="https://doi.org/10.1021/acs.nanolett.5c01290">DOI</a></p>
+                        <p id="ref-8">[8] Fei, W. et al. Perturbing plasma membrane lipid: a new paradigm for tumor nanotherapeutics. <i>Theranostics</i> <b>13</b>, 2471–2491 (2023). <a class="ref-doi" href="https://doi.org/10.7150/thno.82189">DOI</a></p>
+                        <p id="ref-9">[9] Wang, Y.-M., Wu, Z., Liu, S.-J. &amp; Chu, X. Structure-Switching Aptamer Triggering Hybridization Chain Reaction on the Cell Surface for Activatable Theranostics. <i>Anal. Chem.</i> <b>87</b>, 6470–6474 (2015). <a class="ref-doi" href="https://doi.org/10.1021/acs.analchem.5b01634">DOI</a></p>
+                        <p id="ref-10">[10] Allen, T. M. &amp; Cullis, P. R. Liposomal drug delivery systems: from concept to clinical applications. <i>Adv. Drug Deliv. Rev.</i> <b>65</b>, 36–48 (2013). <a class="ref-doi" href="https://doi.org/10.1016/j.addr.2012.09.037">DOI</a></p>
+                        <p id="ref-11">[11] Ponnuswamy, N. et al. Oligolysine-based coating protects DNA nanostructures from low-salt denaturation and nuclease degradation. <i>Nat. Commun.</i> <b>8</b>, 15654 (2017). <a class="ref-doi" href="https://doi.org/10.1038/ncomms15654">DOI</a></p>
+                        <p id="ref-12">[12] Zimmerberg, J. &amp; Kozlov, M. M. How proteins produce cellular membrane curvature. <i>Nat. Rev. Mol. Cell Biol.</i> <b>7</b>, 9–19 (2006). <a class="ref-doi" href="https://doi.org/10.1038/nrm1784">DOI</a></p>
+                        <p id="ref-13">[13] Franquelim, H. G., Khmelinskaia, A., Sobczak, J.-P., Dietz, H. &amp; Schwille, P. Membrane sculpting by curved DNA origami scaffolds. <i>Nat. Commun.</i> <b>9</b>, 811 (2018). <a class="ref-doi" href="https://doi.org/10.1038/s41467-018-03198-9">DOI</a></p>
                     </div>
                 </section>
 

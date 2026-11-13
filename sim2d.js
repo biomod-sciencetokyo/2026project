@@ -580,11 +580,27 @@
         const canvas = el.querySelector('.sim-live-canvas');
         const ctx = canvas.getContext('2d');
         const q = sel => el.querySelector(sel);
-        const inR = q('[data-sim="R"]');
+        const rButtons = Array.from(el.querySelectorAll('[data-sim-r]'));
+        const presetButtons = Array.from(el.querySelectorAll('[data-preset]'));
         const inA = q('[data-sim="alpha"]');
         const inL = q('[data-sim="l0"]');
         const inSeed = q('[data-sim="seed"]');
-        const inPreset = q('[data-sim="preset"]');
+        const barFrame = q('[data-sim-out="frame-bar"]');
+        let currentR = 50;
+        const pressed = rButtons.find(b => b.getAttribute('aria-pressed') === 'true');
+        if (pressed) currentR = parseFloat(pressed.dataset.simR);
+
+        function setR(v) {
+            currentR = v;
+            rButtons.forEach(b => b.setAttribute('aria-pressed', parseFloat(b.dataset.simR) === v ? 'true' : 'false'));
+        }
+        function setPreset(btn) {
+            presetButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+        }
+        function paintRange(inp) {
+            const min = parseFloat(inp.min), max = parseFloat(inp.max), v = parseFloat(inp.value);
+            inp.style.setProperty('--fill', `${((v - min) / (max - min) * 100).toFixed(2)}%`);
+        }
         const FPS = 20;            // fixed playback speed (same as the Python GIF output)
         const btnRun = q('[data-sim="run"]');
         const btnReset = q('[data-sim="reset"]');
@@ -604,7 +620,7 @@
 
         function readParams() {
             return {
-                R: parseFloat(inR.value),
+                R: currentR,
                 alpha: parseFloat(inA.value),
                 l0: parseFloat(inL.value),
                 seed: (parseInt(inSeed.value, 10) >>> 0) || 1,
@@ -615,6 +631,8 @@
             const a = parseFloat(inA.value);
             outB.innerHTML = formatSci(CG2DSim.bendingRigidity(a));
             outL.textContent = parseFloat(inL.value).toFixed(1);
+            paintRange(inA);
+            paintRange(inL);
         }
 
         function reset() {
@@ -631,11 +649,13 @@
                 ? '<i class="fa-solid fa-pause" aria-hidden="true"></i> Pause'
                 : '<i class="fa-solid fa-play" aria-hidden="true"></i> ' + (sim.frame > 0 && !sim.done ? 'Resume' : 'Run');
             btnRun.setAttribute('aria-pressed', running ? 'true' : 'false');
+            if (sim.frame > 0) updateReadout();
             if (running) { lastT = null; requestAnimationFrame(tick); }
         }
 
         function updateReadout() {
             outFrame.textContent = `${sim.frame} / ${sim.totalFrames}`;
+            barFrame.style.width = `${(sim.frame / sim.totalFrames * 100).toFixed(1)}%`;
             const t = Math.max(0, sim.maxTension);
             outTension.textContent = sim.eventFrame >= 0 ? `> ${sim.critical.toFixed(0)}` : t.toFixed(1);
             const frac = sim.eventFrame >= 0 ? 1 : Math.min(1, t / sim.critical);
@@ -651,7 +671,7 @@
                 outStatus.className = 'sim-live-status';
                 outStatus.textContent = 'Ready — press Run';
             } else {
-                outStatus.className = 'sim-live-status';
+                outStatus.className = 'sim-live-status' + (running ? ' is-running' : '');
                 outStatus.innerHTML = sim.approaching ? 'DNA Bundle approaching the membrane…' : 'Bundle docked — no event yet';
             }
         }
@@ -815,7 +835,7 @@
 
         // ---- wiring ----
         function onParamChange() {
-            inPreset.value = '';
+            setPreset(null);
             const wasRunning = running;
             running = false;
             reset();
@@ -823,18 +843,22 @@
         }
         inA.addEventListener('input', () => { updateLabels(); });
         inL.addEventListener('input', () => { updateLabels(); });
-        [inR, inA, inL, inSeed].forEach(x => x.addEventListener('change', onParamChange));
+        [inA, inL, inSeed].forEach(x => x.addEventListener('change', onParamChange));
+        rButtons.forEach(b => b.addEventListener('click', () => {
+            const v = parseFloat(b.dataset.simR);
+            if (v === currentR) return;
+            setR(v);
+            onParamChange();
+        }));
 
-        inPreset.addEventListener('change', () => {
-            const v = inPreset.value;
-            if (!v) return;
-            const [R, a, l] = v.split(',');
-            inR.value = R; inA.value = a; inL.value = l;
+        presetButtons.forEach(btn => btn.addEventListener('click', () => {
+            const [R, a, l] = btn.dataset.preset.split(',');
+            setR(parseFloat(R)); inA.value = a; inL.value = l;
+            setPreset(btn);
             running = false;
             reset();
-            inPreset.value = v;
             setRunning(false);
-        });
+        }));
 
         btnRun.addEventListener('click', () => {
             if (sim.done) { reset(); setRunning(true); return; }
