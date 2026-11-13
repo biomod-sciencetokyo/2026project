@@ -117,11 +117,6 @@
                         <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
                         <a class="nav-link" href="#three-d">1.2 3D Reduced Free-Energy Model</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Reaction</a>
-                    <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#hcr-self-assembly">2.1 Self Assembly</a>
-                        <a class="nav-link" href="#hcr-possibility">2.2 Reaction Possibility</a>
-                    </div>
                 </nav>
             </div>
 
@@ -903,110 +898,6 @@
                     </div>
                 </section>
 
-                <!-- 2. HCR Reaction -->
-                <section id="hcr-reaction" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">2. Design and Thermodynamic Validation of 6-Helix Bundle HCR Sequences
-                    </h2>
-                    <p class="text-secondary mb-4">
-                        To achieve programmable and stimuli-responsive bundle assembly, we computationally designed
-                        and thermodynamically evaluated the DNA sequences for the 6-Helix Bundle HCR system.
-                    </p>
-
-                    <!-- 2.1 Sequence Design Conditions -->
-                    <div id="hcr-self-assembly" class="simulation-subblock subsection">
-                        <h3 class="h4 fw-bold mb-4">2.1 Sequence Design
-                            Conditions</h3>
-                        <div class="content-box p-4 p-md-5 mb-4">
-                            <p class="text-secondary">The DNA sequences for the 6-Helix Bundle HCR system (seeds
-                                S1-S6 and hairpins H1-H6) were designed computationally with NUPACK to eliminate
-                                unintended leak reactions and structural defects
-                                [<a href="#ref-23">23</a>, <a href="#ref-24">24</a>]. Strict physical constraints were
-                                applied during the design process:</p>
-                            <ol class="text-secondary mb-0">
-                                <li>Complete elimination of ≥4-nt palindromes and homopolymers.</li>
-                                <li>Enforcement of sequence diversity, requiring all four nucleobases (A, T, G, C) to
-                                    be present within any 7-nt window to prevent local GC-bias.</li>
-                                <li>Multi-tube design analysis (<code>max_size=2</code>) to rigorously suppress
-                                    homodimerization and non-specific crosstalk between domains.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <!-- 2.2 Thermodynamic Feasibility -->
-                    <div id="hcr-possibility" class="simulation-subblock subsection mb-0">
-                        <h3 class="h4 fw-bold mb-4">2.2 Thermodynamic Feasibility
-                            of the HCR Cascade</h3>
-                        <div class="content-box p-4 p-md-5">
-                            <p class="text-secondary">To verify the structural integrity and reaction feasibility of
-                                the designed 6-Helix Bundle HCR system, thermodynamic simulations were conducted
-                                using NUPACK [<a href="#ref-24">24</a>]. The monomer fraction of each hairpin (H1–H6) in isolation (1 μM) was
-                                evaluated, demonstrating exceptional structural fidelity (&gt;99.7% monomeric purity)
-                                with negligible homodimerization (≤0.21%). The thermodynamic driving force for the HCR
-                                cascade was assessed by calculating the Gibbs free energy change (ΔG) for each
-                                sequential binding event initialized by the trigger strand (S2). As summarized in
-                                <a href="#table-1">Table 1</a>, every hybridization step exhibits a substantial negative free energy change
-                                (ΔG &lt; 0), establishing a robust energetic cascade that guarantees the spontaneous
-                                and irreversible assembly of the 6-Helix Bundle.</p>
-                            <div class="table-responsive">
-                                <table id="table-1" class="table table-dark table-bordered table-sm align-middle exp-seq-table mb-2">
-                                    <caption class="caption-top text-secondary">
-                                        <strong>Table 1.</strong> Thermodynamic properties and cascade energetics of
-                                        the HCR hairpins.
-                                    </caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="text-wrap">Reaction Step (Added Strand)</th>
-                                            <th scope="col" class="text-wrap">Monomer Fraction (%)*</th>
-                                            <th scope="col" class="text-wrap">Homodimerization (%)*</th>
-                                            <th scope="col" class="text-wrap">Sequential ΔG (kcal/mol)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Step 1 (S2 + H1)</th>
-                                            <td>99.92</td>
-                                            <td>0.0785</td>
-                                            <td>−17.50</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Step 2 (+ H2)</th>
-                                            <td>99.94</td>
-                                            <td>0.0586</td>
-                                            <td>−10.61</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Step 3 (+ H4)</th>
-                                            <td>99.93</td>
-                                            <td>0.0732</td>
-                                            <td>−15.94</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Step 4 (+ H5)</th>
-                                            <td>99.79</td>
-                                            <td>0.2093</td>
-                                            <td>−6.41</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Step 5 (+ H3)</th>
-                                            <td>99.88</td>
-                                            <td>0.1189</td>
-                                            <td>−6.54</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Step 6 (+ H6)</th>
-                                            <td>99.96</td>
-                                            <td>0.0386</td>
-                                            <td>−6.11</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="text-secondary small mb-0">* Monomer fraction and homodimerization values are for
-                                each hairpin evaluated in isolation at 1 μM.</p>
-                        </div>
-                    </div>
-                </section>
-
                 <section id="dry-references" class="references-section">
                     <h2 class="references-title">References</h2>
                     <div class="references-list">
@@ -1032,8 +923,6 @@
                         <p id="ref-20">[20] Portet, T. &amp; Dimova, R. A new method for measuring edge tensions and stability of lipid bilayers: effect of membrane composition. <i>Biophys. J.</i> <b>99</b>, 3264–3273 (2010). <a class="ref-doi" href="https://doi.org/10.1016/j.bpj.2010.09.032">DOI</a></p>
                         <p id="ref-21">[21] Evans, E. &amp; Heinrich, V. Dynamic strength of fluid membranes. <i>C. R. Phys.</i> <b>4</b>, 265–274 (2003). <a class="ref-doi" href="https://doi.org/10.1016/S1631-0705(03)00044-6">DOI</a></p>
                         <p id="ref-22">[22] Leontiadou, H., Mark, A. E. &amp; Marrink, S. J. Molecular dynamics simulations of hydrophilic pores in lipid bilayers. <i>Biophys. J.</i> <b>86</b>, 2156–2164 (2004). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(04)74275-7">DOI</a></p>
-                        <p id="ref-23">[23] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
-                        <p id="ref-24">[24] Zadeh, J. N. et al. NUPACK: Analysis and design of nucleic acid systems. <i>J. Comput. Chem.</i> <b>32</b>, 170–173 (2011). <a class="ref-doi" href="https://doi.org/10.1002/jcc.21596">DOI</a></p>
                     </div>
                 </section>
             </div>
