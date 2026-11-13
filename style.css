@@ -3200,3 +3200,147 @@ html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-cta:focu
     background-color: var(--accent-gold);
     color: #ffffff;
 }
+
+
+/* ===== Appendix CTA button (Overview sections) ===== */
+.appendix-cta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 1.4rem 1.75rem;
+    border: 1px solid #314763;
+    border-radius: 6px;
+    background:
+        linear-gradient(90deg, rgba(98, 197, 213, 0.10), rgba(216, 185, 111, 0.06) 60%, rgba(13, 27, 52, 0.2));
+    color: var(--text-muted);
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* gold corner brackets, matching the nav highlight */
+.appendix-cta::before,
+.appendix-cta::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent-gold);
+    transition: width 0.25s ease, height 0.25s ease;
+    pointer-events: none;
+}
+
+.appendix-cta::before {
+    top: -1px;
+    left: -1px;
+    border-right: 0;
+    border-bottom: 0;
+    border-top-left-radius: 6px;
+}
+
+.appendix-cta::after {
+    right: -1px;
+    bottom: -1px;
+    border-left: 0;
+    border-top: 0;
+    border-bottom-right-radius: 6px;
+}
+
+.appendix-cta:hover,
+.appendix-cta:focus-visible {
+    border-color: var(--accent-blue);
+    color: var(--text-muted);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(98, 197, 213, 0.15);
+}
+
+.appendix-cta:hover::before,
+.appendix-cta:hover::after,
+.appendix-cta:focus-visible::before,
+.appendix-cta:focus-visible::after {
+    width: 34px;
+    height: 34px;
+}
+
+.appendix-cta-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(98, 197, 213, 0.5);
+    border-radius: 50%;
+    color: var(--accent-blue);
+}
+
+.appendix-cta-text {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.appendix-cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: var(--accent-gold);
+}
+
+.appendix-cta-sub {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.appendix-cta-arrow {
+    flex: 0 0 auto;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    transition: transform 0.25s ease;
+}
+
+.appendix-cta:hover .appendix-cta-arrow,
+.appendix-cta:focus-visible .appendix-cta-arrow {
+    transform: translateX(6px);
+}
+
+@media (max-width: 575.98px) {
+    .appendix-cta {
+        gap: 0.9rem;
+        padding: 1.1rem 1.1rem;
+    }
+
+    .appendix-cta-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .appendix-cta-title {
+        font-size: 1.3rem;
+    }
+
+    .appendix-cta-sub {
+        font-size: 0.85rem;
+    }
+}
+
+html[data-theme="light"] .appendix-cta {
+    border-color: var(--border-color);
+    background: linear-gradient(90deg, rgba(29, 129, 147, 0.08), rgba(154, 116, 37, 0.05) 60%, #ffffff);
+    box-shadow: 0 3px 10px rgba(20, 40, 70, 0.06);
+}
+
+html[data-theme="light"] .appendix-cta:hover,
+html[data-theme="light"] .appendix-cta:focus-visible {
+    border-color: var(--accent-blue);
+    box-shadow: 0 8px 20px rgba(20, 40, 70, 0.12);
+}
+
+html[data-theme="light"] .appendix-cta-icon {
+    border-color: rgba(29, 129, 147, 0.45);
+}
