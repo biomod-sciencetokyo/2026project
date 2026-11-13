@@ -630,7 +630,7 @@ section[id],
 /* Simulation Section Spacing Utility */
 .simulation-subblock {
     margin-bottom: 3.5rem;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
 }
 
 /* ===== Shared spacing (all pages) =====
@@ -677,6 +677,36 @@ main p.mb-2 {
 main.content-container,
 .site-footer {
     overflow-x: clip;
+}
+
+/* ===== Heading scale (all pages) =====
+   chapter h2  : large white, thick gold bar            (.section-title)
+   group  1.1  : white, thin blue bar                    (first h3 of a .subsection)
+   topic       : blue                                    (h4.section-subtitle, .wet-exp-title)
+   label       : small gold capitals with a rule         (.wet-label, .exp-label)
+   minor       : small white bold                        (.wet-subhead, h5 in simulation blocks) */
+main .col-lg-10 .subsection > h3:first-child {
+    padding-left: 14px;
+    border-left: 3px solid var(--accent-blue);
+    line-height: 1.35;
+}
+
+main .col-lg-10 h4.section-subtitle,
+main .wet-exp-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--accent-blue);
+}
+
+main .wet-subhead,
+.simulation-page .simulation-subblock h5.section-subtitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0;
+    color: var(--text-main);
+    -webkit-text-stroke: 0;
 }
 
 /* Second-level groups (1.1, 1.2, 2.1 ...): one uniform gap between groups on every page —
@@ -1629,48 +1659,14 @@ main .table td {
 }
 
 /* ===== Simulation page readability (presentation only, whole page) ===== */
-/* Third-level blocks (inside 1.1 / 1.2, incl. GUV Environment) start with a divider; x.y sections do not */
-.simulation-page #two-d-md>.simulation-subblock,
-.simulation-page #three-d>.simulation-subblock,
+/* Blocks inside a group are separated by space only (no divider lines), like everywhere else */
 .simulation-page #guv-env {
-    position: relative;
-    margin-top: 0;
-    padding-top: 1.75rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.18);
-}
-
-.simulation-page #guv-env {
-    padding-top: 2.25rem !important;
-}
-
-.simulation-page #two-d-md>.simulation-subblock::before,
-.simulation-page #three-d>.simulation-subblock::before,
-.simulation-page #guv-env::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 72px;
-    height: 2px;
-    background-color: var(--accent-gold);
-}
-
-.simulation-page main h4.section-subtitle {
-    font-size: 1.45rem;
-    margin-bottom: 1.1rem !important;
+    padding-top: 0.5rem !important;
 }
 
 /* Long sentence-style sub-headings: readable sans instead of the pixel font */
 .simulation-page .simulation-subblock h5.section-subtitle {
-    margin-top: 2.25rem;
-    padding-left: 12px;
-    border-left: 3px solid var(--accent-blue);
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    -webkit-text-stroke: 0;
-    font-size: 1.08rem;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-    color: #d7f3f8;
+    margin-top: 2.5rem;
 }
 
 /* Captions inside cards: no paragraph indent, aligned with the title */
@@ -1729,8 +1725,9 @@ html[data-theme="light"] .simulation-page .math-display {
 
 @media (max-width: 767.98px) {
 
-    .simulation-page main h4.section-subtitle {
-        font-size: 1.25rem;
+    main .col-lg-10 h4.section-subtitle,
+    main .wet-exp-title {
+        font-size: 1.2rem;
     }
 }
 
@@ -2160,38 +2157,14 @@ main table caption strong {
 }
 
 /* ===== Appendix: Wet Lab protocols ===== */
-.wet-protocol .simulation-subblock {
-    position: relative;
-    margin-bottom: 3.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.18);
-}
-
-.wet-protocol .simulation-subblock::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 72px;
-    height: 2px;
-    background-color: var(--accent-gold);
-}
-
 /* Experiment titles: readable sans, ID shown as a small tag */
 .wet-exp-title {
     margin: 0 0 1.75rem;
-    padding-left: 12px;
-    border-left: 3px solid var(--accent-blue);
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    font-size: 1.12rem;
-    font-weight: 700;
-    line-height: 1.5;
-    color: #d7f3f8;
 }
 
 .wet-exp-id {
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     font-family: 'DotGothic16', monospace;
     font-size: 0.85rem;
     font-weight: 400;
@@ -2201,6 +2174,7 @@ main table caption strong {
 
 .wet-subhead {
     margin: 2.5rem 0 1rem;
+    line-height: 1.5;
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     -webkit-text-stroke: 0;
     font-size: 1rem;
@@ -2208,8 +2182,9 @@ main table caption strong {
     color: var(--text-main);
 }
 
-/* Materials / Methods / Results / Discussion */
-.wet-label {
+/* Materials / Methods / Results / Discussion (wet protocols and Experiment page share one label style) */
+.wet-label,
+.exp-label {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -2221,21 +2196,12 @@ main table caption strong {
     color: var(--accent-gold);
 }
 
-.wet-label::after {
+.wet-label::after,
+.exp-label::after {
     content: "";
     flex: 1;
     height: 1px;
     background-color: rgba(148, 163, 184, 0.18);
-}
-
-/* Materials block sits directly under the experiment heading: no separator */
-.wet-protocol h3 + .simulation-subblock {
-    padding-top: 0;
-    border-top: none;
-}
-
-.wet-protocol h3 + .simulation-subblock::before {
-    content: none;
 }
 
 /* Procedure text is not prose: no first-line indent */
@@ -2463,22 +2429,7 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 .exp-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 0.9rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-}
-
-.exp-label::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background-color: rgba(216, 185, 111, 0.25);
+    margin: 0 0 1.25rem;
 }
 
 .experiment-page .exp-subsection p.small {
@@ -2675,8 +2626,14 @@ html[data-theme="light"] main h6 {
     color: var(--text-main);
 }
 
-html[data-theme="light"] main .section-subtitle {
+html[data-theme="light"] main .section-subtitle,
+html[data-theme="light"] .wet-exp-title {
     color: var(--accent-blue);
+}
+
+html[data-theme="light"] .wet-subhead,
+html[data-theme="light"] .simulation-page .simulation-subblock h5.section-subtitle {
+    color: var(--light-strong-text);
 }
 
 html[data-theme="light"] .text-secondary {
@@ -2787,8 +2744,6 @@ html[data-theme="light"] .exp-placeholder {
     background-color: var(--light-subtle-bg);
 }
 
-html[data-theme="light"] .simulation-page .simulation-subblock h5.section-subtitle,
-html[data-theme="light"] .wet-exp-title,
 html[data-theme="light"] .exp-seq-table .exp-seq-domains,
 html[data-theme="light"] .exp-placeholder span {
     color: var(--light-strong-text);
