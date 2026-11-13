@@ -55,14 +55,14 @@ main.content-container {
 
     body[data-bs-spy="scroll"] main.content-container>.row>.col-lg-2,
     main.content-container:has(.sidebar-toc)>.row>.col-lg-2 {
-        flex: 0 0 190px;
-        width: 190px;
+        flex: 0 0 240px;
+        width: 240px;
     }
 
     body[data-bs-spy="scroll"] main.content-container>.row>.col-lg-10,
     main.content-container:has(.sidebar-toc)>.row>.col-lg-10 {
         flex: 1 1 0%;
-        width: calc(100% - 190px);
+        width: calc(100% - 240px);
     }
 }
 
@@ -498,15 +498,20 @@ section[id],
 
 /* Collapsible third level (built by main.js from the page's headings): chapters and 1.1-level items
    always show; only the 1.1 item being read / clicked unfolds its own topics */
+/* Third level and deeper: small indent steps, no extra guide lines, compact rows */
 .sidebar-toc-subnav .sidebar-toc-subnav {
-    margin-left: 4px;
-    padding-left: 6px;
+    margin-left: 6px;
+    padding-left: 0;
+    border-left: none;
 }
 
 .sidebar-toc-subnav .sidebar-toc-subnav .nav-link {
     font-size: 0.8rem;
-    padding-left: 8px;
+    line-height: 1.4;
+    padding: 4px 0 4px 8px;
+    margin-bottom: 1px;
 }
+
 
 .toc-collapsible :is(.toc-sub3, .toc-sub4, .toc-sub5) {
     max-height: 0;

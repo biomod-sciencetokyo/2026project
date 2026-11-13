@@ -312,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const preferred = (!isLabel && block && block !== target && block !== scope && !usedIds.has(block.id)
                 && block.firstElementChild === h) ? block.id : null;
             const a = makeLink(h, label, preferred);
+            if (isLabel) a.classList.add('toc-label');
             if (isLabel) {
                 (subheadList || topicList || sub).appendChild(a);
             } else if (h.matches('.wet-subhead')) {
