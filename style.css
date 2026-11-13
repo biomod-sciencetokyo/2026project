@@ -2770,6 +2770,20 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     aspect-ratio: 1 / 1;
 }
 
+/* One framed box per set of figure panels */
+.experiment-page .exp-panel-group {
+    height: 100%;
+    padding: 12px;
+    border: 1px solid #314763;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.experiment-page .exp-panel-group img {
+    display: block;
+    border-radius: 3px;
+}
+
 /* ===== Experiment page: readability ===== */
 /* Overview / Results / Discussion: compact labels instead of separators */
 .exp-block {

@@ -6,7 +6,7 @@
     <title>EXPERIMENT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261113-59">
+    <link rel="stylesheet" href="style.css?v=20261114-2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="experiment-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -43,12 +43,11 @@
                         <a class="nav-link" href="#exp-3-1">3.1 Bundle Formation (PAGE)</a>
                         <a class="nav-link" href="#exp-3-2">3.2 AFM Observation</a>
                         <a class="nav-link" href="#exp-3-3">3.3 Membrane Anchoring</a>
-                        <a class="nav-link" href="#exp-3-4">3.4 Membrane Disruption</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#exp-future">4. Future Experiments</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#exp-4-1">4.1 Liposome Disruption</a>
-                        <a class="nav-link" href="#exp-4-2">4.2 Smaller Liposomes</a>
+                        <a class="nav-link" href="#exp-4-1">4.1 GUV Disruption</a>
+                        <a class="nav-link" href="#exp-4-2">4.2 Smaller Vesicles</a>
                     </div>
                 </nav>
             </div>
@@ -73,9 +72,9 @@
                     <!-- Experiment B の四角枠 -->
                     <div class="content-box">
                         <h4 class="h5 fw-bold mb-3 section-subtitle">Experiment B: <br>
-                            Lipid membrane disruption by 12-helix and 13-helix DNA bundles.</h4>
+                            Anchoring of 12-helix and 13-helix DNA Bundles to Lipid Membranes</h4>
                         <p class="text-secondary mb-0">
-                            In Experiment B, we evaluated the physical membrane-disrupting capability of cholesterol-modified 12-helix and 13-helix DNA bundles. We chose 12- and 13-helix DNA bundles because they possess sufficient rigidity to deform and rupture lipid membranes, as indicated by our simulation results. In Experiment B, these structures were pre-assembled via thermal annealing.
+                            In Experiment B, we investigated whether cholesterol-modified 12-helix and 13-helix DNA bundles could anchor to lipid membranes. Based on our simulation results, we selected 12-helix and 13-helix DNA bundles because they were expected to possess sufficient rigidity to deform and disrupt lipid membranes. These structures were pre-assembled via thermal annealing before the experiment.
                         </p>
                     </div>
                 </section>
@@ -153,39 +152,81 @@
                                 <!-- 下書きでは「図4－図10」と記載。画像は6枚のため、H1〜H6の順と仮定して1つの図にまとめた -->
                                 <figure class="mb-0">
                                     <div class="row g-3">
-                                <div class="col-6 col-md-4">
-                                    <img src="img/EXPERIMENT/hairpin_H1.png?v=2" alt="Predicted secondary structure of H1 at 25 °C"
-                                        class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                    <p class="exp-panel-label text-secondary small mb-0">(a) H1</p>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <img src="img/EXPERIMENT/hairpin_H2.png?v=2" alt="Predicted secondary structure of H2 at 25 °C"
-                                        class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                    <p class="exp-panel-label text-secondary small mb-0">(b) H2</p>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <img src="img/EXPERIMENT/hairpin_H3.png?v=2" alt="Predicted secondary structure of H3 at 25 °C"
-                                        class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                    <p class="exp-panel-label text-secondary small mb-0">(c) H3</p>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <img src="img/EXPERIMENT/hairpin_H4.png?v=2" alt="Predicted secondary structure of H4 at 25 °C"
-                                        class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                    <p class="exp-panel-label text-secondary small mb-0">(d) H4</p>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <img src="img/EXPERIMENT/hairpin_H5.png?v=2" alt="Predicted secondary structure of H5 at 25 °C"
-                                        class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                    <p class="exp-panel-label text-secondary small mb-0">(e) H5</p>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <img src="img/EXPERIMENT/hairpin_H6.png?v=2" alt="Predicted secondary structure of H6 at 25 °C"
-                                        class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                    <p class="exp-panel-label text-secondary small mb-0">(f) H6</p>
-                                </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="exp-panel-group">
+                                                <div class="row g-2">
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H1_old.png" alt="Predicted secondary structure of H1 at 25 °C, colored by equilibrium probability"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(a) H1</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H2_old.png" alt="Predicted secondary structure of H2 at 25 °C, colored by equilibrium probability"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(b) H2</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H3_old.png" alt="Predicted secondary structure of H3 at 25 °C, colored by equilibrium probability"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(c) H3</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H4_old.png" alt="Predicted secondary structure of H4 at 25 °C, colored by equilibrium probability"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(d) H4</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H5_old.png" alt="Predicted secondary structure of H5 at 25 °C, colored by equilibrium probability"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(e) H5</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H6_old.png" alt="Predicted secondary structure of H6 at 25 °C, colored by equilibrium probability"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(f) H6</p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="exp-panel-group">
+                                                <div class="row g-2">
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H1.png?v=2" alt="Predicted secondary structure of H1 at 25 °C, colored by base identity"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(g) H1</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H2.png?v=2" alt="Predicted secondary structure of H2 at 25 °C, colored by base identity"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(h) H2</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H3.png?v=2" alt="Predicted secondary structure of H3 at 25 °C, colored by base identity"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(i) H3</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H4.png?v=2" alt="Predicted secondary structure of H4 at 25 °C, colored by base identity"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(j) H4</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H5.png?v=2" alt="Predicted secondary structure of H5 at 25 °C, colored by base identity"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(k) H5</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="img/EXPERIMENT/hairpin_H6.png?v=2" alt="Predicted secondary structure of H6 at 25 °C, colored by base identity"
+                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
+                                                    <p class="exp-panel-label text-secondary small mb-0">(l) H6</p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <figcaption class="text-secondary mt-3"><strong>Figure 2.</strong> Structures of H1–H6 in
-                                        solution at 25 °C.</figcaption>
+                                        solution at 25 °C. (a)–(f) colored by equilibrium probability; (g)–(l) colored by base identity.</figcaption>
                                 </figure>
                             </div>
                         </div>
@@ -331,7 +372,7 @@
 
                 <!-- 3. Experiment B -->
                 <section id="exp-b" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">3. Experiment B: Lipid Membrane Disruption by 12-Helix and 13-Helix DNA Bundles</h2>
+                    <h2 class="section-title">3. Experiment B: Anchoring of 12-Helix and 13-Helix DNA Bundles to Lipid Membranes</h2>
 
                     <!-- Materials -->
                     <div id="exp-b-materials" class="exp-subsection subsection">
@@ -542,8 +583,8 @@
                             <h4 class="exp-label">Overview</h4>
                             <p class="text-secondary mb-3">
                                 The aim was to confirm whether DNA bundles anchor to lipid membranes via cholesterol.
-                                Cholesterol-modified and unmodified DNA bundles were each mixed with liposomes (GUVs)
-                                and observed by fluorescence microscopy to compare whether they bound to the liposomes.
+                                Cholesterol-modified and unmodified DNA bundles were each mixed with GUVs
+                                and observed by fluorescence microscopy to compare whether they bound to the GUVs.
                             </p>
                             <ul class="text-secondary mb-0">
                                 <li class="mb-2">
@@ -558,7 +599,7 @@
                                 </li>
                             </ul>
                             <p class="text-secondary mt-3 mb-0">
-                                Both the 12- and 13-helix bundles were mixed with liposomes and observed. Because no
+                                Both the 12- and 13-helix bundles were mixed with GUVs and observed. Because no
                                 difference was observed between them, only the results for the 12-helix bundle are
                                 shown below; the results for the 13-helix bundle are provided in the Appendix.
                             </p>
@@ -575,19 +616,19 @@
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
                                         <img src="img/EXPERIMENT/guv_12helix_chol.jpg?v=2"
-                                            alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with liposomes (red)"
+                                            alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with GUVs (red)"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3"><strong>Figure 15.</strong>
-                                            Cholesterol-modified 12-helix bundles and liposomes.</figcaption>
+                                            Cholesterol-modified 12-helix bundles and GUVs.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
                                         <img src="img/EXPERIMENT/guv_12helix_nochol.jpg?v=2"
-                                            alt="Fluorescence image of unmodified 12-helix bundles (green) with liposomes (red)"
+                                            alt="Fluorescence image of unmodified 12-helix bundles (green) with GUVs (red)"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3"><strong>Figure 16.</strong>
-                                            Unmodified (cholesterol-free) 12-helix bundles and liposomes.</figcaption>
+                                            Unmodified (cholesterol-free) 12-helix bundles and GUVs.</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -612,17 +653,17 @@
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
                                         <img src="img/EXPERIMENT/guv_result2_a.jpg?v=2"
-                                            alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with liposomes (red) in 200 mM NaCl"
+                                            alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with GUVs (red) in 200 mM NaCl"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 17.</strong> Cholesterol-modified 12-helix bundles and liposomes with 200 mM NaCl.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 17.</strong> Cholesterol-modified 12-helix bundles and GUVs with 200 mM NaCl.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
                                         <img src="img/EXPERIMENT/guv_result2_b.jpg?v=2"
-                                            alt="Fluorescence image of unmodified 12-helix bundles (green) with liposomes (red) in 200 mM NaCl"
+                                            alt="Fluorescence image of unmodified 12-helix bundles (green) with GUVs (red) in 200 mM NaCl"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 18.</strong> Unmodified (cholesterol-free) 12-helix bundles and liposomes with 200 mM NaCl.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 18.</strong> Unmodified (cholesterol-free) 12-helix bundles and GUVs with 200 mM NaCl.</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -637,42 +678,6 @@
                             </p>
                         </div>
                     </div>
-
-                    <!-- 3.4 -->
-                    <div id="exp-3-4" class="exp-subsection subsection">
-                        <h3 class="h4 fw-bold mb-4">3.4 Verification of Liposome Disruption by DNA Bundles</h3>
-
-                        <div class="exp-block">
-                            <h4 class="exp-label">Overview</h4>
-                            <p class="text-secondary mb-3">
-                                To investigate whether DNA bundle attachment alters liposome membrane permeability, we
-                                performed a Calcein Leakage Assay. Calcein exhibits self-quenching at high
-                                concentrations. When calcein leaks out of liposomes, it is diluted in the surrounding
-                                solution, resulting in increased fluorescence intensity. This increase was used to
-                                evaluate changes in membrane permeability.
-                            </p>
-                            <p class="text-secondary mb-0">
-                                GUVs were prepared by hydration with a 50 mM calcein solution, and the external
-                                solution was exchanged through repeated centrifugation and washing.
-                            </p>
-                        </div>
-
-                        <div class="exp-block">
-                            <h4 class="exp-label">Results</h4>
-                            <div class="exp-placeholder">Figure to be added</div>
-                        </div>
-
-                        <div class="exp-block">
-                            <h4 class="exp-label">Discussion</h4>
-                            <p class="text-secondary mb-0">
-                                No significant differences in fluorescence intensity were observed among the samples.
-                                Since there was no difference between the sample containing MQ water and the one
-                                containing sorbitan monolaurate, the number of remaining GUVs may have been
-                                insufficient, or calcein may have leaked from many of the GUVs before mixing with the
-                                samples.
-                            </p>
-                        </div>
-                    </div>
                 </section>
 
                 <!-- 4. Future Experiments -->
@@ -680,25 +685,24 @@
                     <h2 class="section-title">4. Future Experiments</h2>
 
                     <div id="exp-4-1" class="exp-subsection subsection">
-                        <h3 class="h4 fw-bold mb-4">4.1 Confirmation of Liposome Disruption</h3>
+                        <h3 class="h4 fw-bold mb-4">4.1 Confirmation of GUV Disruption</h3>
                         <p class="text-secondary mb-0">
-                            In Experiment 3.4, no apparent difference in fluorescence intensity was observed between
-                            GUVs completely disrupted by surfactant treatment and those treated with MQ alone. This
-                            suggests that the current external solution exchange method may not preserve a sufficient
-                            number of calcein-loaded GUVs. In this study, centrifugation was used to separate GUVs from
-                            the external solution. As a future experiment, we plan to investigate gel filtration as an
-                            alternative method to improve the recovery of intact calcein-loaded GUVs.
+                            To investigate whether DNA bundle attachment disrupts GUV membranes, we will perform a
+                            Calcein Leakage Assay. Calcein exhibits self-quenching at high concentrations. When calcein
+                            leaks out of GUVs, it is diluted in the surrounding solution, resulting in an increase in
+                            fluorescence intensity. This increase in fluorescence intensity is used to evaluate changes
+                            in membrane permeability.
                         </p>
                     </div>
 
                     <div id="exp-4-2" class="exp-subsection subsection">
-                        <h3 class="h4 fw-bold mb-4">4.2 Use of Smaller Liposomes</h3>
+                        <h3 class="h4 fw-bold mb-4">4.2 Use of Smaller Vesicles</h3>
                         <p class="text-secondary mb-0">
-                            In this study, all liposomes used were GUVs. However, our target is EVs, which are much
-                            smaller than GUVs. Therefore, it is necessary to evaluate our system using smaller liposomes
+                            In this study, all experiments were performed with GUVs. However, our target is EVs, which are much
+                            smaller than GUVs. Therefore, it is necessary to evaluate our system using smaller vesicles
                             with sizes comparable to those of EVs to establish more physiologically relevant
                             experimental conditions. As a future experiment, we plan to investigate nanopore extrusion
-                            to prepare small and uniform liposomes.
+                            to prepare small and uniform vesicles.
                         </p>
                     </div>
                 </section>
