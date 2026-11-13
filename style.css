@@ -2767,7 +2767,7 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 .experiment-page img.exp-fit-hairpin {
-    aspect-ratio: 9 / 8;
+    aspect-ratio: 1 / 1;
 }
 
 /* ===== Experiment page: readability ===== */
