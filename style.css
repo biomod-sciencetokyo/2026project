@@ -2309,7 +2309,8 @@ html[data-theme="light"] .simulation-page .math-display {
     border-radius: 0;
 }
 
-.sim-matrix-media > img {
+.sim-matrix-media > img,
+.sim-matrix-media > video {
     padding: 6px;
 }
 
