@@ -439,7 +439,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'discussion.html': 'princess_look.gif',  // DISCUSSION：きょろきょろ考察
         'elsi.html': 'princess_sway.gif',        // ELSI：ゆったり揺れて思案
         'team.html': 'princess_jump.gif',        // TEAM：ぴょんぴょん喜ぶ
-        'appendix.html': 'princess_wave.gif'     // APPENDIX：最後にバイバイ
+        'appendix.html': 'princess_wave.gif',    // APPENDIX：最後にバイバイ
+        'princess.html': 'princess_jump.gif'     // 隠しページ：見つけてもらえて大喜び
     };
     const page = location.pathname.split('/').pop() || 'index.html';
     const pose = poses[page];

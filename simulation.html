@@ -7,7 +7,7 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-7">
+    <link rel="stylesheet" href="style.css?v=20261114-9">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -670,7 +670,8 @@
                                 Try It: Interactive 2D Simulation
                             </h4>
                             <p class="text-secondary mb-4">
-                                The same 2D coarse-grained model runs directly in your browser. Choose a vesicle
+                                A JavaScript version of the 2D coarse-grained model (originally written in Python) runs
+                                directly in your browser. Choose a vesicle
                                 radius, DNA Bundle bending rigidity, and linker rest length, then press
                                 <strong>Run</strong>. Membrane bonds are coloured by tension; the first bond whose
                                 tension exceeds the threshold (150 pN) is the model-defined local pore-formation
@@ -763,11 +764,20 @@
                                 </div>
                             </div>
                             <p class="text-secondary small mt-3 mb-0">
-                                Each run lasts 100 frames (100 integration steps of Δt = 10<sup>−4</sup> per frame),
-                                the same window used for the heatmaps above.
-                                The browser uses its own random-number stream, so individual runs differ from the
-                                Python trajectories, but with noise disabled the JavaScript port reproduces the Python
-                                script to numerical precision. Try several seeds to see the event probability.
+                                <strong>Note on implementation:</strong> All simulation results reported on this page
+                                (Figures 2–9) were obtained with the original <strong>Python</strong> implementation
+                                (<a href="appendix.html#two-d-source-files">source code</a>). The interactive tool above is
+                                a separate <strong>JavaScript</strong> re-implementation, prepared so that the model can be
+                                explored directly in the browser. We have tried to keep the force field, parameters, and
+                                integration scheme identical, and in our checks with thermal noise disabled it reproduced
+                                the Python output to within numerical precision. Nevertheless, the browser uses a different
+                                random-number generator, so individual trajectories will not match the published Python
+                                runs, and we cannot completely rule out small implementation differences. Each run lasts
+                                100 frames (100 integration steps of Δt = 10<sup>−4</sup> per frame), the same window used
+                                for the heatmaps. <strong>We would therefore suggest treating this tool as an illustrative aid for
+                                building intuition about the trends discussed above rather than as a substitute for the
+                                Python results</strong>; running several seeds may give a rough sense of how the event probability
+                                changes across conditions.
                             </p>
                         </div>
                     </div>
@@ -1166,7 +1176,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
-    <script src="main.js?v=20261113-17"></script>
+    <script src="main.js?v=20261113-19"></script>
     <script src="sim2d.js?v=20261114-4"></script>
 </body>
 
