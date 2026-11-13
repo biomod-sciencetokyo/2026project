@@ -45,6 +45,11 @@
                         <a class="nav-link" href="#exp-3-3">3.3 Membrane Anchoring</a>
                         <a class="nav-link" href="#exp-3-4">3.4 Membrane Disruption</a>
                     </div>
+                    <a class="nav-link fw-bold mt-2" href="#exp-future">4. Future Experiments</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#exp-4-1">4.1 Liposome Disruption</a>
+                        <a class="nav-link" href="#exp-4-2">4.2 Smaller Liposomes</a>
+                    </div>
                 </nav>
             </div>
 
@@ -205,7 +210,7 @@
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/page_seed.jpg"
+                                        <img src="img/EXPERIMENT/page_seed.jpg?v=2"
                                             alt="PAGE gel of S1–S6 and the annealed seed with DNA ladders"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3"><strong>Figure 3.</strong> PAGE of S1–S6 and
@@ -218,9 +223,18 @@
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion</h4>
                             <p class="text-secondary mb-0">
-                                Only the seed lane showed high-molecular-weight bands that were not observed in the
-                                S1–S6 lanes. The bands were identified from the relationship between migration
-                                distance and molecular weight calculated from the ladder.
+                                High-molecular-weight bands were observed only in the Seeds lane, indicating that the
+                                seed was assembled by annealing. Calibration with the ladder (migration distance vs. log
+                                molecular weight showed high linearity) estimated the second band from the top at
+                                approximately 228 bp. This value is close to the sum of the apparent sizes of the S1–S6
+                                bands estimated from the same calibration (note that these apparent sizes are gel-based
+                                estimates and do not correspond to the actual length). Therefore, we tentatively
+                                assigned this band to the seed. Given the seed's structure, the bands above it likely
+                                correspond to larger assemblies, such as seeds composed of 12 or 18 strands, or
+                                tile-like structures that did not form a tubular shape. Because the ladder consists of
+                                double-stranded DNA, these size estimates are approximate. Nevertheless, the
+                                high-molecular-weight bands only in the Seeds lane support the formation of the seed by
+                                annealing.
                             </p>
                         </div>
                     </div>
@@ -244,12 +258,30 @@
 
                         <div class="exp-block">
                             <h4 class="exp-label">Results</h4>
-                            <div class="exp-placeholder">Figure to be added</div>
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/hcr_agarose_gel.jpg?v=2"
+                                            alt="Agarose gel of the seed mixed with H1–H6 at ratios from 1:200 to 1:5, with seed-only and H1–H6-only lanes"
+                                            class="img-fluid w-100 border exp-fit exp-fit-dark" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 4.</strong> Agarose gel electrophoresis of Bundled HCR samples (seed:H1–H6 = 1:200 to 1:5). The image is cropped to show only the relevant lanes.</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion</h4>
-                            <p class="text-secondary mb-0">[Add discussion.]</p>
+                            <p class="text-secondary mb-3">
+                                Smears extending into the high-molecular-weight region were observed in the
+                                seed:H1–H6 = 1:200, 1:100, and 1:50 lanes. In the 1:50, 1:20, and 1:5 lanes,
+                                high-molecular-weight structures that did not enter the gel were retained in the wells.
+                                These structures may be DNA Bundles.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                In the 1:5 lane, the H1–H6 band was faint, indicating that H1–H6 had been consumed. A
+                                smear was also observed in the H1–H6-only lane, which is likely attributable to leakage.
+                            </p>
                         </div>
                     </div>
 
@@ -258,13 +290,41 @@
                         <h3 class="h4 fw-bold mb-4">2.3 Observation of DNA Bundles by AFM</h3>
 
                         <div class="exp-block">
+                            <h4 class="exp-label">Overview</h4>
+                            <p class="text-secondary mb-0">
+                                The seed and H1–H6 were mixed in a buffer of 1× TE, 5 mM MgCl<sub>2</sub>, and 300 mM
+                                NaCl and left overnight at room temperature, and the samples were observed by AFM.
+                            </p>
+                        </div>
+
+                        <div class="exp-block">
                             <h4 class="exp-label">Results</h4>
-                            <div class="exp-placeholder">Figure to be added</div>
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/afm_hcr_1to20.jpg?v=2"
+                                            alt="AFM height image of Bundled HCR products at seed:hairpin = 1:20 showing elongated structures"
+                                            class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 5.</strong> AFM image of Bundled HCR products (seed:hairpin = 1:20).</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/afm_hcr_1to200.jpg?v=2"
+                                            alt="AFM height image of Bundled HCR products at seed:hairpin = 1:200 showing an elongated structure"
+                                            class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 6.</strong> AFM image of Bundled HCR products (seed:hairpin = 1:200).</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion</h4>
-                            <p class="text-secondary mb-0">[Add discussion.]</p>
+                            <p class="text-secondary mb-0">
+                                Elongated structures were observed, indicating that the DNA Bundle elongated by Bundled
+                                HCR.
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -283,8 +343,8 @@
                             Table 3.
                         </p>
                         <p class="text-secondary mb-3">
-                            In the 12-helix bundle, V1–V11 and T12 hybridize as shown in Figure 4; in the 13-helix
-                            bundle, V1–V12 and T13 hybridize as shown in Figure 5. Each assembles into a bundle
+                            In the 12-helix bundle, V1–V11 and T12 hybridize as shown in Figure 7; in the 13-helix
+                            bundle, V1–V12 and T13 hybridize as shown in Figure 8. Each assembles into a bundle
                             hundreds to thousands of nanometers long.
                         </p>
                         <p class="text-secondary mb-3">
@@ -330,7 +390,7 @@
                                             <img src="img/EXPERIMENT/bundle_12helix_assembly.png"
                                                 alt="Assembly of the 12-helix bundle from V1–V11 and T12"
                                                 class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
-                                            <figcaption class="text-secondary mt-3"><strong>Figure 4.</strong> Assembly of
+                                            <figcaption class="text-secondary mt-3"><strong>Figure 7.</strong> Assembly of
                                                 the 12-helix bundle.</figcaption>
                                         </figure>
                                     </div>
@@ -339,7 +399,7 @@
                                             <img src="img/EXPERIMENT/bundle_13helix_assembly.png"
                                                 alt="Assembly of the 13-helix bundle from V1–V12 and T13"
                                                 class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
-                                            <figcaption class="text-secondary mt-3"><strong>Figure 5.</strong> Assembly of
+                                            <figcaption class="text-secondary mt-3"><strong>Figure 8.</strong> Assembly of
                                                 the 13-helix bundle.</figcaption>
                                         </figure>
                                     </div>
@@ -347,7 +407,7 @@
                             </div>
                         </div>
                         <p class="text-secondary mb-0">
-                            As Figure 5 shows, in the 13-helix bundle V1 and T13 hybridize while twisting, so the
+                            As Figure 8 shows, in the 13-helix bundle V1 and T13 hybridize while twisting, so the
                             bundle becomes twisted and cholesterol protrudes in all directions around it. In the
                             12-helix bundle, by contrast, V1 and T12 hybridize without twisting, so cholesterol
                             protrudes in only one direction.
@@ -377,19 +437,19 @@
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/page_V1-V8.jpg"
+                                        <img src="img/EXPERIMENT/page_V1-V8.jpg?v=2"
                                             alt="PAGE gel of single strands V1–V8 with DNA ladders"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 6.</strong> PAGE of
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 9.</strong> PAGE of
                                             V1–V8.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/page_V9-T13_bundles.jpg"
+                                        <img src="img/EXPERIMENT/page_V9-T13_bundles.jpg?v=2"
                                             alt="PAGE gel of V9–V12, T12, T13 and the 12- and 13-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 7.</strong> PAGE of
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 10.</strong> PAGE of
                                             V9–T13 and the 12- and 13-helix bundles.</figcaption>
                                     </figure>
                                 </div>
@@ -428,19 +488,38 @@
 
                         <div class="exp-block">
                             <h4 class="exp-label">Results</h4>
-                            <!-- 下書きメモ: 4枚はる、幅を計測 -->
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
-                                    <div class="exp-placeholder exp-placeholder-square">AFM image to be added<span>12-helix bundle with cholesterol</span></div>
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/afm_12hb_chol.jpg?v=2"
+                                            alt="AFM height image of cholesterol-modified 12-helix bundles"
+                                            class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 11.</strong> AFM image of cholesterol-modified 12-helix bundles.</figcaption>
+                                    </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="exp-placeholder exp-placeholder-square">AFM image to be added<span>12-helix bundle without cholesterol</span></div>
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/afm_12hb_nochol.jpg?v=2"
+                                            alt="AFM height image of unmodified 12-helix bundles"
+                                            class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 12.</strong> AFM image of unmodified (cholesterol-free) 12-helix bundles.</figcaption>
+                                    </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="exp-placeholder exp-placeholder-square">AFM image to be added<span>13-helix bundle with cholesterol</span></div>
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/afm_13hb_chol.jpg?v=2"
+                                            alt="AFM height image of cholesterol-modified 13-helix bundles"
+                                            class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 13.</strong> AFM image of cholesterol-modified 13-helix bundles.</figcaption>
+                                    </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="exp-placeholder exp-placeholder-square">AFM image to be added<span>13-helix bundle without cholesterol</span></div>
+                                    <figure class="mb-0 exp-figure">
+                                        <img src="img/EXPERIMENT/afm_13hb_nochol.jpg?v=2"
+                                            alt="AFM height image of unmodified 13-helix bundles"
+                                            class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 14.</strong> AFM image of unmodified (cholesterol-free) 13-helix bundles.</figcaption>
+                                    </figure>
                                 </div>
                             </div>
                         </div>
@@ -448,7 +527,10 @@
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion</h4>
                             <!-- 下書きメモ: 3×ｎのやつ -->
-                            <p class="text-secondary mb-0">Elongated structures were observed in all samples.</p>
+                            <p class="text-secondary mb-0">
+                                Elongated structures were observed in all four samples: 12HB and 13HB, both with and
+                                without cholesterol modification, prepared by annealing.
+                            </p>
                         </div>
                     </div>
 
@@ -475,26 +557,36 @@
                                     fluorescence).
                                 </li>
                             </ul>
+                            <p class="text-secondary mt-3 mb-0">
+                                Both the 12- and 13-helix bundles were mixed with liposomes and observed. Because no
+                                difference was observed between them, only the results for the 12-helix bundle are
+                                shown below; the results for the 13-helix bundle are provided in the Appendix.
+                            </p>
                         </div>
 
                         <div class="exp-block">
                             <h4 class="exp-label">Results 1</h4>
+                            <p class="text-secondary mb-4">
+                                Cholesterol-modified 12-Helix DNA Bundles (12HBs) were observed surrounding the GUV
+                                surface, indicating membrane anchoring. Unmodified 12HBs also surrounded some GUVs,
+                                although other GUVs showed no associated bundles.
+                            </p>
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/guv_12helix_chol.jpg"
+                                        <img src="img/EXPERIMENT/guv_12helix_chol.jpg?v=2"
                                             alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with liposomes (red)"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 8.</strong>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 15.</strong>
                                             Cholesterol-modified 12-helix bundles and liposomes.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/guv_12helix_nochol.jpg"
+                                        <img src="img/EXPERIMENT/guv_12helix_nochol.jpg?v=2"
                                             alt="Fluorescence image of unmodified 12-helix bundles (green) with liposomes (red)"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 9.</strong>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 16.</strong>
                                             Unmodified (cholesterol-free) 12-helix bundles and liposomes.</figcaption>
                                     </figure>
                                 </div>
@@ -503,27 +595,34 @@
 
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion 1</h4>
-                            <p class="text-secondary mb-0">[Add discussion.]</p>
+                            <p class="text-secondary mb-0">
+                                Since the buffer contained 12 mM MgCl<sub>2</sub>, the binding of unmodified 12HBs is
+                                likely attributable to Mg<sup>2+</sup>-mediated bridging between the phosphate groups of
+                                DNA and DOPC. We therefore added NaCl to weaken this nonspecific interaction.
+                            </p>
                         </div>
 
                         <div class="exp-block">
                             <h4 class="exp-label">Results 2</h4>
-                            <!-- 下書きでは画像2枚のみでキャプションなし -->
+                            <p class="text-secondary mb-4">
+                                In the presence of 200 mM NaCl, unmodified 12HBs no longer bound to GUVs, whereas
+                                cholesterol-modified 12HBs remained anchored to the GUV surface.
+                            </p>
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/guv_result2_a.jpg"
-                                            alt="Fluorescence microscopy image of DNA bundles with liposomes, result 2 (left)"
+                                        <img src="img/EXPERIMENT/guv_result2_a.jpg?v=2"
+                                            alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with liposomes (red) in 200 mM NaCl"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 10.</strong> [Add caption.]</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 17.</strong> Cholesterol-modified 12-helix bundles and liposomes with 200 mM NaCl.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/guv_result2_b.jpg"
-                                            alt="Fluorescence microscopy image of DNA bundles with liposomes, result 2 (right)"
+                                        <img src="img/EXPERIMENT/guv_result2_b.jpg?v=2"
+                                            alt="Fluorescence image of unmodified 12-helix bundles (green) with liposomes (red) in 200 mM NaCl"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 11.</strong> [Add caption.]</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 18.</strong> Unmodified (cholesterol-free) 12-helix bundles and liposomes with 200 mM NaCl.</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -531,15 +630,76 @@
 
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion 2</h4>
-                            <p class="text-secondary mb-0">[Add discussion.]</p>
+                            <p class="text-secondary mb-0">
+                                NaCl likely screened the Mg<sup>2+</sup>-mediated electrostatic binding, leaving only
+                                cholesterol-dependent anchoring. In conclusion, DNA bundles bind to lipid membranes
+                                through cholesterol modification.
+                            </p>
                         </div>
                     </div>
 
                     <!-- 3.4 -->
                     <div id="exp-3-4" class="exp-subsection subsection">
-                        <h3 class="h4 fw-bold mb-4">3.4 Verification of Membrane Disruption by 12- and 13-Helix Bundles Using Fluorescence Microscopy</h3>
-                        <p class="text-secondary mb-4">[Add methods and results for membrane disruption verification.]</p>
-                        <div class="exp-placeholder">Figure to be added</div>
+                        <h3 class="h4 fw-bold mb-4">3.4 Verification of Liposome Disruption by DNA Bundles</h3>
+
+                        <div class="exp-block">
+                            <h4 class="exp-label">Overview</h4>
+                            <p class="text-secondary mb-3">
+                                To investigate whether DNA bundle attachment alters liposome membrane permeability, we
+                                performed a Calcein Leakage Assay. Calcein exhibits self-quenching at high
+                                concentrations. When calcein leaks out of liposomes, it is diluted in the surrounding
+                                solution, resulting in increased fluorescence intensity. This increase was used to
+                                evaluate changes in membrane permeability.
+                            </p>
+                            <p class="text-secondary mb-0">
+                                GUVs were prepared by hydration with a 50 mM calcein solution, and the external
+                                solution was exchanged through repeated centrifugation and washing.
+                            </p>
+                        </div>
+
+                        <div class="exp-block">
+                            <h4 class="exp-label">Results</h4>
+                            <div class="exp-placeholder">Figure to be added</div>
+                        </div>
+
+                        <div class="exp-block">
+                            <h4 class="exp-label">Discussion</h4>
+                            <p class="text-secondary mb-0">
+                                No significant differences in fluorescence intensity were observed among the samples.
+                                Since there was no difference between the sample containing MQ water and the one
+                                containing sorbitan monolaurate, the number of remaining GUVs may have been
+                                insufficient, or calcein may have leaked from many of the GUVs before mixing with the
+                                samples.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Future Experiments -->
+                <section id="exp-future" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">4. Future Experiments</h2>
+
+                    <div id="exp-4-1" class="exp-subsection subsection">
+                        <h3 class="h4 fw-bold mb-4">4.1 Confirmation of Liposome Disruption</h3>
+                        <p class="text-secondary mb-0">
+                            In Experiment 3.4, no apparent difference in fluorescence intensity was observed between
+                            GUVs completely disrupted by surfactant treatment and those treated with MQ alone. This
+                            suggests that the current external solution exchange method may not preserve a sufficient
+                            number of calcein-loaded GUVs. In this study, centrifugation was used to separate GUVs from
+                            the external solution. As a future experiment, we plan to investigate gel filtration as an
+                            alternative method to improve the recovery of intact calcein-loaded GUVs.
+                        </p>
+                    </div>
+
+                    <div id="exp-4-2" class="exp-subsection subsection">
+                        <h3 class="h4 fw-bold mb-4">4.2 Use of Smaller Liposomes</h3>
+                        <p class="text-secondary mb-0">
+                            In this study, all liposomes used were GUVs. However, our target is EVs, which are much
+                            smaller than GUVs. Therefore, it is necessary to evaluate our system using smaller liposomes
+                            with sizes comparable to those of EVs to establish more physiologically relevant
+                            experimental conditions. As a future experiment, we plan to investigate nanopore extrusion
+                            to prepare small and uniform liposomes.
+                        </p>
                     </div>
                 </section>
                 <section id="references" class="references-section">
