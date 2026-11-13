@@ -430,6 +430,26 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.innerHTML = '<span class="princess-bubble" aria-hidden="true">TOP</span><span class="princess-sprite" aria-hidden="true"></span>';
     document.body.appendChild(btn);
 
+    // ページごとに待機ポーズを変える（ホバー＝歩く／クリック＝バク転は全ページ共通）
+    const poses = {
+        'index.html': 'princess_wave.gif',       // HOME：手を振ってお出迎え
+        'project.html': 'princess_step.gif',     // PROJECT：足踏みで出発
+        'simulation.html': 'princess_turn.gif',  // SIMULATION：3Dモデルのようにくるっと回転
+        'experiment.html': 'princess_handstand.gif', // EXPERIMENT：体を張って実験
+        'discussion.html': 'princess_look.gif',  // DISCUSSION：きょろきょろ考察
+        'elsi.html': 'princess_sway.gif',        // ELSI：ゆったり揺れて思案
+        'team.html': 'princess_jump.gif',        // TEAM：ぴょんぴょん喜ぶ
+        'appendix.html': 'princess_wave.gif'     // APPENDIX：最後にバイバイ
+    };
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const pose = poses[page];
+    if (pose) {
+        const sprite = btn.querySelector('.princess-sprite');
+        sprite.style.setProperty('--princess-idle', `url("img/mascot/${pose}")`);
+        // 回転GIFだけ 128px キャンバスなので、他(160px)と姫の大きさを揃える
+        if (pose === 'princess_turn.gif') sprite.style.setProperty('--princess-idle-size', '80%');
+    }
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const toggle = () => btn.classList.toggle('is-visible', window.scrollY > 600);
     window.addEventListener('scroll', toggle, { passive: true });
