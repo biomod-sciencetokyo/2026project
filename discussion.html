@@ -46,34 +46,69 @@
                 
                 <section id="conclusion" class="fade-in-section mb-5 pt-4">
                     <h2 class="h3 section-title">1. Conclusion</h2>
-                    <p class="text-secondary">
-                        Our goal was a trigger-responsive system that assembles rigid DNA Bundles directly on a lipid
-                        membrane by Bundled HCR and disrupts the membrane by mechanical force.
+                    <p class="text-secondary mb-4">
+                        <span class="concept-highlight">Our goal:</span> when a trigger arrives, rigid DNA Bundles
+                        grow right on the lipid membrane (Bundled HCR) and break it open by mechanical force.
                     </p>
-                    <p class="text-secondary">
-                        Simulations identified the design parameters that matter. In the 2D coarse-grained screen,
-                        high DNA Bundle bending rigidity was commonly associated with the model-defined local
-                        pore-formation event, and the favorable linker length depended on vesicle size: shorter
-                        linkers for small vesicles (<i>R</i> = 50 nm) and longer linkers for large vesicles
-                        (<i>R</i> = 200 nm). The 3D reduced free-energy model and the helix-count screening provided a
-                        model-dependent design guide for the number of helices per Bundle. Thermodynamic analysis with
-                        NUPACK showed that the designed hairpins remain more than 99.7% monomeric and that every
-                        sequential HCR step has a negative free-energy change, supporting a spontaneous cascade.
-                    </p>
-                    <p class="text-secondary">
-                        Experimentally, PAGE confirmed that the seed assembles from S1–S6. Agarose gel electrophoresis
-                        showed high-molecular-weight products in the seed:H1–H6 samples, and AFM revealed elongated
-                        structures, indicating that the DNA Bundle elongated by Bundled HCR. PAGE and AFM confirmed the
-                        formation of 12- and 13-helix DNA bundles, and fluorescence microscopy showed that
-                        cholesterol-modified bundles anchor to GUV membranes, with nonspecific binding of unmodified
-                        bundles suppressed by 200 mM NaCl. Membrane disruption could not yet be confirmed: the calcein
-                        leakage assay showed no significant difference among samples, likely because too few intact
-                        calcein-loaded GUVs remained after the external solution exchange.
-                    </p>
+                        <div class="content-box mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="elsi-icon-badge me-3 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-computer"></i>
+                                </div>
+                                <h3 class="h5 fw-bold mb-0">What simulations told us</h3>
+                            </div>
+                            <ul class="list-unstyled mb-0 text-secondary">
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>Stiffer Bundles</b> were commonly linked to local pore formation (2D coarse-grained model).</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>Linker length depends on vesicle size:</b> short for small vesicles (<i>R</i> = 50 nm), long for large ones (<i>R</i> = 200 nm).</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>Helix count per Bundle:</b> a model-based design guide from the 3D free-energy model and helix-count screening.</span>
+                                </li>
+                                <li class="d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>HCR runs on its own (NUPACK):</b> hairpins stay &gt;99.7% monomeric, and every step has a negative &Delta;G.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content-box mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="elsi-icon-badge elsi-icon-badge-teal me-3 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-flask"></i>
+                                </div>
+                                <h3 class="h5 fw-bold mb-0">What experiments showed</h3>
+                            </div>
+                            <ul class="list-unstyled mb-0 text-secondary">
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>Seed assembles</b> from S1–S6 (PAGE).</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>Bundles elongate by Bundled HCR:</b> high-molecular-weight bands (agarose gel) and long structures (AFM).</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>12- and 13-helix DNA bundles form</b> (PAGE, AFM).</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
+                                    <span><b>Cholesterol anchors bundles to GUVs;</b> 200 mM NaCl suppresses nonspecific binding (fluorescence microscopy).</span>
+                                </li>
+                                <li class="d-flex align-items-start">
+                                    <span class="fw-bold me-3 text-accent-gold">&#10007;</span>
+                                    <span><b>Membrane disruption: not confirmed yet.</b> The calcein leakage assay showed no clear difference, likely because too few intact GUVs survived the solution exchange.</span>
+                                </li>
+                            </ul>
+                        </div>
                     <p class="text-secondary mb-0">
-                        Together, these results lay the design basis for a membrane-disrupting DNA machine whose
-                        assembly is programmed by HCR. The remaining limitations and the next steps are discussed
-                        below.
+                        <span class="concept-highlight">Bottom line:</span> the design basis for an HCR-programmed,
+                        membrane-disrupting DNA machine is in place. Next up: proving the disruption itself.
                     </p>
                 </section>
 
