@@ -66,6 +66,7 @@ main.content-container {
     }
 }
 
+
 .ambient-particles {
     position: absolute;
     inset: 0;
@@ -73,8 +74,8 @@ main.content-container {
     pointer-events: none;
 }
 
-.simulation-page .ambient-particles,
-.appendix-page .ambient-particles {
+/* Particles drifting past the right edge must not widen the page (horizontal scroll on phones) */
+.ambient-particles {
     overflow: clip;
 }
 
@@ -219,7 +220,7 @@ body>main,
 
 p {
     line-height: 1.9;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
 }
 
 /* Paragraph first-line indentation across all pages (~3.5–4 characters) */
@@ -377,7 +378,7 @@ h6,
     font-weight: 700;
     border-left: 5px solid var(--accent-gold);
     padding-left: 15px;
-    margin-bottom: 2.75rem;
+    margin-bottom: 3.25rem;
 }
 
 /* Subheadings & Section Subtitles */
@@ -504,7 +505,7 @@ section[id],
     background-color: var(--surface-dark);
     border: 1px solid #314763;
     border-radius: 0;
-    padding: 36px;
+    padding: 44px;
     background-image:
         linear-gradient(var(--accent-gold), var(--accent-gold)),
         linear-gradient(var(--accent-gold), var(--accent-gold)),
@@ -535,10 +536,6 @@ section[id],
 @media (max-width: 575.98px) {
     .content-box {
         padding: 24px 20px;
-    }
-
-    main section.fade-in-section {
-        margin-bottom: 4.5rem !important;
     }
 }
 
@@ -629,76 +626,6 @@ section[id],
 }
 
 /* Custom Accordion Menu - Midnight Waterfall Theme */
-.custom-accordion {
-    width: 100%;
-    border: 1px solid var(--border-color);
-    background-color: var(--surface-dark);
-    margin-top: 1.5rem;
-    margin-bottom: 3.5rem;
-    box-shadow: 0 4px 14px rgba(2, 9, 20, 0.25);
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.custom-accordion:hover {
-    border-color: #48658a;
-    box-shadow: 0 6px 20px rgba(2, 9, 20, 0.4);
-}
-
-.custom-accordion-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(90deg, #10213b 0%, #142945 100%);
-    border: none;
-    color: var(--text-main);
-    padding: 22px 28px;
-    min-height: 70px;
-    font-family: 'DotGothic16', monospace;
-    font-size: 1.22rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    text-align: left;
-    transition: background 0.25s ease, color 0.2s ease;
-}
-
-.custom-accordion-btn:hover {
-    background: linear-gradient(90deg, #142945 0%, #1b3558 100%);
-    color: var(--accent-gold);
-}
-
-.custom-accordion-btn:focus-visible {
-    outline: 2px solid var(--accent-gold);
-    outline-offset: -2px;
-}
-
-.custom-accordion-btn .accordion-icon-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    margin-right: 14px;
-    color: var(--accent-blue);
-    font-size: 1.25rem;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
-}
-
-.custom-accordion-btn[aria-expanded="true"] {
-    border-bottom: 1px solid var(--border-color);
-    color: var(--accent-gold);
-    background: linear-gradient(90deg, #142945 0%, #173254 100%);
-}
-
-.custom-accordion-btn[aria-expanded="true"] .accordion-icon-badge {
-    transform: rotate(90deg);
-    color: var(--accent-gold);
-}
-
-.custom-accordion-body {
-    padding: 32px 30px;
-    background-color: rgba(11, 24, 48, 0.85);
-    color: var(--text-main);
-}
 
 /* Simulation Section Spacing Utility */
 .simulation-subblock {
@@ -710,20 +637,43 @@ section[id],
    Bootstrap spacing utilities in the markup (mb-5, pt-4, mb-3 ...) are !important and too tight for
    long-form pages, so the shared building blocks get roomier spacing here, in one place. */
 main section.fade-in-section {
-    margin-bottom: 6rem !important;
-    padding-top: 2.5rem !important;
+    margin-bottom: 8rem !important;
+    padding-top: 3rem !important;
 }
 
 main .section-subtitle {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.75rem !important;
 }
 
 main .simulation-subblock:not(.mb-0) {
-    margin-bottom: 4.5rem !important;
+    margin-bottom: 5.5rem !important;
 }
 
 main p.mb-2 {
-    margin-bottom: 1.1rem !important;
+    margin-bottom: 1.4rem !important;
+}
+
+@media (max-width: 575.98px) {
+    main section.fade-in-section {
+        margin-bottom: 5rem !important;
+    }
+}
+
+/* Row gutters reach past main's / the footer's edges (no side padding on desktop), which caused a slight
+   horizontal scroll on narrower screens; clip it without creating a scroll container (sticky still works) */
+main.content-container,
+.site-footer {
+    overflow-x: clip;
+}
+
+/* Headings that follow body content get clear space above, so each topic starts visibly */
+main :is(p, ul, ol, .table-responsive, .wet-table-wide, .math-display, figure, .row) + :is(h3, h4, h5) {
+    margin-top: 3rem;
+}
+
+/* Stacked panels breathe */
+main .content-box.mb-4 {
+    margin-bottom: 2.5rem !important;
 }
 
 /* Two figures side by side: same frame height even when the images differ in aspect ratio */
@@ -737,10 +687,6 @@ main p.mb-2 {
 main .table-responsive {
     margin-top: 1.75rem;
     margin-bottom: 2.5rem;
-}
-
-main table caption {
-    padding-bottom: 0.75rem;
 }
 
 /* A table followed directly by its footnote keeps the note close */
@@ -1101,18 +1047,6 @@ main .table td {
 }
 
 /* Reference List Styles */
-.reference-link {
-    color: #7e91a6 !important;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-size: 0.85rem;
-    word-break: break-word;
-    transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-.reference-link:hover {
-    color: var(--accent-blue) !important;
-}
 
 /* Scroll reveal */
 .fade-in-section {
@@ -1709,30 +1643,6 @@ main .table td {
 }
 
 /* ----- "More about ..." accordions ----- */
-.simulation-page .custom-accordion-body {
-    padding: 36px 40px;
-}
-
-.simulation-page .custom-accordion-body h5.section-subtitle {
-    margin-top: 2.75rem !important;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(98, 197, 213, 0.3);
-    font-size: 1.3rem;
-}
-
-.simulation-page .custom-accordion-body h5.section-subtitle:first-child {
-    margin-top: 0 !important;
-}
-
-.simulation-page .custom-accordion-body h6 {
-    margin-top: 1.75rem !important;
-    color: var(--accent-gold);
-    letter-spacing: 0.02em;
-}
-
-.simulation-page .custom-accordion-body p.text-secondary {
-    margin-bottom: 1.1rem;
-}
 
 .math-display {
     margin: 1rem 0;
@@ -1770,37 +1680,8 @@ html[data-theme="light"] .simulation-page .math-display {
 }
 
 /* Equations stand apart from the prose */
-.simulation-page .custom-accordion-body p[role="math"] {
-    margin: 1.25rem 0 !important;
-    padding: 14px 18px;
-    border-left: 2px solid var(--accent-blue);
-    background-color: rgba(98, 197, 213, 0.06);
-    color: var(--text-main) !important;
-    overflow-x: auto;
-}
-
-.simulation-page .custom-accordion-body .table-responsive {
-    margin: 1.25rem 0 !important;
-}
-
-.simulation-page .custom-accordion-body table {
-    --bs-table-bg: rgba(20, 41, 69, 0.6);
-    --bs-table-border-color: rgba(148, 163, 184, 0.25);
-}
-
-.simulation-page .custom-accordion-body table td {
-    padding: 8px 12px;
-}
 
 @media (max-width: 767.98px) {
-    .simulation-page .custom-accordion-body {
-        padding: 24px 18px;
-    }
-
-    .simulation-page .custom-accordion-body p[role="math"] {
-        padding: 12px;
-        font-size: 1.05rem !important;
-    }
 
     .simulation-page main h4.section-subtitle {
         font-size: 1.25rem;
@@ -2101,35 +1982,7 @@ html[data-theme="light"] .simulation-page .math-display {
     line-height: 1.6;
 }
 
-.sim-matrix-placeholder,
-.heatmap-placeholder {
-    background-color: rgba(20, 41, 69, 0.35);
-    border: 1px dashed rgba(148, 163, 184, 0.4) !important;
-}
-
-.sim-matrix-placeholder > span,
-.heatmap-placeholder > span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted) !important;
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-}
-
 /* Notes (caveats, editing hints) read as notes, not results */
-.sim-note {
-    padding: 12px 16px !important;
-    background: rgba(20, 41, 69, 0.45) !important;
-    background-image: none !important;
-    border: none !important;
-    border-left: 2px solid rgba(148, 163, 184, 0.45) !important;
-}
-
-.sim-note p {
-    text-indent: 0;
-    color: var(--text-muted) !important;
-}
 
 /* Heatmaps: white plot frame, captions aligned */
 .sim-heatmap {
@@ -2139,7 +1992,7 @@ html[data-theme="light"] .simulation-page .math-display {
     box-shadow: none !important;
 }
 
-.sim-heatmap .ratio:not(.heatmap-placeholder) {
+.sim-heatmap .ratio {
     background-color: #ffffff;
     border: 1px solid rgba(148, 163, 184, 0.22);
 }
@@ -2167,7 +2020,9 @@ html[data-theme="light"] .simulation-page .math-display {
     white-space: nowrap;
 }
 
-main table caption {
+main table caption,
+main .exp-seq-table caption {
+    padding-bottom: 0.75rem;
     font-size: 0.92rem;
     line-height: 1.6;
     color: var(--text-muted) !important;
@@ -2463,7 +2318,6 @@ main .wet-table td {
 }
 
 .wet-placeholder {
-    max-width: 720px;
     margin: 1.25rem 0 2rem;
 }
 
@@ -2490,14 +2344,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     border-color: #314763 !important;
 }
 
-.experiment-page .exp-figure {
-    max-width: 760px;
-}
-
-.experiment-page .exp-figure-narrow {
-    max-width: 480px;
-}
-
 .experiment-page .exp-panel-label {
     margin-top: 6px;
     text-align: center;
@@ -2511,14 +2357,12 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     font-size: 0.86rem;
 }
 
-.experiment-page .exp-seq-table caption,
 .experiment-page figure figcaption {
     font-size: 0.92rem;
     line-height: 1.6;
     color: var(--text-muted) !important;
 }
 
-.experiment-page .exp-seq-table caption strong,
 .experiment-page figure figcaption strong {
     color: var(--accent-blue);
     font-weight: 600;
@@ -2533,11 +2377,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     color: #d7f3f8;
     font-weight: 600;
     white-space: nowrap;
-}
-
-.exp-seq-table th,
-.exp-seq-table td {
-    padding: 6px 10px;
 }
 
 .exp-seq-table tbody th,
@@ -2660,18 +2499,8 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     margin: 0.5rem 0 0 !important;
 }
 
-.experiment-page .bundle-assembly-layout .exp-figure {
-    width: 92%;
-    margin-inline: auto;
-}
-
 .experiment-page .seed-structure-layout {
     margin-bottom: 2.5rem;
-}
-
-/* Table on top, its figure centred underneath (side by side squeezed both) */
-.experiment-page .seed-structure-layout > .col-12 > .exp-figure {
-    margin-inline: auto;
 }
 
 /* Placeholders: compact, clearly "to do" */
@@ -2681,7 +2510,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     align-items: center;
     justify-content: center;
     gap: 4px;
-    max-width: 760px;
     min-height: 160px;
     padding: 20px;
     border: 1px dashed rgba(148, 163, 184, 0.4);
@@ -2851,10 +2679,6 @@ html[data-theme="light"] .sidebar-toc .nav-link {
     color: #55667b;
 }
 
-html[data-theme="light"] .reference-link {
-    color: var(--text-muted) !important;
-}
-
 html[data-theme="light"] .simulation-page .references-list,
 html[data-theme="light"] main [style*="color: #d0d0d0"] {
     color: #4a5a6e !important;
@@ -2868,27 +2692,9 @@ html[data-theme="light"] .sim-env {
 }
 
 html[data-theme="light"] .content-box:hover,
-html[data-theme="light"] .sim-env:hover,
-html[data-theme="light"] .custom-accordion:hover {
+html[data-theme="light"] .sim-env:hover {
     border-color: #9fb2c7;
     box-shadow: 0 5px 14px rgba(20, 40, 70, 0.1);
-}
-
-html[data-theme="light"] .custom-accordion {
-    box-shadow: 0 4px 14px rgba(20, 40, 70, 0.06);
-}
-
-html[data-theme="light"] .custom-accordion-btn {
-    background: linear-gradient(90deg, #fbfcfd 0%, #f1f5f9 100%);
-}
-
-html[data-theme="light"] .custom-accordion-btn:hover,
-html[data-theme="light"] .custom-accordion-btn[aria-expanded="true"] {
-    background: linear-gradient(90deg, #f1f5f9 0%, #e6edf4 100%);
-}
-
-html[data-theme="light"] .custom-accordion-body {
-    background-color: #fbfcfd;
 }
 
 html[data-theme="light"] .simulation-result-mark-negative {
@@ -2965,13 +2771,8 @@ html[data-theme="light"] .approach-panels {
 
 /* Notes, placeholders */
 html[data-theme="light"] .simulation-page .simulation-subblock>p.small,
-html[data-theme="light"] .heatmap-placeholder,
 html[data-theme="light"] .exp-placeholder {
     background-color: var(--light-subtle-bg);
-}
-
-html[data-theme="light"] .sim-note {
-    background: var(--light-subtle-bg) !important;
 }
 
 html[data-theme="light"] .simulation-page .simulation-subblock h5.section-subtitle,
@@ -3018,7 +2819,6 @@ html[data-theme="light"] .sim-matrix-rowhead>span {
 
 /* Tables (pages use Bootstrap .table-dark) */
 html[data-theme="light"] .table-dark,
-html[data-theme="light"] .simulation-page .custom-accordion-body table,
 html[data-theme="light"] .wet-table,
 html[data-theme="light"] .exp-seq-table {
     --bs-table-color: var(--text-main);
