@@ -651,6 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hearts += 1;
         updateMeter();
+        stage.dispatchEvent(new CustomEvent('princess-heart')); // 寄せ書き帳が「この訪問のハート数」を数える
         try { localStorage.setItem('princessHearts', String(hearts)); } catch (e) { /* ignore */ }
         floatHeart();
 
@@ -677,4 +678,140 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     scheduleFidget();
+})();
+
+// 姫の寄せ書き帳（princess.html）：ニックネームとこの訪問で押したハート数を Google スプレッドシートへ送り、
+// 全員分を時系列（古い→新しい）で並べる。保存先 URL は #princess-guestbook の data-endpoint
+// （作り方：tools/princess-guestbook/README.md）
+(function () {
+    const book = document.getElementById('princess-guestbook');
+    if (!book) return;
+    const endpoint = (book.dataset.endpoint || '').trim();
+    const stage = document.getElementById('princess-stage');
+    const form = book.querySelector('.guestbook-form');
+    const input = document.getElementById('guestbook-nickname');
+    const button = form.querySelector('.guestbook-submit');
+    const status = document.getElementById('guestbook-status');
+    const sessionEl = document.getElementById('guestbook-session-hearts');
+    const list = document.getElementById('guestbook-list');
+    const empty = document.getElementById('guestbook-empty');
+
+    const showEmpty = text => {
+        empty.textContent = text;
+        empty.hidden = !text;
+    };
+
+    if (!endpoint) {
+        form.hidden = true;
+        showEmpty('The guestbook is opening soon!');
+        return;
+    }
+
+    let session = 0;
+    let signed = false;
+    let sending = false;
+    let mine = null; // 自分が今書いた行（一覧で目立たせる）
+
+    const refreshButton = () => {
+        button.disabled = sending || signed || session < 1;
+    };
+
+    try { input.value = localStorage.getItem('princessNickname') || ''; } catch (e) { /* ignore */ }
+
+    stage.addEventListener('princess-heart', () => {
+        session += 1;
+        sessionEl.textContent = session;
+        if (!signed && session === 1) status.textContent = 'When you are ready, sign the guestbook!';
+        refreshButton();
+    });
+
+    const pad = n => String(n).padStart(2, '0');
+    const formatTime = iso => {
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return '';
+        return `${d.getFullYear()}/${pad(d.getMonth() + 1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+
+    const render = entries => {
+        list.replaceChildren();
+        if (!entries.length) {
+            showEmpty('No signatures yet. Be the first!');
+            return;
+        }
+        showEmpty('');
+        let mineMarked = false;
+        // 新しいほうから探して、自分の行を 1 つだけ目立たせる
+        const mineIndex = mine
+            ? entries.map(e => e.nickname === mine.nickname && e.hearts === mine.hearts).lastIndexOf(true)
+            : -1;
+        entries.forEach((entry, i) => {
+            const li = document.createElement('li');
+            const time = document.createElement('time');
+            time.className = 'guestbook-time';
+            time.dateTime = entry.time;
+            time.textContent = formatTime(entry.time);
+            const name = document.createElement('span');
+            name.className = 'guestbook-name';
+            name.textContent = entry.nickname; // textContent なので HTML として解釈されない
+            const hearts = document.createElement('span');
+            hearts.className = 'guestbook-hearts';
+            hearts.textContent = `♥ ${entry.hearts}`;
+            li.append(time, name, hearts);
+            if (i === mineIndex && !mineMarked) {
+                li.classList.add('is-mine');
+                mineMarked = true;
+            }
+            list.appendChild(li);
+        });
+        list.scrollTop = list.scrollHeight; // いちばん新しい記録を見せる
+    };
+
+    const load = () => fetch(endpoint)
+        .then(r => r.json())
+        .then(data => {
+            if (!data || !data.ok || !Array.isArray(data.entries)) throw new Error('bad response');
+            render(data.entries);
+        })
+        .catch(() => {
+            list.replaceChildren();
+            showEmpty('Could not load the guestbook. Please try again later.');
+        });
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (button.disabled) return;
+        const nickname = input.value.replace(/\s+/g, ' ').trim().slice(0, 20);
+        sending = true;
+        refreshButton();
+        status.classList.remove('is-error');
+        status.textContent = 'Signing…';
+
+        // text/plain で送ると、Apps Script へのリクエストで事前確認（CORS preflight）が起きない
+        fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ nickname, hearts: session })
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (!data || !data.ok) throw new Error('rejected');
+                signed = true;
+                mine = { nickname: nickname || 'Anonymous', hearts: session };
+                try { localStorage.setItem('princessNickname', nickname); } catch (e) { /* ignore */ }
+                input.disabled = true;
+                button.textContent = 'Signed ♥';
+                status.textContent = `Thank you, ${mine.nickname}! The princess will remember you.`;
+                return load();
+            })
+            .catch(() => {
+                status.classList.add('is-error');
+                status.textContent = 'Could not sign the guestbook. Please try again.';
+            })
+            .finally(() => {
+                sending = false;
+                refreshButton();
+            });
+    });
+
+    load();
 })();

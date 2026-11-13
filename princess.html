@@ -9,7 +9,7 @@
     <title>miRNA PRINCESS | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-17">
+    <link rel="stylesheet" href="style.css?v=20261114-19">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -73,6 +73,27 @@
             <p class="royal-hint">Psst&hellip; try tapping her really fast.</p>
         </section>
 
+        <!-- 寄せ書き帳：ニックネームとこの訪問のハート数を Google スプレッドシートに記録して時系列で並べる
+             data-endpoint に Apps Script のウェブアプリ URL を入れると動く（手順：tools/princess-guestbook/README.md） -->
+        <section class="royal-card royal-guestbook" id="princess-guestbook" data-endpoint="https://script.google.com/macros/s/AKfycbz9pl-2BBLPm7pX2QEyR7vfhQYtwi5CJ1TZm6dCEQJQ1htzP6wKxwgqoWFeC1TykU22/exec">
+            <h2 class="royal-card-title"><i class="fa-solid fa-feather-pointed me-2" aria-hidden="true"></i>Royal Guestbook</h2>
+
+            <form class="guestbook-form" novalidate>
+                <p class="guestbook-session">This visit: <strong id="guestbook-session-hearts">0</strong> <i class="fa-solid fa-heart" aria-hidden="true"></i></p>
+                <div class="guestbook-row">
+                    <label class="visually-hidden" for="guestbook-nickname">Nickname (optional)</label>
+                    <input type="text" id="guestbook-nickname" class="guestbook-input" maxlength="20"
+                        placeholder="Nickname (optional)" autocomplete="nickname">
+                    <button type="submit" class="guestbook-submit" disabled>Sign &amp; leave hearts</button>
+                </div>
+                <p class="guestbook-note" id="guestbook-status">Give the princess some hearts, then sign the guestbook!</p>
+                <p class="guestbook-fine">Your nickname will be shown publicly. Please don&rsquo;t use your real name.</p>
+            </form>
+
+            <ol class="guestbook-list" id="guestbook-list" aria-label="Guestbook entries, oldest first"></ol>
+            <p class="guestbook-empty" id="guestbook-empty" hidden></p>
+        </section>
+
         <!-- プロフィール -->
         <section class="royal-card">
             <h2 class="royal-card-title"><i class="fa-solid fa-crown me-2" aria-hidden="true"></i>Royal Profile</h2>
@@ -107,7 +128,7 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261113-22"></script>
+    <script src="main.js?v=20261113-23"></script>
 </body>
 
 </html>

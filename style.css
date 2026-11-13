@@ -3732,10 +3732,10 @@ html[data-theme="light"] body.princess-page {
 }
 
 .royal-stage {
-    --pr-size: 220px;
+    --pr-size: 320px; /* 2× the 160px pixel art, so her face reads clearly */
     --floor-h: 120px;
     position: relative;
-    height: 480px;
+    height: 520px;
     overflow: hidden;
     isolation: isolate;
     border: 6px solid transparent;
@@ -3917,6 +3917,7 @@ html[data-theme="light"] body.princess-page {
     width: 100%;
     height: 100%;
     background: url("img/mascot/princess_idle.gif") center / contain no-repeat; /* idle motion GIF */
+    image-rendering: pixelated;
     filter: drop-shadow(0 0 10px rgba(255, 214, 236, 0.55));
 }
 
@@ -3926,6 +3927,7 @@ html[data-theme="light"] body.princess-page {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    image-rendering: pixelated;
     filter: drop-shadow(0 0 10px rgba(255, 214, 236, 0.55));
 }
 
@@ -4160,9 +4162,9 @@ html[data-theme="light"] body.princess-page {
 /* ---------- Phones ---------- */
 @media (max-width: 575.98px) {
     .royal-stage {
-        --pr-size: 160px;
+        --pr-size: 240px;
         --floor-h: 90px;
-        height: 380px;
+        height: 400px;
         border-radius: 40% 40% 10px 10px / 50px 50px 10px 10px;
     }
 
@@ -4208,5 +4210,168 @@ html[data-theme="light"] body.princess-page {
 
     .stage-sparkles span {
         opacity: 0.6;
+    }
+}
+
+/* ---------- Royal guestbook (princess.html) ---------- */
+.royal-guestbook {
+    padding-top: 2.8rem;
+}
+
+.guestbook-session {
+    margin: 0 0 0.8rem;
+    text-align: center;
+    color: #f3d9ec;
+}
+
+.guestbook-session strong {
+    color: #fff;
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.guestbook-session .fa-heart {
+    color: var(--royal-pink);
+}
+
+.guestbook-row {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.guestbook-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.6rem 1rem;
+    border: 2px solid rgba(246, 210, 122, 0.6);
+    border-radius: 999px;
+    background: rgba(28, 11, 46, 0.85);
+    color: var(--royal-cream);
+    font-size: 1rem;
+}
+
+.guestbook-input::placeholder {
+    color: rgba(243, 217, 236, 0.5);
+}
+
+.guestbook-input:focus {
+    outline: none;
+    border-color: var(--royal-pink);
+    box-shadow: 0 0 0 3px rgba(255, 143, 200, 0.3);
+}
+
+.guestbook-submit {
+    flex: none;
+    padding: 0.6rem 1.4rem;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--royal-pink), var(--royal-rose));
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 3px 0 #a52a5c;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.guestbook-submit:hover:not(:disabled),
+.guestbook-submit:focus-visible {
+    transform: translateY(-2px);
+}
+
+.guestbook-submit:focus-visible {
+    outline: 2px solid var(--royal-gold);
+    outline-offset: 2px;
+}
+
+.guestbook-submit:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.guestbook-note {
+    margin: 0.7rem 0 0;
+    text-align: center;
+    color: #f3d9ec;
+    font-size: 0.9rem;
+}
+
+.guestbook-note.is-error {
+    color: #ffb3c7;
+}
+
+.guestbook-fine {
+    margin: 0.2rem 0 0;
+    text-align: center;
+    color: rgba(243, 217, 236, 0.5);
+    font-size: 0.78rem;
+}
+
+.guestbook-list {
+    max-height: 320px;
+    margin: 1.4rem 0 0;
+    padding: 0.4rem 0.8rem;
+    overflow-y: auto;
+    list-style: none;
+    border-top: 1px dashed rgba(246, 210, 122, 0.4);
+}
+
+.guestbook-list:empty {
+    display: none;
+}
+
+.guestbook-list li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: 0.9rem;
+    padding: 0.55rem 0.2rem;
+    border-bottom: 1px solid rgba(246, 210, 122, 0.15);
+}
+
+.guestbook-list li.is-mine {
+    background: rgba(255, 143, 200, 0.12);
+    border-radius: 8px;
+}
+
+.guestbook-time {
+    color: rgba(243, 217, 236, 0.6);
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.guestbook-name {
+    overflow: hidden;
+    color: var(--royal-cream);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.guestbook-hearts {
+    color: var(--royal-pink);
+    font-family: 'DotGothic16', monospace;
+    white-space: nowrap;
+}
+
+.guestbook-empty {
+    margin: 1.2rem 0 0;
+    text-align: center;
+    color: rgba(243, 217, 236, 0.6);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 575.98px) {
+    .guestbook-row {
+        flex-direction: column;
+    }
+
+    .guestbook-list li {
+        grid-template-columns: 1fr auto;
+        gap: 0.1rem 0.8rem;
+    }
+
+    .guestbook-time {
+        grid-column: 1 / -1;
     }
 }
