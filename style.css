@@ -2043,9 +2043,45 @@ section[id],
     padding: 6px;
 }
 
-.sim-heatmap figcaption {
-    font-size: 1rem;
-    line-height: 1.55;
+.simulation-page .sim-heatmap figcaption {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.simulation-page figure figcaption,
+.simulation-page table caption {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted) !important;
+}
+
+.simulation-page figure figcaption strong,
+.simulation-page table caption strong {
+    color: var(--accent-blue);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.appendix-page table caption {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted) !important;
+}
+
+.appendix-page table caption strong {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.simulation-page .references-list {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+}
+
+.simulation-page .references-list p {
+    margin-bottom: 0.75rem;
+    text-indent: 0;
 }
 
 @media (max-width: 767.98px) {

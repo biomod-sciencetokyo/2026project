@@ -7,7 +7,7 @@
     <title>APPENDIX | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261112-4a">
+    <link rel="stylesheet" href="style.css?v=20261113-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -23,7 +23,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
+<body class="appendix-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
     <div class="ambient-particles" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span>
@@ -52,7 +52,7 @@
                         <a class="nav-link" href="#parameter-reference">1.6 Parameter reference and provenance</a>
                         <a class="nav-link" href="#numerical-procedure">1.7 Procedure, reproducibility, and limits</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#three-d-optimization">2. 3D Reduced Free-Energy Model</a>
+                    <a class="nav-link fw-bold mt-2" href="#three-d-model-details">2. 3D Reduced Free-Energy Model</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#three-d-functional">2.1 Variables and free energy</a>
                         <a class="nav-link" href="#three-d-minimization">2.2 Minimization and shape</a>
@@ -60,6 +60,7 @@
                         <a class="nav-link" href="#three-d-helix-screen">2.4 Helix-count screening and α</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#source-code-inventory">3. Source Code Inventory</a>
+                    <a class="nav-link fw-bold mt-2" href="simulation.html#dry-references">Dry-model References</a>
                     <a class="nav-link fw-bold mt-2" href="#future-work">4. Multi-Bundle Extension</a>
                     <a class="nav-link fw-bold mt-2" href="#protocols">5. Wet Lab: Experimental Protocols</a>
                     <div class="nav flex-column sidebar-toc-subnav">
@@ -117,6 +118,8 @@
                         <p class="text-secondary mb-0">
                             The α used in the 2D model is an internal phenomenological rigidity-mapping parameter.
                             It is not numerically equivalent to α in the separate 3D helix-count screening analysis.
+                            DNA flexibility and the mechanics of DNA assemblies have been studied experimentally
+                            and computationally [<a href="simulation.html#ref-8">8</a>–<a href="simulation.html#ref-11">11</a>].
                         </p>
                     </div>
 
@@ -133,7 +136,9 @@
                         <p class="text-secondary mb-2">
                             Contour smoothing uses the discrete second difference below to construct a
                             discrete contour-smoothing force. This implementation-level force is not a complete
-                            continuous Helfrich energy.
+                            continuous Helfrich energy; it is a discrete force inspired by the broader continuum
+                            descriptions of membrane elasticity [<a href="simulation.html#ref-1">1</a>,
+                            <a href="simulation.html#ref-2">2</a>, <a href="simulation.html#ref-5">5</a>–<a href="simulation.html#ref-7">7</a>].
                         </p>
                         <div class="math-display">\[
                             \mathbf C_i=
@@ -176,12 +181,16 @@
                         \]</div>
                         <p class="text-secondary mb-2">
                             This is a piecewise-linear strain-stiffening force law approximating compression,
-                            ordinary extension, and strong extension; it is not a WLC or FENE model.
+                            ordinary extension, and strong extension; it is code-defined and is not a WLC or FENE model.
                         </p>
                         <p class="text-secondary mb-2">
                             Cholesterol–membrane capture acts when the nearest membrane point is within
                             \(r_{\mathrm{mc}}<24+l_0\). Its normal force is distributed to the nearest bead and
-                            two beads on either side with weights \((0.10,\,0.20,\,0.40,\,0.20,\,0.10)\).
+                            two beads on either side with code-defined weights
+                            \((0.10,\,0.20,\,0.40,\,0.20,\,0.10)\). Cholesterol-modified DNA nanostructures have
+                            been used for membrane binding [<a href="simulation.html#ref-12">12</a>,
+                            <a href="simulation.html#ref-13">13</a>]; the cutoff and bead weights here are
+                            model-specific settings, not measured physical values.
                         </p>
                         <p class="text-secondary mb-2">
                             DNA–membrane repulsion is a normal harmonic repulsion within the cutoff
@@ -197,7 +206,10 @@
 
                     <div id="numerical-update" class="simulation-subblock mb-4">
                         <h3 class="h4 fw-bold mb-3 section-subtitle">1.4 Numerical update</h3>
-                        <p class="text-secondary mb-2">Membrane beads use an overdamped Brownian update:</p>
+                        <p class="text-secondary mb-2">
+                            Membrane beads use an overdamped Brownian update, following the general Brownian-dynamics
+                            framework [<a href="simulation.html#ref-4">4</a>]:
+                        </p>
                         <div class="math-display">\[
                             \mathbf r_i^{n+1}=
                             \mathbf r_i^n+
@@ -234,6 +246,10 @@
                             T_{\mathrm{crit}}=150
                         \]</div>
                         <p class="text-secondary mb-2">
+                            This is an operational threshold in the discrete model and is not calibrated to a
+                            physical pore-formation or rupture tension.
+                        </p>
+                        <p class="text-secondary mb-2">
                             For \(n_{\mathrm{trial}}\) trajectories, the reported event fraction is:
                         </p>
                         <div class="math-display">\[
@@ -243,7 +259,8 @@
                         \]</div>
                         <p class="text-secondary mb-2">
                             This is a model-defined local pore-formation event, not a direct prediction of physical
-                            membrane rupture, lysis, or complete pore growth.
+                            membrane rupture, lysis, or complete pore growth. Physical pore formation and growth
+                            involve processes outside this operational criterion [<a href="simulation.html#ref-16">16</a>–<a href="simulation.html#ref-22">22</a>].
                         </p>
                         <p class="text-secondary mb-0">
                             Changing \(R\) also changes membrane-bead count, Bundle length, anchor count, and the
@@ -261,6 +278,9 @@
                         </p>
                         <div class="table-responsive">
                             <table class="table table-dark table-bordered table-sm align-middle">
+                                <caption class="caption-top text-secondary">
+                                    <strong>Table S1.</strong> 2D model parameter reference and provenance.
+                                </caption>
                                 <thead>
                                     <tr>
                                         <th scope="col">Symbol / setting</th>
@@ -365,7 +385,7 @@
                                             exceeds the threshold</td>
                                         <td>Operational criterion stated on the Simulation page; not calibrated
                                             to membrane tension</td>
-                                        <td>Fixed event-definition setting</td>
+                                        <td>Code-defined operational criterion; not physically calibrated</td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><i>k</i><sub>mem</sub></th>
@@ -538,7 +558,7 @@
                     </div>
                 </section>
 
-                <section id="three-d-optimization" class="fade-in-section mb-5 pt-4">
+                <section id="three-d-model-details" class="fade-in-section mb-5 pt-4">
                     <h2 class="h3 section-title">2. 3D Reduced Free-Energy Model</h2>
                     <div id="three-d-functional" class="simulation-subblock mb-5">
                         <h3 class="h4 fw-bold mb-3 section-subtitle">2.1 Model variables and free-energy functional</h3>
@@ -546,7 +566,10 @@
                         For the \(R_0=50\) nm reference condition, the optimization variables are indentation
                         depth \(z_{\mathrm{indent}}\), Bundle bend radius \(R_{\mathrm{bend}}\), and deformation
                         pocket width \(w_y\). The reduced free energy combines aggregate cholesterol adhesion,
-                        DNA Bundle bending, membrane bending, and membrane tension.
+                        DNA Bundle bending, membrane bending, and membrane tension. The membrane-elasticity and
+                        adhesion concepts provide physical context [<a href="simulation.html#ref-1">1</a>–<a href="simulation.html#ref-3">3</a>,
+                        <a href="simulation.html#ref-5">5</a>–<a href="simulation.html#ref-7">7</a>]; this reduced
+                        functional is a model-specific approximation, not a full continuum surface model.
                     </p>
                     <p class="text-secondary mb-2">The contact geometry is defined by:</p>
                     <div class="math-display">\[
@@ -568,6 +591,11 @@
                         {L_{\mathrm{Bundle}}r_{\mathrm{DNA}}}
                         A_{\mathrm{contact}}
                     \]</div>
+                    <p class="text-secondary mb-2">
+                        DNA-nanostructure mechanics and membrane interactions have experimental and computational
+                        precedent [<a href="simulation.html#ref-8">8</a>–<a href="simulation.html#ref-15">15</a>],
+                        while the contact geometry and effective terms above are defined by this model.
+                    </p>
                     <div class="math-display">\[
                         E_{\mathrm{DNA,bend}}=
                         N_{\mathrm{Bundle}}\frac12B_{\mathrm{DNA}}
@@ -608,6 +636,9 @@
                     <h4 class="h5 fw-bold section-subtitle">Reference settings and provenance</h4>
                     <div class="table-responsive mb-4">
                         <table class="table table-dark table-bordered table-sm align-middle">
+                            <caption class="caption-top text-secondary">
+                                <strong>Table S2.</strong> 3D model reference settings and provenance.
+                            </caption>
                             <thead>
                                 <tr>
                                     <th scope="col">Symbol / setting</th>
@@ -640,8 +671,8 @@
                                     <td>20<i>k</i><sub>B</sub><i>T</i></td>
                                     <td>Thermal-energy units</td>
                                     <td>Membrane bending rigidity</td>
-                                    <td>Rawicz et al., <em>Biophysical Journal</em> (2000), as cited on the
-                                        Simulation page</td>
+                                    <td>Rawicz et al., <em>Biophysical Journal</em> (2000)
+                                        [<a href="simulation.html#ref-6">6</a>]</td>
                                     <td>Fixed model input</td>
                                 </tr>
                                 <tr>
@@ -665,8 +696,8 @@
                                     <td>4.5<i>k</i><sub>B</sub><i>T</i> per cholesterol</td>
                                     <td>Thermal-energy units</td>
                                     <td>Per-cholesterol scale in aggregate adhesion term</td>
-                                    <td>3D reference implementation; individual positions/linkers are not resolved</td>
-                                    <td>Fixed model parameter</td>
+                                    <td>Code-defined aggregate adhesion scale; individual positions/linkers are not resolved</td>
+                                    <td>Model-defined parameter, not a literature-derived value</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i>L</i><sub>Bundle</sub>,
@@ -677,7 +708,7 @@
                                         is 99<i>k</i><sub>B</sub><i>T</i></td>
                                     <td>Page reference; supplied 3D source snapshot sets <i>L</i><sub>bundle</sub>
                                         = 100 nm</td>
-                                    <td>Page reference configuration; source version mismatch noted above</td>
+                                    <td>Model-defined page-reference configuration; source version mismatch noted above</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i>P</i><sub>L</sub></th>
@@ -712,7 +743,7 @@
                                     <td>nm<sup>−1</sup></td>
                                     <td>Selected curvature-comparison level</td>
                                     <td>Separate phenomenological helix-count scaling analysis, not a GLB output</td>
-                                    <td>Manually selected comparison level</td>
+                                    <td>Model-defined selected comparison level; not literature-derived</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -798,14 +829,16 @@
                             \quad H_{\mathrm{max}}(N,\alpha)=H_{\mathrm{crit}}
                         \]</div>
                         <p class="text-secondary mb-0">
-                            The settings \(\alpha=1.0,\,0.5,\,0.1\) represent model-defined high-,
+                            In the Figure 13 source, \(C=50\) is a code-defined scaling constant. The settings
+                            \(\alpha=1.0,\,0.5,\,0.1\) represent model-defined high-,
                             intermediate-, and low-effective coupling scenarios; α is not an experimentally
                             measured cross-linking efficiency. \(H_{\mathrm{crit}}=0.067\ \mathrm{nm}^{-1}\)
-                            is a selected comparison level, not a rupture threshold. \(N_{\mathrm{crit}}\) is a
+                            is a selected comparison level. This is a selected model comparison level, not a
+                            literature-derived pore-formation or rupture threshold. \(N_{\mathrm{crit}}\) is a
                             rigidity-based design estimate, not a prediction of membrane rupture. This screening
                             formula does not include a physical radius function \(r_{\mathrm{Bundle}}(N)\), so it
                             does not quantitatively combine radius-dependent geometry with helix-number-dependent
-                            rigidity. The current Figure 2 and the available α-sweep source also differ in their
+                            rigidity. Figure 14 and the available α-sweep source also differ in their
                             displayed crossing values; see the
                             <a href="#source-code-inventory">Source Code Inventory</a> for the provenance note.
                         </p>
@@ -841,19 +874,20 @@
 
                     <h3 class="h5 fw-bold section-subtitle">Helix-Count Screening Graphs</h3>
                     <ul class="text-secondary mb-0">
-                        <li><a href="code/rigiddna6.py">rigiddna6.py</a> — source for Figure 1 on the
+                        <li><a href="code/rigiddna6.py">rigiddna6.py</a> — source associated with Figure 13 on the
                             Simulation page. It uses <i>R</i><sub>0</sub> = 50 nm,
                             <i>L</i><sub>bundle</sub> = 150 nm,
-                            <i>B</i><sub>eff</sub> = 50<i>N</i><sup>2</sup><i>L</i><sub>bundle</sub>,
+                            the code-defined scaling constant <i>C</i> = 50 in
+                            <i>B</i><sub>eff</sub> = <i>C</i><i>N</i><sup>2</sup><i>L</i><sub>bundle</sub>,
                             <i>k</i><sub>mem,eff</sub> = 30000, and the selected comparison level
-                            <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>. Its interpolated crossing is
-                            <i>N</i> ≈ 3.8, rounded to 4 in the graph label. Although the source labels this
-                            level as a pore-formation limit, it is not an experimentally calibrated threshold.</li>
+                            <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>. This is a model-defined selected
+                            comparison level, not a literature-derived or experimentally calibrated threshold.
+                            Its interpolated crossing is <i>N</i> ≈ 3.8, rounded to 4 in the graph label.</li>
                         <li><a href="code/ahikaku4.py">ahikaku4.py</a> — α-dependent helix-count screening
                             source. It uses <i>R</i><sub>0</sub> = 50 nm,
                             <i>L</i><sub>bundle</sub> = 60 nm, and α = 1.0, 0.5, and 0.1. With its stated
-                            <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give crossings of
-                            approximately 6, 8.5, and 19 helices. The current Figure 2 displays crossings near
+                            model-defined <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give crossings of
+                            approximately 6, 8.5, and 19 helices. Figure 14 displays crossings near
                             3.8, 5.4, and 12; therefore, the available script does not reproduce that figure's
                             displayed values, and its exact generating source is unconfirmed.</li>
                     </ul>
@@ -884,7 +918,8 @@
                         <div class="wet-table-wide">
                             <div id="wet-seq-seed" class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">DNA strands for seeds</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S3.</strong> DNA strands for seeds.</caption>
                                     <thead>
                                         <tr><th scope="col">DNA</th><th scope="col">sequence</th></tr>
                                     </thead>
@@ -902,7 +937,8 @@
                         <div class="wet-table-wide">
                             <div id="wet-seq-hairpin" class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">DNA strands for bundled HCR</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S4.</strong> DNA strands for bundled HCR.</caption>
                                     <thead>
                                         <tr><th scope="col">DNA</th><th scope="col">sequence</th></tr>
                                     </thead>
@@ -921,7 +957,8 @@
                         <div class="wet-table-grid">
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">10 µM Hairpin DNA</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S5.</strong> 10 µM Hairpin DNA.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -934,7 +971,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">5 µM Hairpin DNA</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S6.</strong> 5 µM Hairpin DNA.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -957,7 +995,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Annealing sample of seeds</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S7.</strong> Annealing sample of seeds.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -988,7 +1027,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">10% polyacrylamide gel solution</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S8.</strong> 10% polyacrylamide gel solution.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1011,7 +1051,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Ladder (for 2 lanes)</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S9.</strong> Ladder (for 2 lanes).</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1026,7 +1067,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Loading sample</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S10.</strong> Loading sample.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">Final</th></tr>
                                             </thead>
@@ -1046,7 +1088,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S11.</strong> Samples loaded into each lane.</caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th></tr>
                                                 <tr><th scope="row">Ladder</th><td>S1</td><td>S2</td><td>S3</td><td>S4</td><td>S5</td><td>S6</td><td>Seed</td><td>Ladder</td></tr>
@@ -1080,7 +1123,8 @@
                         <div class="wet-table-grid">
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">1% Agarose gel solution</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S12.</strong> 1% Agarose gel solution.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1104,7 +1148,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Bundle HCR Reaction Mixture</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S13.</strong> Bundle HCR Reaction Mixture.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">1×Seed only</th><th scope="col">Hairpin DNA(H1～H6) only</th><th scope="col">Seed Hairpin DNA(H1～H6) Incubated for 30 min</th><th scope="col">Seed Hairpin DNA(H1～H6) Incubated for 1 h</th><th scope="col">Seed Hairpin DNA(H1～H6) Incubated for 2h</th><th scope="col"></th></tr>
@@ -1128,6 +1173,9 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">
+                                                <strong>Table S14.</strong> DNA ladder preparation for agarose-gel electrophoresis.
+                                            </caption>
                                             <thead>
                                                 <tr><th scope="col"></th><th scope="col">Ladder1</th><th scope="col">Ladder2</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">what</th><th scope="col" colspan="2">amount</th><th scope="col">final</th></tr>
@@ -1148,7 +1196,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S15.</strong> Samples loaded into each lane.</caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th></tr>
                                                 <tr><th scope="row">Ladder1</th><td>Sample1</td><td>Sample2</td><td>Sample3</td><td>Sample4</td><td>Sample5</td><td>Ladder2</td></tr>
@@ -1181,7 +1230,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Sample 1~6</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S16.</strong> Sample 1~6.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1196,7 +1246,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Bundle HCR Reaction Mixture for Sample 7</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S17.</strong> Bundle HCR Reaction Mixture for Sample 7.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1217,6 +1268,9 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">
+                                                <strong>Table S18.</strong> DNA ladder preparation for the first PAGE analysis.
+                                            </caption>
                                             <thead>
                                                 <tr><th scope="col"></th><th scope="col">Ladder1</th><th scope="col">Ladder2</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">what</th><th scope="col" colspan="2">amount</th><th scope="col">final</th></tr>
@@ -1237,7 +1291,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S19.</strong> Samples loaded into each lane.</caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr>
                                                 <tr><th scope="row">Ladder1 50bp DNA ladder</th><td>Sample1 H1</td><td>Sample2 H2</td><td>Sample3 H3</td><td>Sample4 H4</td><td>Sample5 H5</td></tr>
@@ -1291,7 +1346,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture for Sample 2~7</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S20.</strong> Bundled HCR Reaction Mixture for Sample 2~7.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">H1~H6 only</th><th scope="col">Seed:H1~6=1:200</th><th scope="col">Seed:H1~6=1:100</th><th scope="col">Seed:H1~6=1:50</th><th scope="col">Seed:H1~6=1:20</th><th scope="col">Seed:H1~6=1:5</th><th scope="col"></th></tr>
@@ -1313,7 +1369,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture for Sample 8 and 9</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S21.</strong> Bundled HCR Reaction Mixture for Sample 8 and 9.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">8</th><th scope="col">9</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">H1, H3, H5</th><th scope="col">H2, H4, H6</th><th scope="col"></th></tr>
@@ -1334,7 +1391,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture for Sample 10~15</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S22.</strong> Bundled HCR Reaction Mixture for Sample 10~15.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th><th scope="col">13</th><th scope="col">14</th><th scope="col">15</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">12 mM MgCl<sub>2</sub>, 0 mM NaCl</th><th scope="col">10 mM MgCl<sub>2</sub>, 300 mM NaCl</th><th scope="col">12 mM MgCl<sub>2</sub>, 300 mM NaCl</th><th scope="col">15 mM MgCl<sub>2</sub>, 300 mM NaCl</th><th scope="col">5 mM MgCl<sub>2</sub>, 200 mM NaCl</th><th scope="col">5 mM MgCl<sub>2</sub>, 100 mM NaCl</th><th scope="col"></th></tr>
@@ -1359,6 +1417,9 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">
+                                                <strong>Table S23.</strong> DNA ladder preparation for the second PAGE analysis.
+                                            </caption>
                                             <thead>
                                                 <tr><th scope="col"></th><th scope="col">Ladder1</th><th scope="col">Ladder2</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">what</th><th scope="col" colspan="2">amount</th><th scope="col">final</th></tr>
@@ -1379,7 +1440,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S24.</strong> Samples loaded into each lane.</caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr>
                                                 <tr><th scope="row">Ladder1</th><td>Sample1</td><td>Sample2</td><td>Sample3</td><td>Sample4</td><td>Sample5</td></tr>
@@ -1434,7 +1496,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S25.</strong> Bundled HCR Reaction Mixture.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">Seed:H1~6=1:5</th><th scope="col">Seed:H1~6=1:20</th><th scope="col">Seed:H1~6=1:50</th><th scope="col">Seed:H1~6=1:100</th><th scope="col">Seed:H1~6=1:200</th><th scope="col">H1~6 only</th><th scope="col"></th></tr>
@@ -1460,7 +1523,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Ladder</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S26.</strong> Ladder.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1479,7 +1543,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S27.</strong> Samples loaded into each lane.</caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th></tr>
                                                 <tr><th scope="row">Ladder</th><td>Sample1</td><td>Sample2</td><td>Sample3</td><td>Sample4</td><td>Sample5</td><td>Sample6</td><td>Ladder</td></tr>
@@ -1527,7 +1592,8 @@
                         <div class="wet-table-wide">
                             <div id="wet-seq-bundle" class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">DNA strands used for the 12- and 13-helix bundles</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S28.</strong> DNA strands used for the 12- and 13-helix bundles.</caption>
                                     <thead>
                                         <tr><th scope="col">DNA</th><th scope="col">sequence</th></tr>
                                     </thead>
@@ -1554,7 +1620,8 @@
                         <div class="wet-table-grid">
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">Lipid film solution</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S29.</strong> Lipid film solution.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1569,7 +1636,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">1M MgCl<sub>2</sub></caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S30.</strong> 1M MgCl<sub>2</sub>.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1582,7 +1650,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">100 mM MgCl<sub>2</sub></caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S31.</strong> 100 mM MgCl<sub>2</sub>.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1595,7 +1664,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">1M NaCl</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S32.</strong> 1M NaCl.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1608,7 +1678,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">10% APS</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S33.</strong> 10% APS.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1621,7 +1692,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">10 mM phosphate buffer</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S34.</strong> 10 mM phosphate buffer.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1635,7 +1707,8 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">60 mM calcein</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S35.</strong> 60 mM calcein.</caption>
                                     <thead>
                                         <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                     </thead>
@@ -1661,7 +1734,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Annealing sample of 12-helix DNA bundle without cholesterol</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S36.</strong> Annealing sample of 12-helix DNA bundle without cholesterol.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1676,7 +1750,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Annealing sample of 12-helix DNA bundle with cholesterol</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S37.</strong> Annealing sample of 12-helix DNA bundle with cholesterol.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1691,7 +1766,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Annealing sample of 13-helix DNA bundle without cholesterol</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S38.</strong> Annealing sample of 13-helix DNA bundle without cholesterol.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1706,7 +1782,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Annealing sample of 13-helix DNA bundle with cholesterol</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S39.</strong> Annealing sample of 13-helix DNA bundle with cholesterol.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1737,7 +1814,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">10% polyacrylamide gel solution</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S40.</strong> 10% polyacrylamide gel solution.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1760,7 +1838,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Ladder (for 4 lanes)</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S41.</strong> Ladder (for 4 lanes).</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1775,7 +1854,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Loading sample</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S42.</strong> Loading sample.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">Final</th></tr>
                                             </thead>
@@ -1795,7 +1875,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S43.</strong> Samples loaded into each lane.</caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th></tr>
                                                 <tr><th scope="row">Ladder</th><td>V1</td><td>V2</td><td>V3</td><td>V4</td><td>V5</td><td>V6</td><td>V7</td><td>V8</td><td>Ladder</td></tr>
@@ -1835,7 +1916,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">DNA bundles diluted tenfold</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S44.</strong> DNA bundles diluted tenfold.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1897,6 +1979,9 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">
+                                                <strong>Table S45.</strong> Sample names for the 12- and 13-helix Bundle membrane assay.
+                                            </caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">0.1× 12bundle without Chol</th><th scope="col">0.1× 12bundle with Chol</th><th scope="col">1× 12bundle with Chol</th><th scope="col">0.1× 13bundle without Chol</th><th scope="col">0.1× 13bundle with Chol</th><th scope="col">1× 13bundle with Chol</th></tr>
@@ -1909,7 +1994,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">GUV–DNA Bundle Reaction Mixture</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S46.</strong> GUV–DNA Bundle Reaction Mixture.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1950,7 +2036,8 @@
                         <div class="wet-table-wide">
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                    <caption class="caption-top text-secondary">GUV–DNA Bundle Reaction Mixture</caption>
+                                    <caption class="caption-top text-secondary">
+                                        <strong>Table S47.</strong> GUV–DNA Bundle Reaction Mixture.</caption>
                                     <thead>
                                         <tr><th scope="col">Sample number</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col"></th></tr>
                                         <tr><th scope="col">Sample name</th><th scope="col">GUVs only</th><th scope="col">1× 12bundle without Chol only</th><th scope="col">1× 12bundle with Chol only</th><th scope="col">GUVs and 1× 12bundle without Chol</th><th scope="col">GUVs and 1× 12bundle with Chol</th><th scope="col"></th></tr>
@@ -1982,7 +2069,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">NaCl-containing 12bundles</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S48.</strong> NaCl-containing 12bundles.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -1995,7 +2083,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">EDTA-containing12bundles</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S49.</strong> EDTA-containing12bundles.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -2014,7 +2103,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">GUV–DNA Bundle Reaction Mixture for control</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S50.</strong> GUV–DNA Bundle Reaction Mixture for control.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">GUVs only</th><th scope="col">1× 12 bundles with Chol only</th><th scope="col">GUVs and 1× 12 bundles without Chol</th><th scope="col">GUVs and 1× 12 bundles with Chol</th><th scope="col"></th></tr>
@@ -2033,7 +2123,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">GUV–DNA Bundle Reaction Mixture for NaCl-Containing Bundles</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S51.</strong> GUV–DNA Bundle Reaction Mixture for NaCl-Containing Bundles.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">GUVs only</th><th scope="col">1× 12 bundles with Chol containing NaCl only</th><th scope="col">GUVs and 1× 12 bundles without Chol containing NaCl</th><th scope="col">GUVs and 1× 12 bundles with Chol containing NaCl</th><th scope="col"></th></tr>
@@ -2052,7 +2143,8 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">GUV–DNA Bundle Reaction Mixture for EDTA-Containing Bundles</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S52.</strong> GUV–DNA Bundle Reaction Mixture for EDTA-Containing Bundles.</caption>
                                             <thead>
                                                 <tr><th scope="col">Sample number</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th><th scope="col"></th></tr>
                                                 <tr><th scope="col">Sample name</th><th scope="col">GUVs only</th><th scope="col">1× 12 bundles with Chol containing EDTA only</th><th scope="col">GUVs and 1× 12 bundles without Chol containing EDTA</th><th scope="col">GUVs and 1× 12 bundles with Chol containing EDTA</th><th scope="col"></th></tr>
@@ -2089,7 +2181,8 @@
                                 <div class="wet-table-grid">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">GUV internal solution</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S53.</strong> GUV internal solution.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -2104,7 +2197,8 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">GUV external solution</caption>
+                                            <caption class="caption-top text-secondary">
+                                        <strong>Table S54.</strong> GUV external solution.</caption>
                                             <thead>
                                                 <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
                                             </thead>
@@ -2132,6 +2226,9 @@
                                 <div class="wet-table-wide">
                                     <div class="table-responsive">
                                         <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">
+                                                <strong>Table S55.</strong> DNA Bundle samples prepared for the GUV assay.
+                                            </caption>
                                             <tbody>
                                                 <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th></tr>
                                                 <tr><th scope="row">MQ</th><td>12 bundle with Chol</td><td>12 bundle without Chol</td><td>12 bundle with Chol before annealing</td><td>13 bundle with Chol</td><td>13 bundle without Chol</td><td>13 bundle with Chol before annealing</td><td>1% Sorbitan monolaurate (w/w)</td></tr>

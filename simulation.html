@@ -7,7 +7,7 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261112-6">
+    <link rel="stylesheet" href="style.css?v=20261113-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -121,6 +121,7 @@
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
                     <a class="nav-link fw-bold" href="#simulation-overview">Overview</a>
+                    <a class="nav-link" href="#dry-references">Dry-model References</a>
                     <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Deformation Models</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
@@ -138,11 +139,9 @@
                 <section id="simulation-overview" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-0">
-                        This page presents two distinct mechanical models: a finite-time 2D coarse-grained
-                        simulation that screens for a model-defined local pore-formation event, and a 3D
-                        constrained reduced free-energy optimization that generates a static deformation
-                        visualization. The 3D visualization is not a time-evolving simulation; neither model
-                        establishes complete membrane rupture or vesicle lysis. We also assess the
+                        This page presents two complementary mechanical models: a 2D coarse-grained simulation
+                        that screens for model-defined local pore-formation events, and a 3D reduced free-energy
+                        model that estimates representative membrane-deformation shapes. We also assess the
                         thermodynamic feasibility of the HCR design for building DNA Bundles.
                     </p>
                 </section>
@@ -157,10 +156,10 @@
                             Environment</h3>
 
                         <!-- Real system vs. 2D model -->
-                        <div class="sim-env mb-5" data-sim-env>
+                        <figure class="simulation-figure sim-env mb-5" data-sim-env>
                             <div class="sim-env-panels">
-                                <figure class="sim-env-panel">
-                                    <figcaption class="sim-env-panel-label">Real system</figcaption>
+                                <div class="sim-env-panel">
+                                    <div class="sim-env-panel-label">Real system</div>
                                     <div class="sim-env-canvas">
                                         <img src="img/SIMULATION/sim2d_real.jpg"
                                             alt="A 12-helix DNA bundle held above a curved lipid bilayer by cholesterol anchors on flexible linkers"
@@ -174,11 +173,11 @@
                                         <button type="button" class="sim-env-marker" data-part="membrane"
                                             style="left: 50%; top: 66%;" aria-label="4: Lipid membrane">4</button>
                                     </div>
-                                </figure>
+                                </div>
                                 <div class="sim-env-arrow" aria-hidden="true"></div>
-                                <figure class="sim-env-panel">
-                                    <figcaption class="sim-env-panel-label">2D model <span>(cross-section)</span>
-                                    </figcaption>
+                                <div class="sim-env-panel">
+                                    <div class="sim-env-panel-label">2D model <span>(cross-section)</span>
+                                    </div>
                                     <div class="sim-env-canvas">
                                         <img src="img/SIMULATION/sim2d_model.jpg"
                                             alt="Coarse-grained model: a grey rod with purple cholesterol beads on linkers above an arc of membrane beads joined by colored springs"
@@ -193,13 +192,12 @@
                                             style="left: 81.3%; top: 63.1%;" aria-label="4: Lipid membrane">4</button>
                                     </div>
                                     <div class="sim-env-legend">
-                                        <span class="sim-env-legend-title">Spring color = local stretch</span>
+                                        <span class="sim-env-legend-title">Membrane spring extension</span>
                                         <span class="sim-env-legend-bar sim-env-legend-strain"
                                             aria-hidden="true"></span>
-                                        <span class="sim-env-legend-ends"><span>relaxed</span><span>overstretched &rarr;
-                                                model-defined local pore-formation event</span></span>
+                                        <span class="sim-env-legend-ends"><span>lower</span><span>higher</span></span>
                                     </div>
-                                </figure>
+                                </div>
                             </div>
 
                             <ol class="sim-env-parts">
@@ -220,24 +218,27 @@
                                     <h5 class="sim-env-part-title">Lipid membrane</h5>
                                 </li>
                             </ol>
-                        </div>
+                            <figcaption class="text-secondary mt-3">
+                                <strong>Figure 1.</strong> Real system and 2D coarse-grained representation.
+                            </figcaption>
+                        </figure>
 
                         <p class="text-secondary mb-3">
-                            The 2D model is used as a computational screening system. Its <strong>GOAL</strong> is
-                            to examine how the <strong>THREE PROGRAMMABLE PARAMETERS</strong>—vesicle radius
-                            (<i>R</i>), DNA Bundle bending rigidity (<i>B</i><sub>DNA</sub>), and linker rest length
-                            (<i>l</i><sub>0</sub>)—shape DNA Bundle–membrane interactions. Because changing
-                            <i>R</i> also rescales the membrane discretization, Bundle length, anchor number, and
-                            other geometry-dependent quantities, radius-dependent trends should be interpreted as
-                            the response of the jointly scaled model system rather than as curvature alone.
+                            The 2D model is used as a computational screening system to identify practical design
+                            regions for three programmable parameters: vesicle radius (<i>R</i>), DNA Bundle bending
+                            rigidity (<i>B</i><sub>DNA</sub>), and linker rest length (<i>l</i><sub>0</sub>). Our goal
+                            is to estimate which parameter combinations are more likely to produce the model-defined
+                            local pore-formation event and thereby guide the design of DNA Bundles for membrane loading.
                         </p>
                         <p class="text-secondary mb-3">
                             Each trajectory is evolved as a finite-time overdamped Brownian coarse-grained
-                            calculation while the DNA Bundle approaches the membrane. The readout is the occurrence
+                            calculation while the DNA Bundle approaches the membrane, using a Brownian-dynamics
+                            framework [<a href="#ref-4">4</a>]. The readout is the occurrence
                             of a model-defined local pore-formation event: a local spring-extension threshold in
                             the discrete membrane model. This event is used only as a pore-initiation proxy; the
                             2D model does not resolve physical pore growth, resealing, leakage, or vesicle lysis.
-                            Detailed equations, parameters, and procedure are in the
+                            Physical pore studies describe additional mechanisms beyond this model-defined
+                            criterion [<a href="#ref-16">16</a>–<a href="#ref-22">22</a>]. Detailed equations, parameters, and procedure are in the
                             <a href="appendix.html#two-d-method">Appendix</a>.
                         </p>
 
@@ -252,20 +253,33 @@
                                 not limited to flexibility or distance.
                             </p>
 
-                            <h5 class="fw-bold mb-3 section-subtitle">Representative GIFs: Broad Trends</h5>
-                            <p class="text-secondary mb-4">
-                                Each GIF shows one representative simulation, illustrating how linker length and
-                                Bundle bending rigidity can affect membrane loading. Use these examples to compare broad
-                                trends; they do not show the probability across all tested conditions.
+                            <h5 class="fw-bold mb-3 section-subtitle">Key trends and interpretation</h5>
+                            <p class="text-secondary mb-3">
+                                Across the present 2D parameter screen, high DNA Bundle bending rigidity was commonly
+                                associated with the model-defined local pore-formation event. For the small-vesicle
+                                condition (\(R=50\) nm), shorter linkers were more favorable. For the large-vesicle
+                                condition (\(R=200\) nm), longer linkers were more favorable.
                             </p>
+                            <p class="text-secondary mb-4">
+                                For small vesicles, a short linker is expected to transmit the mechanical loading of a
+                                rigid DNA Bundle more directly to a localized membrane region. A longer linker can
+                                provide additional relative compliance and attenuate this localized loading. In
+                                contrast, for large vesicles, a longer linker increases the model-defined
+                                cholesterol–membrane capture range and can allow membrane coupling over a broader
+                                accessible region. These are model-level interpretations of the observed trends, not
+                                direct evidence of complete membrane rupture or lysis.
+                            </p>
+                            <p class="text-secondary mb-3">
+                                Representative trajectories visualize the contrasting membrane-loading behaviors
+                                underlying these design trends.
+                            </p>
+                            <figure class="simulation-figure sim-matrix-figure mb-4">
                             <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
                             <div class="mb-4 sim-matrix">
                                 <div class="row g-3 align-items-stretch sim-matrix-grid">
                                     <div class="sim-matrix-corner" aria-hidden="true">
-                                        <span class="sim-matrix-corner-col">Linker rest length (<em>l</em><sub>0</sub>)
-                                            &rarr;</span>
-                                        <span class="sim-matrix-corner-row">&darr; DNA Bundle bending rigidity
-                                            (<i>B</i><sub>DNA</sub>)</span>
+                                        <span class="sim-matrix-corner-col"><em>l</em><sub>0</sub> &rarr;</span>
+                                        <span class="sim-matrix-corner-row">&darr; <i>B</i><sub>DNA</sub></span>
                                     </div>
                                     <div class="sim-matrix-colhead">
                                         <span class="sim-matrix-colhead-title">Short linker</span>
@@ -397,14 +411,18 @@
                                 </div>
                             </div>
 
+                            <figcaption class="text-secondary mt-3">
+                                <strong>Figure 2.</strong> Representative 2D simulations for the small-vesicle
+                                condition (\(R=50\) nm).
+                            </figcaption>
+                            </figure>
+                            <figure class="simulation-figure sim-matrix-figure mb-4">
                             <h5 class="fw-bold mb-3 section-subtitle">Large vesicle (<em>R</em> = 200 nm)</h5>
                             <div class="mb-4 sim-matrix">
                                 <div class="row g-3 align-items-stretch sim-matrix-grid">
                                     <div class="sim-matrix-corner" aria-hidden="true">
-                                        <span class="sim-matrix-corner-col">Linker rest length (<em>l</em><sub>0</sub>)
-                                            &rarr;</span>
-                                        <span class="sim-matrix-corner-row">&darr; DNA Bundle bending rigidity
-                                            (<i>B</i><sub>DNA</sub>)</span>
+                                        <span class="sim-matrix-corner-col"><em>l</em><sub>0</sub> &rarr;</span>
+                                        <span class="sim-matrix-corner-row">&darr; <i>B</i><sub>DNA</sub></span>
                                     </div>
                                     <div class="sim-matrix-colhead">
                                         <span class="sim-matrix-colhead-title">Short linker</span>
@@ -537,18 +555,11 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <h5 class="fw-bold mb-3 section-subtitle">Observed trend in the present 2D model</h5>
-                            <div class="mb-4">
-                                <p class="text-secondary mb-3">
-                                    For the small-vesicle condition, short linkers tend to promote more localized
-                                    membrane loading when the DNA Bundle is sufficiently rigid.
-                                </p>
-                                <p class="text-secondary mb-0">
-                                    For the large-vesicle condition, longer linkers can better preserve
-                                    membrane-reaching coupling, shifting the favorable linker-length range.
-                                </p>
-                            </div>
+                            <figcaption class="text-secondary mt-3">
+                                <strong>Figure 3.</strong> Representative 2D simulations for the large-vesicle
+                                condition (\(R=200\) nm).
+                            </figcaption>
+                            </figure>
                         </div>
 
                         <!-- Rigidity and Linker Length Heatmap Comparison -->
@@ -558,29 +569,9 @@
                             </h4>
                             <div class="mb-4">
                                 <p class="text-secondary mb-3">
-                                    Unlike the representative GIFs, each heatmap summarizes the
-                                    model-defined local pore-formation-event probability across simulated
-                                    trajectories for combinations of linker length and Bundle bending rigidity. Each map
-                                    shows a different vesicle radius.
-                                </p>
-                                <p class="text-secondary mb-3">
-                                    Across the current parameter space, <strong>high DNA Bundle bending rigidity was a
-                                        common feature of conditions with elevated model-defined local
-                                        pore-formation-event probabilities.</strong>
-                                    In the heat maps obtained for the smaller-vesicle conditions, high-probability
-                                    regions were predominantly observed for a DNA Bundle with high bending rigidity combined with a
-                                    short linker. In contrast, in the larger-vesicle conditions, the high-probability
-                                    region shifted toward combinations of a DNA Bundle with high bending rigidity and a longer linker.
-                                </p>
-                                <p class="text-secondary mb-3">
-                                    We therefore describe the result as a
-                                    <strong>radius-dependent crossover within the present model</strong>. Because
-                                    changing <i>R</i> also changes Bundle length, anchor count, repulsion
-                                    discretization, and friction, this is not an isolated curvature effect.
-                                </p>
-                                <p class="text-secondary small mb-0">
-                                    Heatmaps for R = 50, 100, 150, 200, 250, and 300 nm are shown in the first
-                                    through sixth boxes, respectively.
+                                    The heatmaps quantify the fraction of simulated trajectories that reached the
+                                    model-defined local pore-formation event for each combination of linker rest
+                                    length and DNA Bundle bending rigidity.
                                 </p>
                             </div>
 
@@ -592,12 +583,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
                                                         <figcaption class="text-secondary mb-0">
-                                                            Vesicle radius: <i>R</i> = 50 nm
+                                                            <strong>Figure 4.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=50\)) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -608,12 +599,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
                                                         <figcaption class="text-secondary mb-0">
-                                                            Vesicle radius: <i>R</i> = 100 nm
+                                                            <strong>Figure 5.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=100\)) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -624,12 +615,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
                                                         <figcaption class="text-secondary mb-0">
-                                                            Vesicle radius: <i>R</i> = 150 nm
+                                                            <strong>Figure 6.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=150\)) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -640,12 +631,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
                                                         <figcaption class="text-secondary mb-0">
-                                                            Vesicle radius: <i>R</i> = 200 nm
+                                                            <strong>Figure 7.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=200\)) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -656,12 +647,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
                                                         <figcaption class="text-secondary mb-0">
-                                                            Vesicle radius: <i>R</i> = 250 nm
+                                                            <strong>Figure 8.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=250\)) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -672,12 +663,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 300 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Local event probability (%)</span>
+                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
                                                         <figcaption class="text-secondary mb-0">
-                                                            Vesicle radius: <i>R</i> = 300 nm
+                                                            <strong>Figure 9.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=300\)) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -701,10 +692,13 @@
                             </p>
                             <h4 class="h5 fw-bold mb-3 section-subtitle">What the model calculates</h4>
                             <p class="text-secondary mb-4">
-                                For the <i>R</i><sub>0</sub> = 50 nm reference condition, the model finds a static
-                                candidate shape that minimizes its reduced free energy, balancing cholesterol-mediated
-                                effective adhesion, DNA Bundle bending, membrane bending, and membrane tension.
-                                It is a constrained reduced model, not a time-evolving 3D simulation.
+                                For the (\(R_0=50\)) nm reference condition, the model estimates a candidate
+                                deformation shape from prescribed cholesterol-mediated adhesion, DNA Bundle bending,
+                                membrane bending, and membrane-tension terms
+                                [<a href="#ref-1">1</a>–<a href="#ref-3">3</a>,
+                                <a href="#ref-5">5</a>–<a href="#ref-11">11</a>].
+                                Cholesterol-modified DNA structures have been used for membrane binding and
+                                remodeling [<a href="#ref-12">12</a>–<a href="#ref-15">15</a>].
                             </p>
                             <div class="math-display">
                                 \[
@@ -730,7 +724,7 @@
                             <p class="text-secondary mb-0">
                                 The full mathematical formulation, numerical update rules, and model-specific
                                 assumptions are described in the
-                                <a href="appendix.html#three-d-optimization">Technical Appendix</a>.
+                                <a href="appendix.html#three-d-model-details">3D model details in the Technical Appendix</a>.
                             </p>
                         </div>
 
@@ -746,10 +740,10 @@
                                 threshold.
                             </p>
                             <!-- Existing real-system and continuum comparison -->
-                            <div class="sim-env mb-4" data-sim-env>
+                            <figure class="simulation-figure sim-env mb-4" data-sim-env>
                                 <div class="sim-env-panels">
-                                    <figure class="sim-env-panel">
-                                        <figcaption class="sim-env-panel-label">Real system</figcaption>
+                                    <div class="sim-env-panel">
+                                        <div class="sim-env-panel-label">Real system</div>
                                         <div class="sim-env-canvas">
                                             <img src="img/SIMULATION/sim3d_real.svg"
                                                 alt="A 12-helix DNA bundle lying on a whole lipid vesicle and partly sunk into its surface, with cholesterols on linkers sticking out on every side of the bundle; the membrane wraps up around the bundle"
@@ -762,12 +756,12 @@
                                             <button type="button" class="sim-env-marker" data-part="membrane"
                                                 style="left: 70%; top: 78.3%;" aria-label="3: Lipid membrane">3</button>
                                         </div>
-                                    </figure>
+                                    </div>
                                     <div class="sim-env-arrow" aria-hidden="true"></div>
-                                    <figure class="sim-env-panel">
-                                        <figcaption class="sim-env-panel-label">3D model
+                                    <div class="sim-env-panel">
+                                        <div class="sim-env-panel-label">3D model
                                             <span>(continuum)</span>
-                                        </figcaption>
+                                        </div>
                                         <div class="sim-env-canvas">
                                             <img src="img/SIMULATION/sim3d_model.svg"
                                                 alt="Continuum model: a dark blue elastic sphere with a black rod lying on top; the membrane beside the rod is colored cyan to green where it is strongly curved"
@@ -781,14 +775,12 @@
                                                 style="left: 70%; top: 78.3%;" aria-label="3: Lipid membrane">3</button>
                                         </div>
                                         <div class="sim-env-legend">
-                                            <span class="sim-env-legend-title">Membrane color = local
-                                                curvature</span>
+                                            <span class="sim-env-legend-title">Local membrane curvature (nm⁻¹)</span>
                                             <span class="sim-env-legend-bar sim-env-legend-curvature"
                                                 aria-hidden="true"></span>
-                                            <span class="sim-env-legend-ends"><span>flat</span><span>strongly
-                                                    curved</span></span>
+                                            <span class="sim-env-legend-ends"><span>lower</span><span>higher</span></span>
                                         </div>
-                                    </figure>
+                                    </div>
                                 </div>
 
                                 <ol class="sim-env-parts">
@@ -805,24 +797,33 @@
                                         <h5 class="sim-env-part-title">Lipid membrane</h5>
                                     </li>
                                 </ol>
-                            </div>
-                            <div class="row g-3 mb-4 align-items-stretch">
-                                <div class="col-md-9">
-                                    <model-viewer class="simulation-model-viewer"
-                                        src="img/SIMULATION/EV_environmentliposome_3Dmodel.glb"
-                                        alt="Rotatable static 3D deformation visualization for the R0 = 50 nm reference liposome"
-                                        camera-controls
-                                        touch-action="pan-y" shadow-intensity="1" exposure="1" loading="lazy">
-                                    </model-viewer>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="simulation-colorbar-panel">
-                                        <img src="img/SIMULATION/curvature_colorbar.png"
-                                            alt="Local membrane curvature color scale in inverse nanometers"
-                                            class="simulation-colorbar" loading="lazy" decoding="async">
+                                <figcaption class="text-secondary mt-3">
+                                    <strong>Figure 10.</strong> Real system and 3D reduced free-energy representation.
+                                </figcaption>
+                            </figure>
+                            <figure class="simulation-figure mb-4">
+                                    <div class="row g-3 mb-4 align-items-stretch">
+                                        <div class="col-md-9">
+                                            <model-viewer class="simulation-model-viewer"
+                                                src="img/SIMULATION/EV_environmentliposome_3Dmodel.glb"
+                                                alt="Rotatable static 3D deformation visualization for the R0 = 50 nm reference liposome"
+                                                camera-controls
+                                                touch-action="pan-y" shadow-intensity="1" exposure="1" loading="lazy">
+                                            </model-viewer>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="simulation-colorbar-panel">
+                                                <img src="img/SIMULATION/curvature_colorbar.png"
+                                                    alt="Local membrane curvature color scale in inverse nanometers"
+                                                    class="simulation-colorbar" loading="lazy" decoding="async">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <figcaption class="text-secondary mt-3">
+                                        <strong>Figure 11.</strong> Static 3D deformation visualization and local-curvature
+                                        color scale.
+                                    </figcaption>
+                                </figure>
                         </div>
 
                         <!-- Bundle radius as a geometric design parameter -->
@@ -835,27 +836,28 @@
                                 bending rigidity determines how strongly the Bundle itself resists bending. These two
                                 Bundle properties therefore affect deformation through different mechanisms.
                             </p>
+                            <figure class="simulation-figure mb-4">
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
                                         <img src="img/SIMULATION/low_bundle_radious_r4.jpeg"
                                             alt="Liposome deformation caused by a low-radius DNA bundle"
-                                            class="img-fluid w-100 mb-3" loading="lazy" decoding="async">
-                                        <p class="text-secondary small mb-0">Low bundle radius
-                                            (<em>r</em> = 4 nm).</p>
+                                            class="img-fluid w-100" loading="lazy" decoding="async">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="content-box h-100">
                                         <img src="img/SIMULATION/high_bundle_radious_r10.jpeg"
                                             alt="Liposome deformation caused by a high-radius DNA bundle"
-                                            class="img-fluid w-100 mb-3" loading="lazy" decoding="async">
-                                        <p class="text-secondary small mb-0">High bundle radius
-                                            (<em>r</em> = 10 nm).
-                                        </p>
+                                            class="img-fluid w-100" loading="lazy" decoding="async">
                                     </div>
                                 </div>
                             </div>
+                                <figcaption class="text-secondary mt-3">
+                                    <strong>Figure 12.</strong> Qualitative Bundle-radius comparison for
+                                    \(r=4\) nm and \(r=10\) nm.
+                                </figcaption>
+                            </figure>
                             <p class="text-secondary mb-0">
                                 A wider DNA Bundle changes the contact geometry and distributes membrane deformation
                                 across a broader region. This radius comparison is a qualitative geometric
@@ -872,31 +874,30 @@
                                 free-energy model. The two graphs illustrate how assumed DNA Bundle helix-count and
                                 coupling scenarios relate to a selected local-curvature comparison level. Detailed
                                 equations, assumptions, and source provenance are provided in the
-                                <a href="appendix.html#three-d-optimization">Technical Appendix</a>.
+                                <a href="appendix.html#three-d-model-details">3D model details in the Technical Appendix</a>.
                             </p>
-                            <figure class="mb-4">
+                            <figure class="simulation-figure mb-4">
                                 <img src="img/SIMULATION/3Dpore-formation.png"
                                     alt="Illustrative maximum local-curvature indicator versus the number of DNA helices in one Bundle, with a selected comparison level near four helices"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    1. Single-condition screening curve from <a
-                                        href="code/rigiddna6.py">rigiddna6.py</a>. The comparison level is a
-                                    selected model value, not a calibrated physical event threshold.
+                                    <strong>Figure 13.</strong> Single-condition helix-number screening curve; the
+                                    comparison level is model-defined, not a calibrated physical event threshold.
                                 </figcaption>
                             </figure>
-                            <figure class="mb-4">
+                            <figure class="simulation-figure mb-4">
                                 <img src="img/SIMULATION/3D_pore-formation.png"
                                     alt="Phenomenological local-curvature comparison across cross-linking-efficiency scenarios, with selected helix numbers near 3.8, 5.4, and 12"
                                     class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                     loading="lazy" decoding="async">
                                 <figcaption class="text-secondary mt-3">
-                                    2. Helix-number scaling across α scenarios. The selected curvature-comparison
-                                    level illustrates model sensitivity and is not a physical pore-formation threshold.
+                                    <strong>Figure 14.</strong> α-dependent helix-number sensitivity analysis at a
+                                    selected model-defined curvature-comparison level.
                                 </figcaption>
                             </figure>
                             <a class="btn btn-sm learn-more-btn"
-                                href="appendix.html#three-d-optimization">3D optimization details in the Technical Appendix</a>
+                                href="appendix.html#three-d-model-details">3D model details in the Technical Appendix</a>
                             <a class="btn btn-sm learn-more-btn"
                                 href="appendix.html#source-code-inventory">Source code list</a>
                         </div>
@@ -925,14 +926,15 @@
                             Conditions</h3>
                         <div class="content-box p-4 p-md-5 mb-4">
                             <p class="text-secondary">The DNA sequences for the 6-Helix Bundle HCR system (seeds
-                                S1-S6 and hairpins H1-H6) were computationally optimized using NUPACK to eliminate
-                                unintended leak reactions and structural defects. Strict physical constraints were
+                                S1-S6 and hairpins H1-H6) were designed computationally with NUPACK to eliminate
+                                unintended leak reactions and structural defects
+                                [<a href="#ref-23">23</a>, <a href="#ref-24">24</a>]. Strict physical constraints were
                                 applied during the design process:</p>
                             <ol class="text-secondary mb-0">
                                 <li>Complete elimination of ≥4-nt palindromes and homopolymers.</li>
                                 <li>Enforcement of sequence diversity, requiring all four nucleobases (A, T, G, C) to
                                     be present within any 7-nt window to prevent local GC-bias.</li>
-                                <li>Multi-tube optimization (<code>max_size=2</code>) to rigorously suppress
+                                <li>Multi-tube design analysis (<code>max_size=2</code>) to rigorously suppress
                                     homodimerization and non-specific crosstalk between domains.</li>
                             </ol>
                         </div>
@@ -945,18 +947,19 @@
                         <div class="content-box p-4 p-md-5">
                             <p class="text-secondary">To verify the structural integrity and reaction feasibility of
                                 the designed 6-Helix Bundle HCR system, thermodynamic simulations were conducted
-                                using NUPACK. The monomer fraction of each hairpin (H1–H6) in isolation (1 μM) was
+                                using NUPACK [<a href="#ref-24">24</a>]. The monomer fraction of each hairpin (H1–H6) in isolation (1 μM) was
                                 evaluated, demonstrating exceptional structural fidelity (&gt;99.7% monomeric purity)
                                 with negligible homodimerization (≤0.21%). The thermodynamic driving force for the HCR
                                 cascade was assessed by calculating the Gibbs free energy change (ΔG) for each
                                 sequential binding event initialized by the trigger strand (S2). As summarized in
-                                Table 1, every hybridization step exhibits a substantial negative free energy change
+                                <a href="#table-1">Table 1</a>, every hybridization step exhibits a substantial negative free energy change
                                 (ΔG &lt; 0), establishing a robust energetic cascade that guarantees the spontaneous
                                 and irreversible assembly of the 6-Helix Bundle.</p>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped align-middle mb-2">
-                                    <caption class="caption-top text-secondary">
-                                        Table 1. Thermodynamic properties and cascade energetics of the HCR hairpins.
+                                <table id="table-1" class="table table-bordered table-striped align-middle mb-2">
+                                    <caption class="caption-bottom text-secondary">
+                                        <strong>Table 1.</strong> Thermodynamic properties and cascade energetics of
+                                        the HCR hairpins.
                                     </caption>
                                     <thead class="table-light">
                                         <tr>
@@ -1009,6 +1012,85 @@
                             <p class="text-secondary small mb-0">* Monomer fraction and homodimerization values are for
                                 each hairpin evaluated in isolation at 1 μM.</p>
                         </div>
+                    </div>
+                </section>
+
+                <section id="dry-references" class="references-section mt-5 pt-4 border-top border-secondary"
+                    style="opacity: 0.8;">
+                    <h2 class="section-title">References</h2>
+                    <div class="text-start references-list">
+                        <p id="ref-1">[1] Helfrich, W. <em>Elastic properties of lipid bilayers: theory and possible experiments.</em>
+                            <strong>Zeitschrift für Naturforschung C</strong> 28, 693–703 (1973).
+                            <a href="https://doi.org/10.1515/znc-1973-11-1209">DOI</a>.</p>
+                        <p id="ref-2">[2] Seifert, U. <em>Configurations of fluid membranes and vesicles.</em>
+                            <strong>Advances in Physics</strong> 46, 13–137 (1997).
+                            <a href="https://doi.org/10.1080/00018739700101488">DOI</a>.</p>
+                        <p id="ref-3">[3] Seifert, U. &amp; Lipowsky, R. <em>Adhesion of vesicles.</em>
+                            <strong>Physical Review A</strong> 42, 4768–4771 (1990).
+                            <a href="https://doi.org/10.1103/PhysRevA.42.4768">DOI</a>.</p>
+                        <p id="ref-4">[4] Ermak, D. L. &amp; McCammon, J. A. <em>Brownian dynamics with hydrodynamic interactions.</em>
+                            <strong>Journal of Chemical Physics</strong> 69, 1352–1360 (1978).
+                            <a href="https://doi.org/10.1063/1.436761">DOI</a>.</p>
+                        <p id="ref-5">[5] Evans, E. &amp; Rawicz, W. <em>Entropy-driven tension and bending elasticity in condensed-fluid membranes.</em>
+                            <strong>Physical Review Letters</strong> 64, 2094–2097 (1990).
+                            <a href="https://doi.org/10.1103/PhysRevLett.64.2094">DOI</a>.</p>
+                        <p id="ref-6">[6] Rawicz, W. et al. <em>Effect of chain length and unsaturation on elasticity of lipid bilayers.</em>
+                            <strong>Biophysical Journal</strong> 79, 328–339 (2000).
+                            <a href="https://doi.org/10.1016/S0006-3495(00)76295-3">DOI</a>.</p>
+                        <p id="ref-7">[7] Dimova, R. <em>Recent developments in the field of bending rigidity measurements on membranes.</em>
+                            <strong>Advances in Colloid and Interface Science</strong> 208, 225–234 (2014).
+                            <a href="https://doi.org/10.1016/j.cis.2014.03.003">DOI</a>.</p>
+                        <p id="ref-8">[8] Hagerman, P. J. <em>Flexibility of DNA.</em>
+                            <strong>Annual Review of Biophysics and Biophysical Chemistry</strong> 17, 265–286 (1988).
+                            <a href="https://doi.org/10.1146/annurev.bb.17.060188.001405">DOI</a>.</p>
+                        <p id="ref-9">[9] Kauert, D. J. et al. <em>Direct mechanical measurements reveal the material properties of three-dimensional DNA origami.</em>
+                            <strong>Nano Letters</strong> 11, 5558–5563 (2011).
+                            <a href="https://doi.org/10.1021/nl203503s">DOI</a>.</p>
+                        <p id="ref-10">[10] Lee, J. Y. et al. <em>Rapid Computational Analysis of DNA Origami Assemblies at Near-Atomic Resolution.</em>
+                            <strong>ACS Nano</strong> 15, 1002–1015 (2021).
+                            <a href="https://doi.org/10.1021/acsnano.0c07717">DOI</a>.</p>
+                        <p id="ref-11">[11] Doye, J. P. K. et al. <em>Coarse-graining DNA for simulations of DNA nanotechnology.</em>
+                            <strong>Physical Chemistry Chemical Physics</strong> 15, 20395–20414 (2013).
+                            <a href="https://doi.org/10.1039/C3CP53545B">DOI</a>.</p>
+                        <p id="ref-12">[12] Langecker, M. et al. <em>Synthetic lipid membrane channels formed by designed DNA nanostructures.</em>
+                            <strong>Science</strong> 338, 932–936 (2012).
+                            <a href="https://doi.org/10.1126/science.1225624">DOI</a>.</p>
+                        <p id="ref-13">[13] Khmelinskaia, A. et al. <em>Control of Membrane Binding and Diffusion of Cholesteryl-Modified DNA Origami Nanostructures by DNA Spacers.</em>
+                            <strong>Langmuir</strong> 34, 14921–14931 (2018).
+                            <a href="https://doi.org/10.1021/acs.langmuir.8b01850">DOI</a>.</p>
+                        <p id="ref-14">[14] Franquelim, H. G. et al. <em>Membrane sculpting by curved DNA origami scaffolds.</em>
+                            <strong>Nature Communications</strong> 9, 811 (2018).
+                            <a href="https://doi.org/10.1038/s41467-018-03198-9">DOI</a>.</p>
+                        <p id="ref-15">[15] Zuraw-Weston, S. E. et al. <em>Membrane Remodeling by DNA Origami Nanorods: Experiments Exploring the Parameter Space for Vesicle Remodeling.</em>
+                            <strong>Langmuir</strong> 37, 6219–6231 (2021).
+                            <a href="https://doi.org/10.1021/acs.langmuir.1c00416">DOI</a>.</p>
+                        <p id="ref-16">[16] Litster, J. D. <em>Stability of lipid bilayers and red blood cell membranes.</em>
+                            <strong>Physics Letters A</strong> 53, 193–194 (1975).
+                            <a href="https://doi.org/10.1016/0375-9601(75)90402-8">DOI</a>.</p>
+                        <p id="ref-17">[17] Zhelev, D. V. &amp; Needham, D. <em>Tension-stabilized pores in giant vesicles: determination of pore size and pore line tension.</em>
+                            <strong>BBA–Biomembranes</strong> 1147, 89–104 (1993).
+                            <a href="https://doi.org/10.1016/0005-2736(93)90319-U">DOI</a>.</p>
+                        <p id="ref-18">[18] Sandre, O., Moreaux, L. &amp; Brochard-Wyart, F. <em>Dynamics of transient pores in stretched vesicles.</em>
+                            <strong>PNAS</strong> 96, 10591–10596 (1999).
+                            <a href="https://doi.org/10.1073/pnas.96.19.10591">DOI</a>.</p>
+                        <p id="ref-19">[19] Karatekin, E. et al. <em>Cascades of transient pores in giant vesicles: line tension and transport.</em>
+                            <strong>Biophysical Journal</strong> 84, 1734–1749 (2003).
+                            <a href="https://doi.org/10.1016/S0006-3495(03)74981-9">DOI</a>.</p>
+                        <p id="ref-20">[20] Portet, T. &amp; Dimova, R. <em>A new method for measuring edge tensions and stability of lipid bilayers: effect of membrane composition.</em>
+                            <strong>Biophysical Journal</strong> 99, 3264–3273 (2010).
+                            <a href="https://doi.org/10.1016/j.bpj.2010.09.032">DOI</a>.</p>
+                        <p id="ref-21">[21] Evans, E. &amp; Heinrich, V. <em>Dynamic strength of fluid membranes.</em>
+                            <strong>Comptes Rendus Physique</strong> 4, 265–274 (2003).
+                            <a href="https://doi.org/10.1016/S1631-0705(03)00044-6">DOI</a>.</p>
+                        <p id="ref-22">[22] Leontiadou, H., Mark, A. E. &amp; Marrink, S. J. <em>Molecular dynamics simulations of hydrophilic pores in lipid bilayers.</em>
+                            <strong>Biophysical Journal</strong> 86, 2156–2164 (2004).
+                            <a href="https://doi.org/10.1016/S0006-3495(04)74275-7">DOI</a>.</p>
+                        <p id="ref-23">[23] Dirks, R. M. &amp; Pierce, N. A. <em>Triggered amplification by hybridization chain reaction.</em>
+                            <strong>PNAS</strong> 101, 15275–15278 (2004).
+                            <a href="https://doi.org/10.1073/pnas.0407024101">DOI</a>.</p>
+                        <p id="ref-24">[24] Zadeh, J. N. et al. <em>NUPACK: Analysis and design of nucleic acid systems.</em>
+                            <strong>Journal of Computational Chemistry</strong> 32, 170–173 (2011).
+                            <a href="https://doi.org/10.1002/jcc.21596">DOI</a>.</p>
                     </div>
                 </section>
             </div>
