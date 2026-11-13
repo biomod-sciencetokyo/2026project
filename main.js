@@ -422,6 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // miRNA プリンセス：全ページ右下の「トップへ戻る」ボタン
 // 少しスクロールすると現れてふわふわ浮く。マウスを乗せると歩き、押すとバク転してから先頭へ戻る
 (function () {
+    if (document.body.classList.contains('no-princess-top')) return; // 姫の隠しページでは出さない
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'princess-top';
@@ -439,8 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'discussion.html': 'princess_look.gif',  // DISCUSSION：きょろきょろ考察
         'elsi.html': 'princess_sway.gif',        // ELSI：ゆったり揺れて思案
         'team.html': 'princess_jump.gif',        // TEAM：ぴょんぴょん喜ぶ
-        'appendix.html': 'princess_wave.gif',    // APPENDIX：最後にバイバイ
-        'princess.html': 'princess_jump.gif'     // 隠しページ：見つけてもらえて大喜び
+        'appendix.html': 'princess_wave.gif'     // APPENDIX：最後にバイバイ
     };
     const page = location.pathname.split('/').pop() || 'index.html';
     const pose = poses[page];
@@ -474,4 +474,207 @@ document.addEventListener('DOMContentLoaded', () => {
         sprite.addEventListener('animationend', finish, { once: true });
         setTimeout(finish, 1200); // アニメーションが動かない環境でも必ず戻る
     });
+})();
+
+// 姫の隠しページ（princess.html）
+// ふだんは真ん中でふわふわ待機し、放っておくと自分からきょろきょろ・ゆらゆら。
+// カーソルを乗せると手を振って "tap me!"、タップでランダムに反応。5 連打で逆立ち、ハートの節目で特別なセリフ（どちらも紙吹雪）
+(function () {
+    const stage = document.getElementById('princess-stage');
+    if (!stage) return;
+    const actor = stage.querySelector('.princess-actor');
+    const react = stage.querySelector('.princess-react');
+    const say = stage.querySelector('.princess-say');
+    const heartsEl = document.getElementById('princess-hearts');
+
+    // ms = GIF 1 周の長さ（コマ数 × 200ms）
+    const poses = {
+        wave: { gif: 'princess_wave.gif', ms: 1800 },
+        jump: { gif: 'princess_jump.gif', ms: 1400 },
+        turn: { gif: 'princess_turn.gif', ms: 1600, small: true },
+        look: { gif: 'princess_look.gif', ms: 1800 },
+        sway: { gif: 'princess_sway.gif', ms: 4200 },
+        step: { gif: 'princess_step.gif', ms: 1800 },
+        handstand: { gif: 'princess_handstand.gif', ms: 4200 }
+    };
+    // タップ時のランダム反応（逆立ちは 5 連打のごほうびなので入れない）
+    const tapReactions = [
+        ['wave', 'Hello!'],
+        ['jump', 'Yay!'],
+        ['turn', 'Ta-da!'],
+        ['look', 'Hm? What was that?'],
+        ['sway', 'La la la ♪'],
+        ['step', 'One, two! One, two!']
+    ];
+    const fidgets = ['look', 'sway']; // 放っておいたときの仕草
+    const milestones = {
+        10: 'Thank you for playing with me!',
+        50: 'Wow, 50 hearts! You are my best friend!',
+        100: '100 hearts!! I love you all!',
+        200: 'You are a true royal friend!',
+        500: 'Five hundred?! I am so happy!',
+        1000: 'A thousand hearts... my hero!'
+    };
+    const goals = Object.keys(milestones).map(Number);
+    const meter = document.getElementById('princess-meter');
+    const meterBar = meter && meter.parentElement;
+    const nextEl = document.getElementById('princess-next');
+    const COMBO_GAP = 700;  // この間隔以内のタップを連打とみなす
+    const COMBO_COUNT = 5;
+
+    Object.values(poses).forEach(p => { new Image().src = `img/mascot/${p.gif}`; }); // 先読み
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const canHover = window.matchMedia('(hover: hover)');
+
+    // ハートの数はこの閲覧者のブラウザにだけ覚えておく（使えない環境でも動く）
+    let hearts = 0;
+    try { hearts = parseInt(localStorage.getItem('princessHearts'), 10) || 0; } catch (e) { /* ignore */ }
+    // 好感度ゲージ：前の節目から次の節目までの進み具合
+    const updateMeter = () => {
+        heartsEl.textContent = hearts;
+        if (!meter) return;
+        const next = goals.find(g => g > hearts);
+        if (next === undefined) {
+            meter.style.width = '100%';
+            meterBar.setAttribute('aria-valuenow', '100');
+            nextEl.textContent = 'Maximum royal affection!';
+            return;
+        }
+        const prev = [0, ...goals].filter(g => g <= hearts).pop();
+        const pct = Math.round(((hearts - prev) / (next - prev)) * 100);
+        meter.style.width = `${pct}%`;
+        meterBar.setAttribute('aria-valuenow', String(pct));
+        nextEl.textContent = `Next surprise at ${next} hearts`;
+    };
+    updateMeter();
+
+    // 紙吹雪（5 連打・節目のとき）
+    const confetti = () => {
+        if (reduceMotion.matches) return;
+        const colors = ['#ff8fc8', '#f6d27a', '#ffffff', '#e2457f', '#c9a6ff'];
+        for (let k = 0; k < 36; k++) {
+            const c = document.createElement('span');
+            c.className = 'royal-confetti';
+            c.style.left = `${Math.random() * 100}%`;
+            c.style.background = colors[k % colors.length];
+            c.style.animationDelay = `${Math.random() * 0.4}s`;
+            c.style.setProperty('--fall', `${1.8 + Math.random() * 1.4}s`);
+            c.style.setProperty('--drift', `${(Math.random() - 0.5) * 160}px`);
+            c.style.setProperty('--spin', `${(Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 540)}deg`);
+            stage.appendChild(c);
+            c.addEventListener('animationend', () => c.remove(), { once: true });
+            setTimeout(() => c.remove(), 4000);
+        }
+    };
+
+    let mode = 'rest';      // rest / hover / tap / fidget
+    let hovering = false;
+    let timer = null;
+    let fidgetTimer = null;
+    let lastTap = -1;
+    let combo = 0;
+    let lastTapAt = 0;
+
+    // GIF を 1 コマ目から再生（ms を渡すとその後 rest に戻る。null ならループし続ける）
+    const play = (key, line, nextMode, ms) => {
+        const p = poses[key];
+        clearTimeout(timer);
+        clearTimeout(fidgetTimer);
+        mode = nextMode;
+        react.src = `img/mascot/${p.gif}?play=${Date.now()}`;
+        react.classList.toggle('is-small-canvas', !!p.small);
+        react.hidden = false;
+        stage.classList.add('is-reacting');
+        if (line) {
+            say.textContent = line;
+            say.classList.add('is-shown');
+        } else {
+            say.classList.remove('is-shown');
+        }
+        timer = ms === null ? null : setTimeout(rest, ms || p.ms);
+    };
+
+    const scheduleFidget = () => {
+        clearTimeout(fidgetTimer);
+        if (reduceMotion.matches) return;
+        fidgetTimer = setTimeout(() => {
+            if (mode === 'rest' && !document.hidden) {
+                play(fidgets[Math.floor(Math.random() * fidgets.length)], null, 'fidget');
+            } else {
+                scheduleFidget();
+            }
+        }, 6000 + Math.random() * 5000);
+    };
+
+    function rest() {
+        timer = null;
+        if (hovering) {
+            play('wave', 'tap me!', 'hover', null);
+            return;
+        }
+        mode = 'rest';
+        stage.classList.remove('is-reacting');
+        react.hidden = true;
+        react.removeAttribute('src');
+        say.classList.remove('is-shown');
+        scheduleFidget();
+    }
+
+    actor.addEventListener('mouseenter', () => {
+        if (!canHover.matches) return;
+        hovering = true;
+        if (mode !== 'tap') play('wave', 'tap me!', 'hover', null);
+    });
+    actor.addEventListener('mouseleave', () => {
+        hovering = false;
+        if (mode === 'hover') rest();
+    });
+
+    const floatHeart = () => {
+        const heart = document.createElement('i');
+        heart.className = 'fa-solid fa-heart princess-heart';
+        heart.setAttribute('aria-hidden', 'true');
+        const a = actor.getBoundingClientRect();
+        const s = stage.getBoundingClientRect();
+        heart.style.left = `${a.left - s.left + a.width * (0.3 + Math.random() * 0.4)}px`;
+        heart.style.top = `${a.top - s.top + a.height * 0.2}px`;
+        stage.appendChild(heart);
+        heart.addEventListener('animationend', () => heart.remove(), { once: true });
+        setTimeout(() => heart.remove(), 1500);
+    };
+
+    actor.addEventListener('click', () => {
+        const now = Date.now();
+        combo = now - lastTapAt < COMBO_GAP ? combo + 1 : 1;
+        lastTapAt = now;
+
+        hearts += 1;
+        updateMeter();
+        try { localStorage.setItem('princessHearts', String(hearts)); } catch (e) { /* ignore */ }
+        floatHeart();
+
+        let key;
+        let line;
+        if (combo >= COMBO_COUNT) {
+            key = 'handstand';
+            line = 'Watch this!';
+            combo = 0;
+            confetti();
+        } else {
+            let i;
+            do { i = Math.floor(Math.random() * tapReactions.length); } while (i === lastTap);
+            lastTap = i;
+            [key, line] = tapReactions[i];
+        }
+        let ms = poses[key].ms;
+        if (milestones[hearts]) {
+            line = milestones[hearts];
+            ms = Math.max(ms, 3000); // 特別なセリフは読めるだけ長く出す
+            confetti();
+        }
+        play(key, line, 'tap', ms);
+    });
+
+    scheduleFidget();
 })();

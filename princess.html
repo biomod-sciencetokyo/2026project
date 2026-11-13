@@ -9,99 +9,105 @@
     <title>miRNA PRINCESS | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-9">
+    <link rel="stylesheet" href="style.css?v=20261114-17">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
-<body tabindex="0">
+<!-- princess-page：このページだけの特別なデザイン（style.css 末尾）
+     no-princess-top：右下の「TOPへ戻る」姫を出さない -->
+<body class="princess-page no-princess-top" tabindex="0">
 
-    <div class="ambient-particles" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-    </div>
+    <div class="royal-sky" aria-hidden="true"></div>
 
     <div id="header-placeholder"></div>
 
-    <main class="container content-container px-3 px-md-0">
+    <!-- サイト共通の「main 内はフォント固定」ルールを避けるため、ここは role="main" の div にしている -->
+    <div role="main" class="princess-room container content-container px-3 px-md-0">
 
-        <div class="text-center mb-5 pb-4">
-            <h1 class="page-title">miRNA PRINCESS</h1>
-            <div class="page-title-underline"></div>
-            <p class="text-secondary mt-4 mb-0">You found the secret room!</p>
-        </div>
+        <!-- タイトル -->
+        <header class="royal-hero text-center">
+            <i class="fa-solid fa-crown royal-crown" aria-hidden="true"></i>
+            <h1 class="royal-title">miRNA PRINCESS</h1>
+            <p class="royal-ribbon"><span>The Secret Royal Chamber</span></p>
+            <p class="royal-lead">You found the hidden room! Tap the princess to play with her.</p>
+        </header>
+
+        <!-- 劇場ステージ：幕が開いて姫が登場。ふだんはふわふわ待機、ホバーで手を振り、タップで反応（動きは main.js） -->
+        <section class="royal-stage-wrap">
+            <div class="royal-stage" id="princess-stage">
+                <div class="stage-backdrop" aria-hidden="true"></div>
+                <div class="stage-beam" aria-hidden="true"></div>
+                <div class="stage-floor" aria-hidden="true"></div>
+                <div class="stage-sparkles" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="stage-glow" aria-hidden="true"></div>
+
+                <div class="princess-spot">
+                    <button type="button" class="princess-actor" aria-label="Tap the princess">
+                        <span class="princess-say" aria-live="polite"></span>
+                        <span class="princess-idle-sprite" aria-hidden="true"></span>
+                        <img class="princess-react" alt="" hidden>
+                    </button>
+                </div>
+
+                <div class="stage-curtain stage-curtain-left" aria-hidden="true"></div>
+                <div class="stage-curtain stage-curtain-right" aria-hidden="true"></div>
+                <div class="stage-valance" aria-hidden="true"></div>
+            </div>
+
+            <!-- 好感度メーター（次の節目までのゲージ） -->
+            <div class="royal-affection">
+                <div class="royal-affection-label">
+                    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                    <span>Royal Affection</span>
+                    <strong id="princess-hearts">0</strong>
+                </div>
+                <div class="royal-affection-bar" role="progressbar" aria-label="Hearts until the next surprise"
+                    aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <span id="princess-meter"></span>
+                </div>
+                <p class="royal-affection-next" id="princess-next">Next surprise at 10 hearts</p>
+            </div>
+            <p class="royal-hint">Psst&hellip; try tapping her really fast.</p>
+        </section>
 
         <!-- プロフィール -->
-        <section class="fade-in-section mb-5">
-            <div class="content-box">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-5 text-center">
-                        <img src="img/mascot/princess_wave.gif" alt="miRNA Princess waving" class="princess-hero-img">
-                    </div>
-                    <div class="col-md-7">
-                        <dl class="princess-profile mb-0">
-                            <dt>NAME</dt>
-                            <dd>miRNA Princess</dd>
-                            <dt>ROLE</dt>
-                            <dd>Mascot of Team Science Tokyo</dd>
-                            <dt>FAVORITE THING</dt>
-                            <dd>Bundled HCR</dd>
-                            <dt>MESSAGE</dt>
-                            <dd class="mb-0">Thank you for visiting our wiki all the way to the end!</dd>
-                        </dl>
-                    </div>
+        <section class="royal-card">
+            <h2 class="royal-card-title"><i class="fa-solid fa-crown me-2" aria-hidden="true"></i>Royal Profile</h2>
+            <dl class="royal-profile">
+                <div>
+                    <dt>Name</dt>
+                    <dd>miRNA Princess</dd>
                 </div>
-            </div>
+                <div>
+                    <dt>Role</dt>
+                    <dd>Mascot of Team Science Tokyo</dd>
+                </div>
+                <div>
+                    <dt>Favorite Thing</dt>
+                    <dd>Bundled HCR</dd>
+                </div>
+                <div>
+                    <dt>Message</dt>
+                    <dd>Thank you for visiting our wiki all the way to the end!</dd>
+                </div>
+            </dl>
         </section>
 
-        <!-- ポーズ集 -->
-        <section class="fade-in-section mb-5">
-            <h2 class="h3 section-title">Royal Gallery</h2>
-            <div class="row g-4 mt-2 text-center">
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_wave.gif" alt="Princess waving" loading="lazy">
-                    <figcaption>Hello!</figcaption>
-                </figure>
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_step.gif" alt="Princess stepping in place" loading="lazy">
-                    <figcaption>Step</figcaption>
-                </figure>
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_jump.gif" alt="Princess jumping" loading="lazy">
-                    <figcaption>Jump</figcaption>
-                </figure>
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_look.gif" alt="Princess looking around" loading="lazy">
-                    <figcaption>Look around</figcaption>
-                </figure>
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_sway.gif" alt="Princess swaying" loading="lazy">
-                    <figcaption>Sway</figcaption>
-                </figure>
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_turn.gif" alt="Princess turning around" loading="lazy"
-                        style="padding: 10%;">
-                    <figcaption>Turn</figcaption>
-                </figure>
-                <figure class="princess-pose col-6 col-md-3 mb-0">
-                    <img src="img/mascot/princess_handstand.gif" alt="Princess doing a handstand" loading="lazy">
-                    <figcaption>Handstand</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <div class="text-center mb-5">
-            <a href="team.html" class="btn btn-outline-light">
-                <i class="fa-solid fa-arrow-left me-2"></i>Back to TEAM
+        <div class="text-center royal-back">
+            <a href="team.html" class="royal-back-btn">
+                <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>Back to TEAM
             </a>
         </div>
 
-    </main>
+    </div>
 
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261113-19"></script>
+    <script src="main.js?v=20261113-22"></script>
 </body>
 
 </html>

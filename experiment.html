@@ -6,7 +6,7 @@
     <title>EXPERIMENT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-9">
+    <link rel="stylesheet" href="style.css?v=20261114-17">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="experiment-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -57,7 +57,7 @@
                 <section id="overview" class="fade-in-section mb-5 pb-4 pt-4">
                     <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-4">
-                        We divided the experimental validation into two modules.
+                        To establish a proof of concept, we divided our experiments into two parts.
                     </p>
 
                     <!-- Experiment A の四角枠 -->
@@ -65,7 +65,7 @@
                         <h4 class="h5 fw-bold mb-3 section-subtitle">Experiment A: <br>
                             Synthesis and elongation of a 6-helix DNA bundle via Bundled HCR.</h4>
                         <p class="text-secondary mb-0">
-                            In Experiment A, we investigated the reaction mechanism of Bundled HCR using a minimal model designed to elongate into a 6-helix DNA bundle. Given the high scalability of the Bundled HCR architecture, successful synthesis of the 6-helix bundle indicates that the system can be readily scaled up to 12-helix and 13-helix bundles.
+                            In Experiment A, we aimed to demonstrate whether the Bundled HCR proceeds. We conducted the verification using a system in which a 6-helix DNA bundle—a minimized design of the Bundled HCR—elongates. Given the high scalability of the Bundled HCR architecture, successful synthesis of the 6-helix bundle indicates that the system can be readily scaled up to 12-helix and 13-helix bundles.
                         </p>
                     </div>
 
@@ -261,7 +261,7 @@
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/page_seed.jpg?v=2"
+                                        <img src="img/EXPERIMENT/page_seed.jpg?v=3"
                                             alt="PAGE gel of S1–S6 and the annealed seed with DNA ladders"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3"><strong>Figure 3.</strong> PAGE of S1–S6 and
@@ -273,19 +273,25 @@
 
                         <div class="exp-block">
                             <h4 class="exp-label">Discussion</h4>
+                            <p class="text-secondary mb-3">
+                                High-molecular-weight bands were observed only in the &ldquo;Seeds&rdquo; lane, confirming
+                                that annealing had occurred.
+                            </p>
+                            <ul class="text-secondary mb-3">
+                                <li class="mb-2">
+                                    <strong>&ldquo;Seed&rdquo; band:</strong> The apparent molecular weight of the band
+                                    indicated by the red arrow was estimated to be approximately 228 bp, which matched
+                                    the sum of the apparent sizes of S1 through S6. Therefore, it is presumed to be a seed.
+                                </li>
+                                <li>
+                                    <strong>Byproducts:</strong> Bands with higher molecular weights than the band
+                                    indicated by the red arrow likely correspond to larger assemblies (e.g., 12- or
+                                    18-strand assemblies) or non-tubular tile structures.
+                                </li>
+                            </ul>
                             <p class="text-secondary mb-0">
-                                High-molecular-weight bands were observed only in the Seeds lane, indicating that the
-                                seed was assembled by annealing. Calibration with the ladder (migration distance vs. log
-                                molecular weight showed high linearity) estimated the second band from the top at
-                                approximately 228 bp. This value is close to the sum of the apparent sizes of the S1–S6
-                                bands estimated from the same calibration (note that these apparent sizes are gel-based
-                                estimates and do not correspond to the actual length). Therefore, we tentatively
-                                assigned this band to the seed. Given the seed's structure, the bands above it likely
-                                correspond to larger assemblies, such as seeds composed of 12 or 18 strands, or
-                                tile-like structures that did not form a tubular shape. Because the ladder consists of
-                                double-stranded DNA, these size estimates are approximate. Nevertheless, the
-                                high-molecular-weight bands only in the Seeds lane support the formation of the seed by
-                                annealing.
+                                Although molecular weight estimates based on a dsDNA ladder are not highly reliable, a
+                                clear shift toward higher molecular weights indicates the seed formation.
                             </p>
                         </div>
                     </div>
@@ -488,7 +494,7 @@
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/page_V1-V8.jpg?v=2"
+                                        <img src="img/EXPERIMENT/page_V1-V8.jpg?v=3"
                                             alt="PAGE gel of single strands V1–V8 with DNA ladders"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3"><strong>Figure 9.</strong> PAGE of
@@ -497,7 +503,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <figure class="mb-0 exp-figure">
-                                        <img src="img/EXPERIMENT/page_V9-T13_bundles.jpg?v=2"
+                                        <img src="img/EXPERIMENT/page_V9-T13_bundles.jpg?v=3"
                                             alt="PAGE gel of V9–V12, T12, T13 and the 12- and 13-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3"><strong>Figure 10.</strong> PAGE of
@@ -730,6 +736,6 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261113-19"></script>
+    <script src="main.js?v=20261113-22"></script>
 </body>
 </html>

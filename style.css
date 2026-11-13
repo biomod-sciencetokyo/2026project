@@ -3588,33 +3588,625 @@ html[data-theme="light"] .sim-live .form-control:focus {
     }
 }
 
-/* ===== Secret page (princess.html) ===== */
-.princess-hero-img {
-    width: min(240px, 60vw);
-    height: auto;
-    image-rendering: pixelated;
+/* =====================================================================
+   Secret page (princess.html): "The Secret Royal Chamber"
+   This one page deliberately has its own royal look (pink × gold × night plum).
+   Everything is scoped under body.princess-page.
+   ===================================================================== */
+body.princess-page,
+html[data-theme="light"] body.princess-page {
+    --royal-gold: #f6d27a;
+    --royal-gold-deep: #c8952f;
+    --royal-pink: #ff8fc8;
+    --royal-rose: #e2457f;
+    --royal-plum: #1c0b2e;
+    --royal-cream: #fff4e6;
+    background-color: var(--royal-plum);
+    background-image:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 143, 200, 0.28), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 15% 70%, rgba(162, 92, 255, 0.18), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(255, 95, 168, 0.16), transparent 70%),
+        linear-gradient(180deg, #2a0f3f 0%, #1c0b2e 55%, #12071f 100%);
+    background-size: auto;
+    background-attachment: fixed;
+    color: var(--royal-cream);
 }
 
-.princess-profile dt {
-    color: var(--accent-gold);
-    font-weight: 400;
-    letter-spacing: 0.06em;
+/* twinkling star field behind everything */
+.princess-page .royal-sky {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(1.5px 1.5px at 8% 12%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 22% 38%, #ffd6ec 50%, transparent 51%),
+        radial-gradient(2px 2px at 35% 8%, var(--royal-gold) 50%, transparent 51%),
+        radial-gradient(1px 1px at 48% 55%, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 63% 22%, #ffd6ec 50%, transparent 51%),
+        radial-gradient(2px 2px at 77% 47%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 88% 15%, var(--royal-gold) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 93% 68%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 12% 82%, #ffd6ec 50%, transparent 51%),
+        radial-gradient(2px 2px at 54% 88%, var(--royal-gold) 50%, transparent 51%),
+        radial-gradient(1px 1px at 70% 76%, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 30% 66%, #fff 50%, transparent 51%);
+    animation: royal-twinkle 4s ease-in-out infinite alternate;
 }
 
-.princess-profile dd {
-    margin-bottom: 0.9rem;
+@keyframes royal-twinkle {
+    from { opacity: 0.45; }
+    to { opacity: 1; }
 }
 
-.princess-pose img {
+.princess-room {
+    position: relative;
+    padding-bottom: 4rem;
+    color: var(--royal-cream);
+    font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ---------- Title ---------- */
+.royal-hero {
+    padding: 1.5rem 0 2.5rem;
+}
+
+.royal-crown {
+    display: inline-block;
+    font-size: 2.6rem;
+    color: var(--royal-gold);
+    filter: drop-shadow(0 0 12px rgba(246, 210, 122, 0.7));
+    animation: royal-bob 2.8s ease-in-out infinite;
+}
+
+@keyframes royal-bob {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-6px) rotate(4deg); }
+}
+
+.royal-title {
+    margin: 0.4rem 0 0;
+    font-family: 'DotGothic16', monospace;
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    background: linear-gradient(180deg, #fff6d8 0%, var(--royal-gold) 45%, var(--royal-gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 18px rgba(255, 143, 200, 0.55)) drop-shadow(0 3px 0 rgba(90, 20, 60, 0.8));
+}
+
+/* pink ribbon banner with notched ends */
+.royal-ribbon {
+    display: inline-block;
+    position: relative;
+    margin: 1.2rem 0 0;
+    padding: 0 2.2rem;
+    background: linear-gradient(180deg, var(--royal-pink), var(--royal-rose));
+    color: #fff;
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    line-height: 2.3;
+    box-shadow: 0 4px 0 #a52a5c, 0 0 24px rgba(255, 95, 168, 0.45);
+}
+
+.royal-ribbon::before,
+.royal-ribbon::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 26px;
+    height: 100%;
+    background: #b8336a;
+    z-index: -1;
+}
+
+.royal-ribbon::before {
+    left: -18px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%);
+}
+
+.royal-ribbon::after {
+    right: -18px;
+    clip-path: polygon(0 0, 100% 0, 65% 50%, 100% 100%, 0 100%);
+}
+
+.royal-ribbon span::before,
+.royal-ribbon span::after {
+    content: "✦";
+    margin: 0 0.6rem;
+    color: var(--royal-gold);
+}
+
+.royal-lead {
+    margin: 1.4rem 0 0;
+    color: #f3d9ec;
+    font-size: 1rem;
+}
+
+/* ---------- Theater stage ---------- */
+.royal-stage-wrap {
+    margin-bottom: 3.5rem;
+}
+
+.royal-stage {
+    --pr-size: 220px;
+    --floor-h: 120px;
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 6px solid transparent;
+    border-radius: 48% 48% 10px 10px / 70px 70px 10px 10px;
+    background:
+        linear-gradient(#2a0d3d, #2a0d3d) padding-box,
+        linear-gradient(135deg, #fff1c1, var(--royal-gold) 30%, var(--royal-gold-deep) 55%, #fff1c1 75%, var(--royal-gold-deep)) border-box;
+    box-shadow:
+        0 0 0 3px rgba(42, 13, 61, 0.9),
+        0 0 0 6px rgba(246, 210, 122, 0.35),
+        0 0 60px rgba(255, 95, 168, 0.35),
+        0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* back wall: deep velvet with a soft pink glow behind her */
+.stage-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 45% 55% at 50% 62%, rgba(255, 143, 200, 0.35), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 46px),
+        linear-gradient(180deg, #3d1052 0%, #2a0d3d 70%);
+}
+
+/* spotlight cone from above */
+.stage-beam {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    width: 520px;
+    height: 100%;
+    transform: translateX(-50%);
+    clip-path: polygon(44% 0, 56% 0, 82% 100%, 18% 100%);
+    background: linear-gradient(180deg, rgba(255, 244, 214, 0.38), rgba(255, 214, 236, 0.08) 85%, transparent);
+    mix-blend-mode: screen;
+    animation: royal-beam 5s ease-in-out infinite alternate;
+}
+
+@keyframes royal-beam {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* checkered floor in perspective */
+.stage-floor {
+    position: absolute;
+    z-index: 1;
+    left: -30%;
+    right: -30%;
+    bottom: 0;
+    height: var(--floor-h);
+    transform-origin: 50% 100%;
+    transform: perspective(260px) rotateX(48deg);
+    background:
+        linear-gradient(180deg, rgba(42, 13, 61, 0.85), transparent 60%),
+        repeating-conic-gradient(#f9cfe2 0 25%, #e07aa9 0 50%) 0 0 / 56px 56px;
+    border-top: 3px solid var(--royal-gold);
+}
+
+/* glowing pool of light where she stands */
+.stage-glow {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: calc(var(--floor-h) * 0.38);
+    width: calc(var(--pr-size) * 1.1);
+    height: 40px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(255, 246, 214, 0.75), rgba(255, 143, 200, 0.35) 55%, transparent 72%);
+    filter: blur(2px);
+}
+
+/* drifting sparkles */
+.stage-sparkles span {
+    position: absolute;
+    z-index: 2;
+    width: 14px;
+    height: 14px;
+    background: var(--royal-gold);
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+    opacity: 0;
+    animation: royal-sparkle 3.2s ease-in-out infinite;
+}
+
+.stage-sparkles span:nth-child(1) { left: 26%; top: 30%; animation-delay: 0s; }
+.stage-sparkles span:nth-child(2) { left: 70%; top: 24%; animation-delay: 0.6s; background: #fff; }
+.stage-sparkles span:nth-child(3) { left: 36%; top: 52%; animation-delay: 1.2s; width: 10px; height: 10px; }
+.stage-sparkles span:nth-child(4) { left: 62%; top: 58%; animation-delay: 1.8s; background: var(--royal-pink); }
+.stage-sparkles span:nth-child(5) { left: 47%; top: 20%; animation-delay: 2.4s; width: 10px; height: 10px; background: #fff; }
+.stage-sparkles span:nth-child(6) { left: 30%; top: 70%; animation-delay: 0.9s; background: var(--royal-pink); width: 10px; height: 10px; }
+.stage-sparkles span:nth-child(7) { left: 74%; top: 44%; animation-delay: 1.5s; }
+.stage-sparkles span:nth-child(8) { left: 55%; top: 36%; animation-delay: 2.1s; width: 8px; height: 8px; background: #fff; }
+.stage-sparkles span:nth-child(9) { left: 40%; top: 38%; animation-delay: 2.7s; width: 8px; height: 8px; }
+.stage-sparkles span:nth-child(10) { left: 66%; top: 72%; animation-delay: 0.3s; width: 10px; height: 10px; background: #fff; }
+
+@keyframes royal-sparkle {
+    0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+
+/* velvet curtains: closed on load, then they part and tie back */
+.stage-curtain {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.25), transparent 30%, transparent 70%, rgba(0, 0, 0, 0.25)),
+        repeating-linear-gradient(90deg, #7d1442 0, #c22f6c 14px, #e0538a 20px, #c22f6c 26px, #7d1442 40px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    animation: royal-curtain-open 1.6s cubic-bezier(0.6, 0, 0.25, 1) 0.4s both;
+}
+
+.stage-curtain-left {
+    left: 0;
+    border-bottom-right-radius: 100% 55%;
+}
+
+.stage-curtain-right {
+    right: 0;
+    border-bottom-left-radius: 100% 55%;
+}
+
+@keyframes royal-curtain-open {
+    from { width: 51%; border-radius: 0; }
+    to { width: 20%; }
+}
+
+/* scalloped valance across the top, with gold fringe */
+.stage-valance {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 74px;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 0, #c22f6c 0 34px, var(--royal-gold) 34px 38px, transparent 38px) 0 30px / 72px 40px repeat-x,
+        linear-gradient(180deg, #9a1f55, #c22f6c) 0 0 / 100% 32px no-repeat;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* the princess, standing centre stage on the glow */
+.princess-page .princess-spot {
+    position: absolute;
+    z-index: 3;
+    left: calc(50% - var(--pr-size) / 2);
+    bottom: calc(var(--floor-h) * 0.38 - var(--pr-size) * 0.14);
+    width: var(--pr-size);
+    height: var(--pr-size);
+}
+
+.princess-page .princess-actor {
+    position: relative;
+    display: block;
     width: 100%;
-    max-width: 160px;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: contain;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.princess-pose figcaption {
-    margin-top: 0.4rem;
+.princess-page .princess-actor:focus-visible {
+    outline: 2px dashed var(--royal-gold);
+    outline-offset: 4px;
+    border-radius: 12px;
+}
+
+.princess-page .princess-idle-sprite {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("img/mascot/princess_idle.gif") center / contain no-repeat; /* idle motion GIF */
+    filter: drop-shadow(0 0 10px rgba(255, 214, 236, 0.55));
+}
+
+.princess-page .princess-react {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 214, 236, 0.55));
+}
+
+.princess-page .princess-react.is-small-canvas {
+    padding: 10%;
+}
+
+.princess-page .royal-stage.is-reacting .princess-idle-sprite {
+    visibility: hidden;
+}
+
+/* cute speech bubble with a tail */
+.princess-page .princess-say {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: calc(100% - var(--pr-size) * 0.08);
+    padding: 6px 16px;
+    border: 2px solid var(--royal-pink);
+    border-radius: 18px;
+    background: var(--royal-cream);
+    color: #b8336a;
+    font-family: 'DotGothic16', monospace;
+    font-size: 1rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 0 rgba(184, 51, 106, 0.35), 0 0 18px rgba(255, 143, 200, 0.5);
+    transform: translate(-50%, 8px) scale(0.85);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+    pointer-events: none;
+}
+
+.princess-page .princess-say::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 14px;
+    height: 14px;
+    background: var(--royal-cream);
+    border-right: 2px solid var(--royal-pink);
+    border-bottom: 2px solid var(--royal-pink);
+    transform: translate(-50%, -7px) rotate(45deg);
+}
+
+.princess-page .princess-say.is-shown {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+}
+
+.princess-page .princess-heart {
+    position: absolute;
+    z-index: 7;
+    color: var(--royal-pink);
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 6px rgba(255, 143, 200, 0.8));
+    pointer-events: none;
+    animation: princess-heart-rise 1.1s ease-out forwards;
+}
+
+@keyframes princess-heart-rise {
+    from { opacity: 1; transform: translate(-50%, 0) scale(0.8); }
+    to { opacity: 0; transform: translate(-50%, -80px) scale(1.3); }
+}
+
+/* confetti (5-tap combo and heart milestones) */
+.royal-confetti {
+    position: absolute;
+    z-index: 7;
+    top: -16px;
+    width: 9px;
+    height: 14px;
+    pointer-events: none;
+    animation: royal-confetti-fall var(--fall, 2.4s) cubic-bezier(0.3, 0.6, 0.6, 1) forwards;
+}
+
+@keyframes royal-confetti-fall {
+    from { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    to { transform: translate(var(--drift, 0px), 500px) rotate(var(--spin, 540deg)); opacity: 0.2; }
+}
+
+/* ---------- Affection meter ---------- */
+.royal-affection {
+    max-width: 520px;
+    margin: 1.6rem auto 0;
+    text-align: center;
+}
+
+.royal-affection-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--royal-gold);
+    font-family: 'DotGothic16', monospace;
+    letter-spacing: 0.1em;
+}
+
+.royal-affection-label .fa-heart {
+    color: var(--royal-pink);
+    filter: drop-shadow(0 0 6px rgba(255, 143, 200, 0.8));
+}
+
+.royal-affection-label strong {
+    min-width: 2ch;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.royal-affection-bar {
+    height: 14px;
+    margin-top: 0.5rem;
+    padding: 2px;
+    border: 2px solid var(--royal-gold);
+    border-radius: 999px;
+    background: rgba(28, 11, 46, 0.8);
+    box-shadow: 0 0 14px rgba(246, 210, 122, 0.25);
+}
+
+.royal-affection-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--royal-pink), #ffd1e8, var(--royal-pink));
+    box-shadow: 0 0 10px rgba(255, 143, 200, 0.8);
+    transition: width 0.4s ease;
+}
+
+.royal-affection-next {
+    margin: 0.5rem 0 0;
+    color: #d9b8d0;
     font-size: 0.85rem;
+}
+
+.royal-hint {
+    margin: 0.8rem 0 0;
+    text-align: center;
+    color: rgba(243, 217, 236, 0.55);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* ---------- Royal profile card ---------- */
+.royal-card {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto 3rem;
+    padding: 2.6rem 2.4rem 2rem;
+    border: 2px solid transparent;
+    border-radius: 18px;
+    background:
+        linear-gradient(160deg, rgba(61, 16, 82, 0.95), rgba(34, 10, 52, 0.95)) padding-box,
+        linear-gradient(135deg, #fff1c1, var(--royal-gold-deep), var(--royal-pink), var(--royal-gold)) border-box;
+    box-shadow: 0 0 40px rgba(255, 95, 168, 0.2), 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.royal-card-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0;
+    padding: 0.35rem 1.6rem;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--royal-pink), var(--royal-rose));
+    color: #fff;
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    box-shadow: 0 3px 0 #a52a5c;
+}
+
+.royal-card-title .fa-crown {
+    color: var(--royal-gold);
+}
+
+.royal-profile {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 2rem;
+    margin: 0;
+}
+
+.royal-profile div:last-child {
+    grid-column: 1 / -1;
+}
+
+.royal-profile dt {
+    color: var(--royal-gold);
+    font-family: 'DotGothic16', monospace;
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.royal-profile dt::before {
+    content: "♥ ";
+    color: var(--royal-pink);
+}
+
+.royal-profile dd {
+    margin: 0.2rem 0 0;
+    color: var(--royal-cream);
+    font-size: 1.05rem;
+}
+
+/* ---------- Back button ---------- */
+.royal-back-btn {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fff1c1, var(--royal-gold) 50%, var(--royal-gold-deep));
+    color: #5a1a3c;
+    font-weight: 700;
     letter-spacing: 0.06em;
+    text-decoration: none;
+    box-shadow: 0 4px 0 #8a6220, 0 0 20px rgba(246, 210, 122, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.royal-back-btn:hover,
+.royal-back-btn:focus-visible {
+    color: #5a1a3c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #8a6220, 0 0 28px rgba(246, 210, 122, 0.6);
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 575.98px) {
+    .royal-stage {
+        --pr-size: 160px;
+        --floor-h: 90px;
+        height: 380px;
+        border-radius: 40% 40% 10px 10px / 50px 50px 10px 10px;
+    }
+
+    .stage-curtain {
+        width: 13%;
+    }
+
+    @keyframes royal-curtain-open {
+        from { width: 51%; border-radius: 0; }
+        to { width: 13%; }
+    }
+
+    .stage-beam {
+        width: 340px;
+    }
+
+    .royal-ribbon {
+        padding: 0 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .royal-card {
+        padding: 2.4rem 1.4rem 1.6rem;
+    }
+
+    .royal-profile {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .princess-page .royal-sky,
+    .royal-crown,
+    .stage-beam,
+    .stage-sparkles span,
+    .stage-curtain {
+        animation: none;
+    }
+
+    .princess-page .princess-idle-sprite {
+        background-image: url("img/mascot/princess_idle.png");
+    }
+
+    .stage-sparkles span {
+        opacity: 0.6;
+    }
 }
