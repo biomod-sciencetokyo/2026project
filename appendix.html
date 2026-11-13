@@ -7,7 +7,7 @@
     <title>APPENDIX | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261112-4">
+    <link rel="stylesheet" href="style.css?v=20261112-4a">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -881,6 +881,42 @@
 
                     <div class="simulation-subblock mb-5">
                         <p class="wet-label">Materials</p>
+                        <div class="wet-table-wide">
+                            <div id="wet-seq-seed" class="table-responsive">
+                                <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                    <caption class="caption-top text-secondary">DNA strands for seeds</caption>
+                                    <thead>
+                                        <tr><th scope="col">DNA</th><th scope="col">sequence</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><th scope="row">S1</th><td class="font-monospace">GGCGATTAGG-ACGCTAAGCCA-CCTTTAGATC-CTGTATCTGGT</td></tr>
+                                        <tr><th scope="row">S2</th><td class="font-monospace">GTT CCA GCA TAG TTT CAG ATT ACC AGA TAC AGG ATC TAA AGG TGA CAT CTT GTC CAC TCT TCC ACA GAC TCA CCA TCG CAT ACC</td></tr>
+                                        <tr><th scope="row">S3</th><td class="font-monospace">GGAAGAGTGG-ACAAGATGTCA-CCGTGAGAAC-CTGCAATGCGT</td></tr>
+                                        <tr><th scope="row">S4</th><td class="font-monospace">GCT ACA GAA TCC AGA TAC CGA ACG CAT TGC AGG TTC TCA CGG CTG ATA GAA GTC CAA CGA TGC TAA GCA CTT GAT ACG ACC TCC</td></tr>
+                                        <tr><th scope="row">S5</th><td class="font-monospace">GGTCGTGCGG-ACTGTCGAACA-CCAACGATGC-CTGATAGAAGT</td></tr>
+                                        <tr><th scope="row">S6</th><td class="font-monospace">GAC CTT TGA ACC AGA CGA TAA CTG ATA GAA GTC CAA CGA TGC TGG CTT AGC GTC CTA ATC GCC TCG GAC ATT GTA AGC ATA ACG</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="wet-table-wide">
+                            <div id="wet-seq-hairpin" class="table-responsive">
+                                <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                    <caption class="caption-top text-secondary">DNA strands for bundled HCR</caption>
+                                    <thead>
+                                        <tr><th scope="col">DNA</th><th scope="col">sequence</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><th scope="row">H1</th><td class="font-monospace">GTA AGC ATA ACG TGC GAC TAT CGT TAT GCT TAC AAT GTC CGA AAT CTG AAA CTA TGC TGG AAC AGT CGC AAA GTT CCA GCA TAG</td></tr>
+                                        <tr><th scope="row">H2</th><td class="font-monospace">CCA TCG CAT ACC TGT CAG AAT GGT ATG CGA TGG TGA GTC TGT TCG GTA TCT GGA TTC TGT AGC ACG ATG CTA GCT ACA GAA TCC</td></tr>
+                                        <tr><th scope="row">H3</th><td class="font-monospace">GAT ACG ACC TCC AGA ACT GGA GGA GGT CGT ATC AAG TGC TTA TTA TCG TCT GGT TCA AAG GTC TAC CTG ACT GAC CTT TGA ACC</td></tr>
+                                        <tr><th scope="row">H4</th><td class="font-monospace">GTT CCA GCA TAG TTT CAG ATT CTA TGC TGG AAC TTT GCG ACT ATT CTG ACA GGT ATG CGA TGG ACA GAC TCA CCA TCG CAT ACC</td></tr>
+                                        <tr><th scope="row">H5</th><td class="font-monospace">GCT ACA GAA TCC AGA TAC CGA GGA TTC TGT AGC TAG CAT CGT TCC AGT TCT GGA GGT CGT ATC TAA GCA CTT GAT ACG ACC TCC</td></tr>
+                                        <tr><th scope="row">H6</th><td class="font-monospace">GAC CTT TGA ACC AGA CGA TAA GGT TCA AAG GTC AGT CAG GTA ATA GTC GCA CGT TAT GCT TAC TCG GAC ATT GTA AGC ATA ACG</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <p class="text-secondary mb-2">To allow the formation of hairpin structures, the hairpin DNA solutions were heated at 95°C for 2 minutes and then cooled to room temperature before use.</p>
                         <div class="wet-table-grid">
                             <div class="table-responsive">
@@ -1036,32 +1072,32 @@
                         </div>
                     </div>
 
-                    <div id="wet-exp-a-2-1" class="simulation-subblock mb-5">
-                        <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment A-2-1</span>Verification of Bundled HCR Progression by Gel Electrophoresis①</h4>
+                    <div id="wet-exp-a-2-3" class="simulation-subblock mb-5">
+                        <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment A-2 &amp; 3</span>Verification of Bundled HCR Progression by Gel Electrophoresis and AFM</h4>
+                        <h5 class="wet-subhead">Preparation of Agarose Gel</h5>
+                        <p class="text-secondary mb-2">An agarose gel was prepared as shown in the following table.</p>
+                        <p class="text-secondary mb-2">The solution was heated until the agarose was completely dissolved. After cooling sufficiently, it was poured into a mold and allowed to solidify at room temperature for more than 30 min.</p>
+                        <div class="wet-table-grid">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                    <caption class="caption-top text-secondary">1% Agarose gel solution</caption>
+                                    <thead>
+                                        <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><th scope="row">MQ</th><td>64.2 mL</td><td></td></tr>
+                                        <tr><th scope="row">50×TAE</th><td>2 mL</td><td>1×</td></tr>
+                                        <tr><th scope="row">1 M MgCl<sub>2</sub></th><td>0.5 mL</td><td>5 mM</td></tr>
+                                        <tr><th scope="row">3×Gel Red</th><td>33.3 mL</td><td>1×</td></tr>
+                                        <tr><th scope="row">Agarose</th><td>1.0 g</td><td>1%(w/v)</td></tr>
+                                        <tr class="wet-total"><th scope="row">Total</th><td>100 mL</td><td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="wet-subhead">Experiment A-2-1</h5>
                         <p class="wet-label">Methods</p>
                         <ol class="wet-steps text-secondary">
-                            <li>
-                                <p class="mb-2">An agarose gel was prepared as shown in the following table.</p>
-                                <p class="mb-2">The solution was heated until the agarose was completely dissolved. After cooling sufficiently, it was poured into a mold and allowed to solidify at room temperature for 30 min.</p>
-                                <div class="wet-table-grid">
-                                    <div class="table-responsive">
-                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
-                                            <caption class="caption-top text-secondary">1% Agarose gel solution</caption>
-                                            <thead>
-                                                <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><th scope="row">MQ</th><td>64.2 mL</td><td></td></tr>
-                                                <tr><th scope="row">50×TAE</th><td>2 mL</td><td>1×</td></tr>
-                                                <tr><th scope="row">1 M MgCl<sub>2</sub></th><td>0.5 mL</td><td>5 mM</td></tr>
-                                                <tr><th scope="row">3×Gel Red</th><td>33.3 mL</td><td>1×</td></tr>
-                                                <tr><th scope="row">Agarose</th><td>1.0 g</td><td>1%(w/v)</td></tr>
-                                                <tr class="wet-total"><th scope="row">Total</th><td>100 mL</td><td></td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </li>
                             <li>
                                 <p class="mb-2">Each sample was prepared as shown in the following table.</p>
                                 <p class="mb-2">Samples 1, 2, and 5 were prepared first. Sample 4 was prepared 1 hour later, and Sample 3 was prepared 1.5 hours later. Electrophoresis was started 2 hours later.</p>
@@ -1130,22 +1166,358 @@
                         </ol>
                         <p class="wet-label">Results</p>
                         <!-- 下書きメモ: 10/23の電気泳動の結果を入れる -->
-                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for Agarose gel electrophoresis image (10/23)">
-                            <span class="text-secondary text-center">Agarose gel electrophoresis image (10/23)<br>To be added</span>
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for Gel electrophoresis image (10/23)">
+                            <span class="text-secondary text-center">Gel electrophoresis image (10/23)<br>To be added</span>
                         </div>
                         <p class="wet-label">Discussion</p>
                         <p class="text-secondary mb-2">A substantial amount of unreacted hairpin DNA remained, indicating that a longer incubation time is required.</p>
-                    </div>
-
-                    <div id="wet-exp-a-2-2" class="simulation-subblock mb-5">
-                        <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment A-2-2</span>Verification of Bundled HCR Progression by Gel Electrophoresis②</h4>
+                        <h5 class="wet-subhead">Experiment A-2-2</h5>
                         <p class="wet-label">Methods</p>
-                        <p class="text-secondary mb-2">Agarose gel electrophoresis was performed using the same procedure as described in Experiment A-2-1.</p>
-                        <p class="text-secondary mb-2">The samples used were Samples 2 and 5 from Experiment A-2-1, which had been left to incubate overnight.</p>
-                    </div>
-
-                    <div id="wet-exp-a-3" class="simulation-subblock mb-5">
-                        <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment A-3</span>Observation of DNA Bundles by AFM</h4>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">Each sample was prepared as shown in the following table.</p>
+                                <p class="mb-2">Samples 1~6 contained Hairpin DNA H1~H6, respectively.</p>
+                                <p class="mb-2">Samples 8, and 9 corresponded to Samples 2 and 5 from Experiment A-2-1, respectively, which had been incubated overnight.</p>
+                                <div class="wet-table-grid">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Sample 1~6</caption>
+                                            <thead>
+                                                <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>7.3 µL</td><td></td></tr>
+                                                <tr><th scope="row">20×TE</th><td>0.5 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">100 mM MgCl<sub>2</sub></th><td>1.2 µL</td><td>12 mM</td></tr>
+                                                <tr><th scope="row">5 µM Hairpin DNA</th><td>1 µL</td><td>100 nM</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>10 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Bundle HCR Reaction Mixture for Sample 7</caption>
+                                            <thead>
+                                                <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>14.6 µL</td><td></td></tr>
+                                                <tr><th scope="row">20×TE</th><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">100 mM MgCl<sub>2</sub></th><td>2.4 µL</td><td>12 mM</td></tr>
+                                                <tr><th scope="row">1×Seed</th><td>2 µL</td><td>0.1×</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>20 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">Loading samples were prepared by mixing 5 µL of samples with 1 µL of 6× loading buffer.</p>
+                                <p class="mb-2">Ladders were prepared as shown in the following table.</p>
+                                <div class="wet-table-grid">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <thead>
+                                                <tr><th scope="col"></th><th scope="col">Ladder1</th><th scope="col">Ladder2</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">what</th><th scope="col" colspan="2">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>4 µL</td><td></td><td></td></tr>
+                                                <tr><th scope="row">6×Loading buffer</th><td>1 µL</td><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">50bp DNA ladder</th><td>1 µL</td><td></td><td></td></tr>
+                                                <tr><th scope="row">1kb DNA ladder</th><td></td><td>5 µL</td><td></td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>6 µL</td><td>6 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">6 µL of the ladders and each sample were loaded into the respective lanes, as shown in the table below.</p>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <tbody>
+                                                <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr>
+                                                <tr><th scope="row">Ladder1 50bp DNA ladder</th><td>Sample1 H1</td><td>Sample2 H2</td><td>Sample3 H3</td><td>Sample4 H4</td><td>Sample5 H5</td></tr>
+                                                <tr><th scope="row">7</th><td>8</td><td>9</td><td>10</td><td>11</td><td></td></tr>
+                                                <tr><th scope="row">Sample6 H6</th><td>Sample7 Seed</td><td>Sample8 Hairpin DNA(H1～H6) only</td><td>Sample9 Seed Hairpin DNA(H1～H6)</td><td>Ladder2 1kb DNA ladder</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">Electrophoresis was performed in 1× TAE buffer containing 5 mM MgCl<sub>2</sub> at 100 V for 40 minutes on ice.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">The gel was imaged using a gel imager(Gel doc Go)</p>
+                            </li>
+                        </ol>
+                        <p class="wet-label">Results</p>
+                        <!-- 下書きメモ: 10/24の電気泳動の結果を入れる -->
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for Gel electrophoresis image (10/24)">
+                            <span class="text-secondary text-center">Gel electrophoresis image (10/24)<br>To be added</span>
+                        </div>
+                        <p class="wet-label">Discussion</p>
+                        <p class="text-secondary mb-2">Fluorescence was observed near the wells in both Samples 8 and 9, suggesting the formation of large structures. In the next experiment, the structures will be characterized using AFM.</p>
+                        <h5 class="wet-subhead">Experiment A-3-1</h5>
+                        <p class="wet-label">Methods</p>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">Peel off the top layer of the mica to expose a fresh, clean surface.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">Four samples(H1 only, seed only, hairpin DNA only, seed + hairpin DNA) were observed using AFM. 10 µL of the sample was deposited onto a mica surface and incubated at room temperature for 15 minutes.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">After adding 40 µL of buffer(1×TE, 12 mM MgCl<sub>2</sub>), the sample was observed using fluid-mode AFM.</p>
+                            </li>
+                        </ol>
+                        <p class="wet-label">Results</p>
+                        <!-- 下書きメモ: 10/27のAFMの画像を入れる -->
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for AFM images (10/27)">
+                            <span class="text-secondary text-center">AFM images (10/27)<br>To be added</span>
+                        </div>
+                        <p class="wet-label">Discussion</p>
+                        <p class="text-secondary mb-2">Extensive aggregation was observed, and no structures that could be conclusively identified as DNA bundles were detected. The aggregation may be caused by the cross-linking effects of magnesium ions. Therefore, sodium ions will be introduced in the next experiment to investigate their effects.</p>
+                        <h5 class="wet-subhead">Experiment A-2-3</h5>
+                        <p class="wet-label">Methods</p>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">Each sample was prepared as shown in the following table. Sample 1 contained 1× Seed.</p>
+                                <p class="mb-2">The hairpin DNA concentration was kept constant, while the seed concentration and buffer conditions were varied.</p>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture for Sample 2~7</caption>
+                                            <thead>
+                                                <tr><th scope="col">Sample number</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">Sample name</th><th scope="col">H1~H6 only</th><th scope="col">Seed:H1~6=1:200</th><th scope="col">Seed:H1~6=1:100</th><th scope="col">Seed:H1~6=1:50</th><th scope="col">Seed:H1~6=1:20</th><th scope="col">Seed:H1~6=1:5</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">what</th><th scope="col" colspan="6">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>6 µL</td><td>5.5µL</td><td>5 µL</td><td>4 µL</td><td>5.5 µL</td><td>4 µL</td><td></td></tr>
+                                                <tr><th scope="row">20×TE</th><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">100 mM MgCl<sub>2</sub></th><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>5 mM</td></tr>
+                                                <tr><th scope="row">1 M NaCl</th><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>300 mM</td></tr>
+                                                <tr><th scope="row">1×Seed</th><td></td><td></td><td></td><td></td><td>0.5 µL</td><td>2 µL</td><td></td></tr>
+                                                <tr><th scope="row">0.1×Seed</th><td></td><td>0.5 µL</td><td>1 µL</td><td>2 µL</td><td></td><td></td><td></td></tr>
+                                                <tr><th scope="row">10 µM Hairpin DNA</th><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>500 nM</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture for Sample 8 and 9</caption>
+                                            <thead>
+                                                <tr><th scope="col">Sample number</th><th scope="col">8</th><th scope="col">9</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">Sample name</th><th scope="col">H1, H3, H5</th><th scope="col">H2, H4, H6</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">what</th><th scope="col" colspan="2">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>9 µL</td><td>9 µL</td><td></td></tr>
+                                                <tr><th scope="row">20×TE</th><td>1 µL</td><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">100 mM MgCl<sub>2</sub></th><td>1 µL</td><td>1 µL</td><td>5 mM</td></tr>
+                                                <tr><th scope="row">1 M NaCl</th><td>6 µL</td><td>6 µL</td><td>300 mM</td></tr>
+                                                <tr><th scope="row">10 µM Hairpin DNA(H1, H3, H5)</th><td>1 µL×3</td><td></td><td>500 nM</td></tr>
+                                                <tr><th scope="row">10 µM Hairpin DNA(H1, H3, H5)</th><td></td><td>1 µL×3</td><td>500 nM</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>20 µL</td><td>20 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture for Sample 10~15</caption>
+                                            <thead>
+                                                <tr><th scope="col">Sample number</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th><th scope="col">13</th><th scope="col">14</th><th scope="col">15</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">Sample name</th><th scope="col">12 mM MgCl<sub>2</sub>, 0 mM NaCl</th><th scope="col">10 mM MgCl<sub>2</sub>, 300 mM NaCl</th><th scope="col">12 mM MgCl<sub>2</sub>, 300 mM NaCl</th><th scope="col">15 mM MgCl<sub>2</sub>, 300 mM NaCl</th><th scope="col">5 mM MgCl<sub>2</sub>, 200 mM NaCl</th><th scope="col">5 mM MgCl<sub>2</sub>, 100 mM NaCl</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">what</th><th scope="col" colspan="6">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>8.6 µL</td><td>3µL</td><td>2.6 µL</td><td>2 µL</td><td>6 µL</td><td>8 µL</td><td></td></tr>
+                                                <tr><th scope="row">20×TE</th><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">100 mM MgCl<sub>2</sub></th><td>2.4 µL</td><td>2 µL</td><td>2.4 µL</td><td>3 µL</td><td>1 µL</td><td>1 µL</td><td>5 mM</td></tr>
+                                                <tr><th scope="row">1 M NaCl</th><td></td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>4 µL</td><td>2 µL</td><td>300 mM</td></tr>
+                                                <tr><th scope="row">0.1×Seed</th><td>2 µL</td><td>2 µL</td><td>2 µL</td><td>2 µL</td><td>2 µL</td><td>2 µL</td><td>0.01×</td></tr>
+                                                <tr><th scope="row">10 µM Hairpin DNA</th><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>1 µL×6</td><td>500 nM</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">Loading samples were prepared by mixing 5 µL of samples with 1 µL of 6× loading buffer.</p>
+                                <p class="mb-2">Ladders were prepared as shown in the following table.</p>
+                                <div class="wet-table-grid">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <thead>
+                                                <tr><th scope="col"></th><th scope="col">Ladder1</th><th scope="col">Ladder2</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">what</th><th scope="col" colspan="2">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>4.5 µL</td><td></td><td></td></tr>
+                                                <tr><th scope="row">6×Loading buffer</th><td>1 µL</td><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">50bp DNA ladder</th><td>0.5 µL</td><td></td><td></td></tr>
+                                                <tr><th scope="row">1kb DNA ladder</th><td></td><td>5 µL</td><td></td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>6 µL</td><td>6 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">6 µL of the ladders and each sample were loaded into the respective lanes, as shown in the table below.</p>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <tbody>
+                                                <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr>
+                                                <tr><th scope="row">Ladder1</th><td>Sample1</td><td>Sample2</td><td>Sample3</td><td>Sample4</td><td>Sample5</td></tr>
+                                                <tr><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th></tr>
+                                                <tr><th scope="row">Sample6</th><td>Sample7</td><td>Sample8</td><td>Sample9</td><td>Sample10</td><td>Sample11</td></tr>
+                                                <tr><th scope="row">13</th><td>14</td><td>15</td><td>16</td><td>17</td><td></td></tr>
+                                                <tr><th scope="row">Sample12</th><td>Sample13</td><td>Sample14</td><td>Sample15</td><td>Ladder2</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">Electrophoresis was performed in 1× TAE buffer containing 5 mM MgCl<sub>2</sub> at 100 V for 40 minutes on ice.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">The gel was imaged using a gel imager(Gel doc Go)</p>
+                            </li>
+                        </ol>
+                        <p class="wet-label">Results</p>
+                        <!-- 下書きメモ: 10/31の結果を入れる -->
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for Gel electrophoresis image (10/31)">
+                            <span class="text-secondary text-center">Gel electrophoresis image (10/31)<br>To be added</span>
+                        </div>
+                        <p class="wet-label">Discussion</p>
+                        <p class="text-secondary mb-2">Comparing the results of Samples 2–7, fluorescence was observed near the wells in Samples 5, 6, and 7, which had higher seed concentrations, but not in Samples 2, 3, and 4, which had lower seed concentrations. These results suggest that the structures accumulated near the wells were formed in response to the seed DNA as a trigger. Furthermore, a decrease in the amount of unreacted hairpin DNA was observed in Samples 6 and 7.</p>
+                        <p class="text-secondary mb-2">Sample 13, which had the highest Mg<sup>2-</sup> concentration, showed the strong fluorescence near the wells. This suggests that higher Mg<sup>2+</sup> concentrations may promote the formation of some kind of higher-order structures.</p>
+                        <h5 class="wet-subhead">Experiment A-3-2</h5>
+                        <p class="wet-label">Methods</p>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">Peel off the top layer of the mica to expose a fresh, clean surface.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">5 µL of the sample (diluted if necessary) and 20 µL of 4 mM NiCl2 were deposited onto a mica surface and incubated at room temperature. The incubation time was adjusted as needed to obtain better observations.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">After adding 40 µL of buffer(1×TE, 12 mM MgCl<sub>2</sub>), the sample was observed using fluid-mode AFM.</p>
+                            </li>
+                        </ol>
+                        <p class="wet-label">Results</p>
+                        <!-- 下書きメモ: 11/2~11/10のAFMの画像を入れる -->
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for AFM images (11/2–11/10)">
+                            <span class="text-secondary text-center">AFM images (11/2–11/10)<br>To be added</span>
+                        </div>
+                        <h5 class="wet-subhead">Experiment A-2-4</h5>
+                        <p class="wet-label">Methods</p>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">Sample with seed and hairpin DNA concentrations reduced to one-quarter of their original values was prepared as shown in the following table.</p>
+                                <p class="mb-2">The hairpin DNA concentration was kept constant, while the seed concentration and buffer conditions were varied.</p>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Bundled HCR Reaction Mixture</caption>
+                                            <thead>
+                                                <tr><th scope="col">Sample number</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">Sample name</th><th scope="col">Seed:H1~6=1:5</th><th scope="col">Seed:H1~6=1:20</th><th scope="col">Seed:H1~6=1:50</th><th scope="col">Seed:H1~6=1:100</th><th scope="col">Seed:H1~6=1:200</th><th scope="col">H1~6 only</th><th scope="col"></th></tr>
+                                                <tr><th scope="col">what</th><th scope="col" colspan="6">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>4 µL</td><td>7.75 µL</td><td>8.5 µL</td><td>6.5 µL</td><td>7.75 µL</td><td>9 µL</td><td></td></tr>
+                                                <tr><th scope="row">20×TE</th><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">100 mM MgCl<sub>2</sub></th><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>1 µL</td><td>5 mM</td></tr>
+                                                <tr><th scope="row">1 M NaCl</th><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>6 µL</td><td>300 mM</td></tr>
+                                                <tr><th scope="row">0.1×Seed</th><td>5 µL</td><td>1.25 µL</td><td>0.5 µL</td><td></td><td></td><td></td><td></td></tr>
+                                                <tr><th scope="row">0.01×Seed</th><td></td><td></td><td></td><td>2.5 µL</td><td>1.25 µL</td><td></td><td></td></tr>
+                                                <tr><th scope="row">5 µM Hairpin DNA(H1~H6)</th><td>0.5 µL×6</td><td>0.5 µL×6</td><td>0.5 µL×6</td><td>0.5 µL×6</td><td>0.5 µL×6</td><td>0.5 µL×6</td><td>125 nM</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td>20 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">Loading samples were prepared by mixing 5 µL of samples with 1 µL of 6× loading buffer.</p>
+                                <p class="mb-2">Ladder was prepared as shown in the following table.</p>
+                                <div class="wet-table-grid">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Ladder</caption>
+                                            <thead>
+                                                <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">MQ</th><td>9 µL</td><td></td></tr>
+                                                <tr><th scope="row">6×Loading buffer</th><td>2 µL</td><td>1×</td></tr>
+                                                <tr><th scope="row">50bp DNA ladder</th><td>1 µL</td><td></td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>12 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">6 µL of the ladders and each sample were loaded into the respective lanes, as shown in the table below.</p>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">Samples loaded into each lane</caption>
+                                            <tbody>
+                                                <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th></tr>
+                                                <tr><th scope="row">Ladder</th><td>Sample1</td><td>Sample2</td><td>Sample3</td><td>Sample4</td><td>Sample5</td><td>Sample6</td><td>Ladder</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">Electrophoresis was performed in 1× TAE buffer containing 5 mM MgCl<sub>2</sub> at 100 V for 40 minutes on ice.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">The gel was imaged using a gel imager(Gel doc Go)</p>
+                            </li>
+                        </ol>
+                        <p class="wet-label">Results</p>
+                        <!-- 下書きメモ: 11/11の電気泳動の写真を入れる -->
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for Gel electrophoresis image (11/11)">
+                            <span class="text-secondary text-center">Gel electrophoresis image (11/11)<br>To be added</span>
+                        </div>
+                        <h5 class="wet-subhead">Experiment A-3-3</h5>
+                        <p class="wet-label">Methods</p>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">Peel off the top layer of the mica to expose a fresh, clean surface.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">5 µL of the sample (diluted if necessary) and 20 µL of 4 mM NiCl2 were deposited onto a mica surface and incubated at room temperature. The incubation time was adjusted as needed to obtain better observations.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">After adding 40 µL of buffer(1×TE, 12 mM MgCl<sub>2</sub>), the sample was observed using fluid-mode AFM.</p>
+                            </li>
+                        </ol>
+                        <p class="wet-label">Results</p>
+                        <!-- 下書きメモ: 11/11のAFMの画像を入れる -->
+                        <div class="wet-placeholder ratio ratio-16x9 border border-secondary d-flex justify-content-center align-items-center" role="img" aria-label="Placeholder for AFM images (11/11)">
+                            <span class="text-secondary text-center">AFM images (11/11)<br>To be added</span>
+                        </div>
                     </div>
 
                     <h3 id="wet-exp-b" class="h4 fw-bold mb-4 section-subtitle">5.2 Experiment B: Lipid membrane disruption by 12-helix and 13-helix DNA bundles</h3>
@@ -1153,8 +1525,9 @@
                     <div class="simulation-subblock mb-5">
                         <p class="wet-label">Materials</p>
                         <div class="wet-table-wide">
-                            <div class="table-responsive">
+                            <div id="wet-seq-bundle" class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                    <caption class="caption-top text-secondary">DNA strands used for the 12- and 13-helix bundles</caption>
                                     <thead>
                                         <tr><th scope="col">DNA</th><th scope="col">sequence</th></tr>
                                     </thead>
@@ -1243,6 +1616,36 @@
                                         <tr><th scope="row">MQ</th><td>0.6 mL</td><td></td></tr>
                                         <tr><th scope="row">APS</th><td>60 mg</td><td>10%(w/v)</td></tr>
                                         <tr class="wet-total"><th scope="row">Total</th><td>0.6 mL</td><td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                    <caption class="caption-top text-secondary">10 mM phosphate buffer</caption>
+                                    <thead>
+                                        <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><th scope="row">MQ</th><td>10 mL</td><td></td></tr>
+                                        <tr><th scope="row">K2HPO4</th><td>10.66 mg</td><td>6.12 mM</td></tr>
+                                        <tr><th scope="row">KH2PO4</th><td>5.28 mg</td><td>3.88 mM</td></tr>
+                                        <tr class="wet-total"><th scope="row">Total</th><td>10 mL</td><td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                    <caption class="caption-top text-secondary">60 mM calcein</caption>
+                                    <thead>
+                                        <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><th scope="row">10 mM phosphate buffer</th><td>0.9 mL</td><td></td></tr>
+                                        <tr><th scope="row">Calcein</th><td>48.8 mg</td><td>60 mM</td></tr>
+                                        <tr><th scope="row">1M NaOH</th><td>270 µL</td><td></td></tr>
+                                        <tr><td colspan="3" class="fst-italic">Add 1 M NaOH until the pH paper indicates a neutral pH.</td></tr>
+                                        <tr><td colspan="3" class="fst-italic">Add 10 mM phosphate buffer until the total volume reaches 1.3 mL.</td></tr>
+                                        <tr class="wet-total"><th scope="row">Total</th><td>1.3 mL</td><td></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -1675,6 +2078,72 @@
                         <p class="wet-label">Discussion</p>
                         <p class="text-secondary mb-2">Compared with the control sample (Sample 3), Sample 7, which contained NaCl, appeared to show reduced nonspecific binding. In contrast, Sample 11, which contained EDTA, showed little apparent change in nonspecific binding.</p>
                         <p class="text-secondary mb-2">While Sample 7 showed little membrane binding, Sample 8 exhibited membrane binding comparable to that of the control sample. This suggests that the binding observed in Sample 8 was mediated by cholesterol.</p>
+                    </div>
+
+                    <div id="wet-exp-b-4" class="simulation-subblock mb-5">
+                        <h4 class="wet-exp-title"><span class="wet-exp-id">Experiment B-4</span>Verification of Membrane Disruption by 12, 13 Bundles</h4>
+                        <p class="wet-label">Methods</p>
+                        <ol class="wet-steps text-secondary">
+                            <li>
+                                <p class="mb-2">GUV internal and external solutions were prepared as shown in the table below.</p>
+                                <div class="wet-table-grid">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">GUV internal solution</caption>
+                                            <thead>
+                                                <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">Sucrose</th><td>25.7 mg</td><td>150 mM</td></tr>
+                                                <tr><th scope="row">Glucose</th><td>18.0 mg</td><td>200 mM</td></tr>
+                                                <tr><th scope="row">60 mM Calcein</th><td>417 µL</td><td>50 mM</td></tr>
+                                                <tr><td colspan="3" class="fst-italic">Add 10 mM phosphate buffer until the total volume reaches 500 µL.</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>500 µL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <caption class="caption-top text-secondary">GUV external solution</caption>
+                                            <thead>
+                                                <tr><th scope="col">what</th><th scope="col">amount</th><th scope="col">final</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th scope="row">10 mM phosphate buffer</th><td>8 mL</td><td></td></tr>
+                                                <tr><th scope="row">Glucose</th><td>721 mg</td><td>400 mM</td></tr>
+                                                <tr><td colspan="3" class="fst-italic">Add 10 mM phosphate buffer until the total volume reaches 10 mL.</td></tr>
+                                                <tr class="wet-total"><th scope="row">Total</th><td>10 mL</td><td></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">500 µL of the GUV internal solution was added to the dried lipid film in the glass tube and incubated at room temperature for 5 hours.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">500 µL of the GUV external solution was added to the GUVs.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">The GUVs were centrifuged at 500 × g and 10°C for 10 minutes. Then, 833 µL of the supernatant was removed and replaced with 833 µL of the GUV external solution. This procedure was repeated five times.</p>
+                            </li>
+                            <li>
+                                <p class="mb-2">5 µL of the eight samples, prepared as shown in the table below, were added to 45 µL of GUV solution.</p>
+                                <div class="wet-table-wide">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-bordered table-sm align-middle wet-table">
+                                            <tbody>
+                                                <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th></tr>
+                                                <tr><th scope="row">MQ</th><td>12 bundle with Chol</td><td>12 bundle without Chol</td><td>12 bundle with Chol before annealing</td><td>13 bundle with Chol</td><td>13 bundle without Chol</td><td>13 bundle with Chol before annealing</td><td>1% Sorbitan monolaurate (w/w)</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="mb-2">The fluorescence intensity was continuously monitored for 1 hour using qPCR.</p>
+                            </li>
+                        </ol>
                     </div>
                 </section>
             </div>

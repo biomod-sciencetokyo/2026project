@@ -2280,6 +2280,8 @@ section[id],
 .wet-table td.font-monospace {
     font-size: 0.82rem;
     letter-spacing: 0.02em;
+    white-space: normal;
+    word-break: break-word;
 }
 
 .wet-placeholder {
