@@ -218,7 +218,7 @@ body>main,
 }
 
 p {
-    line-height: 1.8;
+    line-height: 1.9;
     margin-bottom: 1.5rem;
 }
 
@@ -376,7 +376,7 @@ h6,
     font-weight: 700;
     border-left: 5px solid var(--accent-gold);
     padding-left: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 2.75rem;
 }
 
 /* Subheadings & Section Subtitles */
@@ -384,6 +384,7 @@ h6,
     color: var(--accent-blue);
     font-family: 'DotGothic16', monospace;
     -webkit-text-stroke: 0.6px currentColor;
+    line-height: 1.35;
 }
 
 /* Accent Color Utilities */
@@ -462,14 +463,17 @@ section[id],
 .sidebar-toc .nav-link {
     color: #aebdce;
     font-size: 0.9rem;
-    padding: 6px 0 6px 10px;
+    line-height: 1.45;
+    padding: 7px 0 7px 10px;
     border-left: 2px solid transparent;
     border-radius: 0;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .sidebar-toc-subnav {
+    margin-top: 4px;
+    margin-bottom: 8px;
     margin-left: 12px;
     padding-left: 8px;
     border-left: 1px solid var(--border-color);
@@ -491,7 +495,7 @@ section[id],
     background-color: var(--surface-dark);
     border: 1px solid #314763;
     border-radius: 0;
-    padding: 30px;
+    padding: 36px;
     background-image:
         linear-gradient(var(--accent-gold), var(--accent-gold)),
         linear-gradient(var(--accent-gold), var(--accent-gold)),
@@ -517,6 +521,16 @@ section[id],
 
 .content-box.bg-light {
     background-color: #eef4f7 !important;
+}
+
+@media (max-width: 575.98px) {
+    .content-box {
+        padding: 24px 20px;
+    }
+
+    main section.fade-in-section {
+        margin-bottom: 4.5rem !important;
+    }
 }
 
 /* Rupture result mark (○ observed / ✕ not observed) */
@@ -680,7 +694,43 @@ section[id],
 /* Simulation Section Spacing Utility */
 .simulation-subblock {
     margin-bottom: 4.5rem;
-    padding-top: 1rem;
+    padding-top: 2rem;
+}
+
+/* ===== Shared spacing (all pages) =====
+   Bootstrap spacing utilities in the markup (mb-5, pt-4, mb-3 ...) are !important and too tight for
+   long-form pages, so the shared building blocks get roomier spacing here, in one place. */
+main section.fade-in-section {
+    margin-bottom: 6rem !important;
+    padding-top: 2.5rem !important;
+}
+
+main .section-subtitle {
+    margin-bottom: 1.5rem !important;
+}
+
+main .simulation-subblock:not(.mb-0) {
+    margin-bottom: 4.5rem !important;
+}
+
+main p.mb-2 {
+    margin-bottom: 1.1rem !important;
+}
+
+/* Tables: room around and inside cells */
+main .table-responsive {
+    margin-top: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+main table caption {
+    padding-bottom: 0.75rem;
+}
+
+main .table th,
+main .table td {
+    padding: 9px 11px;
+    line-height: 1.6;
 }
 
 /* Simulation environment: real system vs. model (interactive) */
@@ -1669,6 +1719,31 @@ section[id],
     text-align: center;
 }
 
+/* Appendix equations: set apart from the prose, slightly larger, high contrast */
+.appendix-page .math-display {
+    margin: 1.75rem 0 2.1rem;
+    padding: 0.6rem 1.5rem;
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 0 6px 6px 0;
+    background-color: rgba(98, 197, 213, 0.07);
+    color: var(--text-main);
+}
+
+.appendix-page .math-display mjx-container[display="true"] {
+    margin: 0.65em 0 !important;
+    font-size: 112% !important;
+}
+
+/* Inline math in muted prose: full-contrast so symbols stay legible */
+.appendix-page mjx-container:not([display="true"]) {
+    color: var(--text-main);
+}
+
+html[data-theme="light"] .appendix-page .math-display {
+    background-color: rgba(29, 129, 147, 0.07);
+    border-left-color: #1d8193;
+}
+
 /* Equations stand apart from the prose */
 .simulation-page .custom-accordion-body p[role="math"] {
     margin: 1.25rem 0 !important;
@@ -2182,7 +2257,7 @@ section[id],
 
 /* Experiment titles: readable sans, ID shown as a small tag */
 .wet-exp-title {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.75rem;
     padding-left: 12px;
     border-left: 3px solid var(--accent-blue);
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
@@ -2203,7 +2278,7 @@ section[id],
 }
 
 .wet-subhead {
-    margin: 2rem 0 0.75rem;
+    margin: 2.5rem 0 1rem;
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     -webkit-text-stroke: 0;
     font-size: 1rem;
@@ -2216,7 +2291,7 @@ section[id],
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 1.75rem 0 0.9rem;
+    margin: 2.75rem 0 1.25rem;
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -2254,7 +2329,8 @@ section[id],
 }
 
 .wet-steps > li {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.6rem;
+    line-height: 1.8;
     padding-left: 0.25rem;
 }
 
@@ -2281,18 +2357,23 @@ section[id],
 .wet-table-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 0.25rem 1.5rem;
-    margin: 0.75rem 0 1rem;
+    gap: 1rem 2rem;
+    margin: 1.25rem 0 1.75rem;
 }
 
 .wet-table-wide {
-    margin: 0.75rem 0 1rem;
+    margin: 1.25rem 0 1.75rem;
+}
+
+.wet-table-grid .table-responsive,
+.wet-table-wide .table-responsive {
+    margin: 0;
 }
 
 .wet-table {
     --bs-table-bg: rgba(20, 41, 69, 0.6);
     --bs-table-border-color: rgba(148, 163, 184, 0.22);
-    font-size: 0.86rem;
+    font-size: 0.9rem;
     margin-bottom: 0.75rem;
 }
 
@@ -2303,9 +2384,9 @@ section[id],
     color: var(--text-main) !important;
 }
 
-.wet-table th,
-.wet-table td {
-    padding: 6px 10px;
+main .wet-table th,
+main .wet-table td {
+    padding: 10px 14px;
 }
 
 .wet-table thead th {
@@ -2342,7 +2423,7 @@ section[id],
 
 .wet-placeholder {
     max-width: 720px;
-    margin: 0.5rem 0 1rem;
+    margin: 1.25rem 0 2rem;
 }
 
 @media (max-width: 767.98px) {
@@ -2356,8 +2437,8 @@ section[id],
 }
 
 /* Keep the pixel font for page titles, navigation, and footer only.
-   Font Awesome icons are left out: they need their own icon font to show. */
-main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
+   Font Awesome icons and MathJax output are left out: they need their own fonts to show. */
+main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):not(mjx-container *) {
     font-family: inherit !important;
     -webkit-text-stroke: 0 !important;
 }
@@ -2464,10 +2545,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
 }
 
 /* ===== Experiment page: readability ===== */
-.experiment-page main section > h2.section-title {
-    margin-bottom: 1.5rem;
-}
-
 /* Numbered subsections: clear start, one divider each */
 .experiment-page .exp-subsection {
     margin-top: 3rem;
@@ -2914,30 +2991,31 @@ html[data-theme="light"] .exp-seq-table thead th {
 }
 
 /* Home cover, light theme: the 3D scene (.hero--live) keeps its own dark background, but the still title
-   (reduced motion / no WebGL) sits on the page background, so it needs dark text */
-html[data-theme="light"] .hero:not(.hero--live) .hero-title-main {
+   (reduced motion / no WebGL) and the title band left after the cover ends (.hero--done) sit on the page
+   background, so they need dark text */
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-title-main {
     background: linear-gradient(135deg, #0d1b34 0%, #1c3a5e 52%, #1d8193 100%);
     -webkit-background-clip: text;
     background-clip: text;
     filter: none;
 }
 
-html[data-theme="light"] .hero:not(.hero--live) .hero-title-sub {
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-title-sub {
     color: #3c4d63;
     text-shadow: none;
 }
 
-html[data-theme="light"] .hero:not(.hero--live) .hero-kicker,
-html[data-theme="light"] .hero:not(.hero--live) .hero-text p.hero-lead {
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-kicker,
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-text p.hero-lead {
     text-shadow: none;
 }
 
-html[data-theme="light"] .hero:not(.hero--live) .hero-cta {
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-cta {
     background-color: #ffffff;
 }
 
-html[data-theme="light"] .hero:not(.hero--live) .hero-cta:hover,
-html[data-theme="light"] .hero:not(.hero--live) .hero-cta:focus-visible {
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-cta:hover,
+html[data-theme="light"] .hero:is(:not(.hero--live), .hero--done) .hero-cta:focus-visible {
     background-color: var(--accent-gold);
     color: #ffffff;
 }
