@@ -629,24 +629,37 @@ section[id],
 
 /* Simulation Section Spacing Utility */
 .simulation-subblock {
-    margin-bottom: 4.5rem;
-    padding-top: 2rem;
+    margin-bottom: 3.5rem;
+    padding-top: 1rem;
 }
 
 /* ===== Shared spacing (all pages) =====
    Bootstrap spacing utilities in the markup (mb-5, pt-4, mb-3 ...) are !important and too tight for
    long-form pages, so the shared building blocks get roomier spacing here, in one place. */
+/* Chapters (h2 sections) are clearly separated: a wide, uniform gap between one chapter and the next */
 main section.fade-in-section {
-    margin-bottom: 8rem !important;
+    margin-bottom: 12rem !important;
     padding-top: 3rem !important;
+}
+
+/* The gap comes from the section itself, not from whatever element happens to end it, so every
+   chapter break is the same size */
+main section.fade-in-section > :last-child {
+    margin-bottom: 0 !important;
 }
 
 main .section-subtitle {
     margin-bottom: 1.75rem !important;
 }
 
+/* Spacing hierarchy: chapter (240px) > 1.1-level group (128px) > blocks inside a group (≤ ~80px) */
 main .simulation-subblock:not(.mb-0) {
-    margin-bottom: 5.5rem !important;
+    margin-bottom: 3.5rem !important;
+}
+
+/* A block that opens with a heading: the block's own spacing already separates it */
+main .simulation-subblock > :is(h3, h4, h5, .wet-subhead, .wet-exp-title):first-child {
+    margin-top: 0 !important;
 }
 
 main p.mb-2 {
@@ -655,7 +668,7 @@ main p.mb-2 {
 
 @media (max-width: 575.98px) {
     main section.fade-in-section {
-        margin-bottom: 5rem !important;
+        margin-bottom: 7rem !important;
     }
 }
 
@@ -664,6 +677,39 @@ main p.mb-2 {
 main.content-container,
 .site-footer {
     overflow-x: clip;
+}
+
+/* Second-level groups (1.1, 1.2, 2.1 ...): one uniform gap between groups on every page —
+   narrower than the gap between chapters, wider than anything inside a group */
+main .col-lg-10 .subsection {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+main .col-lg-10 .subsection + .subsection {
+    margin-top: 8rem !important;
+}
+
+/* The first group after a chapter's intro text starts as far below it as it would below the heading */
+main .col-lg-10 :is(p, ul, ol) + .subsection {
+    margin-top: 3.25rem !important;
+}
+
+main .col-lg-10 .subsection > :last-child {
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 575.98px) {
+    /* phones keep the same order: chapter 160px > group ~112px > blocks ~70px */
+    main .col-lg-10 .subsection + .subsection {
+        margin-top: 7rem !important;
+    }
+
+    main .simulation-subblock:not(.mb-0) {
+        margin-bottom: 2.5rem !important;
+    }
 }
 
 /* Headings that follow body content get clear space above, so each topic starts visibly */
@@ -1588,8 +1634,8 @@ main .table td {
 .simulation-page #three-d>.simulation-subblock,
 .simulation-page #guv-env {
     position: relative;
-    margin-top: 1rem;
-    padding-top: 2.25rem;
+    margin-top: 0;
+    padding-top: 1.75rem;
     border-top: 1px solid rgba(148, 163, 184, 0.18);
 }
 
@@ -2131,20 +2177,6 @@ main table caption strong {
     background-color: var(--accent-gold);
 }
 
-.wet-protocol h3,
-.dry-lab h3 {
-    margin-top: 1rem;
-}
-
-/* Dry Lab: each model (2D, 3D, source code, extension) is one block, like a wet experiment */
-.dry-model {
-    margin-bottom: 5rem;
-}
-
-.dry-model:last-child {
-    margin-bottom: 0;
-}
-
 /* Experiment titles: readable sans, ID shown as a small tag */
 .wet-exp-title {
     margin: 0 0 1.75rem;
@@ -2425,19 +2457,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 /* ===== Experiment page: readability ===== */
-/* Numbered subsections: clear start, one divider each */
-.experiment-page .exp-subsection {
-    margin-top: 3rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.2);
-}
-
-.experiment-page section > h2 + .exp-subsection {
-    margin-top: 0;
-    padding-top: 0.5rem;
-    border-top: none;
-}
-
 /* Overview / Results / Discussion: compact labels instead of separators */
 .exp-block {
     margin-top: 2rem;
@@ -2528,13 +2547,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 .exp-placeholder-square {
     max-width: none;
     min-height: 140px;
-}
-
-@media (max-width: 767.98px) {
-    .experiment-page .exp-subsection {
-        margin-top: 2rem;
-        padding-top: 1.75rem;
-    }
 }
 
 /* =========================================
