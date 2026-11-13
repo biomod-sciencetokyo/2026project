@@ -13,6 +13,7 @@
     --text-muted: #a4b3c5;
     --surface-dark: #10213b;
     --surface-raised: #142945;
+    --helix-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23000'%3E%3Ccircle cx='19' cy='12' r='3.1'/%3E%3Ccircle cx='15.5' cy='18.06' r='3.1'/%3E%3Ccircle cx='8.5' cy='18.06' r='3.1'/%3E%3Ccircle cx='5' cy='12' r='3.1'/%3E%3Ccircle cx='8.5' cy='5.94' r='3.1'/%3E%3Ccircle cx='15.5' cy='5.94' r='3.1'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 body {
@@ -289,21 +290,72 @@ h6,
 }
 
 .navbar-nav .nav-link {
-    border-bottom: 2px solid transparent;
+    position: relative;
     color: #c2cfdd !important;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.035em;
     padding: 10px 13px !important;
-    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease;
 }
 
-.navbar-nav .nav-link:hover,
+/* Current page / hover: corner brackets like a measurement frame (same motif as the card corners),
+   instead of an underline */
+.navbar-nav .nav-link::before {
+    --bracket: var(--accent-gold);
+    content: "";
+    position: absolute;
+    inset: 3px 1px;
+    background:
+        linear-gradient(var(--bracket), var(--bracket)) top left / 9px 2px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) top left / 2px 9px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) top right / 9px 2px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) top right / 2px 9px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) bottom left / 9px 2px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) bottom left / 2px 9px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) bottom right / 9px 2px no-repeat,
+        linear-gradient(var(--bracket), var(--bracket)) bottom right / 2px 9px no-repeat;
+    opacity: 0;
+    transform: scale(1.12);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover::before {
+    --bracket: var(--accent-blue);
+    opacity: 0.7;
+    transform: scale(1);
+}
+
 .navbar-nav .nav-link.active {
-    background-color: rgba(98, 197, 213, 0.08);
-    border-bottom-color: var(--accent-gold);
     color: var(--accent-gold) !important;
-    transform: translateY(-1px);
+}
+
+.navbar-nav .nav-link.active::before {
+    --bracket: var(--accent-gold);
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Collapsed (phone) menu: full-width rows, so a gold side bar marks the current page instead */
+@media (max-width: 991.98px) {
+    .navbar-nav .nav-link::before {
+        content: none;
+    }
+
+    .navbar-nav .nav-link.active {
+        box-shadow: inset 2px 0 0 var(--accent-gold);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-nav .nav-link::before {
+        transition: none;
+    }
 }
 
 /* Footer */
@@ -365,11 +417,28 @@ h6,
     letter-spacing: 0.08em;
 }
 
+/* Under the page title: two short rules with the six-helix mark between them */
 .page-title-underline {
-    width: 56px;
-    height: 4px;
+    position: relative;
+    width: 132px;
+    height: 18px;
+    margin: 14px auto 0;
+    background:
+        linear-gradient(var(--accent-gold), var(--accent-gold)) left center / 46px 2px no-repeat,
+        linear-gradient(var(--accent-gold), var(--accent-gold)) right center / 46px 2px no-repeat;
+}
+
+.page-title-underline::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    transform: translateX(-50%);
     background-color: var(--accent-gold);
-    margin: 15px auto 0;
+    -webkit-mask: var(--helix-mark) center / contain no-repeat;
+    mask: var(--helix-mark) center / contain no-repeat;
 }
 
 /* h2.section-title also beats Bootstrap's .h3 (some pages mark chapters as h2.h3), so every chapter
@@ -379,14 +448,27 @@ main h2.section-title {
     color: #e5edf5;
     font-size: clamp(2.16rem, calc(1.431rem + 0.972vw), 2.7rem);
     font-weight: 700;
-    border-left: 5px solid var(--accent-gold);
-    padding-left: 15px;
+    position: relative;
+    padding-left: 1.45em;
     margin-bottom: 3.25rem;
+}
+
+/* Team mark: cross-section of a six-helix DNA bundle (six helices in a ring), in place of a plain bar */
+.section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.16em;
+    width: 0.92em;
+    height: 0.92em;
+    background-color: var(--accent-gold);
+    -webkit-mask: var(--helix-mark) center / contain no-repeat;
+    mask: var(--helix-mark) center / contain no-repeat;
 }
 
 /* Subheadings & Section Subtitles */
 .section-subtitle {
-    color: var(--accent-blue);
+    color: var(--accent-gold);
     font-family: 'DotGothic16', monospace;
     -webkit-text-stroke: 0.6px currentColor;
     line-height: 1.35;
@@ -542,7 +624,7 @@ section[id],
 .sidebar-toc .nav-link.active {
     background-color: transparent;
     color: var(--accent-gold);
-    border-left-color: var(--accent-blue);
+    border-left-color: var(--accent-gold);
 }
 
 /* Content panels */
@@ -733,7 +815,7 @@ main.content-container,
    label       : gold capitals with a rule      18 / 16px   (.wet-label, .exp-label) */
 main .col-lg-10 .subsection > h3:first-child {
     padding-left: 14px;
-    border-left: 3px solid var(--accent-blue);
+    border-left: 3px solid var(--accent-gold);
     line-height: 1.35;
 }
 
@@ -742,7 +824,7 @@ main .wet-exp-title {
     font-size: 1.35rem;
     font-weight: 700;
     line-height: 1.4;
-    color: var(--accent-blue);
+    color: var(--accent-gold);
 }
 
 main .wet-subhead,
@@ -804,6 +886,15 @@ main .content-box.mb-4 {
     font-size: 0.75em;
     vertical-align: 0.1em;
     color: var(--accent-gold);
+}
+
+/* Short grouped lists (e.g. source files by model): a light frame instead of separate sub-headings */
+main .content-box.source-group {
+    padding: 28px 32px;
+}
+
+main .content-box.source-group.mb-4 {
+    margin-bottom: 1.5rem !important;
 }
 
 /* Two figures side by side: same frame height even when the images differ in aspect ratio */
@@ -2291,7 +2382,7 @@ main table caption strong {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent-gold);
+    color: var(--accent-blue);
 }
 
 @media (max-width: 767.98px) {
@@ -2715,9 +2806,11 @@ html[data-theme="light"] .navbar-nav .nav-link {
     color: #3c4d63 !important;
 }
 
-html[data-theme="light"] .navbar-nav .nav-link:hover,
+html[data-theme="light"] .navbar-nav .nav-link:hover {
+    color: var(--text-main) !important;
+}
+
 html[data-theme="light"] .navbar-nav .nav-link.active {
-    background-color: rgba(29, 129, 147, 0.08);
     color: var(--accent-gold) !important;
 }
 
@@ -2733,7 +2826,7 @@ html[data-theme="light"] main h6 {
 
 html[data-theme="light"] main .section-subtitle,
 html[data-theme="light"] .wet-exp-title {
-    color: var(--accent-blue);
+    color: var(--accent-gold);
 }
 
 html[data-theme="light"] .wet-subhead,
