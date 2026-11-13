@@ -3353,3 +3353,195 @@ html[data-theme="light"] .appendix-cta:focus-visible {
 html[data-theme="light"] .appendix-cta-icon {
     border-color: rgba(29, 129, 147, 0.45);
 }
+
+/* =========================================
+   Interactive 2D simulator (sim2d.js)
+   ========================================= */
+.content-box.sim-live,
+.content-box.sim-live:hover {
+    transform: none;
+}
+
+.sim-live {
+    padding: 28px;
+}
+
+.sim-live-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+}
+
+.sim-live-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sim-live-status {
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--text-muted);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.sim-live-status.is-event {
+    border-left-color: #00e5ff;
+    background-color: rgba(0, 229, 255, 0.08);
+}
+
+.sim-live-status.is-safe {
+    border-left-color: #ff5c82;
+    background-color: rgba(255, 51, 102, 0.08);
+}
+
+.sim-live-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sim-live-field {
+    display: block;
+    margin: 0;
+}
+
+.sim-live-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--text-main);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.sim-live-sub {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.sim-live output {
+    color: var(--accent-gold);
+    font-variant-numeric: tabular-nums;
+}
+
+.sim-live .form-select,
+.sim-live .form-control {
+    background-color: var(--surface-raised);
+    border-color: var(--border-color);
+    color: var(--text-main);
+}
+
+.sim-live .form-select:focus,
+.sim-live .form-control:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 0.15rem rgba(98, 197, 213, 0.25);
+}
+
+.sim-live .form-range {
+    accent-color: var(--accent-blue);
+}
+
+.sim-live-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.sim-live-inline {
+    flex: 1 1 5.5rem;
+    margin: 0;
+}
+
+.sim-live-btn {
+    border-radius: 0;
+    font-weight: 600;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.sim-live-btn-primary {
+    flex: 1 1 auto;
+    border: 1px solid var(--accent-blue);
+    background-color: var(--accent-blue);
+    color: var(--primary-blue);
+}
+
+.sim-live-btn-primary:hover,
+.sim-live-btn-primary:focus-visible {
+    border-color: var(--accent-gold);
+    background-color: var(--accent-gold);
+    color: var(--primary-blue);
+}
+
+.sim-live-btn-ghost {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-main);
+}
+
+.sim-live-btn-ghost:hover,
+.sim-live-btn-ghost:focus-visible {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.sim-live-actions .sim-live-btn {
+    padding: 0.5rem 1rem;
+}
+
+.sim-live-readout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.sim-live-readout dt {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.sim-live-readout dd {
+    margin: 0.15rem 0 0;
+    color: var(--text-main);
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.sim-live-meter {
+    height: 6px;
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.sim-live-meter span {
+    display: block;
+    width: 0;
+    height: 100%;
+    transition: width 0.15s linear;
+}
+
+@media (max-width: 575.98px) {
+    .sim-live {
+        padding: 16px;
+    }
+}
+
+html[data-theme="light"] .sim-live-btn-primary {
+    color: #ffffff;
+}
+
+html[data-theme="light"] .sim-live .form-select:focus,
+html[data-theme="light"] .sim-live .form-control:focus {
+    box-shadow: 0 0 0 0.15rem rgba(29, 129, 147, 0.2);
+}

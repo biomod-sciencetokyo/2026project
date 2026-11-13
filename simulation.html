@@ -7,7 +7,7 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-6">
+    <link rel="stylesheet" href="style.css?v=20261114-7">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -663,6 +663,113 @@
                                             </a>
 
                         </div>
+
+                        <!-- Interactive 2D simulator (JS port of cg2d_membrane_simulation.py) -->
+                        <div id="two-d-interactive" class="simulation-subblock">
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">
+                                Try It: Interactive 2D Simulation
+                            </h4>
+                            <p class="text-secondary mb-4">
+                                The same 2D coarse-grained model runs directly in your browser. Choose a vesicle
+                                radius, DNA Bundle bending rigidity, and linker rest length, then press
+                                <strong>Run</strong>. Membrane bonds are coloured by tension; the first bond whose
+                                tension exceeds the threshold (150 pN) is the model-defined local pore-formation
+                                event.
+                            </p>
+
+                            <div class="content-box sim-live" data-sim-root>
+                                <div class="row g-4">
+                                    <div class="col-12 col-lg-7">
+                                        <div class="sim-live-stage">
+                                            <canvas class="sim-live-canvas" role="img"
+                                                aria-label="Live 2D simulation of a DNA Bundle attaching to a vesicle membrane"></canvas>
+                                        </div>
+                                        <div class="sim-live-status mt-3" data-sim-out="status" aria-live="polite">Ready — press Run</div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-5">
+                                        <div class="sim-live-controls">
+                                            <label class="sim-live-field">
+                                                <span class="sim-live-label">Preset (Figures 2–3)</span>
+                                                <select class="form-select form-select-sm" data-sim="preset">
+                                                    <option value="">Custom</option>
+                                                    <option value="50,0.9,2.5" selected>R = 50 nm · high B · short linker</option>
+                                                    <option value="50,0.8,15">R = 50 nm · high B · long linker</option>
+                                                    <option value="50,0.1,2.5">R = 50 nm · low B · short linker</option>
+                                                    <option value="50,0.1,15">R = 50 nm · low B · long linker</option>
+                                                    <option value="200,0.8,2.5">R = 200 nm · high B · short linker</option>
+                                                    <option value="200,0.9,20">R = 200 nm · high B · long linker</option>
+                                                    <option value="200,0.1,2.5">R = 200 nm · low B · short linker</option>
+                                                    <option value="200,0.1,20">R = 200 nm · low B · long linker</option>
+                                                </select>
+                                            </label>
+
+                                            <label class="sim-live-field">
+                                                <span class="sim-live-label">Vesicle radius <i>R</i></span>
+                                                <select class="form-select form-select-sm" data-sim="R">
+                                                    <option value="50" selected>50 nm</option>
+                                                    <option value="100">100 nm</option>
+                                                    <option value="150">150 nm</option>
+                                                    <option value="200">200 nm</option>
+                                                    <option value="250">250 nm</option>
+                                                    <option value="300">300 nm</option>
+                                                </select>
+                                            </label>
+
+                                            <label class="sim-live-field">
+                                                <span class="sim-live-label">Bending rigidity
+                                                    <i>B</i><sub>DNA</sub> = <output data-sim-out="B"></output> pN·nm<sup>2</sup></span>
+                                                <input type="range" class="form-range" min="0.1" max="1.0" step="0.05" value="0.9"
+                                                    data-sim="alpha" aria-label="DNA Bundle bending rigidity">
+                                            </label>
+
+                                            <label class="sim-live-field">
+                                                <span class="sim-live-label">Linker rest length
+                                                    <i>l</i><sub>0</sub> = <output data-sim-out="l0"></output> nm</span>
+                                                <input type="range" class="form-range" min="2" max="20" step="0.5" value="2.5"
+                                                    data-sim="l0" aria-label="Linker rest length in nanometres">
+                                            </label>
+
+                                            <div class="sim-live-field sim-live-row">
+                                                <label class="sim-live-inline">
+                                                    <span class="sim-live-label">Seed</span>
+                                                    <input type="number" class="form-control form-control-sm" min="1" max="99999"
+                                                        value="1" data-sim="seed">
+                                                </label>
+                                                <button type="button" class="btn btn-sm sim-live-btn sim-live-btn-ghost" data-sim="shuffle"
+                                                    title="New random seed"><i class="fa-solid fa-shuffle" aria-hidden="true"></i> New seed</button>
+                                            </div>
+
+                                            <div class="sim-live-row sim-live-actions">
+                                                <button type="button" class="btn sim-live-btn sim-live-btn-primary" data-sim="run" aria-pressed="false">
+                                                    <i class="fa-solid fa-play" aria-hidden="true"></i> Run</button>
+                                                <button type="button" class="btn sim-live-btn sim-live-btn-ghost" data-sim="reset">
+                                                    <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Reset</button>
+                                            </div>
+
+                                            <dl class="sim-live-readout">
+                                                <div>
+                                                    <dt>Frame</dt>
+                                                    <dd data-sim-out="frame">0 / 100</dd>
+                                                </div>
+                                                <div>
+                                                    <dt>Max bond tension (pN)</dt>
+                                                    <dd data-sim-out="tension">0.0</dd>
+                                                </div>
+                                            </dl>
+                                            <div class="sim-live-meter" aria-hidden="true"><span data-sim-out="tension-bar"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-secondary small mt-3 mb-0">
+                                Each run lasts 100 frames (100 integration steps of Δt = 10<sup>−4</sup> per frame),
+                                the same window used for the heatmaps above.
+                                The browser uses its own random-number stream, so individual runs differ from the
+                                Python trajectories, but with noise disabled the JavaScript port reproduces the Python
+                                script to numerical precision. Try several seeds to see the event probability.
+                            </p>
+                        </div>
                     </div>
 
                     <!-- 1.2 3D Reduced Free-Energy Model -->
@@ -1060,6 +1167,7 @@
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
     <script src="main.js?v=20261113-17"></script>
+    <script src="sim2d.js?v=20261114-4"></script>
 </body>
 
 </html>
