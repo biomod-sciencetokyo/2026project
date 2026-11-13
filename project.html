@@ -32,6 +32,7 @@
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
+                    <a class="nav-link fw-bold" href="#overview">Overview</a>
                     <a class="nav-link fw-bold" href="#background">1. Background</a>
                     <a class="nav-link fw-bold" href="#problem">2. Problem</a>
                     <a class="nav-link fw-bold" href="#approach">3. Our Approach</a>
@@ -41,6 +42,15 @@
             </div>
 
             <div class="col-lg-10">
+                <section id="overview" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">Overview</h2>
+                    <p class="text-secondary mb-0">
+                        This project aims to develop a system that disrupts the lipid membrane of only the target
+                        EV, so that the molecular information inside each EV can be read, with its origin
+                        preserved, for disease diagnosis and biological analysis.
+                    </p>
+                </section>
+
                 <section id="background" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">1. Background</h2>
 
@@ -58,7 +68,7 @@
                             <p class="text-secondary mb-0">
                                 Cells engage in intercellular communication by encapsulating various biomolecules—such
                                 as RNA,
-                                DNA, proteins, and lipids—within these EVs and releasing them into the extracellular
+                                DNA, proteins, and polypeptides—within these EVs and releasing them into the extracellular
                                 space [<a href="#ref-1">1</a>].
                                 Consequently, EVs, which reflect the state of the secreting cell, give important
                                 molecular
@@ -75,19 +85,22 @@
                     </div>
 
                     <p class="text-secondary mb-3">
-                        However, when attempting to access the information inside these EVs using molecular robots, the
-                        lipid bilayer acts as a physical barrier. To analyze the information inside EVs or apply it to
-                        therapy, it is necessary to disrupt this lipid bilayer and gain direct access to the molecules
-                        within.
+                        To analyze the information inside EVs, the lipid bilayer, which acts as a physical barrier,
+                        must be disrupted. What matters, however, is not only <em>which molecules</em> are inside EVs
+                        but also <em>which EV</em> carries them. We therefore need a way to disrupt the membrane of
+                        only the target EV, without affecting other vesicles.
                     </p>
                     <p class="text-secondary mb-4">
-                        Furthermore, technologies that disrupt lipid membranes are of significant importance in
-                        applications such as drug delivery systems (DDS) and the direct destruction of cancer cells.
+                        Such technologies are also important for drug delivery systems (DDS) and the direct
+                        destruction of cancer cells, which we regard as future extensions of this work.
                     </p>
                 </section>
 
                 <section id="problem" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">2. Challenges of Current Technology</h2>
+                    <p class="text-secondary mb-4">
+                        Existing membrane-disruption methods do not meet this requirement, for two reasons.
+                    </p>
                     <h3 class="h5 fw-bold mb-3 section-subtitle">Bulk assay <i class="fa-solid fa-arrow-right-long heading-arrow" aria-hidden="true"></i><span class="visually-hidden">leads to</span> Loss of Origin
                         Information</h3>
                     <p class="text-secondary mb-4">
@@ -103,14 +116,14 @@
                         example, a method has been reported in which DNA nanobarrels are prepared in advance and
                         clustered on a membrane surface to damage the lipid bilayer [<a href="#ref-3">3</a>]. However, because these
                         pre-assembled structures are “always active,” they indiscriminately attack membranes, leading to
-                        off-target effects.
+                        off-target effects. A method that is active only near the target EV is therefore required.
                     </p>
                 </section>
 
                 <section id="approach" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">3. Our Approach</h2>
                     <p class="text-secondary mb-3">
-                        We propose <span class="concept-highlight">lipid membrane disruption using in situ
+                        To meet this requirement, we propose <span class="concept-highlight">lipid membrane disruption using in situ
                             assembled DNA bundles by Bundled HCR</span>.
                     </p>
                     <p class="text-secondary mb-3">
@@ -213,8 +226,8 @@
                         generates a long, thick DNA bundle.
                     </p>
                     <p class="text-secondary mb-4">
-                        The key components of Bundled HCR are Double-Hairpin DNAs and a seed that serves as the
-                        foundation for the bundle.
+                        The key components of Bundled HCR are a seed, which serves as the foundation of the DNA
+                        Bundle, and six types of Double-Hairpin DNAs (H1–H6).
                     </p>
                     <div class="row g-4 mb-4 w-75 mx-auto">
                         <div class="col-12 col-md-6">
@@ -229,10 +242,9 @@
                         </div>
                     </div>
                     <p class="text-secondary mb-4">
-                        Only in the presence of the Trigger DNA are the reactive sequences of the seed exposed,
-                        switching it to an active state. When this active seed interacts with the Double-Hairpin DNAs,
-                        they are sequentially opened and assembled via toehold-mediated strand displacement. As a
-                        result, multiple dsDNA strands elongate together as a bundle.
+                        The seed consists of six strands and its reactive sequences are masked by a Blocker strand.
+                        Only in the presence of the Trigger DNA is the Blocker displaced, exposing the reactive
+                        sequences and switching the seed to an active state.
                     </p>
                     <p class="text-secondary mb-4">
                         The following video demonstrates the formation of a DNA bundle composed of 6 dsDNA strands via
@@ -247,8 +259,14 @@
                             style="object-fit: contain; width: 100%; height: 100%;"></video>
                     </div>
                     <p class="text-secondary mb-4">
+                        In this video, the active seed opens the Double-Hairpin DNAs by toehold-mediated strand
+                        displacement in a fixed order: H1, H2, and H3 open sequentially, followed by H4, H5, and H6,
+                        and the cycle then returns to H1, H2, and H3. Through this repeated cycle, multiple dsDNA
+                        strands elongate together as a bundle.
+                    </p>
+                    <p class="text-secondary mb-4">
                         In our proposed system, these Double-Hairpin DNAs are modified with cholesterols. Therefore, the
-                        resulting DNA bundle anchors directly to the lipid membrane.
+                        resulting DNA Bundle anchors directly to the lipid membrane.
                     </p>
                 </section>
 
@@ -262,7 +280,7 @@
                                 <ul class="list-unstyled mb-0 text-secondary">
                                     <li class="mb-3 d-flex align-items-start">
                                         <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>Identified practical starting ranges for vesicle size, DNA Bundle bending rigidity, and linker length.</span>
+                                        <span>Identified favourable combinations of vesicle size, DNA Bundle bending rigidity, and linker length for membrane pore formation.</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
                                         <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
@@ -289,19 +307,19 @@
                                 <ul class="list-unstyled mb-0 text-secondary">
                                     <li class="mb-3 d-flex align-items-start">
                                         <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>text</span>
+                                        <span>Seed Formation by Annealing</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
                                         <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>text</span>
+                                        <span>DNA Bundle (6-Helix DNA Bundle) Formation by Bundled HCR</span>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
                                         <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>text</span>
+                                        <span>Cholesterol-Mediated Anchoring of the Highly Rigid 12-Helix DNA Bundle to Lipid Membranes (GUVs)</span>
                                     </li>
                                     <li class="d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>text</span>
+                                        <span class="fw-bold me-3 text-secondary">&#9651;</span>
+                                        <span class="text-secondary">Lipid Membrane Disruption</span>
                                     </li>
                                 </ul>
                             </div>
@@ -312,8 +330,8 @@
                         <h3 class="h5 fw-bold mb-3 section-subtitle">A physical membrane disruption
                             system that becomes active only near the target EV.</h3>
                         <p class="text-secondary mb-0">
-                            Achieving this goal will enable access to the molecules inside specific EVs without losing
-                            their origin information, expanding the frontiers of disease diagnosis and analysis.
+                            Achieving this goal will enable the molecular information inside target EVs to be read
+                            with their origin preserved, advancing disease diagnosis and biological analysis.
                         </p>
                     </div>
                 </section>
