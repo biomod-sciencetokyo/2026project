@@ -2189,9 +2189,9 @@ main table caption strong {
     align-items: center;
     gap: 12px;
     margin: 2.75rem 0 1.25rem;
-    font-size: 0.78rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent-gold);
 }
