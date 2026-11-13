@@ -1013,6 +1013,21 @@ main .content-box.source-group.mb-4 {
     }
 }
 
+/* HOME abstract: "Results" / "Conclusion" / "Future" lead-ins so judges find them at a glance */
+.home-step-result {
+    text-indent: 0 !important;
+}
+
+.home-result-label {
+    display: inline-block;
+    margin-right: 0.5em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+}
+
 /* Two figures side by side: same frame height even when the images differ in aspect ratio */
 .figure-pair img {
     aspect-ratio: 3 / 2;

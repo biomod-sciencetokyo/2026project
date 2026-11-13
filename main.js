@@ -29,7 +29,7 @@ const setupThemeToggle = (button) => {
 document.addEventListener('DOMContentLoaded', () => {
 
     // ヘッダーの読み込み
-    fetch('header.html?v=20261113-1')
+    fetch('header.html?v=20261113-2')
         .then(response => response.text())
         .then(data => {
             const headerPlaceholder = document.getElementById('header-placeholder');
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     // フッターの読み込み
-    fetch('footer.html?v=20261113-1')
+    fetch('footer.html?v=20261113-2')
         .then(response => response.text())
         .then(data => {
             const footerPlaceholder = document.getElementById('footer-placeholder');
