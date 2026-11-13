@@ -253,3 +253,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// 目次の現在地表示と追従
+// Bootstrap のスクロールスパイは、画面の何倍もある長いセクションや入れ子の目次で現在地を見失うため、
+// 「見出しが画面上部を通過した最後の項目」を現在地とする単純な方式で自前に判定する。
+// 目次が画面より長い時は、現在地の項目が目次の表示範囲に入るよう目次側もスクロールさせる。
+(function () {
+    const toc = document.querySelector('.sidebar-toc');
+    if (!toc) return;
+    const items = [...toc.querySelectorAll('a.nav-link[href^="#"]')]
+        .map(link => ({ link, target: document.getElementById(decodeURIComponent(link.hash.slice(1))) }))
+        .filter(item => item.target);
+    if (!items.length) return;
+
+    const ACTIVE_LINE = 140; // 固定ヘッダーの少し下
+    let current = null;
+
+    function keepInView(link) {
+        if (toc.scrollHeight <= toc.clientHeight) return;
+        const tocRect = toc.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        if (linkRect.top < tocRect.top + 40 || linkRect.bottom > tocRect.bottom - 40) {
+            toc.scrollTo({
+                top: toc.scrollTop + (linkRect.top - tocRect.top) - toc.clientHeight / 3,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    function update() {
+        let next = items[0];
+        const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        for (const item of items) {
+            const top = item.target.getBoundingClientRect().top;
+            if (top <= ACTIVE_LINE || (atBottom && top < window.innerHeight)) next = item;
+        }
+        if (next === current) return;
+        current = next;
+        toc.querySelectorAll('.nav-link.active').forEach(el => el.classList.remove('active'));
+        next.link.classList.add('active');
+        // 入れ子の目次では、親の項目（1. → 1.1 → 1.1.1）もすべて現在地として光らせる
+        let subnav = next.link.closest('.sidebar-toc-subnav');
+        while (subnav) {
+            const parent = subnav.previousElementSibling;
+            if (parent && parent.classList.contains('nav-link')) parent.classList.add('active');
+            subnav = subnav.parentElement.closest('.sidebar-toc-subnav');
+        }
+        keepInView(next.link);
+    }
+
+    let ticking = false;
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; update(); });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', () => {
+        // Bootstrap 側のスクロールスパイ（data-bs-spy で自動起動）は止めて、こちらの判定に一本化する
+        const spyRoot = document.querySelector('[data-bs-spy="scroll"]');
+        if (spyRoot && window.bootstrap && bootstrap.ScrollSpy) {
+            bootstrap.ScrollSpy.getInstance(spyRoot)?.dispose();
+        }
+        current = null;
+        update();
+    });
+    update();
+})();

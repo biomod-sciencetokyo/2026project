@@ -233,6 +233,7 @@ main p[role="math"],
 main p[role="math"]+p,
 main .references-section p,
 main .team-member-card p,
+main p.small,
 main p.fw-bold {
     text-indent: 0;
 }
@@ -458,6 +459,14 @@ section[id],
     border-radius: 0 !important;
     box-shadow: none !important;
     padding-left: 8px !important;
+    /* Long tables of contents scroll on their own instead of running off the bottom of the window */
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex-wrap: nowrap;
+    padding-bottom: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
 }
 
 .sidebar-toc .nav-link {
@@ -717,6 +726,13 @@ main p.mb-2 {
     margin-bottom: 1.1rem !important;
 }
 
+/* Two figures side by side: same frame height even when the images differ in aspect ratio */
+.figure-pair img {
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
 /* Tables: room around and inside cells */
 main .table-responsive {
     margin-top: 1.75rem;
@@ -725,6 +741,11 @@ main .table-responsive {
 
 main table caption {
     padding-bottom: 0.75rem;
+}
+
+/* A table followed directly by its footnote keeps the note close */
+main .table-responsive:has(+ p.small) {
+    margin-bottom: 0.75rem;
 }
 
 main .table th,
@@ -1719,8 +1740,9 @@ main .table td {
     text-align: center;
 }
 
-/* Appendix equations: set apart from the prose, slightly larger, high contrast */
-.appendix-page .math-display {
+/* Appendix / Simulation equations: set apart from the prose, slightly larger, high contrast */
+.appendix-page .math-display,
+.simulation-page .math-display {
     margin: 1.75rem 0 2.1rem;
     padding: 0.6rem 1.5rem;
     border-left: 3px solid var(--accent-blue);
@@ -1729,17 +1751,20 @@ main .table td {
     color: var(--text-main);
 }
 
-.appendix-page .math-display mjx-container[display="true"] {
+.appendix-page .math-display mjx-container[display="true"],
+.simulation-page .math-display mjx-container[display="true"] {
     margin: 0.65em 0 !important;
     font-size: 112% !important;
 }
 
 /* Inline math in muted prose: full-contrast so symbols stay legible */
-.appendix-page mjx-container:not([display="true"]) {
+.appendix-page mjx-container:not([display="true"]),
+.simulation-page mjx-container:not([display="true"]) {
     color: var(--text-main);
 }
 
-html[data-theme="light"] .appendix-page .math-display {
+html[data-theme="light"] .appendix-page .math-display,
+html[data-theme="light"] .simulation-page .math-display {
     background-color: rgba(29, 129, 147, 0.07);
     border-left-color: #1d8193;
 }
@@ -2142,13 +2167,13 @@ html[data-theme="light"] .appendix-page .math-display {
     white-space: nowrap;
 }
 
-.appendix-page table caption {
+main table caption {
     font-size: 0.92rem;
     line-height: 1.6;
     color: var(--text-muted) !important;
 }
 
-.appendix-page table caption strong {
+main table caption strong {
     color: var(--accent-blue);
     font-weight: 600;
     white-space: nowrap;
@@ -2251,8 +2276,18 @@ html[data-theme="light"] .appendix-page .math-display {
     background-color: var(--accent-gold);
 }
 
-.wet-protocol h3.section-subtitle {
+.wet-protocol h3,
+.dry-lab h3 {
     margin-top: 1rem;
+}
+
+/* Dry Lab: each model (2D, 3D, source code, extension) is one block, like a wet experiment */
+.dry-model {
+    margin-bottom: 5rem;
+}
+
+.dry-model:last-child {
+    margin-bottom: 0;
 }
 
 /* Experiment titles: readable sans, ID shown as a small tag */
@@ -2307,12 +2342,12 @@ html[data-theme="light"] .appendix-page .math-display {
 }
 
 /* Materials block sits directly under the experiment heading: no separator */
-.wet-protocol h3.section-subtitle + .simulation-subblock {
+.wet-protocol h3 + .simulation-subblock {
     padding-top: 0;
     border-top: none;
 }
 
-.wet-protocol h3.section-subtitle + .simulation-subblock::before {
+.wet-protocol h3 + .simulation-subblock::before {
     content: none;
 }
 
@@ -2412,6 +2447,12 @@ main .wet-table td {
 .wet-table .wet-total td {
     border-top: 1px solid rgba(98, 197, 213, 0.45);
     font-weight: 600;
+}
+
+/* Same table style for tables whose cells hold sentences (e.g. parameter/provenance tables): let them wrap */
+.wet-table-prose tbody td {
+    white-space: normal;
+    min-width: 6.5rem;
 }
 
 .wet-table td.font-monospace {
