@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stage = document.getElementById('princess-stage');
     if (!stage) return;
     const actor = stage.querySelector('.princess-actor');
-    const react = stage.querySelector('.princess-react');
+    let react = stage.querySelector('.princess-react'); // 再生のたびに新しい <img> と差し替える
     const say = stage.querySelector('.princess-say');
     const heartsEl = document.getElementById('princess-hearts');
 
@@ -522,7 +522,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const COMBO_GAP = 700;  // この間隔以内のタップを連打とみなす
     const COMBO_COUNT = 5;
 
-    Object.values(poses).forEach(p => { new Image().src = `img/mascot/${p.gif}`; }); // 先読み
+    // GIF は最初に 1 回だけ読み込んでメモリに持っておく（再生のたびにダウンロードし直さない）
+    const gifBlobs = {};
+    Object.values(poses).forEach(p => {
+        fetch(`img/mascot/${p.gif}`)
+            .then(r => (r.ok ? r.blob() : Promise.reject()))
+            .then(b => { gifBlobs[p.gif] = b; })
+            .catch(() => { new Image().src = `img/mascot/${p.gif}`; });
+    });
+    // 毎回新しい URL にすると GIF が 1 コマ目から再生される（メモリ上の blob なので通信はしない）
+    const freshGifUrl = gif => (gifBlobs[gif]
+        ? URL.createObjectURL(gifBlobs[gif])
+        : `img/mascot/${gif}?play=${Date.now()}`);
+    const releaseUrl = img => {
+        if (img.src.startsWith('blob:')) URL.revokeObjectURL(img.src);
+    };
+    let playToken = 0; // 連打で古い GIF の読み込みが後から終わっても、表示を巻き戻さないため
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const canHover = window.matchMedia('(hover: hover)');
@@ -592,17 +607,31 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(timer);
         clearTimeout(fidgetTimer);
         mode = nextMode;
-        react.src = `img/mascot/${p.gif}?play=${Date.now()}`;
-        react.classList.toggle('is-small-canvas', !!p.small);
-        react.hidden = false;
-        stage.classList.add('is-reacting');
-        if (line) {
-            say.textContent = line;
-            say.classList.add('is-shown');
-        } else {
-            say.classList.remove('is-shown');
-        }
-        timer = ms === null ? null : setTimeout(rest, ms || p.ms);
+        const token = ++playToken;
+
+        // 新しい GIF が表示できる状態になってから、画像と大きさの補正を同時に差し替える
+        // （先に補正だけ切り替わると、前の GIF が一瞬大きく／小さく映ってしまう）
+        const img = new Image();
+        img.className = `princess-react${p.small ? ' is-small-canvas' : ''}`;
+        img.alt = '';
+        img.dataset.pose = key;
+        const show = () => {
+            if (token !== playToken) { releaseUrl(img); return; }
+            releaseUrl(react);
+            react.replaceWith(img);
+            react = img;
+            stage.classList.add('is-reacting');
+            if (line) {
+                say.textContent = line;
+                say.classList.add('is-shown');
+            } else {
+                say.classList.remove('is-shown');
+            }
+            timer = ms === null ? null : setTimeout(rest, ms || p.ms);
+        };
+        img.onload = show;
+        img.onerror = show;
+        img.src = freshGifUrl(p.gif);
     };
 
     const scheduleFidget = () => {
@@ -624,8 +653,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         mode = 'rest';
+        playToken += 1; // 読み込み途中の GIF があっても出さない
         stage.classList.remove('is-reacting');
         react.hidden = true;
+        releaseUrl(react);
         react.removeAttribute('src');
         say.classList.remove('is-shown');
         scheduleFidget();
