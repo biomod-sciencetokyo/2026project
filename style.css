@@ -4376,22 +4376,19 @@ html[data-theme="light"] body.princess-page {
     }
 }
 
-/* everyone's total taps (under "Royal Affection") */
+/* everyone's total taps (under "Your hearts") */
 .royal-total {
-    margin: 0.3rem 0 0;
-    color: #f3d9ec;
-    font-size: 0.95rem;
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(246, 210, 122, 0.35);
 }
 
 .royal-total .fa-crown {
-    margin-right: 0.3rem;
     color: var(--royal-gold);
+    filter: drop-shadow(0 0 6px rgba(246, 210, 122, 0.7));
 }
 
-.royal-total strong {
+.royal-total .royal-affection-label strong {
     color: var(--royal-gold);
-    font-family: 'DotGothic16', monospace;
-    font-size: 1.15rem;
-    font-weight: 400;
     font-variant-numeric: tabular-nums;
 }

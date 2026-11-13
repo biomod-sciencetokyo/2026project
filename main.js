@@ -549,6 +549,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     updateMeter();
 
+    // 別タブで押した分も、このタブの表示に反映する
+    window.addEventListener('storage', event => {
+        if (event.key !== 'princessHearts') return;
+        const v = parseInt(event.newValue, 10) || 0;
+        if (v > hearts) {
+            hearts = v;
+            updateMeter();
+        }
+    });
+
     // 紙吹雪（5 連打・節目のとき）
     const confetti = () => {
         if (reduceMotion.matches) return;
@@ -649,6 +659,8 @@ document.addEventListener('DOMContentLoaded', () => {
         combo = now - lastTapAt < COMBO_GAP ? combo + 1 : 1;
         lastTapAt = now;
 
+        // 別タブで増えた分を上書きしないよう、保存済みの最新値に 1 を足す
+        try { hearts = Math.max(hearts, parseInt(localStorage.getItem('princessHearts'), 10) || 0); } catch (e) { /* ignore */ }
         hearts += 1;
         updateMeter();
         stage.dispatchEvent(new CustomEvent('princess-heart')); // 寄せ書き帳が「この訪問のハート数」を数える
@@ -726,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pending = 0;         // まだ送っていないタップ
     let inFlight = 0;        // 送信中のタップ
     let flushTimer = null;
+    let tapSeq = 0;          // 送信が終わるたびに増える（古い読み込み結果で合計を戻さないため）
 
     const showTotal = () => {
         if (serverTotal === null) return;
@@ -754,6 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(() => { pending += count; }) // 失敗したら次の送信に回す
             .finally(() => {
                 inFlight = 0;
+                tapSeq += 1;
                 showTotal();
                 if (pending) flushTimer = setTimeout(flush, 3000);
             });
@@ -795,7 +809,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${d.getFullYear()}/${pad(d.getMonth() + 1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
     };
 
+    let firstRender = true;
     const render = entries => {
+        // いちばん下（最新）を見ていたときだけ、更新後も最新までスクロールする
+        const atBottom = firstRender || list.scrollHeight - list.scrollTop - list.clientHeight < 40;
+        const keepScroll = list.scrollTop;
+        firstRender = false;
         list.replaceChildren();
         if (!entries.length) {
             showEmpty('No signatures yet. Be the first!');
@@ -826,23 +845,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             list.appendChild(li);
         });
-        list.scrollTop = list.scrollHeight; // いちばん新しい記録を見せる
+        list.scrollTop = atBottom ? list.scrollHeight : keepScroll;
     };
 
-    const load = () => fetch(endpoint)
+    const load = () => {
+        const seqAtStart = tapSeq;
+        return fetch(endpoint)
         .then(r => r.json())
         .then(data => {
             if (!data || !data.ok || !Array.isArray(data.entries)) throw new Error('bad response');
-            if (typeof data.total === 'number' && !inFlight) {
+            if (typeof data.total === 'number' && !inFlight && seqAtStart === tapSeq) {
                 serverTotal = data.total;
                 showTotal();
             }
             render(data.entries);
         })
         .catch(() => {
-            list.replaceChildren();
+            if (list.children.length) return; // 定期更新の失敗なら、今の表示をそのまま残す
             showEmpty('Could not load the guestbook. Please try again later.');
         });
+    };
 
     form.addEventListener('submit', event => {
         event.preventDefault();
@@ -881,4 +903,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     load();
+    // 開いている間は 30 秒ごとに読み直す（他の人のハート・サインを反映。タブが裏にあるときは休む）
+    setInterval(() => {
+        if (document.visibilityState === 'visible') load();
+    }, 30000);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') load();
+    });
 })();

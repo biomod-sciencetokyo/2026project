@@ -9,7 +9,7 @@
     <title>miRNA PRINCESS | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-20">
+    <link rel="stylesheet" href="style.css?v=20261114-21">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -57,23 +57,28 @@
                 <div class="stage-valance" aria-hidden="true"></div>
             </div>
 
-            <!-- 好感度メーター（次の節目までのゲージ） -->
+            <!-- あなたのハート（このブラウザでの累計）と、次の節目までのゲージ -->
             <div class="royal-affection">
                 <div class="royal-affection-label">
                     <i class="fa-solid fa-heart" aria-hidden="true"></i>
-                    <span>Royal Affection</span>
+                    <span>Your hearts</span>
                     <strong id="princess-hearts">0</strong>
                 </div>
-                <!-- 全員の合計タップ数（寄せ書き帳と同じ保存先。保存先が未設定なら表示しない） -->
-                <p class="royal-total" id="princess-total" hidden>
-                    <i class="fa-solid fa-crown" aria-hidden="true"></i>
-                    Everyone&rsquo;s hearts: <strong id="princess-total-count">0</strong>
-                </p>
                 <div class="royal-affection-bar" role="progressbar" aria-label="Hearts until the next surprise"
                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <span id="princess-meter"></span>
                 </div>
                 <p class="royal-affection-next" id="princess-next">Next surprise at 10 hearts</p>
+
+                <!-- みんなのハート（全員の合計。寄せ書き帳と同じ保存先。保存先が未設定・旧版なら表示しない） -->
+                <div class="royal-total" id="princess-total" hidden>
+                    <div class="royal-affection-label">
+                        <i class="fa-solid fa-crown" aria-hidden="true"></i>
+                        <span>Everyone&rsquo;s hearts</span>
+                        <strong id="princess-total-count">0</strong>
+                    </div>
+                    <p class="royal-affection-next">Every tap from every visitor, all together</p>
+                </div>
             </div>
             <p class="royal-hint">Psst&hellip; try tapping her really fast.</p>
         </section>
@@ -133,7 +138,7 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261113-24"></script>
+    <script src="main.js?v=20261113-25"></script>
 </body>
 
 </html>
