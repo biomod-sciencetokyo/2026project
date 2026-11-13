@@ -258,9 +258,46 @@ document.addEventListener('DOMContentLoaded', () => {
 // Bootstrap のスクロールスパイは、画面の何倍もある長いセクションや入れ子の目次で現在地を見失うため、
 // 「見出しが画面上部を通過した最後の項目」を現在地とする単純な方式で自前に判定する。
 // 目次が画面より長い時は、現在地の項目が目次の表示範囲に入るよう目次側もスクロールさせる。
+// 章と 2 桁目（1.1, 2.1 …）は常に表示。その下の 3 段目の項目は本文の見出しから自動で作り、
+// 今読んでいる 2 桁目・押した 2 桁目の分だけ開く。
 (function () {
     const toc = document.querySelector('.sidebar-toc');
     if (!toc) return;
+
+    // 3 段目の目次項目を、各 2 桁目の範囲にある見出しから生成する
+    const slug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
+    const usedIds = new Set();
+    toc.querySelectorAll(':scope > .sidebar-toc-subnav > a.nav-link[href^="#"]').forEach(link => {
+        const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+        if (!target) return;
+        // 目次の行き先が見出しそのものの場合は、その見出しを含むまとまり全体を範囲にする
+        const scope = target.matches('h2, h3') ? target.parentElement : target;
+        const headings = [...scope.querySelectorAll('h4.section-subtitle, .wet-exp-title')]
+            .filter(h => !h.closest('.content-box, figure, table'));
+        if (!headings.length) return;
+        const sub = document.createElement('div');
+        sub.className = 'nav flex-column sidebar-toc-subnav toc-sub3';
+        headings.forEach(h => {
+            const tag = h.querySelector('.wet-exp-id');
+            const label = (tag ? tag.textContent : h.textContent).replace(/\s+/g, ' ').trim();
+            const block = h.parentElement.closest('[id]');
+            let id = h.id;
+            if (!id && block && block !== target && block !== scope && !usedIds.has(block.id) && block.firstElementChild === h) id = block.id;
+            if (!id) {
+                id = 'toc-' + slug(label);
+                let n = 2;
+                while (document.getElementById(id)) id = 'toc-' + slug(label) + '-' + n++;
+                h.id = id;
+            }
+            usedIds.add(id);
+            const a = document.createElement('a');
+            a.className = 'nav-link';
+            a.href = '#' + id;
+            a.textContent = label;
+            sub.appendChild(a);
+        });
+        link.after(sub);
+    });
     const items = [...toc.querySelectorAll('a.nav-link[href^="#"]')]
         .map(link => ({ link, target: document.getElementById(decodeURIComponent(link.hash.slice(1))) }))
         .filter(item => item.target);
@@ -268,6 +305,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ACTIVE_LINE = 140; // 固定ヘッダーの少し下
     let current = null;
+
+    // 開閉するのは 3 段目のリストだけ
+    const groups = [...toc.querySelectorAll('.toc-sub3')];
+    if (groups.length) toc.classList.add('toc-collapsible');
+    let lockUntil = 0; // 項目を押した直後のスクロール中は、通過した章を開かない
+
+    function groupFor(link) {
+        const inside = groups.find(g => g.contains(link));
+        if (inside) return inside;
+        const next = link.nextElementSibling;
+        return next && groups.includes(next) ? next : null;
+    }
+
+    function openGroup(group) {
+        groups.forEach(g => {
+            const open = g === group;
+            g.classList.toggle('is-open', open);
+            const parent = g.previousElementSibling;
+            if (parent) parent.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+
+    toc.addEventListener('click', (event) => {
+        const link = event.target.closest('a.nav-link');
+        if (!link || !groups.length) return;
+        const group = groupFor(link);
+        if (group) {
+            openGroup(group);
+            lockUntil = Date.now() + 1200;
+        }
+    });
 
     function keepInView(link) {
         if (toc.scrollHeight <= toc.clientHeight) return;
@@ -299,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (parent && parent.classList.contains('nav-link')) parent.classList.add('active');
             subnav = subnav.parentElement.closest('.sidebar-toc-subnav');
         }
+        if (groups.length && Date.now() >= lockUntil) openGroup(groupFor(next.link));
         keepInView(next.link);
     }
 
@@ -311,12 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+    // Bootstrap のスクロールスパイは window の load 時に data-bs-spy を見て自動起動する。起動後に止めても
+    // 目次クリック時の処理が残ってエラーになるため、起動前に属性を外してこちらの判定に一本化する
+    // （レイアウトの CSS は :has(.sidebar-toc) でも当たるので影響しない）
+    document.querySelectorAll('[data-bs-spy="scroll"]').forEach(el => el.removeAttribute('data-bs-spy'));
     window.addEventListener('load', () => {
-        // Bootstrap 側のスクロールスパイ（data-bs-spy で自動起動）は止めて、こちらの判定に一本化する
-        const spyRoot = document.querySelector('[data-bs-spy="scroll"]');
-        if (spyRoot && window.bootstrap && bootstrap.ScrollSpy) {
-            bootstrap.ScrollSpy.getInstance(spyRoot)?.dispose();
-        }
         current = null;
         update();
     });

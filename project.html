@@ -7,7 +7,7 @@
     <title>PROJECT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261113-37">
+    <link rel="stylesheet" href="style.css?v=20261113-44">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -53,13 +53,13 @@
                                 vesicles known as extracellular vesicles (EVs). EVs are present in all bodily fluids,
                                 such as
                                 blood and saliva. Among EVs, exosomes—which originate from endosomes—have a diameter of
-                                approximately 40 to 160 nanometers (averaging about 100 nanometers) [1].
+                                approximately 40 to 160 nanometers (averaging about 100 nanometers) [<a href="#ref-1">1</a>].
                             </p>
                             <p class="text-secondary mb-0">
                                 Cells engage in intercellular communication by encapsulating various biomolecules—such
                                 as RNA,
                                 DNA, proteins, and lipids—within these EVs and releasing them into the extracellular
-                                space [1].
+                                space [<a href="#ref-1">1</a>].
                                 Consequently, EVs, which reflect the state of the secreting cell, give important
                                 molecular
                                 information and are attracting attention for their potential applications in disease
@@ -88,20 +88,20 @@
 
                 <section id="problem" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">2. Challenges of Current Technology</h2>
-                    <h3 class="h5 fw-bold mb-3 section-subtitle">Bulk assay ➡️ Loss of Origin
+                    <h3 class="h5 fw-bold mb-3 section-subtitle">Bulk assay <i class="fa-solid fa-arrow-right-long heading-arrow" aria-hidden="true"></i><span class="visually-hidden">leads to</span> Loss of Origin
                         Information</h3>
                     <p class="text-secondary mb-4">
                         Bulk assays, such as the chemical dissolution of membranes using surfactants, have often been
                         employed. However, because this method destroys all vesicles simultaneously, critical
-                        information—which molecules were contained in which EVs—is lost[2]. Furthermore, surfactants may
+                        information—which molecules were contained in which EVs—is lost [<a href="#ref-2">2</a>]. Furthermore, surfactants may
                         damage the molecules inside the EVs.
                     </p>
-                    <h3 class="h5 fw-bold mb-3 section-subtitle">Pre-assembled DNA ➡️ “Always Active”
+                    <h3 class="h5 fw-bold mb-3 section-subtitle">Pre-assembled DNA <i class="fa-solid fa-arrow-right-long heading-arrow" aria-hidden="true"></i><span class="visually-hidden">leads to</span> “Always Active”
                         (Off-target Effects)</h3>
                     <p class="text-secondary mb-4">
                         Recent DNA nanotechnology approaches attempt to disrupt membranes using physical force. For
                         example, a method has been reported in which DNA nanobarrels are prepared in advance and
-                        clustered on a membrane surface to damage the lipid bilayer [3]. However, because these
+                        clustered on a membrane surface to damage the lipid bilayer [<a href="#ref-3">3</a>]. However, because these
                         pre-assembled structures are “always active,” they indiscriminately attack membranes, leading to
                         off-target effects.
                     </p>
@@ -208,7 +208,7 @@
                     <p class="text-secondary mb-3">
                         Conventional HCR is an enzyme-free cascade reaction driven solely by DNA hybridization.
                         Initiated by a Trigger DNA, two types of hairpin DNAs sequentially open and hybridize via
-                        toehold-mediated strand displacement to form a long DNA polymer[4].
+                        toehold-mediated strand displacement to form a long DNA polymer [<a href="#ref-4">4</a>].
                         While conventional HCR yields a long, single double-stranded DNA (dsDNA), our Bundled HCR
                         generates a long, thick DNA bundle.
                     </p>
@@ -312,19 +312,15 @@
                         </p>
                     </div>
                 </section>
-                <div class="references-section mt-5 pt-4 border-top border-secondary" style="opacity: 0.8;">
-                    <div class="text-start" style="font-size: 0.85rem; color: #d0d0d0;">
-                        <p class="mb-1">[1] Kalluri, R., &amp; LeBleu, V. S. (2020). "The biology, function, and
-                            biomedical applications of exosomes." Science, 367(6478), eaau6977.</p>
-                        <p class="mb-1">[2] Shao, H., et al. (2018). "New Technologies for Analysis of Extracellular
-                            Vesicles." Chemical Reviews, 118(4), 1917-1950.</p>
-                        <p class="mb-1">[3] Bennett, M., et al. (2024). "DNA Nanobarrel Poration of Liposomes and
-                            Extracellular Vesicles." Small, 20, 2207585.</p>
-                        <p class="mb-0">[4] Dirks, R. M., &amp; Pierce, N. A. (2004). "Triggered amplification by
-                            hybridization chain reaction." Proceedings of the National Academy of Sciences, 101(43),
-                            15275-15278.</p>
+                <section id="references" class="references-section">
+                    <h2 class="section-title">References</h2>
+                    <div class="references-list">
+                        <p id="ref-1">[1] Kalluri, R. &amp; LeBleu, V. S. The biology, function, and biomedical applications of exosomes. <i>Science</i> <b>367</b>, eaau6977 (2020). <a class="ref-doi" href="https://doi.org/10.1126/science.aau6977">DOI</a></p>
+                        <p id="ref-2">[2] Shao, H. et al. New Technologies for Analysis of Extracellular Vesicles. <i>Chem. Rev.</i> <b>118</b>, 1917–1950 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.chemrev.7b00534">DOI</a></p>
+                        <p id="ref-3">[3] Bennett, I. D., Burns, J. R., Ryadnov, M. G., Howorka, S. &amp; Pyne, A. L. B. Lipidated DNA Nanostructures Target and Rupture Bacterial Membranes. <i>Small</i> <b>20</b>, 2207585 (2024). <a class="ref-doi" href="https://doi.org/10.1002/smll.202207585">DOI</a></p>
+                        <p id="ref-4">[4] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     </main>
@@ -332,7 +328,7 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261113-4"></script>
+    <script src="main.js?v=20261113-8"></script>
 </body>
 
 </html>

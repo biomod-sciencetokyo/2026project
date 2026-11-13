@@ -372,7 +372,10 @@ h6,
     margin: 15px auto 0;
 }
 
-.section-title {
+/* h2.section-title also beats Bootstrap's .h3 (some pages mark chapters as h2.h3), so every chapter
+   heading has the same size */
+.section-title,
+main h2.section-title {
     color: #e5edf5;
     font-size: clamp(2.16rem, calc(1.431rem + 0.972vw), 2.7rem);
     font-weight: 700;
@@ -491,6 +494,43 @@ section[id],
 
 .sidebar-toc-subnav .nav-link {
     font-size: 0.84rem;
+}
+
+/* Collapsible third level (built by main.js from the page's headings): chapters and 1.1-level items
+   always show; only the 1.1 item being read / clicked unfolds its own topics */
+.sidebar-toc-subnav .sidebar-toc-subnav {
+    margin-left: 4px;
+    padding-left: 6px;
+}
+
+.sidebar-toc-subnav .sidebar-toc-subnav .nav-link {
+    font-size: 0.8rem;
+    padding-left: 8px;
+}
+
+.toc-collapsible .toc-sub3 {
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.toc-collapsible .toc-sub3.is-open {
+    max-height: 40rem;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease, visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toc-collapsible .toc-sub3 {
+        transition: none;
+    }
 }
 
 .sidebar-toc .nav-link:hover,
@@ -680,11 +720,12 @@ main.content-container,
 }
 
 /* ===== Heading scale (all pages) =====
-   chapter h2  : large white, thick gold bar            (.section-title)
-   group  1.1  : white, thin blue bar                    (first h3 of a .subsection)
-   topic       : blue                                    (h4.section-subtitle, .wet-exp-title)
-   label       : small gold capitals with a rule         (.wet-label, .exp-label)
-   minor       : small white bold                        (.wet-subhead, h5 in simulation blocks) */
+   Sizes step down one level at a time (desktop / phone):
+   chapter h2  : large white, thick gold bar   ~37 / 35px   (.section-title)
+   group  1.1  : white, thin blue bar           27 / 23px   (first h3 of a .subsection)
+   topic       : blue                           22 / 19px   (h4.section-subtitle, .wet-exp-title)
+   minor       : white bold                     19 / 17px   (.wet-subhead, h5 in simulation blocks)
+   label       : gold capitals with a rule      18 / 16px   (.wet-label, .exp-label) */
 main .col-lg-10 .subsection > h3:first-child {
     padding-left: 14px;
     border-left: 3px solid var(--accent-blue);
@@ -701,7 +742,7 @@ main .wet-exp-title {
 
 main .wet-subhead,
 .simulation-page .simulation-subblock h5.section-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 0;
@@ -750,6 +791,14 @@ main :is(p, ul, ol, .table-responsive, .wet-table-wide, .math-display, figure, .
 /* Stacked panels breathe */
 main .content-box.mb-4 {
     margin-bottom: 2.5rem !important;
+}
+
+/* "cause → effect" arrow inside headings: a slim gold arrow instead of an emoji */
+.heading-arrow {
+    margin: 0 0.5em;
+    font-size: 0.75em;
+    vertical-align: 0.1em;
+    color: var(--accent-gold);
 }
 
 /* Two figures side by side: same frame height even when the images differ in aspect ratio */
@@ -1729,6 +1778,11 @@ html[data-theme="light"] .simulation-page .math-display {
     main .wet-exp-title {
         font-size: 1.2rem;
     }
+
+    main .wet-subhead,
+    .simulation-page .simulation-subblock h5.section-subtitle {
+        font-size: 1.08rem;
+    }
 }
 
 /* ===== Home ===== */
@@ -2087,13 +2141,46 @@ main table caption strong {
     height: 1px !important;
 }
 
-.simulation-page .references-list {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: #d0d0d0;
+/* Reference lists (all pages): one academic style — [n] Authors. Title. Journal vol, pages (year). DOI */
+.references-list {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-muted);
 }
 
-.simulation-page .references-list p {
+.references-list i {
+    color: var(--text-main);
+}
+
+.references-list b {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.references-list a {
+    overflow-wrap: anywhere;
+}
+
+/* DOI shown as a short link label instead of the full URL */
+.references-list .ref-doi {
+    margin-left: 0.25em;
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* [n] hangs in the margin so wrapped lines align with the author names */
+.references-list p {
+    padding-left: 2.6em;
+    text-indent: -2.6em !important;
+}
+
+/* a citation link scrolled into view clears the fixed header */
+.references-list p[id] {
+    scroll-margin-top: 110px;
+}
+
+.references-list p {
     margin-bottom: 0.75rem;
     text-indent: 0;
 }
@@ -2194,6 +2281,13 @@ main table caption strong {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent-gold);
+}
+
+@media (max-width: 767.98px) {
+    .wet-label,
+    .exp-label {
+        font-size: 1rem;
+    }
 }
 
 .wet-label::after,
@@ -2648,7 +2742,7 @@ html[data-theme="light"] .sidebar-toc .nav-link {
     color: #55667b;
 }
 
-html[data-theme="light"] .simulation-page .references-list,
+html[data-theme="light"] .references-list,
 html[data-theme="light"] main [style*="color: #d0d0d0"] {
     color: #4a5a6e !important;
 }
