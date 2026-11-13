@@ -264,38 +264,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const toc = document.querySelector('.sidebar-toc');
     if (!toc) return;
 
-    // 3 段目の目次項目を、各 2 桁目の範囲にある見出しから生成する
+    // 3 段目以降の目次項目を、各 2 桁目の範囲にある見出しから生成する
+    //   トピック見出し（h4.section-subtitle, .wet-exp-title）→ 3 段目
+    //   小見出し（.wet-subhead）→ 直前のトピックの下
+    //   ラベル（MATERIALS, OVERVIEW など .wet-label / .exp-label）→ 直前の小見出し（なければトピック）の下。
+    //   親がない場合は 1 つ上の段に並べる
     const slug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
     const usedIds = new Set();
+    const makeList = (cls) => {
+        const el = document.createElement('div');
+        el.className = 'nav flex-column sidebar-toc-subnav ' + cls;
+        return el;
+    };
+    const makeLink = (h, label, preferredId) => {
+        let id = h.id || preferredId;
+        if (!id) {
+            const base = 'toc-' + slug(label);
+            id = base;
+            let n = 2;
+            while (document.getElementById(id)) id = base + '-' + n++;
+            h.id = id;
+        }
+        usedIds.add(id);
+        const a = document.createElement('a');
+        a.className = 'nav-link';
+        a.href = '#' + id;
+        a.textContent = label;
+        return a;
+    };
     toc.querySelectorAll(':scope > .sidebar-toc-subnav > a.nav-link[href^="#"]').forEach(link => {
         const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
         if (!target) return;
         // 目次の行き先が見出しそのものの場合は、その見出しを含むまとまり全体を範囲にする
         const scope = target.matches('h2, h3') ? target.parentElement : target;
-        const headings = [...scope.querySelectorAll('h4.section-subtitle, .wet-exp-title')]
+        const nodes = [...scope.querySelectorAll('h4.section-subtitle, .wet-exp-title, .wet-subhead, .wet-label, .exp-label')]
             .filter(h => !h.closest('.content-box, figure, table'));
-        if (!headings.length) return;
-        const sub = document.createElement('div');
-        sub.className = 'nav flex-column sidebar-toc-subnav toc-sub3';
-        headings.forEach(h => {
+        if (!nodes.length) return;
+        const sub = makeList('toc-sub3');
+        let topicList = null; // 直前のトピックの下のリスト
+        let subheadList = null; // 直前の小見出しの下のリスト
+        nodes.forEach(h => {
+            const isLabel = h.matches('.wet-label, .exp-label');
             const tag = h.querySelector('.wet-exp-id');
-            const label = (tag ? tag.textContent : h.textContent).replace(/\s+/g, ' ').trim();
+            const text = (tag ? tag.textContent : h.textContent).replace(/\s+/g, ' ').trim();
+            const label = isLabel ? text.charAt(0).toUpperCase() + text.slice(1).toLowerCase() : text;
             const block = h.parentElement.closest('[id]');
-            let id = h.id;
-            if (!id && block && block !== target && block !== scope && !usedIds.has(block.id) && block.firstElementChild === h) id = block.id;
-            if (!id) {
-                id = 'toc-' + slug(label);
-                let n = 2;
-                while (document.getElementById(id)) id = 'toc-' + slug(label) + '-' + n++;
-                h.id = id;
+            const preferred = (!isLabel && block && block !== target && block !== scope && !usedIds.has(block.id)
+                && block.firstElementChild === h) ? block.id : null;
+            const a = makeLink(h, label, preferred);
+            if (isLabel) {
+                (subheadList || topicList || sub).appendChild(a);
+            } else if (h.matches('.wet-subhead')) {
+                const parent = topicList || sub;
+                parent.appendChild(a);
+                subheadList = makeList('toc-sub5');
+                parent.appendChild(subheadList);
+            } else {
+                sub.appendChild(a);
+                topicList = makeList('toc-sub4');
+                sub.appendChild(topicList);
+                subheadList = null;
             }
-            usedIds.add(id);
-            const a = document.createElement('a');
-            a.className = 'nav-link';
-            a.href = '#' + id;
-            a.textContent = label;
-            sub.appendChild(a);
         });
+        sub.querySelectorAll('.toc-sub4, .toc-sub5').forEach(l => { if (!l.children.length) l.remove(); });
         link.after(sub);
     });
     const items = [...toc.querySelectorAll('a.nav-link[href^="#"]')]
@@ -306,35 +337,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const ACTIVE_LINE = 140; // 固定ヘッダーの少し下
     let current = null;
 
-    // 開閉するのは 3 段目のリストだけ
-    const groups = [...toc.querySelectorAll('.toc-sub3')];
+    // 開閉するのは 3 段目以降のリスト。現在地（または押した項目）の祖先のリストと、その項目の直下のリストだけ開く
+    const groups = [...toc.querySelectorAll('.toc-sub3, .toc-sub4, .toc-sub5')];
     if (groups.length) toc.classList.add('toc-collapsible');
     let lockUntil = 0; // 項目を押した直後のスクロール中は、通過した章を開かない
 
-    function groupFor(link) {
-        const inside = groups.find(g => g.contains(link));
-        if (inside) return inside;
-        const next = link.nextElementSibling;
-        return next && groups.includes(next) ? next : null;
-    }
-
-    function openGroup(group) {
+    function openFor(link) {
+        const open = new Set();
+        if (link) {
+            groups.forEach(g => { if (g.contains(link)) open.add(g); });
+            const next = link.nextElementSibling;
+            if (next && groups.includes(next)) open.add(next);
+        }
         groups.forEach(g => {
-            const open = g === group;
-            g.classList.toggle('is-open', open);
+            const isOpen = open.has(g);
+            g.classList.toggle('is-open', isOpen);
             const parent = g.previousElementSibling;
-            if (parent) parent.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (parent) parent.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
     }
 
     toc.addEventListener('click', (event) => {
         const link = event.target.closest('a.nav-link');
         if (!link || !groups.length) return;
-        const group = groupFor(link);
-        if (group) {
-            openGroup(group);
-            lockUntil = Date.now() + 1200;
-        }
+        openFor(link);
+        lockUntil = Date.now() + 1200;
     });
 
     function keepInView(link) {
@@ -367,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (parent && parent.classList.contains('nav-link')) parent.classList.add('active');
             subnav = subnav.parentElement.closest('.sidebar-toc-subnav');
         }
-        if (groups.length && Date.now() >= lockUntil) openGroup(groupFor(next.link));
+        if (groups.length && Date.now() >= lockUntil) openFor(next.link);
         keepInView(next.link);
     }
 

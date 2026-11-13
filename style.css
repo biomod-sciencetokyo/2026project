@@ -508,7 +508,7 @@ section[id],
     padding-left: 8px;
 }
 
-.toc-collapsible .toc-sub3 {
+.toc-collapsible :is(.toc-sub3, .toc-sub4, .toc-sub5) {
     max-height: 0;
     margin-top: 0;
     margin-bottom: 0;
@@ -518,7 +518,7 @@ section[id],
     transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease, visibility 0s linear 0.3s;
 }
 
-.toc-collapsible .toc-sub3.is-open {
+.toc-collapsible :is(.toc-sub3, .toc-sub4, .toc-sub5).is-open {
     max-height: 40rem;
     margin-top: 4px;
     margin-bottom: 8px;
@@ -528,7 +528,7 @@ section[id],
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .toc-collapsible .toc-sub3 {
+    .toc-collapsible :is(.toc-sub3, .toc-sub4, .toc-sub5) {
         transition: none;
     }
 }
@@ -804,6 +804,12 @@ main .content-box.mb-4 {
 /* Two figures side by side: same frame height even when the images differ in aspect ratio */
 .figure-pair img {
     aspect-ratio: 3 / 2;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+.simulation-page .radius-comparison-image {
+    aspect-ratio: 1 / 1;
     object-fit: contain;
     background-color: #ffffff;
 }
