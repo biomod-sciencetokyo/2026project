@@ -834,13 +834,16 @@
                         <div id="three-d-deformation" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Radius as a Geometric Design Parameter</h4>
                             <p class="text-secondary mb-3">
-                                DNA Bundle geometry is an important factor in three-dimensional membrane deformation.
-                                The Bundle radius determines the width of the membrane-contact region and the geometric
-                                extent over which the membrane must bend around the Bundle. In contrast, effective
-                                bending rigidity determines how strongly the Bundle itself resists bending. These two
-                                Bundle properties therefore affect deformation through different mechanisms.
+                                DNA Bundle radius is an important geometric factor in membrane deformation.
+                                A wider DNA Bundle changes the contact geometry and distributes membrane
+                                deformation across a broader region. In contrast, the smaller-radius Bundle
+                                produces more localized membrane deformation and appears more favourable
+                                for membrane pore formation. Because the number of helices in a DNA Bundle
+                                affects both its radius and bending rigidity, Bundle geometry and mechanical
+                                stiffness must be considered together when designing a membrane-active
+                                DNA Bundle.
                             </p>
-                            <figure class="simulation-figure mb-4">
+                            <figure class="simulation-figure mb-0">
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <img src="img/SIMULATION/low_bundle_radious_r4.jpeg"
@@ -858,23 +861,26 @@
                                     <i>r</i> = 4 nm and <i>r</i> = 10 nm.
                                 </figcaption>
                             </figure>
-                            <p class="text-secondary mb-0">
-                                A wider DNA Bundle changes the contact geometry and distributes membrane deformation
-                                across a broader region. This radius comparison is a qualitative geometric
-                                illustration, not a quantitative radius-sweep result or a prediction of pore
-                                formation. Bundle radius is a geometrically important input parameter to include in
-                                future parameter sweeps.
-                            </p>
                         </div>
 
                         <div id="three-d-crosslinking" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological Helix-Count Scaling Analysis</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">
+                                Estimating the Minimum Number of DNA Helices
+                            </h4>
                             <p class="text-secondary mb-3">
-                                This is a separate design-screening analysis, not a direct output of the static 3D
-                                free-energy model. The two graphs illustrate how assumed DNA Bundle helix-count and
-                                coupling scenarios relate to a selected local-curvature comparison level. Detailed
+                                The Bundle-radius comparison indicates that radius is an important
+                                determinant of membrane deformation: a smaller Bundle radius appears to
+                                favour more localized membrane loading and pore formation. However, a
+                                Bundle with fewer helices also has lower bending rigidity. Because helix
+                                number determines both Bundle radius and mechanical stiffness, we performed
+                                a helix-count analysis to estimate the minimum number of DNA helices needed
+                                to achieve the target membrane pore-formation condition.
+                            </p>
+                            <p class="text-secondary mb-4">
+                                The following graphs compare the predicted local-curvature response across
+                                different helix numbers and effective coupling conditions. Detailed
                                 equations, assumptions, and source provenance are provided in the
-                                <a href="appendix.html#three-d-model-details">3D model details in the Technical Appendix</a>.
+                                <a href="appendix.html#three-d-model-details">Technical Appendix</a>.
                             </p>
                             <div class="row g-4 mb-4 figure-pair">
                                 <div class="col-lg-6">
