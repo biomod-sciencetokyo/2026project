@@ -4375,3 +4375,23 @@ html[data-theme="light"] body.princess-page {
         grid-column: 1 / -1;
     }
 }
+
+/* everyone's total taps (under "Royal Affection") */
+.royal-total {
+    margin: 0.3rem 0 0;
+    color: #f3d9ec;
+    font-size: 0.95rem;
+}
+
+.royal-total .fa-crown {
+    margin-right: 0.3rem;
+    color: var(--royal-gold);
+}
+
+.royal-total strong {
+    color: var(--royal-gold);
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.15rem;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+}

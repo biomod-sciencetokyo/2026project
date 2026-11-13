@@ -695,6 +695,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sessionEl = document.getElementById('guestbook-session-hearts');
     const list = document.getElementById('guestbook-list');
     const empty = document.getElementById('guestbook-empty');
+    const totalBox = document.getElementById('princess-total');
+    const totalEl = document.getElementById('princess-total-count');
 
     const showEmpty = text => {
         empty.textContent = text;
@@ -717,6 +719,67 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try { input.value = localStorage.getItem('princessNickname') || ''; } catch (e) { /* ignore */ }
+
+    // ---- 全員の合計タップ数：タップは数秒ぶんまとめて送る（1 タップごとには送らない） ----
+    const MAX_BATCH = 300;   // Code.gs の MAX_TAPS_PER_POST と合わせる
+    let serverTotal = null;  // 保存先から最後に受け取った合計（古い Code.gs なら null のまま＝表示しない）
+    let pending = 0;         // まだ送っていないタップ
+    let inFlight = 0;        // 送信中のタップ
+    let flushTimer = null;
+
+    const showTotal = () => {
+        if (serverTotal === null) return;
+        totalEl.textContent = (serverTotal + inFlight + pending).toLocaleString('en-US');
+        totalBox.hidden = false;
+    };
+    const tapBody = count => JSON.stringify({ type: 'taps', count });
+
+    const flush = () => {
+        clearTimeout(flushTimer);
+        flushTimer = null;
+        if (!pending || inFlight) return;
+        const count = Math.min(pending, MAX_BATCH);
+        pending -= count;
+        inFlight = count;
+        fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: tapBody(count)
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (!data || !data.ok) throw new Error('rejected');
+                if (typeof data.total === 'number') serverTotal = data.total;
+            })
+            .catch(() => { pending += count; }) // 失敗したら次の送信に回す
+            .finally(() => {
+                inFlight = 0;
+                showTotal();
+                if (pending) flushTimer = setTimeout(flush, 3000);
+            });
+    };
+
+    stage.addEventListener('princess-heart', () => {
+        pending += 1;
+        showTotal();
+        if (pending >= MAX_BATCH) flush();
+        else if (!flushTimer) flushTimer = setTimeout(flush, 2000);
+    });
+
+    // ページを離れる・タブを切り替えるときは、残りをまとめて送る（返事は待たない）
+    const flushOnLeave = () => {
+        if (!pending) return;
+        const count = Math.min(pending, MAX_BATCH);
+        const blob = new Blob([tapBody(count)], { type: 'text/plain;charset=utf-8' });
+        if (navigator.sendBeacon && navigator.sendBeacon(endpoint, blob)) {
+            pending -= count;
+            if (serverTotal !== null) serverTotal += count;
+        }
+    };
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') flushOnLeave();
+    });
+    window.addEventListener('pagehide', flushOnLeave);
 
     stage.addEventListener('princess-heart', () => {
         session += 1;
@@ -770,6 +833,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(r => r.json())
         .then(data => {
             if (!data || !data.ok || !Array.isArray(data.entries)) throw new Error('bad response');
+            if (typeof data.total === 'number' && !inFlight) {
+                serverTotal = data.total;
+                showTotal();
+            }
             render(data.entries);
         })
         .catch(() => {
