@@ -2665,6 +2665,15 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     margin-inline: auto;
 }
 
+.experiment-page .seed-structure-layout {
+    margin-bottom: 2.5rem;
+}
+
+/* Table on top, its figure centred underneath (side by side squeezed both) */
+.experiment-page .seed-structure-layout > .col-12 > .exp-figure {
+    margin-inline: auto;
+}
+
 /* Placeholders: compact, clearly "to do" */
 .exp-placeholder {
     display: flex;
