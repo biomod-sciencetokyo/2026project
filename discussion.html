@@ -6,7 +6,7 @@
     <title>DISCUSSION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-23">
+    <link rel="stylesheet" href="style.css?v=20261114-26">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -124,7 +124,7 @@
                         <div class="point-box content-box">
                             <div class="point-box-num" aria-hidden="true">01</div>
                             <div class="point-box-body">
-                                <h3 class="point-box-title"><i class="fa-solid fa-toggle-off" aria-hidden="true"></i>Lack of Target-Specific Activation</h3>
+                                <h3 class="point-box-title">Lack of Target-Specific Activation</h3>
                             <p class="text-secondary mb-0">
                                 The current HCR seed has no activation control mechanism, and the cholesterol anchors can
                                 bind non-specifically to any lipid membrane. Without target-specific regulation, DNA bundles
@@ -135,7 +135,7 @@
                         <div class="point-box content-box">
                             <div class="point-box-num" aria-hidden="true">02</div>
                             <div class="point-box-body">
-                                <h3 class="point-box-title"><i class="fa-solid fa-burst" aria-hidden="true"></i>Unverified Membrane Rupture on EV-Sized Vesicles</h3>
+                                <h3 class="point-box-title">Unverified Membrane Rupture on EV-Sized Vesicles</h3>
                             <p class="text-secondary mb-0">
                                 So far, we have only confirmed bundle elongation and membrane anchoring on GUVs. We have
                                 not yet experimentally demonstrated actual membrane rupture (such as via a calcein leakage
@@ -147,7 +147,7 @@
                         <div class="point-box content-box">
                             <div class="point-box-num" aria-hidden="true">03</div>
                             <div class="point-box-body">
-                                <h3 class="point-box-title"><i class="fa-solid fa-box-open" aria-hidden="true"></i>Access to Released Internal Molecules</h3>
+                                <h3 class="point-box-title">Access to Released Internal Molecules</h3>
                             <p class="text-secondary mb-0">
                                 Even if target EVs are selectively disrupted, the released internal molecules (such as RNA
                                 and proteins) will diffuse into the surrounding solution. A method to collect or analyze
@@ -167,67 +167,78 @@
                         <p class="text-secondary mb-5">
                             To overcome each of the limitations above, we propose three improvements:
                         </p>
-                        <div class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle topic-num" data-num="01">Selective Seed Activation via Blocking Strands and Target Recognition</h4>
-                            <p class="lead-callout">
-                                <span class="concept-highlight">Approach:</span> Combine molecular recognition on the
-                                target EV surface with toehold-mediated strand displacement so that the seed turns on
-                                only near the target EV.
-                            </p>
-                            <p class="text-secondary mb-0">
-                                <span class="concept-highlight">Mechanism:</span> A complementary blocking strand is
-                                pre-hybridized to the initiation site of the seed to keep it in an inactive (“OFF”)
-                                state [<a href="#ref-1">1</a>]. The Trigger DNA is attached to an antibody or designed
-                                as a DNA aptamer that binds to a specific surface antigen on the target EV
-                                [<a href="#ref-2">2</a>, <a href="#ref-3">3</a>]. By designing a short toehold domain on
-                                the blocking strand, unwanted strand displacement is suppressed in dilute bulk solution;
-                                once the Trigger binds and accumulates on the target EV surface, the increased local
-                                proximity drives toehold-mediated strand displacement, switching the seed “ON” only on
-                                the target membrane [<a href="#ref-4">4</a>].
-                            </p>
-                        </div>
-                        <div class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle topic-num" data-num="02">Optimization for EV-Sized Membrane Rupture</h4>
-                            <p class="lead-callout">
-                                <span class="concept-highlight">Approach:</span> Apply the mechanical parameters
-                                identified in our simulations to achieve and verify physical membrane rupture on small
-                                vesicles.
-                            </p>
-                            <p class="text-secondary mb-0">
-                                <span class="concept-highlight">Mechanism:</span> Based on our 3D model
-                                (<a href="simulation.html#three-d">Simulation, Section 1.2</a>), we will expand the
-                                hairpin design to 12 helices to obtain sufficient bending rigidity
-                                (<i>B</i><sub>DNA</sub>). Guided by our 2D simulations
-                                (<a href="simulation.html#two-d-md">Simulation, Section 1.1</a>, Figs. 2 and 4), we will
-                                also use a short linker (<i>l</i><sub>0</sub> ≈ 2.5 nm) to effectively transmit
-                                mechanical stress to small, highly curved vesicles (<i>R</i> ≈ 50 nm). We will then
-                                evaluate membrane rupture on nanopore-extruded small vesicles using a calcein leakage
-                                assay.
-                            </p>
-                        </div>
-                        <div class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle topic-num" data-num="03">Compartmentalization for Recovering Internal Molecules</h4>
-                            <p class="lead-callout">
-                                <span class="concept-highlight">Approach:</span> Combine selective disruption with
-                                micro-compartmentalization so that target EVs can be lysed without interference from
-                                co-existing non-target EVs.
-                            </p>
-                            <p class="text-secondary mb-0">
-                                <span class="concept-highlight">Mechanism:</span> In biological fluids, non-target EVs
-                                vastly outnumber target EVs, meaning multiple vesicles are often encapsulated together
-                                within a single microfluidic droplet or microwell [<a href="#ref-5">5</a>]. Unlike
-                                surfactants that would lyse all co-encapsulated vesicles indiscriminately, our system
-                                selectively disrupts only the target EVs inside each compartment, allowing their
-                                internal molecules to be recovered and analyzed while keeping their origin information
-                                intact.
-                            </p>
+                        <div class="point-stack">
+                            <div class="point-box content-box">
+                                <div class="point-box-num" aria-hidden="true">01</div>
+                                <div class="point-box-body">
+                                    <h4 class="point-box-title">Selective Seed Activation via Blocking Strands and Target Recognition</h4>
+                                <p class="lead-callout">
+                                    <span class="concept-highlight">Approach:</span> Combine molecular recognition on the
+                                    target EV surface with toehold-mediated strand displacement so that the seed turns on
+                                    only near the target EV.
+                                </p>
+                                <p class="text-secondary mb-0">
+                                    <span class="concept-highlight">Mechanism:</span> A complementary blocking strand is
+                                    pre-hybridized to the initiation site of the seed to keep it in an inactive (“OFF”)
+                                    state [<a href="#ref-1">1</a>]. The Trigger DNA is attached to an antibody or designed
+                                    as a DNA aptamer that binds to a specific surface antigen on the target EV
+                                    [<a href="#ref-2">2</a>, <a href="#ref-3">3</a>]. By designing a short toehold domain on
+                                    the blocking strand, unwanted strand displacement is suppressed in dilute bulk solution;
+                                    once the Trigger binds and accumulates on the target EV surface, the increased local
+                                    proximity drives toehold-mediated strand displacement, switching the seed “ON” only on
+                                    the target membrane [<a href="#ref-4">4</a>].
+                                </p>
+                                </div>
+                            </div>
+                            <div class="point-box content-box">
+                                <div class="point-box-num" aria-hidden="true">02</div>
+                                <div class="point-box-body">
+                                    <h4 class="point-box-title">Optimization for EV-Sized Membrane Rupture</h4>
+                                <p class="lead-callout">
+                                    <span class="concept-highlight">Approach:</span> Apply the mechanical parameters
+                                    identified in our simulations to achieve and verify physical membrane rupture on small
+                                    vesicles.
+                                </p>
+                                <p class="text-secondary mb-0">
+                                    <span class="concept-highlight">Mechanism:</span> Based on our 3D model
+                                    (<a href="simulation.html#three-d">Simulation, Section 1.2</a>), we will expand the
+                                    hairpin design to 12 helices to obtain sufficient bending rigidity
+                                    (<i>B</i><sub>DNA</sub>). Guided by our 2D simulations
+                                    (<a href="simulation.html#two-d-md">Simulation, Section 1.1</a>, Figs. 2 and 4), we will
+                                    also use a short linker (<i>l</i><sub>0</sub> ≈ 2.5 nm) to effectively transmit
+                                    mechanical stress to small, highly curved vesicles (<i>R</i> ≈ 50 nm). We will then
+                                    evaluate membrane rupture on nanopore-extruded small vesicles using a calcein leakage
+                                    assay.
+                                </p>
+                                </div>
+                            </div>
+                            <div class="point-box content-box">
+                                <div class="point-box-num" aria-hidden="true">03</div>
+                                <div class="point-box-body">
+                                    <h4 class="point-box-title">Compartmentalization for Recovering Internal Molecules</h4>
+                                <p class="lead-callout">
+                                    <span class="concept-highlight">Approach:</span> Combine selective disruption with
+                                    micro-compartmentalization so that target EVs can be lysed without interference from
+                                    co-existing non-target EVs.
+                                </p>
+                                <p class="text-secondary mb-0">
+                                    <span class="concept-highlight">Mechanism:</span> In biological fluids, non-target EVs
+                                    vastly outnumber target EVs, meaning multiple vesicles are often encapsulated together
+                                    within a single microfluidic droplet or microwell [<a href="#ref-5">5</a>]. Unlike
+                                    surfactants that would lyse all co-encapsulated vesicles indiscriminately, our system
+                                    selectively disrupts only the target EVs inside each compartment, allowing their
+                                    internal molecules to be recovered and analyzed while keeping their origin information
+                                    intact.
+                                </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div id="application" class="subsection">
                         <h3 class="h4 fw-bold mb-4">3.2 Applications</h3>
                         <div class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle"><i class="fa-solid fa-crosshairs subtitle-icon" aria-hidden="true"></i>Selective Physical Disruption of Cancer Cells</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Selective Physical Disruption of Cancer Cells</h4>
                             <p class="text-secondary mb-0">
                                 Conventional chemotherapies and molecularly targeted drugs often face acquired drug
                                 resistance caused by drug-efflux pumps, target mutations, and altered intracellular
@@ -242,7 +253,7 @@
                             </p>
                         </div>
                         <div class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle"><i class="fa-solid fa-capsules subtitle-icon" aria-hidden="true"></i>Stimuli-Responsive Drug Delivery Systems (DDS)</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Stimuli-Responsive Drug Delivery Systems (DDS)</h4>
                             <p class="text-secondary mb-0">
                                 Conventional liposomal drug carriers often suffer from premature drug leakage in the
                                 bloodstream and poor control over release at disease sites, leading to systemic side
@@ -257,7 +268,7 @@
                             </p>
                         </div>
                         <div class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle"><i class="fa-solid fa-shapes subtitle-icon" aria-hidden="true"></i>Programmable Membrane Remodeling in Artificial Cells</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Programmable Membrane Remodeling in Artificial Cells</h4>
                             <p class="text-secondary mb-0">
                                 Physical membrane disruption and non-destructive membrane deformation lie on a
                                 continuous mechanical spectrum: below the critical stress threshold required to open a

@@ -1450,7 +1450,6 @@ main .table td {
 
 /* ===== Skim-friendly blocks (all pages) =====
    point-box  : short item in a box with a big number (not a TOC heading)
-   topic-num  : the same number on a topic heading, to pair items across sections
    lead-callout: one-line takeaway shown before the details
    key-line   : highlighter on the key sentence of a paragraph */
 .point-stack {
@@ -1466,8 +1465,7 @@ main .table td {
     padding: 32px 36px;
 }
 
-.point-box-num,
-.topic-num::before {
+.point-box-num {
     font-family: inherit;
     font-weight: 700;
     color: var(--accent-gold);
@@ -1482,35 +1480,11 @@ main .table td {
 }
 
 main .point-box-title {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
     margin: 0 0 0.75rem;
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.45;
     color: var(--text-main);
-}
-
-.point-box-title i,
-.subtitle-icon {
-    flex-shrink: 0;
-    color: var(--accent-blue);
-    font-size: 0.9em;
-}
-
-.subtitle-icon {
-    margin-right: 0.6rem;
-}
-
-.topic-num::before {
-    content: attr(data-num);
-    display: inline-block;
-    margin-right: 0.75rem;
-    padding: 0.2em 0.45em;
-    border: 1px solid var(--accent-gold);
-    font-size: 0.8em;
-    vertical-align: 0.1em;
 }
 
 main .lead-callout {
