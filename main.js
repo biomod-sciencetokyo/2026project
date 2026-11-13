@@ -1,7 +1,35 @@
+// ライト / ダーク テーマ：選択は localStorage に保存し、全ページで引き継ぐ（既定はダーク）
+const THEME_KEY = 'site-theme';
+const applyTheme = (theme) => {
+    if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+};
+try {
+    applyTheme(localStorage.getItem(THEME_KEY));
+} catch (e) { /* localStorage が使えない環境ではダークのまま */ }
+
+const setupThemeToggle = (button) => {
+    const sync = () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        button.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+        button.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    };
+    sync();
+    button.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* 保存できなくても切り替えは有効 */ }
+        sync();
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ヘッダーの読み込み
-    fetch('header.html?v=20261112-2')
+    fetch('header.html?v=20261113-1')
         .then(response => response.text())
         .then(data => {
             const headerPlaceholder = document.getElementById('header-placeholder');
@@ -21,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.classList.add('active');
                     }
                 });
+
+                const themeToggle = headerPlaceholder.querySelector('.theme-toggle');
+                if (themeToggle) setupThemeToggle(themeToggle);
             }
         });
 

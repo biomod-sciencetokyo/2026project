@@ -2581,3 +2581,363 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
         padding-top: 1.75rem;
     }
 }
+
+/* =========================================
+   Theme toggle (header) + Light theme
+   html[data-theme="light"] is set by main.js; the default (no attribute) is the dark theme above.
+   ========================================= */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid #7890aa;
+    border-radius: 0;
+    background-color: transparent;
+    color: #c2cfdd;
+    font-size: 1rem;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    background-color: rgba(98, 197, 213, 0.08);
+}
+
+/* phones: keep logo, theme button and menu button on one row */
+@media (max-width: 400px) {
+    .navbar-brand {
+        margin-right: 8px;
+    }
+
+    .theme-toggle {
+        width: 34px;
+        height: 34px;
+        margin-right: 6px !important;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* show the icon of the mode you would switch to */
+.theme-toggle .theme-toggle-icon-dark,
+html[data-theme="light"] .theme-toggle .theme-toggle-icon-light {
+    display: none;
+}
+
+html[data-theme="light"] .theme-toggle .theme-toggle-icon-dark {
+    display: inline-block;
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+    --accent-blue: #1d8193;
+    --accent-gold: #9a7425;
+    --bg-light: #f5f7fa;
+    --border-color: #d3dce6;
+    --text-main: #1c2b3e;
+    --text-muted: #5b6b7f;
+    --surface-dark: #ffffff;
+    --surface-raised: #eef3f8;
+    --light-subtle-bg: #f2f5f9;
+    --light-strong-text: #165a68;
+}
+
+html[data-theme="light"] body {
+    background-image:
+        linear-gradient(rgba(29, 129, 147, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 129, 147, 0.05) 1px, transparent 1px),
+        radial-gradient(ellipse at 50% 0%, rgba(29, 129, 147, 0.06), transparent 58%),
+        linear-gradient(180deg, #f8fafc 0%, #f5f7fa 60%, #f1f4f8 100%);
+}
+
+html[data-theme="light"] .ambient-particles span {
+    background-color: #9fd6e2;
+    filter: none;
+}
+
+/* Navigation */
+html[data-theme="light"] .navbar {
+    background-color: #ffffff !important;
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 2px 12px rgba(20, 40, 70, 0.08);
+}
+
+html[data-theme="light"] .navbar-brand {
+    color: var(--text-main) !important;
+}
+
+html[data-theme="light"] .navbar-toggler,
+html[data-theme="light"] .theme-toggle {
+    border-color: #8a9bb0;
+    color: #3c4d63;
+}
+
+html[data-theme="light"] .theme-toggle:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    background-color: rgba(29, 129, 147, 0.08);
+}
+
+html[data-theme="light"] .navbar-toggler-icon {
+    filter: none;
+}
+
+html[data-theme="light"] .navbar-nav .nav-link {
+    color: #3c4d63 !important;
+}
+
+html[data-theme="light"] .navbar-nav .nav-link:hover,
+html[data-theme="light"] .navbar-nav .nav-link.active {
+    background-color: rgba(29, 129, 147, 0.08);
+    color: var(--accent-gold) !important;
+}
+
+/* Headings & text */
+html[data-theme="light"] .page-title,
+html[data-theme="light"] .section-title,
+html[data-theme="light"] main h3,
+html[data-theme="light"] main h4,
+html[data-theme="light"] main h5,
+html[data-theme="light"] main h6 {
+    color: var(--text-main);
+}
+
+html[data-theme="light"] main .section-subtitle {
+    color: var(--accent-blue);
+}
+
+html[data-theme="light"] .text-secondary {
+    color: #4a5a6e !important;
+}
+
+html[data-theme="light"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+html[data-theme="light"] .sidebar-toc .nav-link {
+    color: #55667b;
+}
+
+html[data-theme="light"] .reference-link {
+    color: var(--text-muted) !important;
+}
+
+html[data-theme="light"] .simulation-page .references-list,
+html[data-theme="light"] main [style*="color: #d0d0d0"] {
+    color: #4a5a6e !important;
+}
+
+/* Panels */
+html[data-theme="light"] .content-box,
+html[data-theme="light"] .sim-env {
+    border-color: var(--border-color);
+    box-shadow: 0 3px 10px rgba(20, 40, 70, 0.06);
+}
+
+html[data-theme="light"] .content-box:hover,
+html[data-theme="light"] .sim-env:hover,
+html[data-theme="light"] .custom-accordion:hover {
+    border-color: #9fb2c7;
+    box-shadow: 0 5px 14px rgba(20, 40, 70, 0.1);
+}
+
+html[data-theme="light"] .custom-accordion {
+    box-shadow: 0 4px 14px rgba(20, 40, 70, 0.06);
+}
+
+html[data-theme="light"] .custom-accordion-btn {
+    background: linear-gradient(90deg, #fbfcfd 0%, #f1f5f9 100%);
+}
+
+html[data-theme="light"] .custom-accordion-btn:hover,
+html[data-theme="light"] .custom-accordion-btn[aria-expanded="true"] {
+    background: linear-gradient(90deg, #f1f5f9 0%, #e6edf4 100%);
+}
+
+html[data-theme="light"] .custom-accordion-body {
+    background-color: #fbfcfd;
+}
+
+html[data-theme="light"] .simulation-result-mark-negative {
+    color: #d23a60;
+    background-color: rgba(210, 58, 96, 0.08);
+    border-color: rgba(210, 58, 96, 0.4);
+}
+
+html[data-theme="light"] .simulation-result-mark-positive {
+    color: #0b8597;
+    background-color: rgba(11, 133, 151, 0.08);
+    border-color: rgba(11, 133, 151, 0.45);
+    box-shadow: none;
+}
+
+html[data-theme="light"] .elsi-icon-badge-teal {
+    border-color: #2a9d95;
+    color: #2a9d95;
+}
+
+/* Simulation environment comparison */
+html[data-theme="light"] .sim-env-panel-label {
+    color: var(--text-main);
+}
+
+html[data-theme="light"] .sim-env-legend {
+    color: #4a5a6e;
+}
+
+html[data-theme="light"] .sim-env-legend-ends {
+    color: var(--text-muted);
+}
+
+html[data-theme="light"] .sim-env-part {
+    background-color: var(--light-subtle-bg);
+    border-color: rgba(100, 116, 139, 0.3);
+}
+
+html[data-theme="light"] .sim-env-part:focus-visible {
+    background-color: #e6edf4;
+    border-color: rgba(30, 50, 80, 0.4);
+}
+
+html[data-theme="light"] .sim-env-arrow {
+    border-left-color: rgba(110, 125, 150, 0.55);
+}
+
+@media (max-width: 767.98px) {
+    html[data-theme="light"] .sim-env-arrow {
+        border-left-color: transparent;
+        border-top-color: rgba(110, 125, 150, 0.55);
+    }
+}
+
+/* Approach player */
+html[data-theme="light"] .approach-video-frame,
+html[data-theme="light"] .home-media,
+html[data-theme="light"] .experiment-page main .row img.border {
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="light"] .approach-tab-bar {
+    background: #d8e0ea;
+}
+
+html[data-theme="light"] .approach-tab.is-done .approach-tab-bar span {
+    background: #7fa9bb;
+}
+
+html[data-theme="light"] .approach-panels {
+    border-color: #d8e0ea;
+    background: #ffffff;
+}
+
+/* Notes, placeholders */
+html[data-theme="light"] .simulation-page .simulation-subblock>p.small,
+html[data-theme="light"] .heatmap-placeholder,
+html[data-theme="light"] .exp-placeholder {
+    background-color: var(--light-subtle-bg);
+}
+
+html[data-theme="light"] .sim-note {
+    background: var(--light-subtle-bg) !important;
+}
+
+html[data-theme="light"] .simulation-page .simulation-subblock h5.section-subtitle,
+html[data-theme="light"] .wet-exp-title,
+html[data-theme="light"] .exp-seq-table .exp-seq-domains,
+html[data-theme="light"] .exp-placeholder span {
+    color: var(--light-strong-text);
+}
+
+/* Simulation matrix */
+html[data-theme="light"] .sim-matrix-corner {
+    background:
+        linear-gradient(to top right,
+            transparent calc(50% - 1px),
+            rgba(100, 116, 139, 0.35) 50%,
+            transparent calc(50% + 1px)),
+        var(--light-subtle-bg);
+}
+
+html[data-theme="light"] .sim-matrix-colhead,
+html[data-theme="light"] .sim-matrix-rowhead,
+html[data-theme="light"] .sim-matrix .sim-matrix-cell {
+    background: var(--light-subtle-bg);
+}
+
+html[data-theme="light"] .sim-matrix .sim-matrix-cell,
+html[data-theme="light"] .sim-matrix .sim-matrix-cell:hover {
+    box-shadow: 0 2px 10px rgba(20, 40, 70, 0.06);
+}
+
+html[data-theme="light"] .sim-matrix-corner-col,
+html[data-theme="light"] .sim-matrix-corner-row,
+html[data-theme="light"] .sim-matrix-colhead-sub {
+    color: #4a5a6e;
+}
+
+html[data-theme="light"] .sim-matrix-colhead-title {
+    color: var(--text-main);
+}
+
+html[data-theme="light"] .sim-matrix-rowhead>span {
+    color: var(--text-main) !important;
+}
+
+/* Tables (pages use Bootstrap .table-dark) */
+html[data-theme="light"] .table-dark,
+html[data-theme="light"] .simulation-page .custom-accordion-body table,
+html[data-theme="light"] .wet-table,
+html[data-theme="light"] .exp-seq-table {
+    --bs-table-color: var(--text-main);
+    --bs-table-bg: #ffffff;
+    --bs-table-border-color: var(--border-color);
+    --bs-table-striped-bg: #f4f7fa;
+    --bs-table-striped-color: var(--text-main);
+    --bs-table-active-bg: #e9eef4;
+    --bs-table-active-color: var(--text-main);
+    --bs-table-hover-bg: #eef3f8;
+    --bs-table-hover-color: var(--text-main);
+    color: var(--text-main);
+    border-color: var(--border-color);
+}
+
+html[data-theme="light"] .wet-table thead th,
+html[data-theme="light"] .exp-seq-table thead th {
+    --bs-table-bg: rgba(29, 129, 147, 0.1);
+    color: var(--light-strong-text);
+}
+
+/* Home cover, light theme: the 3D scene (.hero--live) keeps its own dark background, but the still title
+   (reduced motion / no WebGL) sits on the page background, so it needs dark text */
+html[data-theme="light"] .hero:not(.hero--live) .hero-title-main {
+    background: linear-gradient(135deg, #0d1b34 0%, #1c3a5e 52%, #1d8193 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: none;
+}
+
+html[data-theme="light"] .hero:not(.hero--live) .hero-title-sub {
+    color: #3c4d63;
+    text-shadow: none;
+}
+
+html[data-theme="light"] .hero:not(.hero--live) .hero-kicker,
+html[data-theme="light"] .hero:not(.hero--live) .hero-text p.hero-lead {
+    text-shadow: none;
+}
+
+html[data-theme="light"] .hero:not(.hero--live) .hero-cta {
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .hero:not(.hero--live) .hero-cta:hover,
+html[data-theme="light"] .hero:not(.hero--live) .hero-cta:focus-visible {
+    background-color: var(--accent-gold);
+    color: #ffffff;
+}
