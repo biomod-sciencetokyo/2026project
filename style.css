@@ -395,15 +395,6 @@ h6,
     text-decoration: none;
 }
 
-.back-to-top-text {
-    color: #a0aec0;
-    transition: color 0.3s ease;
-}
-
-.back-to-top-text:hover {
-    color: var(--accent-gold) !important;
-}
-
 /* Headings */
 .tracking-widest {
     letter-spacing: 0.12em;
@@ -895,6 +886,131 @@ main .content-box.source-group {
 
 main .content-box.source-group.mb-4 {
     margin-bottom: 1.5rem !important;
+}
+
+/* ===== miRNA Princess: back-to-top mascot (button built by main.js on every page) ===== */
+.princess-top {
+    --s: 96px;
+    position: fixed;
+    right: 20px;
+    bottom: 16px;
+    z-index: 1030;
+    width: var(--s);
+    height: var(--s);
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(24px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.princess-top.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.princess-top:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+.princess-sprite {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("img/mascot/princess_idle.png") center / contain no-repeat;
+    filter: drop-shadow(0 4px 6px rgba(2, 9, 20, 0.35));
+    animation: princess-float 2.6s ease-in-out infinite;
+}
+
+/* hover / keyboard focus: she walks in place */
+.princess-top:hover .princess-sprite,
+.princess-top:focus-visible .princess-sprite {
+    background-image: url("img/mascot/princess_walk.png");
+    background-size: calc(var(--s) * 8) var(--s);
+    background-position: 0 0;
+    animation: princess-walk 0.8s steps(8) infinite;
+}
+
+/* click: one backflip, then the page scrolls to the top */
+.princess-top.is-flipping .princess-sprite {
+    background-image: url("img/mascot/princess_backflip.png");
+    background-size: calc(var(--s) * 10) var(--s);
+    background-position: 0 0;
+    animation: princess-flip 0.9s steps(10) 1 forwards;
+}
+
+/* little "TOP" tag above her head on hover */
+.princess-bubble {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% - 6px);
+    padding: 2px 8px;
+    border: 1px solid var(--accent-gold);
+    background-color: var(--surface-dark);
+    color: var(--accent-gold);
+    font-family: 'DotGothic16', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    transform: translate(-50%, 4px);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.princess-top:hover .princess-bubble,
+.princess-top:focus-visible .princess-bubble {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@keyframes princess-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes princess-walk {
+    from { background-position: 0 0; }
+    to { background-position: calc(var(--s) * -8) 0; }
+}
+
+@keyframes princess-flip {
+    from { background-position: 0 0; }
+    to { background-position: calc(var(--s) * -10) 0; }
+}
+
+@media (max-width: 575.98px) {
+    .princess-top {
+        --s: 72px;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .princess-sprite,
+    .princess-top:hover .princess-sprite,
+    .princess-top:focus-visible .princess-sprite {
+        animation: none;
+        background-image: url("img/mascot/princess_idle.png");
+        background-size: contain;
+        background-position: center;
+    }
+
+    .princess-top {
+        transition: none;
+    }
+}
+
+@media print {
+    .princess-top {
+        display: none;
+    }
 }
 
 /* Two figures side by side: same frame height even when the images differ in aspect ratio */

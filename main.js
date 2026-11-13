@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     // フッターの読み込み
-    fetch('footer.html')
+    fetch('footer.html?v=20261113-1')
         .then(response => response.text())
         .then(data => {
             const footerPlaceholder = document.getElementById('footer-placeholder');
@@ -417,4 +417,40 @@ document.addEventListener('DOMContentLoaded', () => {
         update();
     });
     update();
+})();
+
+// miRNA プリンセス：全ページ右下の「トップへ戻る」ボタン
+// 少しスクロールすると現れてふわふわ浮く。マウスを乗せると歩き、押すとバク転してから先頭へ戻る
+(function () {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'princess-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.title = 'Back to top';
+    btn.innerHTML = '<span class="princess-bubble" aria-hidden="true">TOP</span><span class="princess-sprite" aria-hidden="true"></span>';
+    document.body.appendChild(btn);
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const toggle = () => btn.classList.toggle('is-visible', window.scrollY > 600);
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+
+    const goTop = () => window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    btn.addEventListener('click', () => {
+        if (reduceMotion.matches || btn.classList.contains('is-flipping')) {
+            goTop();
+            return;
+        }
+        btn.classList.add('is-flipping');
+        const sprite = btn.querySelector('.princess-sprite');
+        let done = false;
+        const finish = () => {
+            if (done) return;
+            done = true;
+            btn.classList.remove('is-flipping');
+            goTop();
+        };
+        sprite.addEventListener('animationend', finish, { once: true });
+        setTimeout(finish, 1200); // アニメーションが動かない環境でも必ず戻る
+    });
 })();
