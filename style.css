@@ -2374,6 +2374,27 @@ main table caption strong {
     height: 1px !important;
 }
 
+/* References: a quiet end-of-page block (thin rule, small label, dimmed list), not a chapter */
+main .references-section {
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-color);
+    opacity: 0.8;
+}
+
+main .references-title {
+    margin: 0 0 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+main .references-section .references-list {
+    font-size: 0.85rem;
+}
+
 /* Reference lists (all pages): one academic style — [n] Authors. Title. Journal vol, pages (year). DOI */
 .references-list {
     font-size: 0.9rem;
