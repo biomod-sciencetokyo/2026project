@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isLabel = h.matches('.wet-label, .exp-label');
             const tag = h.querySelector('.wet-exp-id');
             const text = (tag ? tag.textContent : h.textContent).replace(/\s+/g, ' ').trim();
-            const label = isLabel ? text.charAt(0).toUpperCase() + text.slice(1).toLowerCase() : text;
+            const label = h.dataset.tocLabel || (isLabel ? text.charAt(0).toUpperCase() + text.slice(1).toLowerCase() : text);
             const block = h.parentElement.closest('[id]');
             const preferred = (!isLabel && block && block !== target && block !== scope && !usedIds.has(block.id)
                 && block.firstElementChild === h) ? block.id : null;

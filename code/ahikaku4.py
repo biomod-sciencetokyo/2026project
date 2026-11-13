@@ -4,7 +4,7 @@ from scipy.interpolate import interp1d
 
 # --- 1. 物理パラメーター ---
 R0 = 50.0                 # リポソーム初期半径 [nm]
-L_bundle = 60.0           # DNA束の長さ [nm]
+L_bundle = 150.0          # DNA束の長さ [nm]（Figure 14 生成時の値）
 H_crit = 0.067            # 膜破壊の臨界平均曲率 [1/nm]
 
 # --- 2. 解析力学モデル (alpha対応版) ---

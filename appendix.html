@@ -795,6 +795,29 @@
                             </p>
                         </div>
 
+                        <div class="simulation-subblock mb-5">
+                            <h4 id="three-d-curvature-reference" class="h5 fw-bold mb-3 section-subtitle"
+                                data-toc-label="Curvature reference level">
+                                Curvature Reference Level Used in Helix-Count Screening
+                            </h4>
+                            <p class="text-secondary mb-0">
+                                The separate helix-count screening uses
+                                \(H_{\mathrm{crit}} = 0.067\ \mathrm{nm}^{-1}\) as a selected
+                                curvature-comparison level. In the inverse-radius convention used by the
+                                screening model, this corresponds to a local curvature length scale of
+                                \(1/H_{\mathrm{crit}} \approx 15\) nm. This value is not calculated from
+                                the GLB surface and is not an experimentally calibrated pore-formation or
+                                membrane-rupture threshold. Experimental pore opening and vesicle failure
+                                also depend on membrane tension, edge tension, composition, and loading
+                                history [<a href="simulation.html#ref-17">17</a>,
+                                <a href="simulation.html#ref-19">19</a>,
+                                <a href="simulation.html#ref-21">21</a>]. Therefore, crossing \(H_{\mathrm{crit}}\) is interpreted only as
+                                a model-defined high-local-curvature condition used to locate
+                                \(N_{\mathrm{crit}}\), not as a prediction of physical pore formation,
+                                rupture, or lysis.
+                            </p>
+                        </div>
+
                         <div id="three-d-helix-screen" class="simulation-subblock mb-0">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological helix-count screening and α</h4>
                             <p class="text-secondary mb-2">
@@ -832,9 +855,11 @@
                                 rigidity-based design estimate, not a prediction of membrane rupture. This screening
                                 formula does not include a physical radius function \(r_{\mathrm{Bundle}}(N)\), so it
                                 does not quantitatively combine radius-dependent geometry with helix-number-dependent
-                                rigidity. Figure 14 and the available α-sweep source also differ in their
-                                displayed crossing values; see the
-                                <a href="#source-code-inventory">Source Code Inventory</a> for the provenance note.
+                                rigidity. Figures 13 and 14 both use \(L_{\mathrm{Bundle}}=150\) nm and
+                                \(R_0=50\) nm; with these settings, \(\alpha=0.2\text{–}0.3\) gives
+                                \(N_{\mathrm{crit}}\approx 7\text{–}9\), a model-dependent design guide rather than
+                                a helix count required for physical rupture. See the
+                                <a href="#source-code-inventory">Source Code Inventory</a> for the source files.
                             </p>
                         </div>
 
@@ -846,7 +871,7 @@
                             These are the Python source files currently included in the repository. A listed script is
                             not necessarily the exact version used to generate every displayed image or dataset.
                         </p>
-                        <div class="content-box source-group mb-4">
+                        <div id="two-d-source-files" class="content-box source-group mb-4">
                             <h4 class="wet-subhead mt-0 mb-3">2D Brownian Coarse-Grained Simulation</h4>
                             <ul class="text-secondary mb-0">
                                 <li><a href="code/freelipo_tyouryoku14_chat6_kanseiban.py">
@@ -884,11 +909,13 @@
                                     Its interpolated crossing is <i>N</i> ≈ 3.8, rounded to 4 in the graph label.</li>
                                 <li><a href="code/ahikaku4.py">ahikaku4.py</a> — α-dependent helix-count screening
                                     source. It uses <i>R</i><sub>0</sub> = 50 nm,
-                                    <i>L</i><sub>bundle</sub> = 60 nm, and α = 1.0, 0.5, and 0.1. With its stated
+                                    <i>L</i><sub>bundle</sub> = 150 nm, and α = 1.0, 0.5, and 0.1. With its stated
                                     model-defined <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give crossings of
-                                    approximately 6, 8.5, and 19 helices. Figure 14 displays crossings near
-                                    3.8, 5.4, and 12; therefore, the available script does not reproduce that figure's
-                                    displayed values, and its exact generating source is unconfirmed.</li>
+                                    approximately 3.8, 5.4, and 12 helices, matching Figure 14. The same formula gives
+                                    approximately 6.9 and 8.5 helices for α = 0.3 and 0.2. An earlier published
+                                    revision used <i>L</i><sub>bundle</sub> = 60 nm and did not reproduce Figure 14; it
+                                    was synchronized to the figure-generating value. These crossings are model-dependent
+                                    design guides, not helix counts required for physical rupture.</li>
                             </ul>
                         </div>
                     </div>
@@ -2257,7 +2284,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
-    <script     src="main.js?v=20261113-16"></script>
+    <script     src="main.js?v=20261113-17"></script>
 </body>
 
 </html>
