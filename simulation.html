@@ -7,7 +7,7 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261113-1">
+    <link rel="stylesheet" href="style.css?v=20261113-2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -52,23 +52,13 @@
         }
 
         .heatmap-colorbar-overlay {
-            position: absolute;
-            top: 8.5%;
-            right: 0;
-            bottom: 2.4%;
-            z-index: 1;
-            display: flex;
-            width: 3.6%;
-            align-items: center;
-            justify-content: center;
-            background: #fff;
-            color: #000;
-            font-size: clamp(0.75rem, 1.05vw, 0.9rem);
+            display: block;
+            margin: -0.5rem 0 0.75rem;
+            color: var(--text-muted);
+            font-size: clamp(0.72rem, 0.9vw, 0.82rem);
             font-weight: 600;
-            line-height: 1.1;
-            text-align: center;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
+            line-height: 1.35;
+            text-align: right;
         }
 
         .heatmap-axis-y,
@@ -116,7 +106,7 @@
             <div class="page-title-underline"></div>
         </div>
 
-        <div class="row gx-5">
+        <div class="row gx-3 gx-lg-5">
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
@@ -413,7 +403,7 @@
 
                             <figcaption class="text-secondary mt-3">
                                 <strong>Figure 2.</strong> Representative 2D simulations for the small-vesicle
-                                condition (\(R=50\) nm).
+                                condition (<i>R</i> = 50) nm.
                             </figcaption>
                             </figure>
                             <figure class="simulation-figure sim-matrix-figure mb-4">
@@ -557,7 +547,7 @@
                             </div>
                             <figcaption class="text-secondary mt-3">
                                 <strong>Figure 3.</strong> Representative 2D simulations for the large-vesicle
-                                condition (\(R=200\) nm).
+                                condition (<i>R</i> = 200) nm.
                             </figcaption>
                             </figure>
                         </div>
@@ -583,12 +573,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
+                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 4.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=50\)) nm.
+                                                            <strong>Figure 4.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 50) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -599,12 +589,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
+                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 5.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=100\)) nm.
+                                                            <strong>Figure 5.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 100) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -615,12 +605,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
+                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 6.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=150\)) nm.
+                                                            <strong>Figure 6.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 150) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -631,12 +621,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
+                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 7.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=200\)) nm.
+                                                            <strong>Figure 7.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 200) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -647,12 +637,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
+                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 8.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=250\)) nm.
+                                                            <strong>Figure 8.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 250) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -663,12 +653,12 @@
                                                                 alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 300 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
-                                                            <span class="heatmap-colorbar-overlay" aria-hidden="true">Model-defined local pore-formation-event probability (%)</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
+                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 9.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (\(R=300\)) nm.
+                                                            <strong>Figure 9.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 300) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -692,7 +682,7 @@
                             </p>
                             <h4 class="h5 fw-bold mb-3 section-subtitle">What the model calculates</h4>
                             <p class="text-secondary mb-4">
-                                For the (\(R_0=50\)) nm reference condition, the model estimates a candidate
+                                For the <i>R</i><sub>0</sub> = 50 nm reference condition, the model estimates a candidate
                                 deformation shape from prescribed cholesterol-mediated adhesion, DNA Bundle bending,
                                 membrane bending, and membrane-tension terms
                                 [<a href="#ref-1">1</a>–<a href="#ref-3">3</a>,
@@ -855,7 +845,7 @@
                             </div>
                                 <figcaption class="text-secondary mt-3">
                                     <strong>Figure 12.</strong> Qualitative Bundle-radius comparison for
-                                    \(r=4\) nm and \(r=10\) nm.
+                                    <i>r</i> = 4 nm and <i>r</i> = 10 nm.
                                 </figcaption>
                             </figure>
                             <p class="text-secondary mb-0">

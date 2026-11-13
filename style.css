@@ -73,6 +73,11 @@ main.content-container {
     pointer-events: none;
 }
 
+.simulation-page .ambient-particles,
+.appendix-page .ambient-particles {
+    overflow: clip;
+}
+
 body>header,
 body>main,
 #footer-placeholder {
@@ -2071,6 +2076,17 @@ section[id],
 .appendix-page table caption strong {
     color: var(--accent-blue);
     font-weight: 600;
+    white-space: nowrap;
+}
+
+.appendix-page #source-code-inventory a[href^="code/"] {
+    overflow-wrap: anywhere;
+}
+
+.simulation-page mjx-assistive-mml,
+.appendix-page mjx-assistive-mml {
+    width: 1px !important;
+    height: 1px !important;
 }
 
 .simulation-page .references-list {
@@ -2085,6 +2101,10 @@ section[id],
 }
 
 @media (max-width: 767.98px) {
+    .site-footer .row {
+        --bs-gutter-x: 1.5rem;
+    }
+
     .sim-matrix {
         padding: 0 !important;
     }
