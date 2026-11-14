@@ -3308,6 +3308,15 @@ html[data-theme="light"] .simulation-result-mark-positive {
     box-shadow: none;
 }
 
+html[data-theme="light"] .sim-live-mark {
+    color: #d23a60;
+}
+
+html[data-theme="light"] .sim-live-mark.is-pos {
+    color: #0b8597;
+    text-shadow: none;
+}
+
 html[data-theme="light"] .elsi-icon-badge-teal {
     border-color: #2a9d95;
     color: #2a9d95;
@@ -3807,55 +3816,40 @@ html[data-theme="light"] .appendix-cta-icon {
     box-shadow: inset 0 0 0 1px var(--accent-gold);
 }
 
-/* ○ / × marks echo the result marks used in Figures 2–3 */
+/* ✓ / ✗ marks echo the result marks used in Figures 2–3 */
 .sim-live-mark {
-    position: relative;
-    display: inline-block;
+    display: inline-flex;
     flex: none;
-    width: 10px;
-    height: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #ff5c82;
 }
 
-.sim-live-mark::before,
-.sim-live-mark::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -1px;
-    width: 12px;
-    height: 1.6px;
-    background: #ff5c82;
-    transform: rotate(45deg);
-}
-
-.sim-live-mark::after {
-    transform: rotate(-45deg);
+.sim-live-mark::before {
+    content: "\2717";
 }
 
 .sim-live-mark.is-pos {
-    border: 1.6px solid #00e5ff;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 229, 255, 0.35);
+    color: #00e5ff;
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.35);
 }
 
-.sim-live-mark.is-pos::before,
-.sim-live-mark.is-pos::after {
-    content: none;
+.sim-live-mark.is-pos::before {
+    content: "\2713";
 }
 
 .sim-live-legend {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.35rem 0.45rem;
+    gap: 0.35rem 1rem;
     margin: 0.55rem 0 0;
+    text-indent: 0;
     color: var(--text-muted);
     font-size: 0.7rem;
-}
-
-.sim-live-legend .sim-live-mark + .sim-live-mark,
-.sim-live-legend .sim-live-mark:not(:first-child) {
-    margin-left: 0.6rem;
 }
 
 /* radius segmented control */
@@ -5412,7 +5406,7 @@ main .ms-hint {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 3.25rem;
+    gap: 2.25rem;
 }
 
 .ms-claim {
@@ -5439,21 +5433,9 @@ main .ms-hint {
     content: "";
     position: absolute;
     left: 1.85rem;
-    top: -3.25rem;
-    height: calc(3.25rem - 0.35rem);
+    top: -2.25rem;
+    height: calc(2.25rem - 0.35rem);
     border-left: 2px solid var(--text-muted);
-}
-
-.ms-claim[data-via]::after {
-    content: attr(data-via);
-    position: absolute;
-    left: 2.6rem;
-    top: -2.15rem;
-    font-size: 0.78rem;
-    font-style: italic;
-    line-height: 1.2;
-    color: var(--text-muted);
-    white-space: nowrap;
 }
 
 .ms-claim-main {
