@@ -5364,28 +5364,6 @@ main .ms-hint {
     font-weight: 700;
 }
 
-/* connector between the frames: one stem leads from the achievements into the future frame (gold to blue) */
-.ms-merge {
-    position: relative;
-    height: 4rem;
-}
-
-.ms-merge::before {
-    content: none;
-}
-
-.ms-merge::after {
-    content: "";
-    position: absolute;
-    top: 1.5rem;
-    bottom: 0;
-    left: 50%;
-    width: 2px;
-    transform: translateX(-50%);
-    background: linear-gradient(var(--accent-gold), var(--accent-blue));
-    top: 0;
-}
-
 .ms-legend {
     list-style: none;
     margin: 1.25rem 0 0;
@@ -5415,100 +5393,155 @@ main .ms-hint {
         padding: 1.25rem 1rem 1.25rem;
     }
 
-    .ms-merge {
-        height: 3rem;
-    }
-
-    .ms-merge::before {
-        display: none;
-    }
-
-    .ms-merge::after {
-        top: 0;
-    }
 }
 
 
-/* ===== Milestone lanes: one lane per step, read left to right =====
-   a column (ms-stage) holds items done in parallel; an arrow between columns means
-   "the next column builds on this one". Below 992px the lane turns vertical. */
-.ms-lanes {
+/* ===== Milestone claims (all pages): one lane per step, read top to bottom =====
+   each box states one result (ms-claim) with links to its data (ms-evidence); the arrow above a box
+   means "the result above made this possible", and its label (data-via) says how */
+.ms-claim-lanes {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem;
+    align-items: start;
 }
 
-.ms-flow {
+.ms-chain {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    align-items: center;
-}
-
-.ms-stage {
-    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 3.25rem;
 }
 
-/* lane cards are narrow: keep the label clear of the corner arrow, and show only the arrow on hover
-   (the "View data" hover text would sit on top of the label) */
-.ms-stage .ms-kind {
-    padding-right: 1.25rem;
+.ms-claim {
+    position: relative;
+    padding: 1rem 1.1rem;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-color);
 }
 
-.ms-stage .ms-go::before {
-    display: none;
+.ms-claim.is-done {
+    border-color: color-mix(in srgb, var(--accent-gold) 55%, var(--border-color));
 }
 
-/* parallel cards inside a column are not chained */
-.ms-stage .ms-node + .ms-node::before,
-.ms-stage .ms-node + .ms-node::after {
-    content: none;
+.ms-claim.is-model {
+    border-color: color-mix(in srgb, var(--accent-blue) 55%, var(--border-color));
 }
 
-.ms-stage + .ms-stage::before {
+.ms-claim.is-no {
+    border-style: dashed;
+}
+
+/* arrow from the previous box, with its label */
+.ms-claim[data-via]::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: -1.75rem;
-    width: 1.5rem;
-    height: 2px;
-    background: var(--text-muted);
+    left: 1.85rem;
+    top: -3.25rem;
+    height: calc(3.25rem - 0.35rem);
+    border-left: 2px solid var(--text-muted);
 }
 
-.ms-stage + .ms-stage::after {
+.ms-claim[data-via]::after {
+    content: attr(data-via);
+    position: absolute;
+    left: 2.6rem;
+    top: -2.15rem;
+    font-size: 0.78rem;
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.ms-claim-main {
+    position: relative;
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+}
+
+/* arrowhead at the top edge of the box */
+.ms-claim[data-via] > .ms-claim-main::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: -0.75rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-top: 2px solid var(--text-muted);
+    left: calc(0.75rem - 0.3rem);
+    top: -1.45rem;
+    width: 0.55rem;
+    height: 0.55rem;
     border-right: 2px solid var(--text-muted);
-    transform: translateY(-50%) rotate(45deg);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg);
 }
 
-@media (max-width: 991.98px) {
-    .ms-flow {
+.ms-claim.is-done .ms-check {
+    border-color: var(--accent-gold);
+    background: var(--accent-gold);
+    color: var(--bg-light);
+}
+
+.ms-claim.is-model .ms-check {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.ms-claim.is-no .ms-check {
+    border-color: var(--text-muted);
+    color: var(--text-main);
+}
+
+main .ms-claim-text {
+    margin: 0;
+    text-indent: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text-main);
+}
+
+.ms-claim.is-no .ms-claim-text {
+    color: var(--text-muted);
+}
+
+.ms-evidence {
+    list-style: none;
+    margin: 0.75rem 0 0 2.35rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.ms-evidence a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid color-mix(in srgb, var(--accent-blue) 55%, transparent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ms-evidence a i {
+    font-size: 0.85em;
+}
+
+.ms-evidence a:hover,
+.ms-evidence a:focus-visible {
+    background: var(--accent-blue);
+    color: var(--bg-light);
+}
+
+@media (max-width: 767.98px) {
+    .ms-claim-lanes {
         grid-template-columns: 1fr;
-        gap: 2.25rem;
-    }
-
-    .ms-stage + .ms-stage::before {
-        top: -1.9rem;
-        left: 50%;
-        width: 2px;
-        height: 1.6rem;
-    }
-
-    .ms-stage + .ms-stage::after {
-        top: -0.8rem;
-        left: 50%;
-        transform: translateX(-50%) rotate(135deg);
+        gap: 3rem;
     }
 }
 
@@ -5603,4 +5636,13 @@ main .goal-callout-text {
         padding-right: 0.3rem;
         font-size: 0.8rem;
     }
+}
+
+/* Schematic of cholesterol direction on DNA bundles (Design page): drawn on white like the other
+   structure figures, with the colours fixed inside the SVG */
+.chol-fig {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #fff;
 }

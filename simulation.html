@@ -111,39 +111,63 @@
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
                     <a class="nav-link fw-bold" href="#simulation-overview">Overview</a>
-                    <a class="nav-link" href="#dry-references">Dry-model References</a>
                     <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Deformation Models</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
                         <a class="nav-link" href="#three-d">1.2 3D Reduced Free-Energy Model</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Reaction</a>
+                    <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Sequence Design and Thermodynamic Assessment</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#hcr-self-assembly">2.1 Self Assembly</a>
-                        <a class="nav-link" href="#hcr-possibility">2.2 Reaction Possibility</a>
+                        <a class="nav-link" href="#hcr-self-assembly">2.1 HCR Sequence Design</a>
+                        <a class="nav-link" href="#hcr-possibility">2.2 Thermodynamic Assessment of Sequential Hybridization</a>
                     </div>
+                    <a class="nav-link mt-2" href="#dry-references">Dry-model References</a>
                 </nav>
             </div>
 
             <div class="col-lg-10">
                 <section id="simulation-overview" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">Overview</h2>
-                    <p class="text-secondary mb-0">
-                        This page presents two complementary mechanical models: a 2D coarse-grained simulation
-                        that screens for model-defined local pore-formation events, and a 3D reduced free-energy
-                        model that estimates representative membrane-deformation shapes. We also assess the
-                        thermodynamic feasibility of the HCR design for building DNA Bundles.
+                    <p class="text-secondary mb-3">
+                        This page is organised into three linked components:
                     </p>
-                    <a class="appendix-cta mt-4" href="appendix.html#dry-lab">
-                        <span class="appendix-cta-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
-                        </span>
-                        <span class="appendix-cta-text">
-                            <span class="appendix-cta-title">Go To Appendix</span>
-                            <span class="appendix-cta-sub">Detailed parameters, derivations and supplementary results for the simulations</span>
-                        </span>
-                        <span class="appendix-cta-arrow" aria-hidden="true">&rarr;</span>
-                    </a>
+
+                    <nav class="content-box p-3 p-md-4 mb-0" aria-label="Simulation page guide">
+                        <ol class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <a href="#two-d-md">
+                                    <strong>2D MD-CG Simulation (Section 1.1)</strong>
+                                </a><br>
+                                <span class="text-secondary">
+                                    Screens vesicle radius, DNA Bundle bending rigidity, and linker
+                                    length for membrane pore formation.
+                                </span>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#three-d">
+                                    <strong>3D Reduced Free-Energy Model (Section 1.2)</strong>
+                                </a><br>
+                                <span class="text-secondary">
+                                    Visualises three-dimensional membrane deformation and estimates
+                                    the DNA Bundle helix number required for the design.
+                                </span>
+                            </li>
+                            <li>
+                                <a href="#hcr-reaction">
+                                    <strong>HCR Sequence Design and Thermodynamic Assessment (Section 2)</strong>
+                                </a><br>
+                                <span class="text-secondary">
+                                    Designs the HCR sequences and evaluates the thermodynamic
+                                    plausibility of the intended sequential hybridization steps.
+                                </span>
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <p class="text-secondary small mt-3 mb-0">
+                        Mathematical details, parameters, and source-code information are available
+                        in the <a href="appendix.html#dry-lab">Technical Appendix</a>.
+                    </p>
                 </section>
 
                 <!-- 1. Membrane Disruption -->
@@ -152,8 +176,21 @@
 
                     <!-- 1.1 2D MD-CG Simulation -->
                     <div id="two-d-md" class="subsection">
-                        <h3 class="h4 fw-bold mb-4">1.1 MD-CG Simulation in 2D
-                            Environment</h3>
+                        <h3 class="h4 fw-bold mb-4">1.1 2D MD-CG Simulation</h3>
+
+                        <div class="goal-callout mb-4" role="note" aria-label="Section 1.1 key result">
+                            <div class="goal-callout-head">
+                                <span>KEY RESULT</span>
+                            </div>
+                            <div class="goal-callout-body">
+                                <h4 class="goal-callout-title">Rigid Bundles and size-dependent linker preference</h4>
+                                <ul class="goal-callout-text mb-0">
+                                    <li>Higher DNA Bundle bending rigidity favoured membrane pore formation.</li>
+                                    <li>For small vesicles (\(R = 50\) nm), short linkers were favoured.</li>
+                                    <li>For larger vesicles (\(R = 200\) nm), long linkers were favoured.</li>
+                                </ul>
+                            </div>
+                        </div>
 
                         <!-- Real system vs. 2D model -->
                         <figure class="simulation-figure sim-env mb-5" data-sim-env>
@@ -219,7 +256,7 @@
                                 </li>
                             </ol>
                             <figcaption class="text-secondary mt-3">
-                                <strong>Figure 1.</strong> Real system and 2D coarse-grained representation.
+                                <strong>Figure 1.</strong> Real system and 2D MD-CG representation.
                             </figcaption>
                         </figure>
 
@@ -253,13 +290,7 @@
                                 not limited to flexibility or distance.
                             </p>
 
-                            <h5 class="fw-bold mb-3 section-subtitle">Key trends and interpretation</h5>
-                            <p class="text-secondary mb-3">
-                                Across the present 2D parameter screen, high DNA Bundle bending rigidity was commonly
-                                associated with the model-defined local pore-formation event. For the small-vesicle
-                                condition (\(R=50\) nm), shorter linkers were more favorable. For the large-vesicle
-                                condition (\(R=200\) nm), longer linkers were more favorable.
-                            </p>
+                            <h5 class="fw-bold mb-3 section-subtitle">Why the preferred linker length changes</h5>
                             <p class="text-secondary mb-4">
                                 For small vesicles, a short linker is expected to transmit the mechanical loading of a
                                 rigid DNA Bundle more directly to a localized membrane region. A longer linker can
@@ -273,6 +304,19 @@
                                 Representative trajectories visualize the contrasting membrane-loading behaviors
                                 underlying these design trends.
                             </p>
+                            <div class="d-flex flex-wrap gap-3 align-items-center text-secondary small mb-3"
+                                 aria-label="Representative-animation result legend">
+                                <span class="d-inline-flex align-items-center gap-2">
+                                    <span class="simulation-result-mark simulation-result-mark-positive"
+                                          aria-hidden="true">✓</span>
+                                    Local pore-formation event observed
+                                </span>
+                                <span class="d-inline-flex align-items-center gap-2">
+                                    <span class="simulation-result-mark simulation-result-mark-negative"
+                                          aria-hidden="true">✗</span>
+                                    No local pore-formation event observed
+                                </span>
+                            </div>
                             <figure class="simulation-figure sim-matrix-figure mb-4">
                             <h5 class="fw-bold mb-3 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
                             <div class="mb-4 sim-matrix">
@@ -299,13 +343,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-pos">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-positive"
-                                                    aria-label="Model-defined local pore-formation event observed"
-                                                    title="Model-defined local pore-formation event: Observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <circle cx="12" cy="12" r="8.5"></circle>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-positive" role="img"
+                                                    aria-label="Local pore-formation event observed in the representative animation"
+                                                    title="Local pore-formation event observed in the representative animation">✓</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/shortlinker_highrigidity_r50_a09_l2.5.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -323,14 +363,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Model-defined local pore-formation event not observed"
-                                                    title="Model-defined local pore-formation event: Not observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" role="img"
+                                                    aria-label="No local pore-formation event observed in the representative animation"
+                                                    title="No local pore-formation event observed in the representative animation">✗</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/longlinker_highrigidity_r50_a08_l15.0_b1.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -354,14 +389,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Model-defined local pore-formation event not observed"
-                                                    title="Model-defined local pore-formation event: Not observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" role="img"
+                                                    aria-label="No local pore-formation event observed in the representative animation"
+                                                    title="No local pore-formation event observed in the representative animation">✗</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/shortlinker_lowrigidity_r50_a01_l2.5_b1.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -379,14 +409,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Model-defined local pore-formation event not observed"
-                                                    title="Model-defined local pore-formation event: Not observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" role="img"
+                                                    aria-label="No local pore-formation event observed in the representative animation"
+                                                    title="No local pore-formation event observed in the representative animation">✗</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/longlinker_lowrigidity_r50_a01_l15.0_b1.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -434,14 +459,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Model-defined local pore-formation event not observed"
-                                                    title="Model-defined local pore-formation event: Not observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" role="img"
+                                                    aria-label="No local pore-formation event observed in the representative animation"
+                                                    title="No local pore-formation event observed in the representative animation">✗</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/shortlinker_highrigidity_r200_a08_l2.5_b1.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -460,13 +480,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-pos">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-positive"
-                                                    aria-label="Model-defined local pore-formation event observed"
-                                                    title="Model-defined local pore-formation event: Observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <circle cx="12" cy="12" r="8.5"></circle>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-positive" role="img"
+                                                    aria-label="Local pore-formation event observed in the representative animation"
+                                                    title="Local pore-formation event observed in the representative animation">✓</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/LongLinker_highrigidity_r200_a09_l20.0_b1_pure_chained.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -490,14 +506,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Short linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Model-defined local pore-formation event not observed"
-                                                    title="Model-defined local pore-formation event: Not observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" role="img"
+                                                    aria-label="No local pore-formation event observed in the representative animation"
+                                                    title="No local pore-formation event observed in the representative animation">✗</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/shortlonker_lowrigidity_r200_a01_l2.5_b1.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -515,14 +526,9 @@
                                         <div class="content-box h-100 sim-matrix-cell sim-matrix-cell-neg">
                                             <div class="sim-matrix-cell-head">
                                                 <div class="fw-bold text-light sim-matrix-col">Long linker</div>
-                                                <span class="simulation-result-mark simulation-result-mark-negative"
-                                                    aria-label="Model-defined local pore-formation event not observed"
-                                                    title="Model-defined local pore-formation event: Not observed in representative animation"><svg viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2.4"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    </svg></span>
+                                                <span class="simulation-result-mark simulation-result-mark-negative" role="img"
+                                                    aria-label="No local pore-formation event observed in the representative animation"
+                                                    title="No local pore-formation event observed in the representative animation">✗</span>
                                             </div>
                                             <div class="ratio ratio-1x1 mb-3 sim-matrix-media">
                                                 <video src="video/SIMULATION/longlinker_lowrigidity_r200_a01_l20.0_b1.mp4" class="w-100 h-100 object-fit-contain" autoplay muted loop playsinline preload="metadata"
@@ -559,6 +565,11 @@
                                 </p>
                             </div>
 
+                            <p class="text-secondary mb-3">
+                                <strong>Figures 4–9.</strong> Model-defined local pore-formation-event
+                                probability across DNA Bundle bending rigidity and linker rest length.
+                                Only the vesicle radius differs among panels.
+                            </p>
                                             <div class="row g-4 mb-4">
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
@@ -572,7 +583,7 @@
                                                         </div>
                                                         <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 4.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 50) nm.
+                                                            <strong>Figure 4.</strong> Vesicle radius, \(R = 50\) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -588,7 +599,7 @@
                                                         </div>
                                                         <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 5.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 100) nm.
+                                                            <strong>Figure 5.</strong> Vesicle radius, \(R = 100\) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -604,7 +615,7 @@
                                                         </div>
                                                         <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 6.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 150) nm.
+                                                            <strong>Figure 6.</strong> Vesicle radius, \(R = 150\) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -620,7 +631,7 @@
                                                         </div>
                                                         <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 7.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 200) nm.
+                                                            <strong>Figure 7.</strong> Vesicle radius, \(R = 200\) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -636,7 +647,7 @@
                                                         </div>
                                                         <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 8.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 250) nm.
+                                                            <strong>Figure 8.</strong> Vesicle radius, \(R = 250\) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -652,7 +663,7 @@
                                                         </div>
                                                         <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 9.</strong> Model-defined local pore-formation-event probability across DNA Bundle bending rigidity and linker rest length for (<i>R</i> = 300) nm.
+                                                            <strong>Figure 9.</strong> Vesicle radius, \(R = 300\) nm.
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -795,8 +806,23 @@
 
                     <!-- 1.2 3D Reduced Free-Energy Model -->
                     <div id="three-d" class="subsection">
-                        <h3 class="h4 fw-bold mb-4">1.2 3D Reduced Free-Energy Model
-                        </h3>
+                        <h3 class="h4 fw-bold mb-4">1.2 3D Reduced Free-Energy Model</h3>
+
+                        <div class="goal-callout mb-4" role="note" aria-label="Section 1.2 key result">
+                            <div class="goal-callout-head">
+                                <span>KEY RESULT</span>
+                            </div>
+                            <div class="goal-callout-body">
+                                <h4 class="goal-callout-title">12 helices is the robust DNA Bundle design target</h4>
+                                <p class="goal-callout-text">
+                                    Figure 13 gives an ideal-coupling reference of approximately
+                                    4 helices. Figure 14 shows that weaker inter-helix coupling requires
+                                    more helices; 12 helices reaches the target even in the lowest
+                                    coupling condition examined. The 13-helix Bundle is used as a
+                                    one-helix-above-threshold comparison design.
+                                </p>
+                            </div>
+                        </div>
                         <div id="three-d-modeling" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Why a reduced 3D model?</h4>
                             <p class="text-secondary mb-4">
@@ -979,55 +1005,69 @@
                             <h4 class="h5 fw-bold mb-3 section-subtitle">
                                 Estimating the Minimum Number of DNA Helices
                             </h4>
+                            <h5 class="fw-bold mb-3 section-subtitle">How to Read Figures 13 and 14</h5>
+
                             <p class="text-secondary mb-3">
-                                The Bundle-radius comparison indicates that radius is an important
-                                determinant of membrane deformation: a smaller Bundle radius appears to
-                                favour more localized membrane loading and pore formation. However, a
-                                Bundle with fewer helices also has lower bending rigidity. Because helix
-                                number determines both Bundle radius and mechanical stiffness, we performed
-                                a helix-count analysis to estimate the minimum number of DNA helices needed
-                                to achieve the target membrane pore-formation condition.
+                                The smaller-radius Bundle in Figure 12 produces more localised membrane
+                                deformation, but a Bundle with fewer helices also has lower bending
+                                rigidity. We therefore estimated the helix number required to retain
+                                sufficient mechanical strength while maintaining a membrane-active Bundle
+                                geometry.
                             </p>
+
+                            <p class="text-secondary mb-3">
+                                <a href="#figure-13">Figure 13</a> shows the ideal fully coupled reference
+                                condition, in which all DNA helices act together as one rigid Bundle.
+                                Under this ideal condition, the target local-curvature level is reached at
+                                approximately 4 helices.
+                            </p>
+
+                            <p class="text-secondary mb-3">
+                                In practice, helices may not be perfectly mechanically coupled. Therefore,
+                                <a href="#figure-14">Figure 14</a> evaluates \(\alpha\) (alpha), the
+                                effective mechanical coupling between helices in one DNA Bundle. A larger
+                                \(\alpha\) means that helices act more strongly as one rigid Bundle, whereas
+                                a smaller \(\alpha\) represents a more loosely coupled Bundle.
+                            </p>
+
                             <p class="text-secondary mb-4">
-                                The following graphs compare the predicted local-curvature response across
-                                different helix numbers and effective coupling conditions. Detailed
-                                equations, assumptions, and source provenance are provided in the
-                                <a href="appendix.html#three-d-model-details">Technical Appendix</a>.
+                                As \(\alpha\) decreases, more helices are required to reach the target
+                                curvature level: approximately 4 helices for \(\alpha = 1.0\), 6 helices
+                                for \(\alpha = 0.5\), and 12 helices for <span class="text-nowrap">\(\alpha = 0.1\).</span> We therefore
+                                selected a 12-helix DNA Bundle as the robust design target because it
+                                reaches the target even under the lowest coupling condition examined. The
+                                13-helix DNA Bundle was included as a one-helix-above-threshold comparison
+                                design.
                             </p>
                             <div class="row g-4 mb-4 figure-pair">
                                 <div class="col-lg-6">
-                                    <figure class="simulation-figure mb-0">
+                                    <figure id="figure-13" class="simulation-figure mb-0">
                                         <img src="img/SIMULATION/3Dpore-formation.png?v=2"
                                             alt="Illustrative maximum local-curvature indicator versus the number of DNA helices in one Bundle, with a selected comparison level near four helices"
                                             class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                             loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3">
-                                            <strong>Figure 13.</strong> Single-condition helix-number screening curve; the
-                                            comparison level is model-defined, not a calibrated physical event threshold.
+                                            <strong>Figure 13.</strong> Ideal fully coupled reference condition
+                                            (\(\alpha = 1.0\)); the target local-curvature level is reached at
+                                            approximately 4 helices.
                                         </figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-lg-6">
-                                    <figure class="simulation-figure mb-0">
+                                    <figure id="figure-14" class="simulation-figure mb-0">
                                         <img src="img/SIMULATION/3D_pore-formation.png?v=2"
                                             alt="Phenomenological local-curvature comparison across cross-linking-efficiency scenarios, with selected helix numbers near 3.8, 5.4, and 12"
                                             class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                             loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3">
-                                            <strong>Figure 14.</strong> α-dependent helix-number sensitivity analysis at a
-                                            selected model-defined curvature-comparison level.
+                                            <strong>Figure 14.</strong> Effect of effective inter-helix coupling
+                                            (\(\alpha\)) on the required helix number. Lower coupling requires more
+                                            helices; the lowest coupling condition shown reaches the target at
+                                            approximately 12 helices.
                                         </figcaption>
                                     </figure>
                                 </div>
                             </div>
-                            <h5 class="fw-bold mb-3 section-subtitle">Design Conclusion</h5>
-                            <p class="text-secondary mb-4">
-                                The helix-count analysis identifies approximately 12 helices as the
-                                membrane pore-formation threshold for the present DNA Bundle design.
-                                Therefore, a 12-helix DNA Bundle is sufficient to reach the target
-                                membrane-deformation condition, while the 13-helix Bundle provides a
-                                higher-helix comparison design.
-                            </p>
                             <a class="btn btn-sm learn-more-btn"
                                 href="appendix.html#three-d-model-details">3D model details in the Technical Appendix</a>
                             <a class="btn btn-sm learn-more-btn"
@@ -1036,10 +1076,9 @@
                     </div>
                 </section>
 
-                <!-- 2. HCR Reaction -->
+                <!-- 2. HCR Sequence Design and Thermodynamic Assessment -->
                 <section id="hcr-reaction" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">2. Design and Thermodynamic Validation of 6-Helix Bundle HCR Sequences
-                    </h2>
+                    <h2 class="section-title">2. HCR Sequence Design and Thermodynamic Assessment</h2>
                     <p class="text-secondary mb-4">
                         To achieve programmable and stimuli-responsive bundle assembly, we computationally designed
                         and thermodynamically evaluated the DNA sequences for the 6-Helix Bundle HCR system.
@@ -1047,8 +1086,7 @@
 
                     <!-- 2.1 Sequence Design Conditions -->
                     <div id="hcr-self-assembly" class="simulation-subblock subsection">
-                        <h3 class="h4 fw-bold mb-4">2.1 Sequence Design
-                            Conditions</h3>
+                        <h3 class="h4 fw-bold mb-4">2.1 HCR Sequence Design</h3>
                         <div class="content-box p-4 p-md-5 mb-4">
                             <p class="text-secondary">The DNA sequences for the 6-Helix Bundle HCR system (seeds
                                 S1-S6 and hairpins H1-H6) were designed computationally with NUPACK to eliminate
@@ -1067,8 +1105,7 @@
 
                     <!-- 2.2 Thermodynamic Feasibility -->
                     <div id="hcr-possibility" class="simulation-subblock subsection mb-0">
-                        <h3 class="h4 fw-bold mb-4">2.2 Thermodynamic Feasibility of the Intended
-                            Sequential Hybridization Steps</h3>
+                        <h3 class="h4 fw-bold mb-4">2.2 Thermodynamic Assessment of Sequential Hybridization</h3>
                         <div class="content-box p-4 p-md-5">
                             <p class="text-secondary">
                                 NUPACK was used to evaluate the equilibrium thermodynamic plausibility of
