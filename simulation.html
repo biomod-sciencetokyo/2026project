@@ -204,12 +204,11 @@
                         <p class="text-secondary mb-3">
                             Each trajectory is evolved as an overdamped Brownian coarse-grained
                             calculation while the DNA Bundle approaches the membrane, using a Brownian-dynamics
-                            framework [<a href="#ref-4">4</a>]. The readout is the occurrence
+                            framework [<a href="#ref-2">2</a>]. The readout is the occurrence
                             of a model-defined local pore-formation event: a local spring-extension threshold in
                             the discrete membrane model. This event is used only as a pore-initiation proxy; the
                             2D model does not resolve physical pore growth, resealing, leakage, or vesicle lysis.
-                            Physical pore studies describe additional mechanisms beyond this model-defined
-                            criterion [<a href="#ref-16">16</a>–<a href="#ref-22">22</a>]. Detailed equations, parameters, and procedure are in the
+                            Detailed equations, parameters, and procedure are in the
                             <a href="appendix.html#two-d-method">Appendix</a>.
                         </p>
 
@@ -773,11 +772,11 @@
                                 The 3D model (<a href="#figure-10">Figure 10</a>) represents the DNA Bundle lying on a
                                 vesicle membrane. For the <i>R</i><sub>0</sub> = 50 nm reference condition, the model estimates a candidate
                                 deformation shape from prescribed cholesterol-mediated adhesion, DNA Bundle bending,
-                                membrane bending, and membrane-tension terms
-                                [<a href="#ref-1">1</a>–<a href="#ref-3">3</a>,
-                                <a href="#ref-5">5</a>–<a href="#ref-11">11</a>].
-                                Cholesterol-modified DNA structures have been used for membrane binding and
-                                remodeling [<a href="#ref-12">12</a>–<a href="#ref-15">15</a>].
+                                membrane bending, and membrane-tension terms. The membrane-bending term uses a
+                                Helfrich-type curvature-elasticity form [<a href="#ref-1">1</a>] with a literature-informed bending
+                                rigidity \(\kappa_{\mathrm m}=20k_{\mathrm B}T\) [<a href="#ref-3">3</a>]. Membrane binding of
+                                cholesterol-modified DNA nanostructures, and its dependence on the DNA spacer, has been
+                                demonstrated experimentally [<a href="#ref-4">4</a>]; the adhesion strength used here is a model-defined input.
                             </p>
                             <div class="math-display">
                                 \[
@@ -1016,8 +1015,8 @@
                         <h3 class="h4 fw-bold mb-4">2.1 Bundled HCR Sequence Design</h3>
                         <div class="content-box mb-4">
                             <p class="text-secondary">The DNA sequences for the 6HB Bundled HCR system (seed strands S1–S6 and hairpins H1–H6) were designed computationally with NUPACK to eliminate
-                                unintended leak reactions and structural defects
-                                [<a href="#ref-23">23</a>, <a href="#ref-24">24</a>]. Strict physical constraints were
+                                unintended leak reactions and structural defects in hybridization chain reaction
+                                (HCR) [<a href="#ref-7">7</a>], using NUPACK [<a href="#ref-8">8</a>]. Strict physical constraints were
                                 applied during the design process:</p>
                             <ol class="text-secondary mb-0">
                                 <li>Complete elimination of ≥4-nt palindromes and homopolymers.</li>
@@ -1035,7 +1034,7 @@
                         <div class="content-box">
                             <p class="text-secondary">
                                 NUPACK was used to evaluate the equilibrium thermodynamic plausibility of
-                                the specified sequential hybridization steps in the designed 6HB Bundled HCR system [<a href="#ref-24">24</a>]. First, each hairpin (H1–H6) was analyzed in
+                                the specified sequential hybridization steps in the designed 6HB Bundled HCR system [<a href="#ref-8">8</a>]. First, each hairpin (H1–H6) was analyzed in
                                 isolation at 1 µM; the predicted monomer fractions (&gt;99.7%) and
                                 homodimerization fractions (≤0.21%) indicate that the intended closed-hairpin
                                 states are thermodynamically favored under the model conditions. We then
@@ -1109,7 +1108,7 @@
                                 they are not kinetic predictions.</p>
                             <p class="text-secondary mt-4 mb-0">
                                 <strong>Software and calculation conditions.</strong> Thermodynamic calculations
-                                supporting the HCR sequence design were performed using NUPACK version 4.0.2.0 at
+                                supporting the HCR sequence design were performed using NUPACK version 4.0.2.0 [<a href="#ref-8">8</a>] at
                                 \(25\,^\circ\mathrm{C}\) (298.15 K), with \([\mathrm{Na}^+] = 0.050\ \mathrm{M}\) and
                                 \([\mathrm{Mg}^{2+}] = 0.012\ \mathrm{M}\).
                             </p>
@@ -1121,29 +1120,13 @@
                     <h2 class="references-title">References</h2>
                     <div class="references-list">
                         <p id="ref-1">[1] Helfrich, W. Elastic properties of lipid bilayers: theory and possible experiments. <i>Z. Naturforsch. C</i> <b>28</b>, 693–703 (1973). <a class="ref-doi" href="https://doi.org/10.1515/znc-1973-11-1209">DOI</a></p>
-                        <p id="ref-2">[2] Seifert, U. Configurations of fluid membranes and vesicles. <i>Adv. Phys.</i> <b>46</b>, 13–137 (1997). <a class="ref-doi" href="https://doi.org/10.1080/00018739700101488">DOI</a></p>
-                        <p id="ref-3">[3] Seifert, U. &amp; Lipowsky, R. Adhesion of vesicles. <i>Phys. Rev. A</i> <b>42</b>, 4768–4771 (1990). <a class="ref-doi" href="https://doi.org/10.1103/PhysRevA.42.4768">DOI</a></p>
-                        <p id="ref-4">[4] Ermak, D. L. &amp; McCammon, J. A. Brownian dynamics with hydrodynamic interactions. <i>J. Chem. Phys.</i> <b>69</b>, 1352–1360 (1978). <a class="ref-doi" href="https://doi.org/10.1063/1.436761">DOI</a></p>
-                        <p id="ref-5">[5] Evans, E. &amp; Rawicz, W. Entropy-driven tension and bending elasticity in condensed-fluid membranes. <i>Phys. Rev. Lett.</i> <b>64</b>, 2094–2097 (1990). <a class="ref-doi" href="https://doi.org/10.1103/PhysRevLett.64.2094">DOI</a></p>
-                        <p id="ref-6">[6] Rawicz, W., Olbrich, K. C., McIntosh, T., Needham, D. &amp; Evans, E. Effect of chain length and unsaturation on elasticity of lipid bilayers. <i>Biophys. J.</i> <b>79</b>, 328–339 (2000). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(00)76295-3">DOI</a></p>
-                        <p id="ref-7">[7] Dimova, R. Recent developments in the field of bending rigidity measurements on membranes. <i>Adv. Colloid Interface Sci.</i> <b>208</b>, 225–234 (2014). <a class="ref-doi" href="https://doi.org/10.1016/j.cis.2014.03.003">DOI</a></p>
-                        <p id="ref-8">[8] Hagerman, P. J. Flexibility of DNA. <i>Annu. Rev. Biophys. Biophys. Chem.</i> <b>17</b>, 265–286 (1988). <a class="ref-doi" href="https://doi.org/10.1146/annurev.bb.17.060188.001405">DOI</a></p>
-                        <p id="ref-9">[9] Kauert, D. J., Kurth, T., Liedl, T. &amp; Seidel, R. Direct mechanical measurements reveal the material properties of three-dimensional DNA origami. <i>Nano Lett.</i> <b>11</b>, 5558–5563 (2011). <a class="ref-doi" href="https://doi.org/10.1021/nl203503s">DOI</a></p>
-                        <p id="ref-10">[10] Lee, J. Y. et al. Rapid computational analysis of DNA origami assemblies at near-atomic resolution. <i>ACS Nano</i> <b>15</b>, 1002–1015 (2021). <a class="ref-doi" href="https://doi.org/10.1021/acsnano.0c07717">DOI</a></p>
-                        <p id="ref-11">[11] Doye, J. P. K. et al. Coarse-graining DNA for simulations of DNA nanotechnology. <i>Phys. Chem. Chem. Phys.</i> <b>15</b>, 20395 (2013). <a class="ref-doi" href="https://doi.org/10.1039/C3CP53545B">DOI</a></p>
-                        <p id="ref-12">[12] Langecker, M. et al. Synthetic lipid membrane channels formed by designed DNA nanostructures. <i>Science</i> <b>338</b>, 932–936 (2012). <a class="ref-doi" href="https://doi.org/10.1126/science.1225624">DOI</a></p>
-                        <p id="ref-13">[13] Khmelinskaia, A., Mücksch, J., Petrov, E. P., Franquelim, H. G. &amp; Schwille, P. Control of membrane binding and diffusion of cholesteryl-modified DNA origami nanostructures by DNA spacers. <i>Langmuir</i> <b>34</b>, 14921–14931 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.langmuir.8b01850">DOI</a></p>
-                        <p id="ref-14">[14] Franquelim, H. G., Khmelinskaia, A., Sobczak, J.-P., Dietz, H. &amp; Schwille, P. Membrane sculpting by curved DNA origami scaffolds. <i>Nat. Commun.</i> <b>9</b>, 811 (2018). <a class="ref-doi" href="https://doi.org/10.1038/s41467-018-03198-9">DOI</a></p>
-                        <p id="ref-15">[15] Zuraw-Weston, S. E. et al. Membrane remodeling by DNA origami nanorods: experiments exploring the parameter space for vesicle remodeling. <i>Langmuir</i> <b>37</b>, 6219–6231 (2021). <a class="ref-doi" href="https://doi.org/10.1021/acs.langmuir.1c00416">DOI</a></p>
-                        <p id="ref-16">[16] Litster, J. D. Stability of lipid bilayers and red blood cell membranes. <i>Phys. Lett. A</i> <b>53</b>, 193–194 (1975). <a class="ref-doi" href="https://doi.org/10.1016/0375-9601(75)90402-8">DOI</a></p>
-                        <p id="ref-17">[17] Zhelev, D. V. &amp; Needham, D. Tension-stabilized pores in giant vesicles: determination of pore size and pore line tension. <i>Biochim. Biophys. Acta Biomembr.</i> <b>1147</b>, 89–104 (1993). <a class="ref-doi" href="https://doi.org/10.1016/0005-2736(93)90319-U">DOI</a></p>
-                        <p id="ref-18">[18] Sandre, O., Moreaux, L. &amp; Brochard-Wyart, F. Dynamics of transient pores in stretched vesicles. <i>Proc. Natl Acad. Sci. USA</i> <b>96</b>, 10591–10596 (1999). <a class="ref-doi" href="https://doi.org/10.1073/pnas.96.19.10591">DOI</a></p>
-                        <p id="ref-19">[19] Karatekin, E. et al. Cascades of transient pores in giant vesicles: line tension and transport. <i>Biophys. J.</i> <b>84</b>, 1734–1749 (2003). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(03)74981-9">DOI</a></p>
-                        <p id="ref-20">[20] Portet, T. &amp; Dimova, R. A new method for measuring edge tensions and stability of lipid bilayers: effect of membrane composition. <i>Biophys. J.</i> <b>99</b>, 3264–3273 (2010). <a class="ref-doi" href="https://doi.org/10.1016/j.bpj.2010.09.032">DOI</a></p>
-                        <p id="ref-21">[21] Evans, E. &amp; Heinrich, V. Dynamic strength of fluid membranes. <i>C. R. Phys.</i> <b>4</b>, 265–274 (2003). <a class="ref-doi" href="https://doi.org/10.1016/S1631-0705(03)00044-6">DOI</a></p>
-                        <p id="ref-22">[22] Leontiadou, H., Mark, A. E. &amp; Marrink, S. J. Molecular dynamics simulations of hydrophilic pores in lipid bilayers. <i>Biophys. J.</i> <b>86</b>, 2156–2164 (2004). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(04)74275-7">DOI</a></p>
-                        <p id="ref-23">[23] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
-                        <p id="ref-24">[24] Zadeh, J. N. et al. NUPACK: analysis and design of nucleic acid systems. <i>J. Comput. Chem.</i> <b>32</b>, 170–173 (2011). <a class="ref-doi" href="https://doi.org/10.1002/jcc.21596">DOI</a></p>
+                        <p id="ref-2">[2] Ermak, D. L. &amp; McCammon, J. A. Brownian dynamics with hydrodynamic interactions. <i>J. Chem. Phys.</i> <b>69</b>, 1352–1360 (1978). <a class="ref-doi" href="https://doi.org/10.1063/1.436761">DOI</a></p>
+                        <p id="ref-3">[3] Rawicz, W., Olbrich, K. C., McIntosh, T., Needham, D. &amp; Evans, E. Effect of chain length and unsaturation on elasticity of lipid bilayers. <i>Biophys. J.</i> <b>79</b>, 328–339 (2000). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(00)76295-3">DOI</a></p>
+                        <p id="ref-4">[4] Khmelinskaia, A., Mücksch, J., Petrov, E. P., Franquelim, H. G. &amp; Schwille, P. Control of membrane binding and diffusion of cholesteryl-modified DNA origami nanostructures by DNA spacers. <i>Langmuir</i> <b>34</b>, 14921–14931 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.langmuir.8b01850">DOI</a></p>
+                        <p id="ref-5">[5] Israelachvili, J. N. <i>Intermolecular and Surface Forces</i>, 3rd edn (Academic Press, 2011). ISBN 978-0-12-391927-4.</p>
+                        <p id="ref-6">[6] Needham, D. &amp; Nunn, R. S. Elastic deformation and failure of lipid bilayer membranes containing cholesterol. <i>Biophys. J.</i> <b>58</b>, 997–1009 (1990). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(90)82444-9">DOI</a></p>
+                        <p id="ref-7">[7] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
+                        <p id="ref-8">[8] Fornace, M. E., Porubsky, N. J. &amp; Pierce, N. A. A unified dynamic programming framework for the analysis of interacting nucleic acid strands: enhanced models, scalability, and speed. <i>ACS Synth. Biol.</i> <b>9</b>, 2665–2678 (2020) (NUPACK 4 analysis algorithms). <a class="ref-doi" href="https://doi.org/10.1021/acssynbio.9b00523">DOI</a></p>
                     </div>
                 </section>
             </div>

@@ -120,8 +120,6 @@
                                 generate the effective bending-rigidity conditions in the 2D model. It is not an
                                 experimentally measured crosslinking efficiency and is not numerically comparable to
                                 \(\alpha_{\mathrm{3D}}\), which is used separately in the 3D helix-count screening.
-                                DNA flexibility and the mechanics of DNA assemblies have been studied experimentally
-                                and computationally [<a href="simulation.html#ref-8">8</a>–<a href="simulation.html#ref-11">11</a>].
                             </p>
                         </div>
 
@@ -138,9 +136,7 @@
                             <p class="text-secondary mb-2">
                                 Contour smoothing uses the discrete second difference below to construct a
                                 discrete contour-smoothing force. This implementation-level force is not a complete
-                                continuous Helfrich energy; it is a discrete force inspired by the broader continuum
-                                descriptions of membrane elasticity [<a href="simulation.html#ref-1">1</a>,
-                                <a href="simulation.html#ref-2">2</a>, <a href="simulation.html#ref-5">5</a>–<a href="simulation.html#ref-7">7</a>].
+                                continuous Helfrich energy [<a href="#ref-1">1</a>]; it is a discrete, model-defined smoothing force.
                             </p>
                             <div class="math-display">\[
                                 \mathbf C_i=
@@ -189,9 +185,9 @@
                                 Cholesterol–membrane capture acts when the nearest membrane point is within
                                 \(r_{\mathrm{mc}}<24+l_0\). Its normal force is distributed to the nearest bead and
                                 two beads on either side with code-defined weights
-                                \((0.10,\,0.20,\,0.40,\,0.20,\,0.10)\). Cholesterol-modified DNA nanostructures have
-                                been used for membrane binding [<a href="simulation.html#ref-12">12</a>,
-                                <a href="simulation.html#ref-13">13</a>]; the cutoff and bead weights here are
+                                \((0.10,\,0.20,\,0.40,\,0.20,\,0.10)\). Membrane binding of cholesterol-modified DNA
+                                nanostructures depends on the DNA spacer between the cholesterol and the structure
+                                [<a href="#ref-4">4</a>]; the cutoff and bead weights here are
                                 model-specific settings, not measured physical values.
                             </p>
                             <p class="text-secondary mb-2">
@@ -210,7 +206,7 @@
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Numerical update</h4>
                             <p class="text-secondary mb-2">
                                 Membrane beads use an overdamped Brownian update, following the general Brownian-dynamics
-                                framework [<a href="simulation.html#ref-4">4</a>]:
+                                framework [<a href="#ref-2">2</a>]:
                             </p>
                             <div class="math-display">\[
                                 \mathbf r_i^{n+1}=
@@ -261,8 +257,7 @@
                             \]</div>
                             <p class="text-secondary mb-2">
                                 This is a model-defined local pore-formation event, not a direct prediction of physical
-                                membrane rupture, lysis, or complete pore growth. Physical pore formation and growth
-                                involve processes outside this operational criterion [<a href="simulation.html#ref-16">16</a>–<a href="simulation.html#ref-22">22</a>].
+                                membrane rupture, lysis, or complete pore growth.
                             </p>
                             <p class="text-secondary mb-0">
                                 Changing \(R\) also changes membrane-bead count, DNA Bundle length, anchor count, and the
@@ -295,7 +290,7 @@
                                                 <td>50, 100, 150, 200, 250, 300</td>
                                                 <td>nm</td>
                                                 <td>Initial 2D vesicle (membrane-ring) radius</td>
-                                                <td>Parameter sweep</td>
+                                                <td>Model-defined input</td>
                                                 <td>Varied</td>
                                             </tr>
                                             <tr>
@@ -304,7 +299,7 @@
                                                 <td>Dimensionless</td>
                                                 <td>Internal source-code control used to generate <i>B</i><sub>DNA</sub>
                                                     (code variable <code>alpha</code>)</td>
-                                                <td>Phenomenological 2D rigidity mapping</td>
+                                                <td>Model-defined input</td>
                                                 <td>Varied internal parameter; not a measured crosslinking efficiency</td>
                                             </tr>
                                             <tr>
@@ -313,12 +308,8 @@
                                                     pN·nm<sup>2</sup>; representative animations: 6.21 × 10<sup>5</sup> and
                                                     9.51 × 10<sup>2</sup></td>
                                                 <td>pN·nm<sup>2</sup></td>
-                                                <td>Direct mechanical quantity reported in the 2D sweep and heatmaps</td>
-                                                <td>Generated from <i>α</i><sub>2D</sub> through the displayed phenomenological mapping
-                                                    (<i>L</i><sub>p,eff</sub> = 2<i>N</i><sub>chains</sub> +
-                                                    120(<i>N</i><sub>chains</sub><i>α</i><sub>2D</sub>)<sup>3</sup>,
-                                                    <i>B</i><sub>DNA</sub> = <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>,
-                                                    <i>N</i><sub>chains</sub> = 12)</td>
+                                                <td>Direct mechanical quantity reported in the 2D sweep and heatmaps; generated from <i>α</i><sub>2D</sub> through the displayed phenomenological mapping</td>
+                                                <td>Model-defined input</td>
                                                 <td>Varied effective rigidity condition</td>
                                             </tr>
                                             <tr>
@@ -327,15 +318,15 @@
                                                     and 20.0</td>
                                                 <td>nm</td>
                                                 <td>Linker rest length; also sets the membrane-capture range</td>
-                                                <td>Parameter sweep</td>
+                                                <td>Model-defined input</td>
                                                 <td>Varied</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>N</i><sub>mem</sub></th>
                                                 <td>int(240 <i>R</i> / 150 nm)</td>
                                                 <td>Beads</td>
-                                                <td>Discretization of the periodic membrane ring</td>
-                                                <td>Discretization rule; initial spacing about 3.927 nm</td>
+                                                <td>Discretization of the periodic membrane ring; initial spacing about 3.927 nm</td>
+                                                <td>Numerical/discretization setting</td>
                                                 <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
@@ -343,7 +334,7 @@
                                                 <td>2<i>R</i> sin(π / <i>N</i><sub>mem</sub>); approximately 3.927</td>
                                                 <td>nm</td>
                                                 <td>Initial neighbor spacing of the ring</td>
-                                                <td>Derived from the discretization rule</td>
+                                                <td>Derived from model geometry</td>
                                                 <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
@@ -351,7 +342,7 @@
                                                 <td>3<i>R</i></td>
                                                 <td>nm</td>
                                                 <td>2D DNA Bundle length</td>
-                                                <td>Geometric scaling rule</td>
+                                                <td>Derived from model geometry</td>
                                                 <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
@@ -360,7 +351,7 @@
                                                     <i>r</i><sub>DNA</sub> = 1.25√12 = 4.330</td>
                                                 <td>Chains, arcs, nm</td>
                                                 <td>2D DNA Bundle cross-section and generalized-coordinate representation</td>
-                                                <td>Model geometry</td>
+                                                <td>Model-defined input</td>
                                                 <td>Fixed model structure</td>
                                             </tr>
                                             <tr>
@@ -368,16 +359,15 @@
                                                 <td>int(<i>L</i><sub>Bundle</sub>/5.1) + 1</td>
                                                 <td>Anchors; spacing 5.1 nm</td>
                                                 <td>Cholesterol-anchor count and spacing</td>
-                                                <td>Anchor placement rule</td>
+                                                <td>Derived from model geometry</td>
                                                 <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>N</i><sub>rep</sub></th>
                                                 <td>max(15, int(<i>L</i><sub>Bundle</sub>/3))</td>
                                                 <td>Evaluation points</td>
-                                                <td>DNA–membrane repulsion sampling</td>
-                                                <td>Sampling rule; forces are summed without an explicit arc-length
-                                                    weight</td>
+                                                <td>DNA–membrane repulsion sampling; forces are summed without an explicit arc-length weight</td>
+                                                <td>Numerical/discretization setting</td>
                                                 <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
@@ -385,9 +375,8 @@
                                                 <td><i>T</i><sub>i</sub> &gt; 150</td>
                                                 <td>Code force units</td>
                                                 <td>Registers the first model-defined local event when any intact spring
-                                                    exceeds the threshold</td>
-                                                <td>Operational event criterion; not calibrated to physical membrane
-                                                    tension</td>
+                                                    exceeds the threshold; not calibrated to physical membrane tension</td>
+                                                <td>Model-defined event criterion</td>
                                                 <td>Model-defined criterion</td>
                                             </tr>
                                             <tr>
@@ -395,7 +384,7 @@
                                                 <td>150</td>
                                                 <td>Code spring units</td>
                                                 <td>Hookean membrane spring coefficient</td>
-                                                <td>Membrane spring law</td>
+                                                <td>Model-defined input</td>
                                                 <td>Fixed model constant</td>
                                             </tr>
                                             <tr>
@@ -404,9 +393,8 @@
                                                 <td>25<i>k</i><sub>B</sub><i>T</i>/<i>r</i><sub>0,mem</sub>;
                                                     160</td>
                                                 <td>Code units</td>
-                                                <td>Contour smoothing and planar enclosed-area restoration</td>
-                                                <td>Model terms; area restoration is removed in updates following event
-                                                    registration</td>
+                                                <td>Contour smoothing and planar enclosed-area restoration; area restoration is removed in updates following event registration</td>
+                                                <td>Model-defined input</td>
                                                 <td>Fixed model constants / derived coefficient</td>
                                             </tr>
                                             <tr>
@@ -414,8 +402,8 @@
                                                 <td>Slopes 3, 10, and 18; transition at <i>l</i><sub>0</sub> and
                                                     <i>l</i><sub>0</sub> + 6; middle-branch offset 60</td>
                                                 <td>Code force and distance units</td>
-                                                <td>Piecewise-linear, strain-stiffening linker response</td>
-                                                <td>Piecewise-linear model law; not an exact WLC or FENE potential</td>
+                                                <td>Piecewise-linear, strain-stiffening linker response; piecewise-linear; not an exact WLC or FENE potential</td>
+                                                <td>Model-defined input</td>
                                                 <td>Fixed model form</td>
                                             </tr>
                                             <tr>
@@ -423,8 +411,8 @@
                                                 <td><i>r</i><sub>mc</sub> &lt; 24 + <i>l</i><sub>0</sub> nm; reaction
                                                     weights 0.40, 0.20, 0.20, 0.10, 0.10</td>
                                                 <td>nm; dimensionless weights</td>
-                                                <td>Membrane capture and distribution of reaction over five beads</td>
-                                                <td>Capture range 26–44 nm for <i>l</i><sub>0</sub> = 2–20 nm</td>
+                                                <td>Membrane capture and distribution of reaction over five beads; capture range 26–44 nm for <i>l</i><sub>0</sub> = 2–20 nm</td>
+                                                <td>Model-defined input</td>
                                                 <td>Capture range co-varies with <i>l</i><sub>0</sub>; weights fixed</td>
                                             </tr>
                                             <tr>
@@ -433,7 +421,7 @@
                                                     <i>r</i><sub>DNA</sub> = 4.330 nm for the 12-chain DNA Bundle</td>
                                                 <td>nm; code force units</td>
                                                 <td>Normal harmonic overlap repulsion</td>
-                                                <td>Model geometry and cutoff</td>
+                                                <td>Model-defined input</td>
                                                 <td>Fixed cutoff; evaluation-point count co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
@@ -443,7 +431,7 @@
                                                     γ<sub>rot</sub> = <i>L</i><sup>2</sup>/12</td>
                                                 <td>Code energy and friction units</td>
                                                 <td>Brownian noise and overdamped mobility</td>
-                                                <td>Overdamped Brownian update</td>
+                                                <td>Model-defined input</td>
                                                 <td>Fixed or derived; DNA translation/rotation frictions co-vary with
                                                     <i>L</i><sub>Bundle</sub></td>
                                             </tr>
@@ -452,7 +440,7 @@
                                                 <td>Δ<i>t</i> = 10<sup>−4</sup>; 100 frames × 100 substeps</td>
                                                 <td>Code-time units; frames and substeps</td>
                                                 <td>Observation window for one trajectory</td>
-                                                <td>Numerical settings</td>
+                                                <td>Numerical/discretization setting</td>
                                                 <td>Fixed</td>
                                             </tr>
                                             <tr>
@@ -460,7 +448,7 @@
                                                 <td><i>n</i> = 50</td>
                                                 <td>Trajectories</td>
                                                 <td>Event fraction used as the model-defined local event probability</td>
-                                                <td>Sampling per parameter cell</td>
+                                                <td>Numerical/discretization setting</td>
                                                 <td>Fixed</td>
                                             </tr>
                                         </tbody>
@@ -541,9 +529,8 @@
                             For the \(R_0=50\) nm reference condition, the optimization variables are indentation
                             depth \(z_{\mathrm{indent}}\), DNA Bundle bend radius \(R_{\mathrm{bend}}\), and deformation
                             pocket width \(w_y\). The reduced free energy combines aggregate cholesterol adhesion,
-                            DNA Bundle bending, membrane bending, and membrane tension. The membrane-elasticity and
-                            adhesion concepts provide physical context [<a href="simulation.html#ref-1">1</a>–<a href="simulation.html#ref-3">3</a>,
-                            <a href="simulation.html#ref-5">5</a>–<a href="simulation.html#ref-7">7</a>]; this reduced
+                            DNA Bundle bending, membrane bending, and membrane tension. The membrane-bending term follows
+                            the Helfrich curvature-elasticity form [<a href="#ref-1">1</a>]; this reduced
                             functional is a model-specific approximation, not a full continuum surface model.
                         </p>
                         <p class="text-secondary mb-2">The contact geometry is defined by:</p>
@@ -567,9 +554,7 @@
                             A_{\mathrm{contact}}
                         \]</div>
                         <p class="text-secondary mb-2">
-                            DNA-nanostructure mechanics and membrane interactions have experimental and computational
-                            precedent [<a href="simulation.html#ref-8">8</a>–<a href="simulation.html#ref-15">15</a>],
-                            while the contact geometry and effective terms above are defined by this model.
+                            The contact geometry and effective terms above are defined by this model.
                         </p>
                         <div class="math-display">\[
                             E_{\mathrm{DNA,bend}}=
@@ -629,7 +614,7 @@
                                             <td>50</td>
                                             <td>nm</td>
                                             <td>Reference liposome radius</td>
-                                            <td>Reference condition</td>
+                                            <td>Model-defined input</td>
                                             <td>Fixed reference condition</td>
                                         </tr>
                                         <tr>
@@ -637,7 +622,7 @@
                                             <td>300; approximately 4.11 × 10<sup>−21</sup></td>
                                             <td>K; J</td>
                                             <td>Thermal energy scale</td>
-                                            <td>Model conditions</td>
+                                            <td>Model-defined input</td>
                                             <td>Fixed</td>
                                         </tr>
                                         <tr>
@@ -645,8 +630,7 @@
                                             <td>20<i>k</i><sub>B</sub><i>T</i></td>
                                             <td>Thermal-energy units</td>
                                             <td>Membrane bending rigidity</td>
-                                            <td>Rawicz et al., <em>Biophysical Journal</em> (2000)
-                                                [<a href="simulation.html#ref-6">6</a>]</td>
+                                            <td>Literature-informed; Ref. <a href="#ref-3">3</a> (Rawicz et al.)</td>
                                             <td>Fixed model input</td>
                                         </tr>
                                         <tr>
@@ -654,7 +638,7 @@
                                             <td>4; 8</td>
                                             <td>nm; nm</td>
                                             <td>Reference DNA Bundle radius and corresponding diameter</td>
-                                            <td>Model geometry</td>
+                                            <td>Model-defined input</td>
                                             <td>Fixed model input</td>
                                         </tr>
                                         <tr>
@@ -662,15 +646,15 @@
                                             <td>0.1</td>
                                             <td>mN/m</td>
                                             <td>Membrane tension parameter</td>
-                                            <td>Model input</td>
+                                            <td>Model-defined input</td>
                                             <td>Fixed model input</td>
                                         </tr>
                                         <tr>
                                             <th scope="row"><i>ε</i><sub>chol</sub></th>
                                             <td>4.5<i>k</i><sub>B</sub><i>T</i> per cholesterol</td>
                                             <td>Thermal-energy units</td>
-                                            <td>Per-cholesterol scale in aggregate adhesion term</td>
-                                            <td>Aggregate adhesion scale; individual positions and linkers are not resolved</td>
+                                            <td>Per-cholesterol scale in aggregate adhesion term; aggregate adhesion scale; individual positions and linkers are not resolved</td>
+                                            <td>Model-defined input</td>
                                             <td>Model-defined parameter</td>
                                         </tr>
                                         <tr>
@@ -680,7 +664,7 @@
                                             <td>nm; anchors</td>
                                             <td>DNA Bundle length and cholesterol count per DNA Bundle; aggregate adhesion scale
                                                 is 99<i>k</i><sub>B</sub><i>T</i></td>
-                                            <td>Reference configuration</td>
+                                            <td>Model-defined input</td>
                                             <td>Model-defined configuration</td>
                                         </tr>
                                         <tr>
@@ -688,7 +672,7 @@
                                             <td>5</td>
                                             <td>nm</td>
                                             <td>Model length parameter</td>
-                                            <td>Model input</td>
+                                            <td>Model-defined input</td>
                                             <td>Fixed model input</td>
                                         </tr>
                                         <tr>
@@ -699,7 +683,7 @@
                                             <td>nm; nm; nm</td>
                                             <td>Constrained optimization variables; each result is at its upper
                                                 bound</td>
-                                            <td><i>R</i><sub>0</sub> = 50 nm reference calculation</td>
+                                            <td>Numerical/discretization setting</td>
                                             <td>Bounds, initial guess, and optimized result</td>
                                         </tr>
                                         <tr>
@@ -707,7 +691,7 @@
                                             <td>L-BFGS-B</td>
                                             <td>—</td>
                                             <td>Bounded minimization of reduced free energy</td>
-                                            <td><i>R</i><sub>0</sub> = 50 nm reference calculation</td>
+                                            <td>Numerical/discretization setting</td>
                                             <td>Numerical method</td>
                                         </tr>
                                         <tr>
@@ -715,8 +699,7 @@
                                             <td>0.067</td>
                                             <td>nm<sup>−1</sup></td>
                                             <td>Curvature comparison level for helix-count screening</td>
-                                            <td>See <a href="#three-d-curvature-reference">Curvature reference level for
-                                                helix-count screening</a></td>
+                                            <td>Model-defined comparison level; physically motivated by Refs. <a href="#ref-5">5</a>–<a href="#ref-6">6</a> (see <a href="#three-d-curvature-reference">Curvature reference level</a>)</td>
                                             <td>Model-defined comparison level</td>
                                         </tr>
                                     </tbody>
@@ -788,14 +771,10 @@
                                 characteristic length scale within the screen’s inverse-radius convention.
                             </p>
                             <p class="text-secondary mb-3">
-                                This comparison level is physically motivated by two complementary observations.
-                                First, lipid-packing theory shows that strong curvature can generate
-                                composition-dependent packing frustration because the headgroup area, hydrophobic
-                                volume, and hydrocarbon-chain length cannot remain geometrically matched under severe
-                                bending [<a href="#ref-a1">A1</a>]. Second, micropipette experiments show that membrane
-                                failure depends on tension, area expansion, membrane composition, and loading rate rather
-                                than on a single universal curvature value
-                                [<a href="#ref-a2">A2</a>, <a href="#ref-a3">A3</a>].
+                                Lipid-packing theory [<a href="#ref-5">5</a>] and membrane-failure experiments [<a href="#ref-6">6</a>] provide physical
+                                motivation for using a high-curvature comparison level. The numerical value of
+                                \(H_{\mathrm{crit}}\) is a model-defined comparison level used for the
+                                helix-count screen.
                             </p>
                             <p class="text-secondary mb-0">
                                 Accordingly, \(H_{\mathrm{crit}}\) is used here to compare DNA Bundle helix-count and
@@ -2606,9 +2585,14 @@
                 <section id="appendix-references" class="references-section">
                     <h2 class="references-title">References</h2>
                     <div class="references-list">
-                        <p id="ref-a1">[A1] Israelachvili, J. N. <i>Intermolecular and Surface Forces</i>, 3rd edn (Academic Press, 2011). ISBN 978-0-12-391927-4.</p>
-                        <p id="ref-a2">[A2] Evans, E., Heinrich, V., Ludwig, F. &amp; Rawicz, W. Dynamic tension spectroscopy and strength of biomembranes. <i>Biophys. J.</i> <b>85</b>, 2342–2350 (2003). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(03)74658-X">DOI</a></p>
-                        <p id="ref-a3">[A3] Needham, D. &amp; Nunn, R. S. Elastic deformation and failure of lipid bilayer membranes containing cholesterol. <i>Biophys. J.</i> <b>58</b>, 997–1009 (1990). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(90)82444-9">DOI</a></p>
+                        <p id="ref-1">[1] Helfrich, W. Elastic properties of lipid bilayers: theory and possible experiments. <i>Z. Naturforsch. C</i> <b>28</b>, 693–703 (1973). <a class="ref-doi" href="https://doi.org/10.1515/znc-1973-11-1209">DOI</a></p>
+                        <p id="ref-2">[2] Ermak, D. L. &amp; McCammon, J. A. Brownian dynamics with hydrodynamic interactions. <i>J. Chem. Phys.</i> <b>69</b>, 1352–1360 (1978). <a class="ref-doi" href="https://doi.org/10.1063/1.436761">DOI</a></p>
+                        <p id="ref-3">[3] Rawicz, W., Olbrich, K. C., McIntosh, T., Needham, D. &amp; Evans, E. Effect of chain length and unsaturation on elasticity of lipid bilayers. <i>Biophys. J.</i> <b>79</b>, 328–339 (2000). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(00)76295-3">DOI</a></p>
+                        <p id="ref-4">[4] Khmelinskaia, A., Mücksch, J., Petrov, E. P., Franquelim, H. G. &amp; Schwille, P. Control of membrane binding and diffusion of cholesteryl-modified DNA origami nanostructures by DNA spacers. <i>Langmuir</i> <b>34</b>, 14921–14931 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.langmuir.8b01850">DOI</a></p>
+                        <p id="ref-5">[5] Israelachvili, J. N. <i>Intermolecular and Surface Forces</i>, 3rd edn (Academic Press, 2011). ISBN 978-0-12-391927-4.</p>
+                        <p id="ref-6">[6] Needham, D. &amp; Nunn, R. S. Elastic deformation and failure of lipid bilayer membranes containing cholesterol. <i>Biophys. J.</i> <b>58</b>, 997–1009 (1990). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(90)82444-9">DOI</a></p>
+                        <p id="ref-7">[7] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
+                        <p id="ref-8">[8] Fornace, M. E., Porubsky, N. J. &amp; Pierce, N. A. A unified dynamic programming framework for the analysis of interacting nucleic acid strands: enhanced models, scalability, and speed. <i>ACS Synth. Biol.</i> <b>9</b>, 2665–2678 (2020) (NUPACK 4 analysis algorithms). <a class="ref-doi" href="https://doi.org/10.1021/acssynbio.9b00523">DOI</a></p>
                     </div>
                 </section>
             </div>
