@@ -50,11 +50,13 @@ main.content-container {
     padding-bottom: 100px;
 }
 
-/* Keep a side gutter that scales with the window (px-md-0 removes the padding,
-   so without this the content touches the edges just above each breakpoint) */
+/* Side margins as a fixed share of the window on every sub-page (px-md-0 removes the padding,
+   so without this the content touches the edges just above each breakpoint).
+   Below the max-width the content is always 92% of the window, so it shrinks evenly. */
 @media (min-width: 768px) {
-    main.content-container {
-        width: calc(100% - 2 * clamp(24px, 3vw, 48px));
+    main.content-container,
+    [role="main"].content-container {
+        width: 92%;
     }
 }
 
@@ -5215,6 +5217,7 @@ main .ms-axis-title {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    flex: 1;
     min-width: 0;
 }
 
@@ -5249,8 +5252,75 @@ a.ms-link::after {
     inset: 0;
 }
 
-.ms-link .ms-kind::after {
-    content: " \2192";
+.ms-link .ms-kind {
+    color: var(--accent-blue);
+}
+
+/* Link cue: a quiet arrow in the top-right corner of each linked card (on the short category row).
+   The "View data" text stays hidden and fades in beside the arrow on hover / keyboard focus. */
+.ms-go {
+    position: absolute;
+    top: 0.95rem;
+    right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0;            /* hides the literal "View data" text node */
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.ms-go::before {
+    content: "View data";
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--accent-blue);
+    opacity: 0;
+    transform: translateX(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ms-go i {
+    font-size: 0.95rem;
+    opacity: 0.6;
+    transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+}
+
+.ms-link:hover .ms-go::before,
+.ms-link:focus-visible .ms-go::before {
+    opacity: 1;
+    transform: none;
+}
+
+.ms-link:hover .ms-go i,
+.ms-link:focus-visible .ms-go i {
+    color: var(--accent-blue);
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* the hover label would cover the text on narrow cards; touch screens get the arrow only */
+@media (hover: none), (max-width: 575.98px) {
+    .ms-go::before {
+        display: none;
+    }
+}
+
+main .ms-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    text-indent: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
 }
 
 .ms-node:has(.ms-link) {
