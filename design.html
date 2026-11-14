@@ -67,8 +67,8 @@
                             (<a href="experiment.html#exp-a">Experiment A</a>).</li>
                         <li><strong>Annealed 12- and 13-Helix DNA Bundles (12HB and 13HB):</strong> rigid, cholesterol-modified DNA Bundles built from established DNA tube designs [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>]
                             to test anchoring and disruption of the membrane. The 12HB meets the estimated
-                            threshold, and the 13HB serves as a comparison with one additional helix
-                            (<a href="experiment.html#exp-b">Experiment B</a>).</li>
+                            threshold, and the twisted 13HB, which carries cholesterol in all directions, serves as a
+                            comparison for the direction of cholesterol (<a href="experiment.html#exp-b">Experiment B</a>).</li>
                     </ul>
                 </section>
 
@@ -87,15 +87,14 @@
                             As the materials for Bundled HCR, we prepared a seed and six Double-Hairpin DNAs (H1–H6).
                         </p>
                         <p class="text-secondary mb-4">
-                            The seed consists of the single-stranded DNAs S1–S6 shown in Table 1 and assembles into
-                            the structure shown in Figure 1 by annealing. In Table 1, a domain labeled “a1*”
-                            is complementary to domain “a1”.
+                            The seed consists of the single-stranded DNAs S1–S6 shown in <a href="#table-seed-strands">Table 1</a> and assembles into
+                            the structure shown in <a href="#fig-1">Figure 1</a> by annealing.
                         </p>
                         <div class="row g-4 align-items-start seed-structure-layout">
                             <div class="col-12">
                                 <div id="table-seed-strands" class="table-responsive mb-2">
                                     <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
-                                        <caption class="caption-top text-secondary"><strong>Table 1.</strong> Sequences of S1–S6.</caption>
+                                        <caption class="caption-top text-secondary"><strong>Table 1.</strong> Sequences of S1–S6. A domain labeled “a1*” is complementary to domain “a1”.</caption>
                                         <thead>
                                             <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th></tr>
                                         </thead>
@@ -112,7 +111,7 @@
                                 <p class="text-secondary small mb-0 exp-seq-link">Full sequences: <a href="appendix.html#wet-seq-seed">Appendix</a></p>
                             </div>
                             <div class="col-12">
-                                <figure class="mb-0 exp-figure">
+                                <figure id="fig-1" class="mb-0 exp-figure">
                                     <img src="img/EXPERIMENT/seed_structure.jpg"
                                         alt="Assembly of strands S1–S6 into the seed structure"
                                         class="img-fluid w-100 border" loading="lazy" decoding="async">
@@ -121,8 +120,8 @@
                             </div>
                         </div>
                         <p class="text-secondary mb-4">
-                            The sequences of the six Double-Hairpin DNAs (H1–H6) are shown in Table 2, and the
-                            structures they adopt in solution at 25 °C are shown in Figure 2.
+                            The sequences of the six Double-Hairpin DNAs (H1–H6) are shown in <a href="#table-hairpins">Table 2</a>, and the
+                            structures they adopt in solution at 25 °C are shown in <a href="#fig-2">Figure 2</a>.
                         </p>
                         <div class="row g-4 align-items-start seed-structure-layout hairpin-structure-layout">
                             <div class="col-12">
@@ -146,7 +145,7 @@
                             </div>
                             <div class="col-12">
                                 <!-- 下書きでは「図4－図10」と記載。画像は6枚のため、H1〜H6の順と仮定して1つの図にまとめた -->
-                                <figure class="mb-0">
+                                <figure id="fig-2" class="mb-0">
                                     <div class="row g-3">
                                         <div class="col-12 col-lg-6">
                                             <div class="exp-panel-group">
@@ -249,14 +248,20 @@
                             toehold-mediated strand displacement in a fixed order: H1, H2, and H3 open sequentially,
                             followed by H4, H5, and H6, and the cycle then returns to H1, H2, and H3. Through this
                             repeated cycle, multiple DNA duplexes elongate together as a DNA Bundle. By changing the seed
-                            design and the number of Double-Hairpin DNA types, DNA Bundles consisting of any number of helices can be assembled.
+                            design and the number of Double-Hairpin DNA types, DNA Bundles consisting of any number of helices can be assembled
+                            (<a href="#movie-1">Movie 1</a>).
                         </p>
-                        <div class="ratio content-box p-0 mb-4 w-75 mx-auto"
-                        style="--bs-aspect-ratio: calc(9 / 16 * 100%);">
-                        <video src="video/PROJECT/hcr-chain-seed.mp4?v=2" autoplay muted loop playsinline preload="metadata"
-                            aria-label="Demonstration of 6-Helix DNA Bundle formation via Bundled HCR"
-                            style="object-fit: contain; width: 100%; height: 100%;"></video>
-                    </div>
+                        <figure id="movie-1" class="mb-4 w-75 mx-auto">
+                            <div class="ratio content-box p-0"
+                                style="--bs-aspect-ratio: calc(9 / 16 * 100%);">
+                                <video src="video/PROJECT/hcr-chain-seed.mp4?v=2" autoplay muted loop playsinline preload="metadata"
+                                    aria-label="Demonstration of 6-Helix DNA Bundle formation via Bundled HCR"
+                                    style="object-fit: contain; width: 100%; height: 100%;"></video>
+                            </div>
+                            <figcaption class="text-secondary mt-3"><strong>Movie 1.</strong> Growth cycle of Bundled HCR
+                                (schematic animation). The active seed opens H1&ndash;H6 in a fixed order, and six DNA
+                                duplexes elongate together into a 6-Helix DNA Bundle.</figcaption>
+                        </figure>
                     </div>
 
                     <div id="sequence-design" class="subsection">
@@ -284,9 +289,9 @@
                         </p>
                         <p class="text-secondary mb-0">
                             <strong>13HB:</strong> the 13HB is the neighbouring structure in the same reported design
-                            series [<a href="#ref-1">1</a>], and we prepared it as a comparison. The two also differ in
-                            the direction of cholesterol: the straight 12HB carries cholesterol on one side, whereas the
-                            twisted 13HB carries it in all directions (Figure 5).
+                            series [<a href="#ref-1">1</a>]. We prepared it as a comparison for the direction of
+                            cholesterol: the straight 12HB carries cholesterol on one side, whereas the twisted 13HB
+                            carries it in all directions (<a href="#fig-5">Figure 5</a>).
                         </p>
                     </div>
 
@@ -295,11 +300,11 @@
                         <!-- [1]: 13-Helix DNA Bundle の配列（SI）, [2]: 3×n の配列（SI） -->
                         <p class="text-secondary mb-3">
                             Following the designs reported in previous studies [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>], the 12-Helix DNA Bundle (12HB) and 13-Helix DNA Bundle (13HB) were
-                            synthesized by annealing the single-stranded DNAs V1–V12, T12, and T13 shown in
-                            Table 3.
+                            formed by annealing the single-stranded DNAs V1–V12, T12, and T13 shown in
+                            <a href="#table-bundle-strands">Table 3</a>.
                         </p>
                         <p class="text-secondary mb-3">
-                            In the 12-Helix DNA Bundle, V1–V11 and T12 hybridize as shown in Figure 3; in the 13-Helix DNA Bundle, V1–V12 and T13 hybridize as shown in Figure 4. Each assembles into a DNA Bundle
+                            In the 12-Helix DNA Bundle, V1–V11 and T12 hybridize as shown in <a href="#fig-3">Figure 3</a>; in the 13-Helix DNA Bundle, V1–V12 and T13 hybridize as shown in <a href="#fig-4">Figure 4</a>. Each assembles into a DNA Bundle
                             hundreds to thousands of nanometers long.
                         </p>
                         <p class="text-secondary mb-3">
@@ -319,7 +324,7 @@
                                             <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th></tr>
                                         </thead>
                                         <tbody>
-                                            <tr><th scope="row">V1<br><span class="exp-seq-note">(cholesterol-modified)</span></th><td>42 nt</td><td class="exp-seq-domains">a1<sup>*</sup> – b1<sup>*</sup> – a2 – b2</td></tr>
+                                            <tr><th scope="row">V1<br><span class="exp-seq-note">(cholesterol-modified)</span></th><td>42 nt</td><td class="exp-seq-domains">a1<sup>*</sup> – b1<sup>*</sup> – a2 – b2 – <span class="seq-chol">cholesterol</span></td></tr>
                                             <tr><th scope="row">V2</th><td>42 nt</td><td class="exp-seq-domains">a2<sup>*</sup> – b2<sup>*</sup> – a3 – b3</td></tr>
                                             <tr><th scope="row">V3</th><td>42 nt</td><td class="exp-seq-domains">a3<sup>*</sup> – b3<sup>*</sup> – a4 – b4</td></tr>
                                             <tr><th scope="row">V4</th><td>42 nt</td><td class="exp-seq-domains">a4<sup>*</sup> – b4<sup>*</sup> – a5 – b5</td></tr>
@@ -341,7 +346,7 @@
                             <div class="col-12">
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <figure class="mb-0 exp-figure">
+                                        <figure id="fig-3" class="mb-0 exp-figure">
                                             <img src="img/EXPERIMENT/bundle_12helix_assembly.png"
                                                 alt="Assembly of the 12-Helix DNA Bundle from V1–V11 and T12"
                                                 class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
@@ -350,7 +355,7 @@
                                         </figure>
                                     </div>
                                     <div class="col-md-6">
-                                        <figure class="mb-0 exp-figure">
+                                        <figure id="fig-4" class="mb-0 exp-figure">
                                             <img src="img/EXPERIMENT/bundle_13helix_assembly.png"
                                                 alt="Assembly of the 13-Helix DNA Bundle from V1–V12 and T13"
                                                 class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
@@ -362,12 +367,12 @@
                             </div>
                         </div>
                         <p class="text-secondary mb-0">
-                            As Figure 4 shows, in the 13-Helix DNA Bundle, V1 and T13 hybridize while twisting, so the
+                            As <a href="#fig-4">Figure 4</a> shows, in the 13-Helix DNA Bundle, V1 and T13 hybridize while twisting, so the
                             DNA Bundle becomes twisted and cholesterol protrudes in all directions around it. In the
                             12-Helix DNA Bundle, by contrast, V1 and T12 hybridize without twisting, so cholesterol
-                            protrudes in only one direction (Figure 5).
+                            protrudes in only one direction (<a href="#fig-5">Figure 5</a>).
                         </p>
-                        <figure class="mt-4 mb-4">
+                        <figure id="fig-5" class="mt-4 mb-4">
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <p class="text-secondary fw-bold mb-2">(a) 12-Helix DNA Bundle: cholesterol in one direction</p>

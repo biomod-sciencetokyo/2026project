@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import csv
 import time
 import multiprocessing as mp
+import os
+import sys
 
 # =========================================================
 # 1. 物理計算のコア関数群
@@ -417,7 +419,74 @@ def run_simulation(args):
 # =========================================================
 # 3. マルチプロセス実行・データ集計・ヒートマップ作成（連続実行対応）
 # =========================================================
+
+
+def plot_heatmap(prob_matrix, alpha_list, linker_list, R_val, graph_file, N_chains=12, kBT=4.11):
+    """確率行列 (alpha × linker, %) からヒートマップを描画して保存する"""
+    B_dna_list = [(2.0 * N_chains + 120.0 * ((N_chains * a) ** 3.0)) * kBT for a in alpha_list]
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+    cax = ax.imshow(prob_matrix, cmap='YlOrRd', origin='lower', aspect='auto', vmin=0, vmax=100)
+
+    cbar = fig.colorbar(cax, ax=ax)
+    cbar.set_label('Local pore formation probability (%)', fontsize=14)
+
+    ax.set_xticks(np.arange(len(linker_list)))
+    ax.set_xticklabels([f"{l:.1f}" for l in linker_list], fontsize=12)
+    ax.set_xlabel('Linker Natural Length (nm)', fontsize=14)
+
+    ax.set_yticks(np.arange(len(alpha_list)))
+    ax.set_yticklabels([f"{b:.0f}" for b in B_dna_list], fontsize=12)
+    ax.set_ylabel('Bending Stiffness $B_{dna}$ (pN$\\cdot$nm$^2$)', fontsize=14)
+
+    for i in range(len(alpha_list)):
+        for j in range(len(linker_list)):
+            val = prob_matrix[i, j]
+            text_color = "white" if val > 50 else "black"
+            ax.text(j, i, f"{int(val)}%", ha="center", va="center", color=text_color, fontweight='bold', fontsize=14)
+
+    plt.title(f'Local pore formation probability heatmap (R = {R_val:g} nm)\nBending rigidity vs Linker length',
+              fontsize=16, fontweight='bold')
+
+    plt.savefig(graph_file, dpi=300, bbox_inches='tight')
+    print(f"Heatmap saved to {graph_file}\n")
+
+    # ★ 画像保存後に図を閉じてメモリを解放（画面描画による処理停止を防ぐ）
+    plt.close(fig)
+
+
+def replot_from_csv(csv_file):
+    """既存の結果CSVを読み込み、同じ集計規則で確率行列を作り直して図だけを再出力する"""
+    rows = []
+    with open(csv_file, newline='') as f:
+        for r in csv.DictReader(f):
+            rows.append((float(r['Alpha']), float(r['Linker_Length_nm']), r['Rupture_Success'] == 'True'))
+
+    alpha_list = np.array(sorted({a for a, _, _ in rows}))
+    linker_list = np.array(sorted({l for _, l, _ in rows}))
+    counts = np.zeros((len(alpha_list), len(linker_list)))
+    trials = np.zeros_like(counts)
+    for a, l, ok in rows:
+        i = np.argmin(np.abs(alpha_list - a))
+        j = np.argmin(np.abs(linker_list - l))
+        trials[i, j] += 1
+        if ok:
+            counts[i, j] += 1
+    prob_matrix = counts / trials * 100.0
+
+    R_val = float(os.path.basename(csv_file).split('_R')[-1].split('.')[0])
+    graph_file = os.path.join(os.path.dirname(csv_file) or '.', f'rupture_heatmap_R{int(R_val)}.png')
+    plot_heatmap(prob_matrix, alpha_list, linker_list, R_val, graph_file)
+
+
 if __name__ == '__main__':
+    # 既存CSVから図だけを再描画する（シミュレーションは実行しない）
+    #   python cg2d_parameter_sweep_heatmap.py --replot rupture_heatmap_data_R50.csv ...
+    if len(sys.argv) > 1 and sys.argv[1] == '--replot':
+        for csv_file in sys.argv[2:]:
+            replot_from_csv(csv_file)
+        sys.exit(0)
+
     # 探索条件の設定（メッシュサイズ）
     alpha_list = np.linspace(0.1, 1.0, 8)
     linker_list = np.linspace(2.0, 20.0, 8)
@@ -486,32 +555,6 @@ if __name__ == '__main__':
         prob_matrix = (prob_matrix / num_trials) * 100.0
 
         # --- ヒートマップの描画と保存 ---
-        fig, ax = plt.subplots(figsize=(10, 8))
-        cax = ax.imshow(prob_matrix, cmap='YlOrRd', origin='lower', aspect='auto', vmin=0, vmax=100)
-
-        cbar = fig.colorbar(cax, ax=ax)
-        cbar.set_label('Rupture Probability (%)', fontsize=14)
-
-        ax.set_xticks(np.arange(len(linker_list)))
-        ax.set_xticklabels([f"{l:.1f}" for l in linker_list], fontsize=12)
-        ax.set_xlabel('Linker Natural Length (nm)', fontsize=14)
-
-        ax.set_yticks(np.arange(len(alpha_list)))
-        ax.set_yticklabels([f"{b:.0f}" for b in B_dna_list], fontsize=12)
-        ax.set_ylabel('Bending Stiffness $B_{dna}$ (pN$\cdot$nm$^2$)', fontsize=14)
-
-        for i in range(len(alpha_list)):
-            for j in range(len(linker_list)):
-                val = prob_matrix[i, j]
-                text_color = "white" if val > 50 else "black"
-                ax.text(j, i, f"{int(val)}%", ha="center", va="center", color=text_color, fontweight='bold', fontsize=14)
-
-        plt.title(f'Membrane Rupture Probability Heatmap (R = {R_val:.1f} nm)\n(Stiffness vs Linker Length)', fontsize=16, fontweight='bold')
-
         # R の値ごとに出力ファイル名を変更して保存
         graph_file = f'rupture_heatmap_R{int(R_val)}.png'
-        plt.savefig(graph_file, dpi=300, bbox_inches='tight')
-        print(f"Heatmap saved to {graph_file}\n")
-
-        # ★ 画像保存後に図を閉じてメモリを解放（画面描画による処理停止を防ぐ）
-        plt.close(fig)
+        plot_heatmap(prob_matrix, alpha_list, linker_list, R_val, graph_file)

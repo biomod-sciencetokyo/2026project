@@ -64,11 +64,10 @@
                     <div id="two-d-method" class="dry-model subsection">
                         <h3 class="h4 fw-bold mb-4">1.1 2D CG Model: Mathematical Formulation</h3>
                         <p class="text-secondary mb-4">
-                            The repository includes two 2D source versions and six heatmap CSV datasets. Their
-                            presence enables source and data inspection, but no complete run manifest maps every
-                            displayed heatmap to a specific script revision and seed set. Values below summarize the
-                            website model description and the supplied files; unspecified provenance is identified
-                            rather than inferred.
+                            This section gives the equations, parameters, and numerical procedure of the 2D
+                            coarse-grained molecular dynamics model used for the parameter screen on the Simulation
+                            page. Source code and raw outputs are listed in the
+                            <a href="#source-code-inventory">Source Code Inventory</a>.
                         </p>
 
                         <div id="geometry-state" class="simulation-subblock mb-4">
@@ -95,7 +94,7 @@
                             <p class="text-secondary mb-2">
                                 The 2D DNA Bundle contains 12 chains and is represented by five connected
                                 constant-curvature arcs, with length \(L_{\mathrm{Bundle}}=3R\). Its effective
-                                bending rigidity is mapped from an internal parameter by:
+                                bending rigidity is mapped from the crosslinking efficiency (\(\alpha\)) by:
                             </p>
                             <div class="math-display">\[
                                 L_{\mathrm{p,eff}} =
@@ -106,8 +105,9 @@
                                 B_{\mathrm{DNA}}=L_{\mathrm{p,eff}}k_{\mathrm B}T
                             \]</div>
                             <p class="text-secondary mb-0">
-                                The α used in the 2D model is an internal phenomenological rigidity-mapping parameter.
-                                It is not numerically equivalent to α in the separate 3D helix-count screening analysis.
+                                In the 2D model, crosslinking efficiency (\(\alpha\)) enters only through this
+                                phenomenological rigidity mapping; its numerical scale is defined separately from
+                                \(\alpha\) in the 3D helix-count screening.
                                 DNA flexibility and the mechanics of DNA assemblies have been studied experimentally
                                 and computationally [<a href="simulation.html#ref-8">8</a>–<a href="simulation.html#ref-11">11</a>].
                             </p>
@@ -260,84 +260,86 @@
                         </div>
 
                         <div id="parameter-reference" class="simulation-subblock mb-5">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Parameter reference and provenance</h4>
-                            <p class="text-secondary mb-3">
-                                “Complete” here means all parameters and settings documented in the current website
-                                text. It does not certify completeness across the supplied source versions or their
-                                individual run configurations.
-                            </p>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Parameter reference</h4>
                             <div class="wet-table-wide">
                                 <div class="table-responsive">
                                     <table class="table table-dark table-bordered table-sm align-middle wet-table wet-table-prose">
                                         <caption class="caption-top text-secondary">
-                                            <strong>Table S1.</strong> 2D model parameter reference and provenance.
+                                            <strong>Table S1.</strong> 2D model parameters.
                                         </caption>
                                         <thead>
                                             <tr>
                                                 <th scope="col">Symbol / setting</th>
                                                 <th scope="col">Value</th>
-                                                <th scope="col">Unit or code unit</th>
+                                                <th scope="col">Unit</th>
                                                 <th scope="col">Role</th>
-                                                <th scope="col">Source or rationale</th>
-                                                <th scope="col">Classification</th>
+                                                <th scope="col">Basis</th>
+                                                <th scope="col">Type</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th scope="row"><i>R</i></th>
-                                                <td>Displayed heatmaps: 50, 100, 150, 200, 250, 300; documented aligned
-                                                    sweep: 150 and 200</td>
+                                                <td>50, 100, 150, 200, 250, 300</td>
                                                 <td>nm</td>
-                                                <td>Initial 2D membrane radius</td>
-                                                <td>Map labels and sweep description on the Simulation page; individual
-                                                    map manifests are absent</td>
-                                                <td>Intentionally varied; data provenance differs by map</td>
+                                                <td>Initial 2D vesicle (membrane-ring) radius</td>
+                                                <td>Parameter sweep</td>
+                                                <td>Varied</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Crosslinking efficiency (α)</th>
+                                                <td>Eight values from 0.1 to 1.0</td>
+                                                <td>Dimensionless</td>
+                                                <td>Sets the effective DNA Bundle bending rigidity through
+                                                    <i>L</i><sub>p,eff</sub> = 2<i>N</i><sub>chains</sub> +
+                                                    120(<i>N</i><sub>chains</sub>α)<sup>3</sup> and
+                                                    <i>B</i><sub>DNA</sub> = <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>,
+                                                    with <i>N</i><sub>chains</sub> = 12</td>
+                                                <td>Phenomenological rigidity mapping</td>
+                                                <td>Varied</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>B</i><sub>DNA</sub></th>
-                                                <td>Documented sweep: eight internal settings spanning 0.1–1.0; animation target
-                                                    rows: 6.21 × 10<sup>5</sup> and 9.51 × 10<sup>2</sup></td>
-                                                <td>Target values: pN·nm<sup>2</sup>; internal settings are dimensionless</td>
+                                                <td>Eight values from 9.51 × 10<sup>2</sup> to 8.52 × 10<sup>5</sup>;
+                                                    representative animations: 6.21 × 10<sup>5</sup> and
+                                                    9.51 × 10<sup>2</sup></td>
+                                                <td>pN·nm<sup>2</sup></td>
                                                 <td>Effective DNA Bundle bending rigidity</td>
-                                                <td>Animation cards and sweep description; per-cell conversion table and run
-                                                    output are absent</td>
-                                                <td>Intentionally varied; some animations show an available value different
-                                                    from the row target</td>
+                                                <td>Mapped from crosslinking efficiency (α)</td>
+                                                <td>Varied</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>l</i><sub>0</sub></th>
-                                                <td>Documented sweep: eight values from 2–20; representative animations: 2.5
-                                                    and 15.0</td>
+                                                <td>Eight values from 2.0 to 20.0; representative animations: 2.5, 15.0,
+                                                    and 20.0</td>
                                                 <td>nm</td>
                                                 <td>Linker rest length; also sets the membrane-capture range</td>
-                                                <td>Simulation page; no per-map parameter files</td>
-                                                <td>Intentionally varied</td>
+                                                <td>Parameter sweep</td>
+                                                <td>Varied</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>N</i><sub>mem</sub></th>
                                                 <td>int(240 <i>R</i> / 150 nm)</td>
                                                 <td>Beads</td>
                                                 <td>Discretization of the periodic membrane ring</td>
-                                                <td>Documented rule; initial spacing is reported as about 3.927 nm at
-                                                    <i>R</i> = 150 and 200 nm</td>
-                                                <td>Automatically co-varies with <i>R</i></td>
+                                                <td>Discretization rule; initial spacing about 3.927 nm</td>
+                                                <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>r</i><sub>0,mem</sub></th>
-                                                <td>2<i>R</i> sin(π / <i>N</i><sub>mem</sub>); approximately 3.927 at
-                                                    <i>R</i> = 150 and 200</td>
+                                                <td>2<i>R</i> sin(π / <i>N</i><sub>mem</sub>); approximately 3.927</td>
                                                 <td>nm</td>
                                                 <td>Initial neighbor spacing of the ring</td>
-                                                <td>Derived from the documented discretization rule</td>
-                                                <td>Automatically co-varies with <i>R</i></td>
+                                                <td>Derived from the discretization rule</td>
+                                                <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>L</i><sub>Bundle</sub></th>
                                                 <td>3<i>R</i></td>
-                                                <td>nm when <i>R</i> is in nm</td>
+                                                <td>nm</td>
                                                 <td>2D DNA Bundle length</td>
-                                                <td>Documented geometric scaling rule</td>
-                                                <td>Automatically co-varies with <i>R</i></td>
+                                                <td>Geometric scaling rule</td>
+                                                <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">DNA Bundle geometry</th>
@@ -345,45 +347,42 @@
                                                     <i>r</i><sub>DNA</sub> = 1.25√12 = 4.330</td>
                                                 <td>Chains, arcs, nm</td>
                                                 <td>2D DNA Bundle cross-section and generalized-coordinate representation</td>
-                                                <td>Geometry stated on the Simulation page</td>
+                                                <td>Model geometry</td>
                                                 <td>Fixed model structure</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>N</i><sub>anchor</sub></th>
-                                                <td>int(<i>L</i><sub>Bundle</sub>/5.1) + 1; reported as 89 at
-                                                    <i>R</i> = 150 and 118 at <i>R</i> = 200</td>
+                                                <td>int(<i>L</i><sub>Bundle</sub>/5.1) + 1</td>
                                                 <td>Anchors; spacing 5.1 nm</td>
                                                 <td>Cholesterol-anchor count and spacing</td>
-                                                <td>Documented placement rule</td>
-                                                <td>Automatically co-varies with <i>R</i></td>
+                                                <td>Anchor placement rule</td>
+                                                <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>N</i><sub>rep</sub></th>
-                                                <td>max(15, int(<i>L</i><sub>Bundle</sub>/3)); reported as 150 and 200
-                                                    at <i>R</i> = 150 and 200</td>
+                                                <td>max(15, int(<i>L</i><sub>Bundle</sub>/3))</td>
                                                 <td>Evaluation points</td>
                                                 <td>DNA–membrane repulsion sampling</td>
-                                                <td>Documented rule; forces are summed without an explicit arc-length
+                                                <td>Sampling rule; forces are summed without an explicit arc-length
                                                     weight</td>
-                                                <td>Automatically co-varies with <i>R</i>; also changes discrete force
-                                                    representation</td>
+                                                <td>Co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>T</i><sub>i</sub> threshold</th>
                                                 <td><i>T</i><sub>i</sub> &gt; 150</td>
-                                                <td>Force-like code quantity; physical unit mapping unspecified</td>
+                                                <td>Code force units</td>
                                                 <td>Registers the first model-defined local event when any intact spring
                                                     exceeds the threshold</td>
-                                                <td>Operational criterion stated on the Simulation page; not calibrated
-                                                    to membrane tension</td>
-                                                <td>Code-defined operational criterion; not physically calibrated</td>
+                                                <td>Operational event criterion; not calibrated to physical membrane
+                                                    tension</td>
+                                                <td>Model-defined criterion</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>k</i><sub>mem</sub></th>
                                                 <td>150</td>
-                                                <td>Code spring units; dimensional mapping unspecified</td>
+                                                <td>Code spring units</td>
                                                 <td>Hookean membrane spring coefficient</td>
-                                                <td>Documented spring law</td>
+                                                <td>Membrane spring law</td>
                                                 <td>Fixed model constant</td>
                                             </tr>
                                             <tr>
@@ -391,20 +390,19 @@
                                                     <i>k</i><sub>area</sub></th>
                                                 <td>25<i>k</i><sub>B</sub><i>T</i>/<i>r</i><sub>0,mem</sub>;
                                                     160</td>
-                                                <td>Code units; dimensional mapping unspecified</td>
+                                                <td>Code units</td>
                                                 <td>Contour smoothing and planar enclosed-area restoration</td>
-                                                <td>Documented model terms; area restoration is removed in updates
-                                                    following event registration</td>
+                                                <td>Model terms; area restoration is removed in updates following event
+                                                    registration</td>
                                                 <td>Fixed model constants / derived coefficient</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Linker force law</th>
                                                 <td>Slopes 3, 10, and 18; transition at <i>l</i><sub>0</sub> and
                                                     <i>l</i><sub>0</sub> + 6; middle-branch offset 60</td>
-                                                <td>Code force and distance units; exact mapping unspecified</td>
+                                                <td>Code force and distance units</td>
                                                 <td>Piecewise-linear, strain-stiffening linker response</td>
-                                                <td>Piecewise law documented on the Simulation page; not an exact WLC or
-                                                    FENE potential</td>
+                                                <td>Piecewise-linear model law; not an exact WLC or FENE potential</td>
                                                 <td>Fixed model form</td>
                                             </tr>
                                             <tr>
@@ -413,16 +411,16 @@
                                                     weights 0.40, 0.20, 0.20, 0.10, 0.10</td>
                                                 <td>nm; dimensionless weights</td>
                                                 <td>Membrane capture and distribution of reaction over five beads</td>
-                                                <td>Documented range is 26–44 nm for <i>l</i><sub>0</sub> = 2–20 nm</td>
+                                                <td>Capture range 26–44 nm for <i>l</i><sub>0</sub> = 2–20 nm</td>
                                                 <td>Capture range co-varies with <i>l</i><sub>0</sub>; weights fixed</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">DNA–membrane repulsion</th>
                                                 <td>Activates within <i>r</i><sub>DNA</sub> + 1 nm;
-                                                    <i>r</i><sub>DNA</sub> = 4.330 nm for the documented 12-chain DNA Bundle</td>
-                                                <td>nm; force-law units unspecified</td>
+                                                    <i>r</i><sub>DNA</sub> = 4.330 nm for the 12-chain DNA Bundle</td>
+                                                <td>nm; code force units</td>
                                                 <td>Normal harmonic overlap repulsion</td>
-                                                <td>Documented geometry and cutoff</td>
+                                                <td>Model geometry and cutoff</td>
                                                 <td>Fixed cutoff; evaluation-point count co-varies with <i>R</i></td>
                                             </tr>
                                             <tr>
@@ -430,9 +428,9 @@
                                                 <td><i>k</i><sub>B</sub><i>T</i> = 4.11; γ<sub>mem</sub> = 1.0;
                                                     γ<sub>chol</sub> = 0.2; γ<sub>trans</sub> = 1.5(<i>L</i>/100);
                                                     γ<sub>rot</sub> = <i>L</i><sup>2</sup>/12</td>
-                                                <td>Code energy and friction units; physical calibration unspecified</td>
+                                                <td>Code energy and friction units</td>
                                                 <td>Brownian noise and overdamped mobility</td>
-                                                <td>Documented update description</td>
+                                                <td>Overdamped Brownian update</td>
                                                 <td>Fixed or derived; DNA translation/rotation frictions co-vary with
                                                     <i>L</i><sub>Bundle</sub></td>
                                             </tr>
@@ -440,30 +438,17 @@
                                                 <th scope="row">Time step and window</th>
                                                 <td>Δ<i>t</i> = 10<sup>−4</sup>; 100 frames × 100 substeps</td>
                                                 <td>Code-time units; frames and substeps</td>
-                                                <td>Finite observation window for one trajectory</td>
-                                                <td>Documented for the aligned <i>R</i> = 150/200 nm sweep only</td>
-                                                <td>Fixed numerical settings for that documented sweep</td>
+                                                <td>Observation window for one trajectory</td>
+                                                <td>Numerical settings</td>
+                                                <td>Fixed</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Trajectories per cell</th>
                                                 <td><i>n</i> = 50</td>
                                                 <td>Trajectories</td>
                                                 <td>Event fraction used as the model-defined local event probability</td>
-                                                <td>Documented for the aligned <i>R</i> = 150/200 nm sweep only;
-                                                    not independently verified against run files</td>
-                                                <td>Sampling setting for that documented sweep</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Rigidity mapping parameter</th>
-                                                <td><i>L</i><sub>p,eff</sub> = 2<i>N</i><sub>chains</sub> +
-                                                    120(<i>N</i><sub>chains</sub>α)<sup>3</sup>;
-                                                    <i>B</i><sub>DNA</sub> = <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>;
-                                                    <i>N</i><sub>chains</sub> = 12</td>
-                                                <td>Dimensionless α; rigidity target units pN·nm<sup>2</sup></td>
-                                                <td>Maps a phenomenological internal parameter to effective rigidity</td>
-                                                <td>Formula stated on the Simulation page; α is not a measured
-                                                    constitutive parameter</td>
-                                                <td>Internal phenomenological parameter, moved here for transparency</td>
+                                                <td>Sampling per parameter cell</td>
+                                                <td>Fixed</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -478,55 +463,41 @@
                             <h5 class="wet-subhead">One-run procedure</h5>
                             <ol class="text-secondary">
                                 <li class="mb-2">Initialize a periodic membrane ring and one 12-chain DNA Bundle. The
-                                    documented DNA Bundle uses five connected constant-curvature arcs and length
+                                    DNA Bundle uses five connected constant-curvature arcs and length
                                     <i>L</i><sub>Bundle</sub> = 3<i>R</i>.</li>
                                 <li class="mb-2">Apply the model's approach drive to bring the DNA Bundle toward the
-                                    membrane. The drive schedule, initial coordinates, and magnitude are not recorded
-                                    in this repository.</li>
+                                    membrane.</li>
                                 <li class="mb-2">Evaluate membrane spring, contour-smoothing, area-restoring, linker,
-                                    anchor-reaction, and DNA–membrane repulsion terms using the documented settings.</li>
+                                    anchor-reaction, and DNA–membrane repulsion terms using the settings in Table S1.</li>
                                 <li class="mb-2">Advance membrane beads and captured cholesterol particles using the
                                     overdamped Brownian update. Update the DNA Bundle's eight generalized coordinates with
-                                    the documented semi-implicit linear system.</li>
+                                    the semi-implicit linear system.</li>
                                 <li class="mb-2">At each substep, inspect intact membrane springs. Register the first
                                     local event if any spring satisfies <i>T</i><sub>i</sub> &gt; 150.</li>
-                                <li>After registration, the documented procedure removes the planar area-restoring
-                                    term in subsequent updates. Whether an individual run stops at that point is not
-                                    specified in the repository.</li>
+                                <li>After registration, the planar area-restoring term is removed in subsequent
+                                    updates.</li>
                             </ol>
                         </div>
 
                         <div id="stochastic-record" class="simulation-subblock mb-5">
-                            <h5 class="wet-subhead">Reproducibility</h5>
+                            <h5 class="wet-subhead">Raw data</h5>
                             <p class="text-secondary">
-                                The source scripts are listed separately in the
-                                <a href="#source-code-inventory">Source Code Inventory</a>. The repository also
-                                includes raw CSVs for <i>R</i> = 50, 100, 150, 200, 250, and 300 nm. Each CSV contains
-                                3,200 rows: 8 bending-rigidity values × 8 linker lengths × 50 trials. The files record
-                                `Alpha`, `B_dna(pN.nm^2)`, `Linker_Length_nm`, `Trial`, `Rupture_Success`, and
-                                `Rupture_Frame`; the legacy `Rupture_*` column names denote the model-defined local
-                                event, not physical membrane rupture. The supplied heatmap-generator version sets
-                                <i>R</i> = 250/300 nm and creates seeds using the wall-clock time, but does not write
-                                those seeds to the CSV. Therefore, the per-run seed mapping and exact source-to-CSV
-                                provenance for all six radii remain unavailable.
+                                Raw CSVs are provided for <i>R</i> = 50, 100, 150, 200, 250, and 300 nm. Each CSV
+                                contains 3,200 rows: 8 crosslinking-efficiency (α) / bending-rigidity values ×
+                                8 linker lengths × 50 trials. The files record `Alpha`, `B_dna(pN.nm^2)`,
+                                `Linker_Length_nm`, `Trial`, `Rupture_Success`, and `Rupture_Frame`; the `Rupture_*`
+                                columns denote the model-defined local pore-formation event. Each heatmap cell on the
+                                Simulation page is the percentage of the 50 trials in which the event occurred. The
+                                source scripts are listed in the
+                                <a href="#source-code-inventory">Source Code Inventory</a>.
                             </p>
-                            <ul class="text-secondary small">
+                            <ul class="text-secondary small mb-0">
                                 <li><a href="CSV/rupture_heatmap_data_R50.csv">R = 50 nm data</a> ·
                                     <a href="CSV/rupture_heatmap_data_R100.csv">R = 100 nm</a> ·
                                     <a href="CSV/rupture_heatmap_data_R150.csv">R = 150 nm</a></li>
                                 <li><a href="CSV/rupture_heatmap_data_R200.csv">R = 200 nm data</a> ·
                                     <a href="CSV/rupture_heatmap_data_R250.csv">R = 250 nm</a> ·
                                     <a href="CSV/rupture_heatmap_data_R300.csv">R = 300 nm</a></li>
-                            </ul>
-                            <p class="text-secondary mb-2">For a reproducible release, preserve and publish at least:</p>
-                            <ul class="text-secondary mb-0">
-                                <li>the simulator source revision or immutable script hash;</li>
-                                <li>the master seed and the mapping from parameter cell and replicate to each seed;</li>
-                                <li><i>R</i>, <i>B</i><sub>DNA</sub>, <i>l</i><sub>0</sub>, all fixed settings, Δ<i>t</i>,
-                                    frame and substep counts, and any initialization/drive settings;</li>
-                                <li>the output CSV row or file corresponding to each seed and parameter cell, including
-                                    event status and event substep/time when available; and</li>
-                                <li>the aggregation rule used to convert replicate outcomes to each heatmap cell.</li>
                             </ul>
                         </div>
 

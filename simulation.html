@@ -22,8 +22,7 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <style>
-        /* Keep the numerical heatmap pixels intact while replacing legacy
-           event labels baked into the original image exports. */
+        /* Heatmap images with HTML axis labels overlaid on the image axes. */
         .heatmap-plot {
             position: relative;
             background: #fff;
@@ -34,31 +33,6 @@
             display: block;
             width: 100%;
             height: auto;
-        }
-
-        .heatmap-title-overlay {
-            position: absolute;
-            inset: 0 0 auto;
-            z-index: 1;
-            display: grid;
-            height: 8.5%;
-            place-content: center;
-            background: #fff;
-            color: #000;
-            font-size: clamp(0.75rem, 1.2vw, 1rem);
-            font-weight: 700;
-            line-height: 1.15;
-            text-align: center;
-        }
-
-        .heatmap-colorbar-overlay {
-            display: block;
-            margin: -0.5rem 0 0.75rem;
-            color: var(--text-muted);
-            font-size: clamp(0.72rem, 0.9vw, 0.82rem);
-            font-weight: 600;
-            line-height: 1.35;
-            text-align: right;
         }
 
         .heatmap-axis-y,
@@ -139,8 +113,9 @@
                                     <strong>2D CG-MD Simulation (Section 1.1)</strong>
                                 </a><br>
                                 <span class="text-secondary">
-                                    Screens vesicle radius, DNA Bundle bending rigidity, and linker
-                                    length for membrane pore formation.
+                                    A 2D coarse-grained molecular dynamics simulation that screens vesicle
+                                    radius, DNA Bundle bending rigidity, and linker length for model-defined
+                                    local pore formation.
                                 </span>
                             </li>
                             <li class="mb-3">
@@ -268,7 +243,7 @@
                             local pore-formation event and thereby guide the design of DNA Bundles for membrane loading.
                         </p>
                         <p class="text-secondary mb-3">
-                            Each trajectory is evolved as a finite-time overdamped Brownian coarse-grained
+                            Each trajectory is evolved as an overdamped Brownian coarse-grained
                             calculation while the DNA Bundle approaches the membrane, using a Brownian-dynamics
                             framework [<a href="#ref-4">4</a>]. The readout is the occurrence
                             of a model-defined local pore-formation event: a local spring-extension threshold in
@@ -296,7 +271,7 @@
                                 rigid DNA Bundle more directly to a localized membrane region. A longer linker can
                                 provide additional relative compliance and attenuate this localized loading. In
                                 contrast, for large vesicles, a longer linker increases the model-defined
-                                cholesterol–membrane capture range and can allow membrane coupling over a broader
+                                cholesterol–membrane capture range and can allow cholesterol–membrane interaction over a broader
                                 accessible region. These are model-level interpretations of the observed trends, not
                                 direct evidence of complete membrane rupture or lysis.
                             </p>
@@ -587,96 +562,84 @@
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
-                                                            <img src="img/SIMULATION/rupture_heatmap_R50.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 50 nm"
+                                                            <img src="img/SIMULATION/rupture_heatmap_R50.png?v=3"
+                                                                alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 4.</strong> Vesicle radius, \(R = 50\) nm.
+                                                            <strong>Figure 4.</strong> Vesicle radius: \(R = 50\) nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
-                                                            <img src="img/SIMULATION/rupture_heatmap_R100.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 100 nm"
+                                                            <img src="img/SIMULATION/rupture_heatmap_R100.png?v=3"
+                                                                alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 5.</strong> Vesicle radius, \(R = 100\) nm.
+                                                            <strong>Figure 5.</strong> Vesicle radius: \(R = 100\) nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
-                                                            <img src="img/SIMULATION/rupture_heatmap_R150.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 150 nm"
+                                                            <img src="img/SIMULATION/rupture_heatmap_R150.png?v=3"
+                                                                alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 6.</strong> Vesicle radius, \(R = 150\) nm.
+                                                            <strong>Figure 6.</strong> Vesicle radius: \(R = 150\) nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
-                                                            <img src="img/SIMULATION/rupture_heatmap_R200.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 200 nm"
+                                                            <img src="img/SIMULATION/rupture_heatmap_R200.png?v=3"
+                                                                alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 7.</strong> Vesicle radius, \(R = 200\) nm.
+                                                            <strong>Figure 7.</strong> Vesicle radius: \(R = 200\) nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
-                                                            <img src="img/SIMULATION/rupture_heatmap_R250.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 250 nm"
+                                                            <img src="img/SIMULATION/rupture_heatmap_R250.png?v=3"
+                                                                alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 8.</strong> Vesicle radius, \(R = 250\) nm.
+                                                            <strong>Figure 8.</strong> Vesicle radius: \(R = 250\) nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
-                                                            <img src="img/SIMULATION/ruputure_heatmap_r300.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 300 nm"
+                                                            <img src="img/SIMULATION/rupture_heatmap_R300.png?v=3"
+                                                                alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 300 nm"
                                                                 loading="lazy" decoding="async">
-                                                            <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
                                                             <span class="heatmap-axis-x" aria-hidden="true">Linker length (nm)</span>
                                                         </div>
-                                                        <span class="heatmap-colorbar-overlay">Model-defined local pore-formation-event probability (%)</span>
                                                         <figcaption class="text-secondary mb-0">
-                                                            <strong>Figure 9.</strong> Vesicle radius, \(R = 300\) nm.
+                                                            <strong>Figure 9.</strong> Vesicle radius: \(R = 300\) nm
                                                         </figcaption>
                                                     </figure>
                                                 </div>
@@ -830,10 +793,11 @@
                             <div class="goal-callout-body">
                                 <h4 class="goal-callout-title">12 helices is the robust DNA Bundle design target</h4>
                                 <p class="goal-callout-text">
-                                    Figure 13 gives an ideal-coupling reference of approximately
-                                    4 helices. Figure 14 shows that weaker inter-helix coupling requires more helices; with 12 helices, the target is reached even in the lowest
-                                    coupling condition examined. The 13-Helix DNA Bundle is used as a
-                                    one-helix-above-threshold comparison design.
+                                    Figure 13 gives an ideal fully cross-linked reference of approximately
+                                    4 helices. Figure 14 shows that lower crosslinking efficiency (\(\alpha\))
+                                    requires more helices; with 12 helices, the target is reached even in the
+                                    lowest crosslinking-efficiency condition examined. The 13-Helix DNA Bundle is
+                                    used as a one-helix-above-threshold comparison design.
                                 </p>
                             </div>
                         </div>
@@ -1030,28 +994,25 @@
                             </p>
 
                             <p class="text-secondary mb-3">
-                                <a href="#figure-13">Figure 13</a> shows the ideal fully coupled reference
-                                condition, in which all DNA helices act together as one rigid DNA Bundle.
-                                Under this ideal condition, the target local-curvature level is reached at
-                                approximately 4 helices.
+                                <a href="#figure-13">Figure 13</a> shows the ideal fully cross-linked reference
+                                condition, in which all DNA helices behave as one rigid DNA Bundle. Under this
+                                condition, the target local-curvature level is reached at approximately
+                                4 helices.
                             </p>
 
                             <p class="text-secondary mb-3">
-                                In practice, helices may not be perfectly mechanically coupled. Therefore,
-                                <a href="#figure-14">Figure 14</a> evaluates \(\alpha\) (alpha), the
-                                effective mechanical coupling between helices in one DNA Bundle. A larger
-                                \(\alpha\) means that helices act more strongly as one rigid DNA Bundle, whereas
-                                a smaller \(\alpha\) represents a more loosely coupled DNA Bundle.
+                                In practice, helices may not be perfectly cross-linked. Therefore,
+                                <a href="#figure-14">Figure 14</a> evaluates crosslinking efficiency,
+                                \(\alpha\), within one DNA Bundle. A larger \(\alpha\) indicates more efficient
+                                crosslinking, so the helices behave more like one rigid DNA Bundle; a smaller
+                                \(\alpha\) represents less efficient crosslinking and a more flexible DNA Bundle.
                             </p>
 
                             <p class="text-secondary mb-4">
-                                As \(\alpha\) decreases, more helices are required to reach the target
-                                curvature level: approximately 4 helices for \(\alpha = 1.0\), 6 helices
-                                for \(\alpha = 0.5\), and 12 helices for <span class="text-nowrap">\(\alpha = 0.1\).</span> We therefore
-                                selected a 12-Helix DNA Bundle as the robust design target because it
-                                reaches the target even under the lowest coupling condition examined. The
-                                13-Helix DNA Bundle was included as a one-helix-above-threshold comparison
-                                design.
+                                As crosslinking efficiency decreases, more helices are required to reach the
+                                selected comparison level: approximately 4 helices for \(\alpha=1.0\), 6 for
+                                \(\alpha=0.5\), and 12 for <span class="text-nowrap">\(\alpha=0.1\).</span> We therefore
+                                selected the 13-Helix DNA Bundle as a one-helix-above-threshold design.
                             </p>
                             <div class="row g-4 mb-4 figure-pair">
                                 <div class="col-lg-6">
@@ -1061,7 +1022,7 @@
                                             class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                             loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3">
-                                            <strong>Figure 13.</strong> Ideal fully coupled reference condition
+                                            <strong>Figure 13.</strong> Ideal fully cross-linked reference condition
                                             (\(\alpha = 1.0\)); the target local-curvature level is reached at
                                             approximately 4 helices.
                                         </figcaption>
@@ -1070,13 +1031,13 @@
                                 <div class="col-lg-6">
                                     <figure id="figure-14" class="simulation-figure mb-0">
                                         <img src="img/SIMULATION/3D_pore-formation.png?v=2"
-                                            alt="Phenomenological local-curvature comparison across cross-linking-efficiency scenarios, with selected helix counts near 3.8, 5.4, and 12"
+                                            alt="Maximum local curvature versus helix count for three crosslinking efficiency (α) conditions, reaching the selected comparison level near 3.8, 5.4, and 12 helices"
                                             class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                             loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3">
-                                            <strong>Figure 14.</strong> Effect of effective inter-helix coupling
-                                            (\(\alpha\)) on the required helix count. Lower coupling requires more
-                                            helices; the lowest coupling condition shown reaches the target at
+                                            <strong>Figure 14.</strong> Effect of crosslinking efficiency (\(\alpha\)) on the
+                                            required helix number. Lower crosslinking efficiency requires more helices; the
+                                            lowest crosslinking-efficiency condition shown reaches the target at
                                             approximately 12 helices.
                                         </figcaption>
                                     </figure>

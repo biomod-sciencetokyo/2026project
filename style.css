@@ -5683,3 +5683,9 @@ main .goal-callout-text {
     height: auto;
     background: #fff;
 }
+
+/* Cholesterol modification marked inside a sequence-domain table */
+.seq-chol {
+    font-weight: 700;
+    color: #e5484d;
+}
