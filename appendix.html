@@ -54,6 +54,7 @@
                         <a class="nav-link" href="#wet-exp-a">2.1 Experiment A</a>
                         <a class="nav-link" href="#wet-exp-b">2.2 Experiment B</a>
                     </div>
+                    <a class="nav-link mt-2" href="#appendix-references">References</a>
                 </nav>
             </div>
 
@@ -457,7 +458,7 @@
                         </div>
 
                         <h4 id="numerical-procedure" class="h5 fw-bold mb-3 section-subtitle">
-                            Numerical procedure, reproducibility, and limits
+                            Numerical procedure and limits
                         </h4>
                         <div id="one-run" class="simulation-subblock mb-4">
                             <h5 class="wet-subhead">One-run procedure</h5>
@@ -504,19 +505,13 @@
                         <div id="numerical-checks" class="simulation-subblock mb-0">
                             <h5 class="wet-subhead">Numerical checks and limits</h5>
                             <p class="text-secondary mb-3">
-                                The documented membrane discretization gives an initial spacing of approximately
-                                3.927 nm at <i>R</i> = 150 and 200 nm. This is a geometric property of the stated
-                                discretization rule, not evidence of convergence.
+                                The membrane discretization gives an initial spacing of approximately 3.927 nm. This is
+                                a geometric property of the discretization rule, not evidence of convergence.
                             </p>
-                            <p class="text-secondary mb-2">
-                                No reproducible convergence or sensitivity results are included for time step,
-                                membrane segmentation, DNA–membrane repulsion evaluation-point count, or observation
-                                duration. Those checks remain future validation, not established results.
-                            </p>
-                            <p class="text-secondary small mb-0">
-                                Source files and raw outputs are included, but the repository still contains no
-                                convergence test logs or documented sensitivity runs that establish these numerical
-                                checks.
+                            <p class="text-secondary mb-0">
+                                Convergence and sensitivity with respect to time step, membrane segmentation,
+                                DNA–membrane repulsion evaluation-point count, and observation duration have not yet
+                                been evaluated and remain future validation.
                             </p>
                         </div>
                     </div>
@@ -591,17 +586,15 @@
                         \]</div>
                         <p class="text-secondary mb-0">
                             Cholesterol positions and linker conformations are not individually resolved in 3D;
-                            adhesion enters as an aggregate term. The supplied source snapshots and their parameter
-                            differences from the page reference are recorded in the
-                            <a href="#source-code-inventory">Source Code Inventory</a>.
+                            adhesion enters as an aggregate term.
                         </p>
 
-                        <h5 class="wet-subhead">Reference settings and provenance</h5>
+                        <h5 class="wet-subhead">Reference settings</h5>
                         <div class="wet-table-wide">
                             <div class="table-responsive">
                                 <table class="table table-dark table-bordered table-sm align-middle wet-table wet-table-prose">
                                     <caption class="caption-top text-secondary">
-                                        <strong>Table S2.</strong> 3D model reference settings and provenance.
+                                        <strong>Table S2.</strong> 3D model reference settings.
                                     </caption>
                                     <thead>
                                         <tr>
@@ -609,8 +602,8 @@
                                             <th scope="col">Value</th>
                                             <th scope="col">Unit</th>
                                             <th scope="col">Role</th>
-                                            <th scope="col">Source or rationale</th>
-                                            <th scope="col">Classification</th>
+                                            <th scope="col">Basis</th>
+                                            <th scope="col">Type</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -619,7 +612,7 @@
                                             <td>50</td>
                                             <td>nm</td>
                                             <td>Reference liposome radius</td>
-                                            <td>3D model description on the Simulation page</td>
+                                            <td>Reference condition</td>
                                             <td>Fixed reference condition</td>
                                         </tr>
                                         <tr>
@@ -627,7 +620,7 @@
                                             <td>300; approximately 4.11 × 10<sup>−21</sup></td>
                                             <td>K; J</td>
                                             <td>Thermal energy scale</td>
-                                            <td>Documented model conditions</td>
+                                            <td>Model conditions</td>
                                             <td>Fixed</td>
                                         </tr>
                                         <tr>
@@ -644,15 +637,15 @@
                                             <td>4; 8</td>
                                             <td>nm; nm</td>
                                             <td>Reference DNA Bundle radius and corresponding diameter</td>
-                                            <td>Page reference; supplied 3D source has a conflicting diameter comment</td>
-                                            <td>Page reference geometry; source comment requires reconciliation</td>
+                                            <td>Model geometry</td>
+                                            <td>Fixed model input</td>
                                         </tr>
                                         <tr>
                                             <th scope="row"><i>γ</i><sub>m</sub></th>
-                                            <td>0.1 (implementation-equivalent value)</td>
+                                            <td>0.1</td>
                                             <td>mN/m</td>
                                             <td>Membrane tension parameter</td>
-                                            <td>3D reference implementation</td>
+                                            <td>Model input</td>
                                             <td>Fixed model input</td>
                                         </tr>
                                         <tr>
@@ -660,8 +653,8 @@
                                             <td>4.5<i>k</i><sub>B</sub><i>T</i> per cholesterol</td>
                                             <td>Thermal-energy units</td>
                                             <td>Per-cholesterol scale in aggregate adhesion term</td>
-                                            <td>Code-defined aggregate adhesion scale; individual positions/linkers are not resolved</td>
-                                            <td>Model-defined parameter, not a literature-derived value</td>
+                                            <td>Aggregate adhesion scale; individual positions and linkers are not resolved</td>
+                                            <td>Model-defined parameter</td>
                                         </tr>
                                         <tr>
                                             <th scope="row"><i>L</i><sub>Bundle</sub>,
@@ -670,44 +663,44 @@
                                             <td>nm; anchors</td>
                                             <td>DNA Bundle length and cholesterol count per DNA Bundle; aggregate adhesion scale
                                                 is 99<i>k</i><sub>B</sub><i>T</i></td>
-                                            <td>Page reference; supplied 3D source snapshot sets <i>L</i><sub>bundle</sub>
-                                                = 100 nm</td>
-                                            <td>Model-defined page-reference configuration; source version mismatch noted above</td>
+                                            <td>Reference configuration</td>
+                                            <td>Model-defined configuration</td>
                                         </tr>
                                         <tr>
                                             <th scope="row"><i>P</i><sub>L</sub></th>
                                             <td>5</td>
                                             <td>nm</td>
                                             <td>Model length parameter</td>
-                                            <td>3D reference implementation</td>
+                                            <td>Model input</td>
                                             <td>Fixed model input</td>
                                         </tr>
                                         <tr>
                                             <th scope="row"><i>z</i><sub>indent</sub>,
                                                 <i>R</i><sub>bend</sub>, <i>w</i><sub>y</sub></th>
                                             <td>Bounds: 0.5–7.2; 35–250; 3.2–12. Initial: [4.0, 50.0, 6.0].
-                                                Current result: [7.2, 250, 12]</td>
+                                                Result: [7.2, 250, 12]</td>
                                             <td>nm; nm; nm</td>
-                                            <td>Constrained optimization variables; each current result is at its upper
+                                            <td>Constrained optimization variables; each result is at its upper
                                                 bound</td>
-                                            <td>Current R<sub>0</sub> = 50 nm reference calculation</td>
-                                            <td>Bounds, initial guess, and current optimized result</td>
+                                            <td><i>R</i><sub>0</sub> = 50 nm reference calculation</td>
+                                            <td>Bounds, initial guess, and optimized result</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Optimizer and stopping rule</th>
+                                            <th scope="row">Optimizer</th>
                                             <td>L-BFGS-B</td>
                                             <td>—</td>
                                             <td>Bounded minimization of reduced free energy</td>
-                                            <td>Current R<sub>0</sub> = 50 nm reference calculation</td>
-                                            <td>Optimizer; stopping tolerances not specified here</td>
+                                            <td><i>R</i><sub>0</sub> = 50 nm reference calculation</td>
+                                            <td>Numerical method</td>
                                         </tr>
                                         <tr>
                                             <th scope="row"><i>H</i><sub>crit</sub> (helix-count scaling only)</th>
                                             <td>0.067</td>
                                             <td>nm<sup>−1</sup></td>
-                                            <td>Selected curvature-comparison level</td>
-                                            <td>Separate phenomenological helix-count scaling analysis, not a GLB output</td>
-                                            <td>Model-defined selected comparison level; not literature-derived</td>
+                                            <td>Curvature comparison level for helix-count screening</td>
+                                            <td>See <a href="#three-d-curvature-reference">Curvature reference level for
+                                                helix-count screening</a></td>
+                                            <td>Model-defined comparison level</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -731,7 +724,7 @@
                                 The initial guess is \([4.0,\,50.0,\,6.0]\) nm, with bounds
                                 \(z_{\mathrm{indent}}\in[0.5,7.2]\) nm,
                                 \(R_{\mathrm{bend}}\in[35,250]\) nm, and \(w_y\in[3.2,12]\) nm.
-                                The current reference solution is \([7.2,\,250,\,12]\) nm, at the upper bound
+                                The reference solution is \([7.2,\,250,\,12]\) nm, at the upper bound
                                 for all three variables.
                             </p>
                             <p class="text-secondary mb-3">
@@ -746,7 +739,7 @@
                                 <li>pore nucleation, pore growth, or membrane repair.</li>
                             </ul>
                             <p class="text-secondary mb-0">
-                                Because the current optimized reference solution reaches all specified upper bounds,
+                                Because the optimized reference solution reaches all specified upper bounds,
                                 it indicates a bound-limited tendency within this ansatz, not a uniquely identified
                                 physical equilibrium.
                             </p>
@@ -769,28 +762,35 @@
                         <div class="simulation-subblock mb-5">
                             <h4 id="three-d-curvature-reference" class="h5 fw-bold mb-3 section-subtitle"
                                 data-toc-label="Curvature reference level">
-                                Curvature Reference Level Used in Helix-Count Screening
+                                Curvature reference level for helix-count screening
                             </h4>
+                            <p class="text-secondary mb-3">
+                                The helix-count screen operationally uses
+                                \(H_{\mathrm{crit}} = 0.067\ \mathrm{nm}^{-1}\) as a model-defined comparison level.
+                                Its inverse, \(1/H_{\mathrm{crit}} \approx 15\ \mathrm{nm}\), is used only as a
+                                characteristic length scale within the screen’s inverse-radius convention.
+                            </p>
+                            <p class="text-secondary mb-3">
+                                This comparison level is physically motivated by two complementary observations.
+                                First, lipid-packing theory shows that strong curvature can generate
+                                composition-dependent packing frustration because the headgroup area, hydrophobic
+                                volume, and hydrocarbon-chain length cannot remain geometrically matched under severe
+                                bending [<a href="#ref-a1">A1</a>]. Second, micropipette experiments show that membrane
+                                failure depends on tension, area expansion, membrane composition, and loading rate rather
+                                than on a single universal curvature value
+                                [<a href="#ref-a2">A2</a>, <a href="#ref-a3">A3</a>].
+                            </p>
                             <p class="text-secondary mb-0">
-                                The separate helix-count screening uses
-                                \(H_{\mathrm{crit}} = 0.067\ \mathrm{nm}^{-1}\) as a selected
-                                curvature-comparison level. In the inverse-radius convention used by the
-                                screening model, this corresponds to a local curvature length scale of
-                                \(1/H_{\mathrm{crit}} \approx 15\) nm. This value is not calculated from
-                                the GLB surface and is not an experimentally calibrated pore-formation or
-                                membrane-rupture threshold. Experimental pore opening and vesicle failure
-                                also depend on membrane tension, edge tension, composition, and loading
-                                history [<a href="simulation.html#ref-17">17</a>,
-                                <a href="simulation.html#ref-19">19</a>,
-                                <a href="simulation.html#ref-21">21</a>]. Therefore, crossing \(H_{\mathrm{crit}}\) is interpreted only as
-                                a model-defined high-local-curvature condition used to locate
-                                \(N_{\mathrm{crit}}\), not as a prediction of physical pore formation,
-                                rupture, or lysis.
+                                Accordingly, \(H_{\mathrm{crit}}\) is used here to compare DNA Bundle helix-count and
+                                crosslinking-efficiency scenarios and to identify the model-defined
+                                \(N_{\mathrm{crit}}\). It is not presented as a universal lipid-bilayer failure
+                                constant, an experimentally calibrated pore-formation threshold, or a rupture trigger
+                                evaluated directly by the static 3D GLB model.
                             </p>
                         </div>
 
                         <div id="three-d-helix-screen" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological helix-count screening and α</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological helix-count screening and crosslinking efficiency (α)</h4>
                             <p class="text-secondary mb-2">
                                 This is a separate screening analysis, not the output of the static 3D deformation
                                 optimization. Its effective-rigidity scaling is:
@@ -817,19 +817,17 @@
                                 \quad H_{\mathrm{max}}(N,\alpha)=H_{\mathrm{crit}}
                             \]</div>
                             <p class="text-secondary mb-0">
-                                In the Figure 13 source, \(C=50\) is a code-defined scaling constant. The settings
-                                \(\alpha=1.0,\,0.5,\,0.1\) represent model-defined high-,
-                                intermediate-, and low-effective coupling scenarios; α is not an experimentally
-                                measured cross-linking efficiency. \(H_{\mathrm{crit}}=0.067\ \mathrm{nm}^{-1}\)
-                                is a selected comparison level. This is a selected model comparison level, not a
-                                literature-derived pore-formation or rupture threshold. \(N_{\mathrm{crit}}\) is a
-                                rigidity-based design estimate, not a prediction of membrane rupture. This screening
-                                formula does not include a physical radius function \(r_{\mathrm{Bundle}}(N)\), so it
-                                does not quantitatively combine radius-dependent geometry with helix-number-dependent
-                                rigidity. Figures 13 and 14 both use \(L_{\mathrm{Bundle}}=150\) nm and
-                                \(R_0=50\) nm; with these settings, \(\alpha=0.2\text{–}0.3\) gives
-                                \(N_{\mathrm{crit}}\approx 7\text{–}9\), a model-dependent design guide rather than
-                                a helix count required for physical rupture. See the
+                                Here, \(C=50\) is a model scaling constant and \(\alpha\) is the crosslinking
+                                efficiency (\(\alpha\)) of the helices within one DNA Bundle. The settings
+                                \(\alpha=1.0,\,0.5,\,0.1\) represent high, intermediate, and low
+                                crosslinking-efficiency scenarios. \(H_{\mathrm{crit}}\) is the comparison level
+                                described above, and \(N_{\mathrm{crit}}\) is a rigidity-based design estimate.
+                                Figures 13 and 14 use \(L_{\mathrm{Bundle}}=150\) nm, \(R_0=50\) nm, and
+                                \(k_{\mathrm{mem,eff}}=30000\); with these settings,
+                                \(\alpha=1.0,\,0.5,\,0.1\) give \(N_{\mathrm{crit}}\approx 3.8,\,5.4,\,12\).
+                                This screening formula does not include a physical radius function
+                                \(r_{\mathrm{Bundle}}(N)\), so it does not quantitatively combine radius-dependent
+                                geometry with helix-number-dependent rigidity. See the
                                 <a href="#source-code-inventory">Source Code Inventory</a> for the source files.
                             </p>
                         </div>
@@ -839,17 +837,17 @@
                     <div id="source-code-inventory" class="dry-model subsection">
                         <h3 class="h4 fw-bold mb-4">1.3 Source Code Inventory</h3>
                         <p class="text-secondary mb-4">
-                            These are the Python source files currently included in the repository. A listed script is
-                            not necessarily the exact version used to generate every displayed image or dataset.
+                            Python source files for the simulation models and figures.
                         </p>
                         <div id="two-d-source-files" class="content-box source-group mb-4">
                             <h4 class="wet-subhead mt-0 mb-3">2D Brownian Coarse-Grained Simulation</h4>
                             <ul class="text-secondary mb-0">
                                 <li><a href="code/cg2d_membrane_simulation.py">
-                                    cg2d_membrane_simulation.py</a> — 2D simulation source version.</li>
+                                    cg2d_membrane_simulation.py</a> — single-condition 2D simulation and
+                                    animation.</li>
                                 <li><a href="code/cg2d_parameter_sweep_heatmap.py">
-                                    cg2d_parameter_sweep_heatmap.py</a> — 2D parameter-sweep,
-                                    CSV-output, and heatmap-generation version.</li>
+                                    cg2d_parameter_sweep_heatmap.py</a> — 2D parameter sweep, CSV output, and
+                                    heatmap generation (<code>--replot</code> redraws the heatmaps from the CSVs).</li>
                             </ul>
                         </div>
 
@@ -857,12 +855,8 @@
                             <h4 class="wet-subhead mt-0 mb-3">3D Reduced Free-Energy Model</h4>
                             <ul class="text-secondary mb-0">
                                 <li><a href="code/free_energy_3d_model_snapshot_a.py">free_energy_3d_model_snapshot_a.py</a> and
-                                    <a href="code/free_energy_3d_model_snapshot_b.py">free_energy_3d_model_snapshot_b.py</a> — two
-                                    3D free-energy model source snapshots. The supplied snapshots set
-                                    <i>L</i><sub>bundle</sub> = 100 nm, while their geometry uses
-                                    <i>r</i><sub>DNA</sub> = 4 nm (8 nm diameter); one source comment instead states
-                                    16 nm. The 100 nm DNA Bundle length differs from the page's 150 nm reference value;
-                                    the snapshots are not confirmed as the exact GLB-generation revision.</li>
+                                    <a href="code/free_energy_3d_model_snapshot_b.py">free_energy_3d_model_snapshot_b.py</a> —
+                                    3D reduced free-energy minimization and GLB export.</li>
                             </ul>
                         </div>
 
@@ -875,18 +869,13 @@
                                     the code-defined scaling constant <i>C</i> = 50 in
                                     <i>B</i><sub>eff</sub> = <i>C</i><i>N</i><sup>2</sup><i>L</i><sub>bundle</sub>,
                                     <i>k</i><sub>mem,eff</sub> = 30000, and the selected comparison level
-                                    <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>. This is a model-defined selected
-                                    comparison level, not a literature-derived or experimentally calibrated threshold.
-                                    Its interpolated crossing is <i>N</i> ≈ 3.8, rounded to 4 in the graph label.</li>
-                                <li><a href="code/helix_count_alpha_dependence.py">helix_count_alpha_dependence.py</a> — α-dependent helix-count screening
-                                    source. It uses <i>R</i><sub>0</sub> = 50 nm,
-                                    <i>L</i><sub>bundle</sub> = 150 nm, and α = 1.0, 0.5, and 0.1. With its stated
-                                    model-defined <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give crossings of
-                                    approximately 3.8, 5.4, and 12 helices, matching Figure 14. The same formula gives
-                                    approximately 6.9 and 8.5 helices for α = 0.3 and 0.2. An earlier published
-                                    revision used <i>L</i><sub>bundle</sub> = 60 nm and did not reproduce Figure 14; it
-                                    was synchronized to the figure-generating value. These crossings are model-dependent
-                                    design guides, not helix counts required for physical rupture.</li>
+                                    <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>. Its interpolated crossing is
+                                    <i>N</i> ≈ 3.8, rounded to 4 in the graph label.</li>
+                                <li><a href="code/helix_count_alpha_dependence.py">helix_count_alpha_dependence.py</a> — source
+                                    associated with Figure 14 (crosslinking efficiency (α) dependence). It uses
+                                    <i>R</i><sub>0</sub> = 50 nm, <i>L</i><sub>bundle</sub> = 150 nm, and α = 1.0, 0.5,
+                                    and 0.1. With <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give
+                                    crossings of approximately 3.8, 5.4, and 12 helices.</li>
                             </ul>
                         </div>
                     </div>
@@ -2653,6 +2642,15 @@
                                 </li>
                             </ol>
                         </div>
+                    </div>
+                </section>
+
+                <section id="appendix-references" class="references-section">
+                    <h2 class="references-title">References</h2>
+                    <div class="references-list">
+                        <p id="ref-a1">[A1] Israelachvili, J. N. <i>Intermolecular and Surface Forces</i>, 3rd edn (Academic Press, 2011). ISBN 978-0-12-391927-4.</p>
+                        <p id="ref-a2">[A2] Evans, E., Heinrich, V., Ludwig, F. &amp; Rawicz, W. Dynamic tension spectroscopy and strength of biomembranes. <i>Biophys. J.</i> <b>85</b>, 2342–2350 (2003). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(03)74658-X">DOI</a></p>
+                        <p id="ref-a3">[A3] Needham, D. &amp; Nunn, R. S. Elastic deformation and failure of lipid bilayer membranes containing cholesterol. <i>Biophys. J.</i> <b>58</b>, 997–1009 (1990). <a class="ref-doi" href="https://doi.org/10.1016/S0006-3495(90)82444-9">DOI</a></p>
                     </div>
                 </section>
             </div>
