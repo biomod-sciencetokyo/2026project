@@ -5878,13 +5878,7 @@ main .goal-callout-text {
 }
 
 .experiment-page .exp-set + .exp-set {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #314763;
-}
-
-html[data-theme="light"] .experiment-page .exp-set + .exp-set {
-    border-top-color: #c9d1dc;
+    margin-top: 2.5rem;
 }
 
 /* Right column of a GUV set: (b) stays compact and centred, (c) uses the full width */
@@ -5898,4 +5892,44 @@ html[data-theme="light"] .experiment-page .exp-set + .exp-set {
     .experiment-page .exp-set-side .exp-stack-panel:first-child {
         width: 100%;
     }
+}
+
+/* Divider above a figure group that follows discussion text (e.g. the 200 mM NaCl set) */
+.experiment-page .exp-block-divided {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #314763;
+}
+
+html[data-theme="light"] .experiment-page .exp-block-divided {
+    border-top-color: #c9d1dc;
+}
+
+/* Condition headings in 2.3: square "CONDITION n" tag + rule, no gradients */
+.experiment-page .exp-condition {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 0 0 1.5rem;
+    padding: 0 0 0.6rem;
+    border-bottom: 1px solid #314763;
+    font-size: 1.3rem;
+}
+
+.experiment-page .exp-condition::before {
+    content: attr(data-cond);
+    padding: 0.2rem 0.55rem;
+    border-radius: 0;
+    background-color: var(--accent-gold);
+    color: #0b1a2e;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+html[data-theme="light"] .experiment-page .exp-condition {
+    border-bottom-color: #c9d1dc;
 }
