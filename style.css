@@ -3006,9 +3006,63 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     margin-top: 1.25rem;
 }
 
-/* Experiment intro: text and schematic side by side (first row of the block) */
-.experiment-page .exp-block > .exp-overview-row {
-    margin-top: calc(-1 * var(--bs-gutter-y));
+/* Results: scheme -> result, linked by an arrow */
+.experiment-page .exp-flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.experiment-page .exp-flow-arrow svg {
+    display: block;
+    width: 44px;
+    height: auto;
+}
+
+/* Scheme figures: box shrinks to the image so the caption starts at the image's left edge */
+.experiment-page figure.exp-scheme {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.experiment-page figure.exp-scheme figcaption {
+    width: 0;
+    min-width: 100%;
+}
+
+/* Result image next to a scheme: natural aspect ratio, no letterbox */
+.experiment-page .exp-flow img.exp-fit {
+    aspect-ratio: auto;
+    width: auto !important;
+    max-width: 100%;
+    max-height: 420px;
+    margin: 0 auto;
+    display: block;
+    background-color: transparent;
+}
+
+/* Agarose gel (Fig. 6): drop the empty area below the bands */
+.experiment-page .exp-flow img.exp-crop-gel {
+    aspect-ratio: 490 / 560;
+    object-fit: cover;
+    object-position: top;
+}
+
+.experiment-page .exp-flow-arrow-down {
+    margin: 1.25rem 0;
+}
+
+.experiment-page .exp-flow-arrow-down svg {
+    transform: rotate(90deg);
+}
+
+@media (max-width: 991.98px) {
+    .experiment-page .exp-flow .exp-flow-arrow svg {
+        transform: rotate(90deg);
+    }
 }
 
 .experiment-page .exp-subsection .seed-structure-layout,
@@ -4991,4 +5045,353 @@ html[data-theme="light"] body.princess-page {
 .royal-total .royal-affection-label strong {
     color: var(--royal-gold);
     font-variant-numeric: tabular-nums;
+}
+
+/* ===== Milestone chart (all pages): achievements per axis, then future works =====
+   ms-frame.is-now = this project (solid), .is-future = next stage (dashed)
+   ms-node.is-done ✓ / .is-model ◐ / .is-no ✗ / .is-goal = end point */
+.milestone {
+    display: flex;
+    flex-direction: column;
+}
+
+.ms-frame {
+    position: relative;
+    padding: 1.5rem 2rem 2rem;
+    border: 2px solid var(--accent-gold);
+    background: color-mix(in srgb, var(--accent-gold) 5%, var(--surface-dark));
+}
+
+.ms-frame.is-future {
+    border: 2px dashed var(--accent-blue);
+    background: color-mix(in srgb, var(--accent-blue) 5%, var(--surface-dark));
+}
+
+main .ms-frame-label {
+    margin: 0 0 1.5rem;
+    text-indent: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-gold);
+}
+
+.ms-frame.is-future .ms-frame-label {
+    color: var(--accent-blue);
+}
+
+.ms-frame-label span {
+    margin-left: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.ms-axes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.ms-axis-head {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ms-axis-step {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+}
+
+main .ms-axis-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--text-main);
+}
+
+.ms-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.ms-node {
+    position: relative;
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 0.85rem 1rem;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-color);
+}
+
+/* down arrow between consecutive nodes */
+.ms-node + .ms-node::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.6rem;
+    height: 1.6rem;
+    border-left: 2px solid var(--text-muted);
+}
+
+.ms-node + .ms-node::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.55rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.ms-check {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.1rem;
+    border: 2px solid var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-muted);
+}
+
+.ms-node.is-done .ms-check,
+.ms-check.is-done {
+    border-color: var(--accent-gold);
+    background: var(--accent-gold);
+    color: var(--bg-light);
+}
+
+.ms-node.is-model .ms-check,
+.ms-check.is-model {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.ms-node.is-no .ms-check,
+.ms-check.is-no {
+    border-color: var(--text-muted);
+    color: var(--text-main);
+}
+
+.ms-node.is-done {
+    border-color: color-mix(in srgb, var(--accent-gold) 55%, var(--border-color));
+}
+
+.ms-node.is-no {
+    border-style: dashed;
+}
+
+.ms-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.ms-kind {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.ms-text {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--text-main);
+}
+
+.ms-node.is-no .ms-text {
+    color: var(--text-muted);
+}
+
+.ms-future-list {
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+.ms-node.is-goal {
+    justify-content: center;
+    text-align: center;
+    padding: 1.1rem 1.25rem;
+    border: 2px solid var(--accent-blue);
+    background: color-mix(in srgb, var(--accent-blue) 12%, var(--surface-dark));
+}
+
+.ms-node.is-goal .ms-kind,
+.ms-node.is-goal .ms-kind a {
+    color: var(--accent-blue);
+}
+
+.ms-node.is-goal .ms-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* two axes converge into the future frame (on phones: one straight arrow) */
+.ms-merge {
+    position: relative;
+    height: 3.5rem;
+}
+
+.ms-merge svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.ms-merge path {
+    fill: none;
+    stroke: var(--text-muted);
+    stroke-width: 2;
+}
+
+.ms-merge::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0.15rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.ms-legend {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.ms-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ms-legend .ms-check {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 767.98px) {
+    .ms-frame {
+        padding: 1.25rem 1rem 1.25rem;
+    }
+
+    .ms-axes {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .ms-merge {
+        height: 3rem;
+    }
+
+    .ms-merge svg {
+        display: none;
+    }
+
+    .ms-merge::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0.15rem;
+        border-left: 2px solid var(--text-muted);
+    }
+}
+
+/* ===== Status table (all pages): goal / method / status / evidence, grouped by step =====
+   status-badge.is-done ✓ / .is-model ◐ (in model only) / .is-no ✗ */
+.home-status {
+    margin-top: 3rem;
+}
+
+main .home-status-title {
+    margin: 0 0 0.75rem;
+    color: var(--accent-blue);
+    font-family: 'DotGothic16', monospace;
+    font-size: 1.6rem;
+    -webkit-text-stroke: 0.6px currentColor;
+}
+
+.status-table {
+    min-width: 640px;
+    margin-bottom: 0;
+}
+
+.status-table .status-group th {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-gold);
+    background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
+}
+
+.status-table td:nth-child(3),
+.status-table td:nth-child(4) {
+    white-space: nowrap;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-weight: 700;
+}
+
+.status-badge.is-done {
+    color: var(--accent-gold);
+}
+
+.status-badge.is-model {
+    color: var(--accent-blue);
+}
+
+.status-badge.is-no {
+    color: var(--text-muted);
+}
+
+main .status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    margin: 0.75rem 0 0;
+    font-size: 0.85rem;
+    text-indent: 0;
 }

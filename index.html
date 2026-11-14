@@ -7,7 +7,7 @@
     <title>BIOMOD 2026 | Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-29">
+    <link rel="stylesheet" href="style.css?v=20261114-32">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -73,8 +73,11 @@
                             <span class="home-step-num">01</span>
                             <h3 class="home-step-title">Challenge</h3>
                             <p class="text-secondary">
-                                To read the contents of extracellular vesicles (EVs), their membranes must be opened selectively, yet
-                                conventional disruption methods destroy origin information.
+                                Extracellular vesicles (EVs) in blood and other body fluids carry RNA and proteins
+                                that reflect the state of the cells that released them, making them promising
+                                sources for disease diagnosis. To read these molecules, the EV membrane must be
+                                opened. However, conventional methods such as surfactants open every vesicle at once,
+                                so the information on <em>which EV</em> each molecule came from is lost.
                             </p>
                             <a href="project.html" class="home-step-link">Project &rarr;</a>
                         </div>
@@ -90,9 +93,14 @@
                             <span class="home-step-num">02</span>
                             <h3 class="home-step-title">Approach</h3>
                             <p class="text-secondary">
-                                This project uses a target-triggered Hybridization Chain Reaction (HCR) to assemble
-                                rigid DNA bundles on lipid membranes in situ, mechanically disrupting only the intended
-                                vesicles.
+                                Our idea is to build the membrane-breaking tool on site, only where it is needed.
+                                We developed <mark class="key-line">Bundled HCR</mark>, an extension of the
+                                Hybridization Chain Reaction: starting from a seed, six kinds of double-hairpin DNAs
+                                open one after another, so that many DNA strands grow <em>together</em> into a thick,
+                                rigid bundle instead of a single thin strand. Cholesterol tags anchor the growing
+                                bundle to the membrane, and its stiffness bends the membrane until it breaks.
+                                Because the reaction starts only where a trigger is present, and in our design the
+                                trigger sits on the surface of the target EV, only that vesicle is disrupted.
                             </p>
                             <a href="project.html" class="home-step-link">Project &rarr;</a>
                         </div>
@@ -106,16 +114,19 @@
                             <span class="home-step-num">03</span>
                             <h3 class="home-step-title">Simulation</h3>
                             <p class="text-secondary">
-                                We use 2D coarse-grained molecular dynamics and 3D thermodynamic simulations to examine
-                                how DNA Bundle rigidity, linker length, and vesicle size influence membrane deformation
-                                and model-defined Rupture. We also investigate the self-assembly and reaction
-                                feasibility of the HCR system designed to build DNA bundles.
+                                We used 2D coarse-grained molecular dynamics and a 3D free-energy model to find out
+                                what kind of DNA bundle can open a pore in a membrane, varying its rigidity, the length
+                                of the linker that connects it to the cholesterol anchor, and the vesicle size. We also
+                                checked whether our designed HCR reaction can proceed.
                             </p>
                             <p class="text-secondary home-step-result">
                                 <span class="home-result-label">Results</span>
-                                High DNA Bundle bending rigidity was commonly associated with the model-defined local
-                                pore-formation event, and the favorable linker length depended on vesicle size. Every
-                                designed HCR step was thermodynamically favorable (&Delta;G &lt; 0).
+                                Stiffer bundles were the ones that started a pore in the model (defined as the
+                                membrane being stretched beyond a set threshold). Short linkers worked better for
+                                small vesicles (R&nbsp;=&nbsp;50&nbsp;nm), and long linkers for large ones
+                                (R&nbsp;=&nbsp;200&nbsp;nm). The 3D model pointed to about 12 helices per bundle as the
+                                design target. For the reaction, every designed HCR step releases free energy
+                                (&Delta;G&nbsp;&lt;&nbsp;0), so the cascade can proceed in principle.
                             </p>
                             <a href="simulation.html" class="home-step-link">Simulation &rarr;</a>
                         </div>
@@ -130,16 +141,17 @@
                             <span class="home-step-num">04</span>
                             <h3 class="home-step-title">Experiment</h3>
                             <p class="text-secondary">
-                                In Experiment A, we investigated the reaction mechanism of Bundled HCR using a minimal
-                                model designed to elongate into a 6-helix DNA bundle.
-                                In Experiment B, we investigated whether cholesterol-modified 12-helix and 13-helix
-                                DNA bundles could anchor to lipid membranes.
+                                We ran two experiments, each focusing on one part of our system. The first tested
+                                whether Bundled HCR actually proceeds, using a minimal design that grows into a
+                                6-helix DNA bundle. The second tested whether rigid, cholesterol-modified 12- and
+                                13-helix bundles, the size suggested by our simulations, anchor to lipid membranes.
                             </p>
                             <p class="text-secondary home-step-result">
                                 <span class="home-result-label">Results</span>
-                                Agarose gel electrophoresis and AFM showed that Bundled HCR elongated the DNA Bundle
-                                from the seed, and cholesterol-modified 12-helix bundles anchored to lipid membranes
-                                (GUVs). Membrane disruption will be evaluated by a calcein leakage assay in future experiments.
+                                Gel electrophoresis and AFM showed long bundles growing from the seed by Bundled HCR.
+                                Fluorescence microscopy showed that cholesterol-modified 12-helix bundles anchor to
+                                giant vesicles (GUVs). Whether the bundles break the membrane has not been tested yet;
+                                we will test it with a calcein leakage assay.
                             </p>
                             <a href="experiment.html" class="home-step-link">Experiment &rarr;</a>
                         </div>
@@ -171,6 +183,91 @@
                         </div>
                     </li>
                 </ol>
+
+                <!-- What we aimed for and how far we got, in the order of the three steps -->
+                <div class="home-status">
+                    <h3 class="home-status-title">Achievements at a Glance</h3>
+                    <p class="text-secondary">
+                        Our goal is a membrane disruption system that becomes active only near the target EV. It
+                        works in three steps; this year we focused on Steps 2 and 3.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-bordered table-sm align-middle wet-table wet-table-prose status-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Goal</th>
+                                    <th scope="col">How we tested it</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Evidence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="status-group">
+                                <th colspan="4" scope="rowgroup">Step 1 &middot; Trigger: start the reaction only at the target EV</th>
+                            </tr>
+                            <tr>
+                                <td>The reaction starts only at the target vesicle</td>
+                                <td>&mdash; (design proposed)</td>
+                                <td><span class="status-badge is-no"><span aria-hidden="true">&#10007;</span> Not yet implemented</span></td>
+                                <td><a href="discussion.html#improvements">Discussion &sect;3.1</a></td>
+                            </tr>
+                            <tr class="status-group">
+                                <th colspan="4" scope="rowgroup">Step 2 &middot; Elongation: grow a DNA bundle by Bundled HCR</th>
+                            </tr>
+                            <tr>
+                                <td>Every designed HCR step can proceed</td>
+                                <td>NUPACK thermodynamic analysis</td>
+                                <td><span class="status-badge is-done"><span aria-hidden="true">&#10003;</span> Achieved (in silico)</span></td>
+                                <td><a href="simulation.html#hcr-reaction">Simulation &sect;2</a></td>
+                            </tr>
+                            <tr>
+                                <td>A seed forms from six strands</td>
+                                <td>Annealing; PAGE</td>
+                                <td><span class="status-badge is-done"><span aria-hidden="true">&#10003;</span> Achieved</span></td>
+                                <td><a href="experiment.html#exp-2-1">Experiment &sect;2.1</a></td>
+                            </tr>
+                            <tr>
+                                <td>Bundled HCR elongates a bundle from the seed</td>
+                                <td>6-helix minimal design; agarose gel + AFM</td>
+                                <td><span class="status-badge is-done"><span aria-hidden="true">&#10003;</span> Achieved</span></td>
+                                <td><a href="experiment.html#exp-2-2">Experiment &sect;2.2&ndash;2.3</a></td>
+                            </tr>
+                            <tr class="status-group">
+                                <th colspan="4" scope="rowgroup">Step 3 &middot; Membrane disruption: anchor the bundle and break the membrane</th>
+                            </tr>
+                            <tr>
+                                <td>Design rules for rupture (rigidity, linker length, vesicle size, helix count)</td>
+                                <td>2D coarse-grained MD + 3D free-energy model</td>
+                                <td><span class="status-badge is-model"><span aria-hidden="true">&#9680;</span> In model only</span></td>
+                                <td><a href="simulation.html#membrane-disruption">Simulation &sect;1</a></td>
+                            </tr>
+                            <tr>
+                                <td>Rigid 12- and 13-helix bundles can be built</td>
+                                <td>Annealing; PAGE + AFM</td>
+                                <td><span class="status-badge is-done"><span aria-hidden="true">&#10003;</span> Achieved</span></td>
+                                <td><a href="experiment.html#exp-3-1">Experiment &sect;3.1&ndash;3.2</a></td>
+                            </tr>
+                            <tr>
+                                <td>Cholesterol anchors bundles to the membrane</td>
+                                <td>GUVs + fluorescence; &plusmn;cholesterol, 200&nbsp;mM NaCl</td>
+                                <td><span class="status-badge is-done"><span aria-hidden="true">&#10003;</span> Achieved</span></td>
+                                <td><a href="experiment.html#exp-3-3">Experiment &sect;3.3</a></td>
+                            </tr>
+                            <tr>
+                                <td>Anchored bundles break the membrane</td>
+                                <td>Calcein leakage assay</td>
+                                <td><span class="status-badge is-no"><span aria-hidden="true">&#10007;</span> Not yet tested</span></td>
+                                <td><a href="experiment.html#exp-4-1">Experiment &sect;4.1</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="status-legend text-secondary">
+                        <span class="status-badge is-done"><span aria-hidden="true">&#10003;</span> Achieved</span>
+                        <span class="status-badge is-model"><span aria-hidden="true">&#9680;</span> In model only (not yet tested by experiment)</span>
+                        <span class="status-badge is-no"><span aria-hidden="true">&#10007;</span> Not yet achieved</span>
+                    </p>
+                </div>
             </div>
         </section>
 

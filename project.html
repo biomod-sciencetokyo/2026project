@@ -7,7 +7,7 @@
     <title>PROJECT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-29">
+    <link rel="stylesheet" href="style.css?v=20261114-33">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -32,25 +32,19 @@
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
-                    <a class="nav-link fw-bold" href="#overview">Overview</a>
                     <a class="nav-link fw-bold" href="#background">1. Background</a>
                     <a class="nav-link fw-bold" href="#problem">2. Problem</a>
-                    <a class="nav-link fw-bold" href="#approach">3. Our Approach</a>
-                    <a class="nav-link fw-bold" href="#bundled-hcr">4. Bundled HCR</a>
-                    <a class="nav-link fw-bold" href="#goals">5. Goals</a>
+                    <a class="nav-link fw-bold" href="#goal">3. Our Goal</a>
+                    <a class="nav-link fw-bold" href="#approach">4. Our Approach</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#how-it-works">4.1 How It Works</a>
+                        <a class="nav-link" href="#bundled-hcr">4.2 Key Factor: Bundled HCR</a>
+                    </div>
+                    <a class="nav-link fw-bold" href="#achievements">5. Achievements &amp; Future Works</a>
                 </nav>
             </div>
 
             <div class="col-lg-10">
-                <section id="overview" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">Overview</h2>
-                    <p class="text-secondary mb-0">
-                        This project aims to develop a system that disrupts the lipid membrane of only the target
-                        EV, so that the molecular information inside each EV can be read, with its origin
-                        preserved, for disease diagnosis and biological analysis.
-                    </p>
-                </section>
-
                 <section id="background" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">1. Background</h2>
 
@@ -132,8 +126,20 @@
                     </div>
                 </section>
 
+                <section id="goal" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">3. Our Goal</h2>
+                    <div class="content-box text-center">
+                        <h3 class="h5 fw-bold mb-3 section-subtitle">A physical membrane disruption
+                            system that becomes active only near the target EV.</h3>
+                        <p class="text-secondary mb-0">
+                            Achieving this goal will enable the molecular information inside target EVs to be read
+                            with their origin preserved, advancing disease diagnosis and biological analysis.
+                        </p>
+                    </div>
+                </section>
+
                 <section id="approach" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">3. Our Approach</h2>
+                    <h2 class="section-title">4. Our Approach</h2>
                     <p class="text-secondary mb-3">
                         To meet this requirement, we propose <span class="concept-highlight">lipid membrane disruption using in situ
                             assembled DNA bundles by Bundled HCR</span>.
@@ -142,11 +148,10 @@
                         In our approach, Bundled HCR (Bundled Hybridization Chain Reaction) is initiated near the target
                         EV, then rigid DNA bundles are assembled in situ and disrupt lipid membrane. Because this system
                         becomes active only in the vicinity of the target EV, it can prevent the loss of origin
-                        information and minimize off-target effects. Our proposal proceeds as follows.
+                        information and minimize off-target effects. Our proposal proceeds in three steps.
                     </p>
-                    <p class="text-secondary mb-4">
-                        <mark class="key-line">To establish a proof of concept, we worked on demonstrating Steps 2 and 3 in this project.</mark>
-                    </p>
+                    <div id="how-it-works" class="subsection">
+                    <h3 class="h4 fw-bold mb-4">4.1 How It Works</h3>
 
                     <!-- Approach animation: one continuous video, the step text follows the playback -->
                     <div class="content-box approach-player mb-4" id="approach-player">
@@ -220,11 +225,14 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                    <p class="text-secondary mb-0">
+                        <mark class="key-line">To establish a proof of concept, this project demonstrated Step 2 (Elongation) and Step 3 (Membrane disruption).</mark>
+                        Step 1 is our next stage (see <a href="#achievements">Achievements and Future Works</a>).
+                    </p>
+                    </div>
 
-
-                <section id="bundled-hcr" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">4. KEY FACTOR - Bundled HCR</h2>
+                    <div id="bundled-hcr" class="subsection">
+                    <h3 class="h4 fw-bold mb-4">4.2 Key Factor: Bundled HCR</h3>
                     <p class="text-secondary mb-3">
                         We have extended the concept of Hybridization Chain Reaction (HCR) and developed what we call
                         <span class="concept-highlight">Bundled HCR</span>.
@@ -279,74 +287,136 @@
                         In our proposed system, these Double-Hairpin DNAs are modified with cholesterols. Therefore, the
                         resulting DNA Bundle anchors directly to the lipid membrane.
                     </p>
+                    </div>
                 </section>
 
-                <section id="goals" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">5. Goals and Achievements</h2>
+                <section id="achievements" class="fade-in-section mb-5 pt-4">
+                    <h2 class="section-title">5. Achievements and Future Works</h2>
                     <p class="text-secondary mb-4">
-                        To establish a proof of concept, we worked on demonstrating Steps 2 and 3 in this project.
+                        As a proof of concept, this project tested the two questions behind
+                        <mark class="key-line">Step 2 (Elongation) and Step 3 (Membrane disruption)</mark> of our approach.
+                        Demonstrating Step 1 (Trigger) and reaching our goal are future works.
                     </p>
-                    <div class="row g-4 mb-4">
-                        <div class="col-md-6">
-                            <div class="content-box h-100">
-                                <h3 class="h5 fw-bold mb-4 section-subtitle">Achievements in
-                                    Simulation</h3>
-                                <ul class="list-unstyled mb-0 text-secondary">
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>Identified favourable combinations of vesicle size, DNA Bundle bending rigidity, and linker length for membrane pore formation.</span>
-                                    </li>
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>Estimated the minimum number of helices required in a DNA Bundle, identifying approximately 12 helices as a suitable design target.</span>
-                                    </li>
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>Designed HCR hairpin sequences with thermodynamically favourable intended sequential hybridization steps.</span>
-                                    </li>
-                                    <li class="d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-secondary">&#9744;</span>
-                                        <span class="text-secondary">
-                                            Simulate whether a membrane pore persists and expands after formation,
-                                            ultimately leading to complete membrane rupture.
+
+                    <!-- Milestone chart: two axes of this project converge into the future works -->
+                    <div class="milestone">
+                        <div class="ms-frame is-now">
+                            <p class="ms-frame-label">Achievements<span>This project</span></p>
+                            <div class="ms-axes">
+                        <div class="ms-axis">
+                            <div class="ms-axis-head">
+                                <span class="ms-axis-step">Step 3 &middot; Membrane disruption</span>
+                                <h3 class="ms-axis-title">Can a rigid, cholesterol-modified DNA bundle disrupt the lipid membrane?</h3>
+                            </div>
+                            <ol class="ms-list">
+                                    <li class="ms-node is-model">
+                                        <span class="ms-check" aria-hidden="true">&#9680;</span>
+                                        <span class="visually-hidden">In model only: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Simulation</span>
+                                            <span class="ms-text">Identified favourable combinations of vesicle size, DNA Bundle bending rigidity, and linker length for membrane pore formation</span>
                                         </span>
                                     </li>
-                                </ul>
+                                    <li class="ms-node is-model">
+                                        <span class="ms-check" aria-hidden="true">&#9680;</span>
+                                        <span class="visually-hidden">In model only: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Simulation</span>
+                                            <span class="ms-text">Estimated the minimum number of helices required in a DNA Bundle: about 12 helices</span>
+                                        </span>
+                                    </li>
+                                    <li class="ms-node is-done">
+                                        <span class="ms-check" aria-hidden="true">&#10003;</span>
+                                        <span class="visually-hidden">Achieved: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Experiment</span>
+                                            <span class="ms-text">Cholesterol-mediated anchoring of the highly rigid 12-helix DNA Bundle to lipid membranes (GUVs)</span>
+                                        </span>
+                                    </li>
+                                    <li class="ms-node is-no">
+                                        <span class="ms-check" aria-hidden="true">&#10007;</span>
+                                        <span class="visually-hidden">Not yet achieved: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Simulation</span>
+                                            <span class="ms-text">Whether a membrane pore persists and expands after formation, leading to complete rupture</span>
+                                        </span>
+                                    </li>
+                                    <li class="ms-node is-no">
+                                        <span class="ms-check" aria-hidden="true">&#10007;</span>
+                                        <span class="visually-hidden">Not yet achieved: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Experiment</span>
+                                            <span class="ms-text">Lipid membrane disruption</span>
+                                        </span>
+                                    </li>
+                            </ol>
+                        </div>
+                        <div class="ms-axis">
+                            <div class="ms-axis-head">
+                                <span class="ms-axis-step">Step 2 &middot; Elongation</span>
+                                <h3 class="ms-axis-title">Does Bundled HCR proceed and form a DNA bundle?</h3>
+                            </div>
+                            <ol class="ms-list">
+                                    <li class="ms-node is-done">
+                                        <span class="ms-check" aria-hidden="true">&#10003;</span>
+                                        <span class="visually-hidden">Achieved: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Simulation</span>
+                                            <span class="ms-text">Designed HCR hairpin sequences with thermodynamically favourable sequential hybridization steps</span>
+                                        </span>
+                                    </li>
+                                    <li class="ms-node is-done">
+                                        <span class="ms-check" aria-hidden="true">&#10003;</span>
+                                        <span class="visually-hidden">Achieved: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Experiment</span>
+                                            <span class="ms-text">Seed formation by annealing</span>
+                                        </span>
+                                    </li>
+                                    <li class="ms-node is-done">
+                                        <span class="ms-check" aria-hidden="true">&#10003;</span>
+                                        <span class="visually-hidden">Achieved: </span>
+                                        <span class="ms-body">
+                                            <span class="ms-kind">Experiment</span>
+                                            <span class="ms-text">DNA Bundle (6-helix DNA Bundle) formation by Bundled HCR</span>
+                                        </span>
+                                    </li>
+                            </ol>
+                        </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="content-box h-100">
-                                <h3 class="h5 fw-bold mb-4 section-subtitle">Achievements in
-                                    Experiment</h3>
-                                <ul class="list-unstyled mb-0 text-secondary">
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>Seed Formation by Annealing</span>
-                                    </li>
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>DNA Bundle (6-Helix DNA Bundle) Formation by Bundled HCR</span>
-                                    </li>
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-accent-blue">&#10003;</span>
-                                        <span>Cholesterol-Mediated Anchoring of the Highly Rigid 12-Helix DNA Bundle to Lipid Membranes (GUVs)</span>
-                                    </li>
-                                    <li class="d-flex align-items-start">
-                                        <span class="fw-bold me-3 text-secondary">&#9651;</span>
-                                        <span class="text-secondary">Lipid Membrane Disruption</span>
-                                    </li>
-                                </ul>
-                            </div>
+
+                        <div class="ms-merge" aria-hidden="true">
+                            <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <path d="M25 0 L50 40 M75 0 L50 40" vector-effect="non-scaling-stroke" />
+                            </svg>
                         </div>
-                    </div>
-                    <div class="content-box text-center">
-                        <p class="fw-bold mb-2 text-accent-gold">Our Goal</p>
-                        <h3 class="h5 fw-bold mb-3 section-subtitle">A physical membrane disruption
-                            system that becomes active only near the target EV.</h3>
-                        <p class="text-secondary mb-0">
-                            Achieving this goal will enable the molecular information inside target EVs to be read
-                            with their origin preserved, advancing disease diagnosis and biological analysis.
-                        </p>
+
+                        <div class="ms-frame is-future">
+                            <p class="ms-frame-label">Future works</p>
+                            <ol class="ms-list ms-future-list">
+                                <li class="ms-node is-no">
+                                    <span class="ms-check" aria-hidden="true">&#10007;</span>
+                                    <span class="visually-hidden">Not yet achieved: </span>
+                                    <span class="ms-body">
+                                        <span class="ms-kind">Step 1 &middot; Trigger</span>
+                                        <span class="ms-text">Demonstrate that the seed becomes active only in the presence of the Trigger DNA, which displaces the Blocker strand</span>
+                                    </span>
+                                </li>
+                                <li class="ms-node is-goal">
+                                    <span class="ms-body">
+                                        <span class="ms-kind"><a href="#goal">Our Goal</a></span>
+                                        <span class="ms-text">A physical membrane disruption system that becomes active only near the target EV</span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <ul class="ms-legend" aria-label="Legend">
+                            <li><span class="ms-check is-done" aria-hidden="true">&#10003;</span>Achieved</li>
+                            <li><span class="ms-check is-model" aria-hidden="true">&#9680;</span>In model only (not yet tested by experiment)</li>
+                            <li><span class="ms-check is-no" aria-hidden="true">&#10007;</span>Not yet achieved</li>
+                        </ul>
                     </div>
                 </section>
                 <section id="references" class="references-section">
