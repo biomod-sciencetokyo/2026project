@@ -759,46 +759,54 @@
                             </p>
                         </div>
 
-                        <div class="simulation-subblock mb-5">
+                        <div class="simulation-subblock mb-0">
                             <h4 id="three-d-curvature-reference" class="h5 fw-bold mb-3 section-subtitle"
                                 data-toc-label="Curvature reference level">
                                 Curvature reference level for helix-count screening
                             </h4>
                             <p class="text-secondary mb-3">
-                                The helix-count screen operationally uses
-                                \(H_{\mathrm{crit}} = 0.067\ \mathrm{nm}^{-1}\) as a model-defined comparison level.
-                                Its inverse, \(1/H_{\mathrm{crit}} \approx 15\ \mathrm{nm}\), is used only as a
-                                characteristic length scale within the screen’s inverse-radius convention.
+                                The helix-count screen uses
+                                \(H_{\mathrm{crit}}=0.067\ \mathrm{nm}^{-1}\) as a model-defined high-curvature
+                                comparison level. Within the inverse-radius convention used in this screening model,
+                                \(\frac{1}{H_{\mathrm{crit}}}\approx14.9\ \mathrm{nm}\). This inverse value is used
+                                only as a characteristic length scale in the present screen.
                             </p>
                             <p class="text-secondary mb-3">
-                                Lipid-packing theory [<a href="#ref-5">5</a>] and membrane-failure experiments [<a href="#ref-6">6</a>] provide physical
-                                motivation for using a high-curvature comparison level. The numerical value of
-                                \(H_{\mathrm{crit}}\) is a model-defined comparison level used for the
-                                helix-count screen.
+                                Lipid-packing theory indicates that strong curvature can increase lipid-packing
+                                frustration [<a href="#ref-5">5</a>]. Membrane-failure experiments show that failure
+                                depends on tension, area expansion, lipid composition, and loading rate
+                                [<a href="#ref-6">6</a>]. These findings provide physical motivation for using a
+                                high-curvature comparison level; they do not directly derive
+                                \(H_{\mathrm{crit}}=0.067\ \mathrm{nm}^{-1}\).
                             </p>
-                            <p class="text-secondary mb-0">
-                                Accordingly, \(H_{\mathrm{crit}}\) is used here to compare DNA Bundle helix-count and
-                                crosslinking-efficiency (\(\alpha_{\mathrm{3D}}\)) scenarios and to identify the model-defined
-                                \(N_{\mathrm{crit}}\). It is not presented as a universal lipid-bilayer failure
-                                constant, an experimentally calibrated pore-formation threshold, or a rupture trigger
-                                evaluated directly by the static 3D GLB model.
+                            <p class="text-secondary mb-4">
+                                The numerical value of \(H_{\mathrm{crit}}\) is a model-defined comparison level for
+                                the helix-count screen, not a universal lipid-bilayer failure constant or an
+                                experimentally calibrated pore-formation threshold. It identifies the helix count at
+                                which the selected screening criterion is reached. It is not evaluated directly from
+                                the static 3D GLB curvature map and does not act as a rupture trigger in the static
+                                reduced free-energy model.
                             </p>
-                        </div>
-
-                        <div id="three-d-helix-screen" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological helix-count screening and crosslinking efficiency (<i>α</i><sub>3D</sub>)</h4>
+                            <h4 id="three-d-helix-screen" class="h5 fw-bold mb-3 section-subtitle">
+                                Phenomenological helix-count screening and crosslinking efficiency
+                                (<i>α</i><sub>3D</sub>)
+                            </h4>
+                            <p class="text-secondary mb-3">
+                                This is a separate analytical screening calculation, not the output of the static 3D
+                                deformation optimization. The 3D parameter \(\alpha_{\mathrm{3D}}\) represents a
+                                phenomenological crosslinking-efficiency scenario for one DNA Bundle. It is distinct
+                                from the internal 2D rigidity-control parameter \(\alpha_{\mathrm{2D}}\).
+                            </p>
                             <p class="text-secondary mb-2">
-                                This is a separate screening analysis, not the output of the static 3D deformation
-                                optimization. The 3D parameter \(\alpha_{\mathrm{3D}}\) is a separate
-                                phenomenological crosslinking-efficiency scenario used only for helix-count
-                                screening. It is not the same parameter as the internal 2D rigidity-control
-                                parameter \(\alpha_{\mathrm{2D}}\). Its effective-rigidity scaling is:
+                                The effective DNA Bundle rigidity used in this screen is defined as:
                             </p>
                             <div class="math-display">\[
                                 B_{\mathrm{eff}}=
-                                \alpha_{\mathrm{3D}} C N^2L_{\mathrm{Bundle}}
+                                \alpha_{\mathrm{3D}} C N^2 L_{\mathrm{Bundle}}
                             \]</div>
-                            <p class="text-secondary mb-2">The screening model defines a DNA Bundle curvature indicator and a maximum local-curvature indicator by:</p>
+                            <p class="text-secondary mb-2">
+                                The DNA Bundle curvature indicator and model screening curvature indicator are:
+                            </p>
                             <div class="math-display">\[
                                 \kappa_{\mathrm{Bundle}}=
                                 \frac{k_{\mathrm{mem,eff}}}
@@ -808,25 +816,61 @@
                             <div class="math-display">\[
                                 H_{\mathrm{max}}=
                                 \frac{1}{R_0}+
-                                3\left(\frac{1}{R_0}-\kappa_{\mathrm{Bundle}}\right)
+                                A\left(\frac{1}{R_0}-\kappa_{\mathrm{Bundle}}\right),
+                                \qquad A=3
                             \]</div>
-                            <p class="text-secondary mb-2">The crossing is defined by:</p>
+                            <p class="text-secondary mb-2">
+                                For <a href="simulation.html#figure-13">Figures 13</a> and
+                                <a href="simulation.html#figure-14">14</a>, the fixed settings are:
+                            </p>
                             <div class="math-display">\[
-                                N_{\mathrm{crit}}:
-                                \quad H_{\mathrm{max}}(N,\alpha_{\mathrm{3D}})=H_{\mathrm{crit}}
+                                R_0=50\ \mathrm{nm},\quad
+                                L_{\mathrm{Bundle}}=150\ \mathrm{nm},\quad
+                                C=50,\quad
+                                k_{\mathrm{mem,eff}}=30000
+                            \]</div>
+                            <p class="text-secondary mb-2">Therefore, the screening relations become:</p>
+                            <div class="math-display">\[
+                                B_{\mathrm{eff}}=
+                                7500\alpha_{\mathrm{3D}}N^2
+                            \]</div>
+                            <div class="math-display">\[
+                                \kappa_{\mathrm{Bundle}}=
+                                \frac{0.02}{1+0.25\alpha_{\mathrm{3D}}N^2}
+                                \ \mathrm{nm}^{-1}
+                            \]</div>
+                            <div class="math-display">\[
+                                H_{\mathrm{max}}=
+                                0.08-
+                                \frac{0.06}{1+0.25\alpha_{\mathrm{3D}}N^2}
+                                \ \mathrm{nm}^{-1}
+                            \]</div>
+                            <p class="text-secondary mb-2">
+                                The critical helix count is obtained by solving:
+                            </p>
+                            <div class="math-display">\[
+                                H_{\mathrm{max}}(N_{\mathrm{crit}},\alpha_{\mathrm{3D}})
+                                =H_{\mathrm{crit}}
+                            \]</div>
+                            <p class="text-secondary mb-2">
+                                With \(H_{\mathrm{crit}}=0.067\ \mathrm{nm}^{-1}\), this gives:
+                            </p>
+                            <div class="math-display">\[
+                                \alpha_{\mathrm{3D}}N_{\mathrm{crit}}^2\approx14.46,
+                                \qquad
+                                N_{\mathrm{crit}}\approx
+                                \sqrt{\frac{14.46}{\alpha_{\mathrm{3D}}}}
                             \]</div>
                             <p class="text-secondary mb-0">
-                                Here, \(C=50\) is a model scaling constant and \(\alpha_{\mathrm{3D}}\) is the
-                                crosslinking efficiency of the helices within one DNA Bundle. The settings
-                                \(\alpha_{\mathrm{3D}}=1.0,\,0.5,\,0.1\) represent high, intermediate, and low
-                                crosslinking-efficiency scenarios. \(H_{\mathrm{crit}}\) is the comparison level
-                                described above, and \(N_{\mathrm{crit}}\) is a rigidity-based design estimate.
-                                <a href="simulation.html#figure-13">Figures 13</a> and <a href="simulation.html#figure-14">14</a> on the Simulation page use \(L_{\mathrm{Bundle}}=150\) nm, \(R_0=50\) nm, and
-                                \(k_{\mathrm{mem,eff}}=30000\); with these settings,
-                                \(\alpha_{\mathrm{3D}}=1.0,\,0.5,\,0.1\) give \(N_{\mathrm{crit}}\approx 3.8,\,5.4,\,12\).
-                                This screening formula does not include a physical radius function
-                                \(r_{\mathrm{Bundle}}(N)\), so it does not quantitatively combine radius-dependent
-                                geometry with helix-count-dependent rigidity. See the
+                                Thus, the screen gives approximately 4 helices for
+                                \(\alpha_{\mathrm{3D}}=1.0\), 6 helices for
+                                \(\alpha_{\mathrm{3D}}=0.5\), and 12 helices for
+                                \(\alpha_{\mathrm{3D}}=0.1\), consistent with
+                                <a href="simulation.html#figure-13">Figures 13</a> and
+                                <a href="simulation.html#figure-14">14</a>. Here,
+                                \(H_{\mathrm{max}}\) is the model screening curvature indicator used to compare
+                                helix-count scenarios; it is not a directly measured GLB curvature or a universal
+                                membrane-rupture prediction. See the
                                 <a href="#source-code-inventory">Source Code Inventory</a> for the source files.
                             </p>
                         </div>
