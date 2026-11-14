@@ -3006,6 +3006,11 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     margin-top: 1.25rem;
 }
 
+/* Experiment intro: text and schematic side by side (first row of the block) */
+.experiment-page .exp-block > .exp-overview-row {
+    margin-top: calc(-1 * var(--bs-gutter-y));
+}
+
 .experiment-page .exp-subsection .seed-structure-layout,
 .experiment-page .exp-subsection .seed-structure-layout figure {
     margin-top: 0;
