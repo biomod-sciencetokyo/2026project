@@ -1479,12 +1479,24 @@ function titleAt(v) {
   txt.style.visibility = v < 0.005 ? 'hidden' : 'visible';
   if (v > 0.02) txt.classList.add('is-revealed');
 }
+// the scroll cue outlives the title: it stays until the page has started to rise through the opening,
+// so it is plain that the film goes on past the membrane; if the reader stops part-way it calls louder
+const cue = document.querySelector('.hero-scroll');
+let lastScroll = performance.now();
+addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+function cueAt(v, deep) {
+  if (!cue) return;
+  cue.style.opacity = String(v);
+  cue.classList.toggle('is-deep', deep);
+  cue.classList.toggle('is-nudge', deep && v > 0.5 && performance.now() - lastScroll > 2200);
+}
 function fade() {
   const p = progress();
   const away = clamp(p / 0.20, 0, 1);            // the words leave early
   titleAt(1 - away);
   txt.style.transform = `translateY(${-away * 46}px)`;
   hero.classList.toggle('gone', away > 0.85);
+  cueAt(1 - smooth((p - 0.70) / 0.14), p > 0.12);
 }
 
 // while it is building, the camera rides the growing end; by the end it has settled into the first shot
@@ -1502,6 +1514,7 @@ renderer.setAnimationLoop(() => {
     const a = GROW_A + (GROW_B - GROW_A) * ease(e);
     update(realFor(a)); introCam(e, a); draw(); note();
     titleAt(clamp((e - 0.74) / 0.26, 0, 1));
+    cueAt(clamp((e - 0.74) / 0.26, 0, 1), false);
     if (e >= 1) { phase = 2; cur = want = HERO_A; }
     return;
   }

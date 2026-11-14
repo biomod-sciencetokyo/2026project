@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" width="1200" height="430" font-family="Arial, Helvetica, sans-serif"><defs><filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.3"/></filter><filter id="smear" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4"/></filter><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs><rect width="1200" height="430" fill="#fff"/>
+<path d="M120,80 H184 V92 H120" fill="none" stroke="#d62728" stroke-width="6"/>
+<path d="M118,80 l12,-9 v18 z" transform="translate(-10 0)" fill="#d62728"/>
+<line x1="126" y1="85" x2="126" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="85" x2="133" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="85" x2="140" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="85" x2="147" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="85" x2="154" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="85" x2="161" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="85" x2="168" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="85" x2="175" y2="87" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="85" x2="182" y2="87" stroke="#222" stroke-width="1.2"/>
+<path d="M120,118 H184 V130 H120" fill="none" stroke="#1f77b4" stroke-width="6"/>
+<path d="M118,118 l12,-9 v18 z" transform="translate(-10 0)" fill="#1f77b4"/>
+<line x1="126" y1="123" x2="126" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="123" x2="133" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="123" x2="140" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="123" x2="147" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="123" x2="154" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="123" x2="161" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="123" x2="168" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="123" x2="175" y2="125" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="123" x2="182" y2="125" stroke="#222" stroke-width="1.2"/>
+<path d="M120,156 H184 V168 H120" fill="none" stroke="#8c564b" stroke-width="6"/>
+<path d="M118,156 l12,-9 v18 z" transform="translate(-10 0)" fill="#8c564b"/>
+<line x1="126" y1="161" x2="126" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="161" x2="133" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="161" x2="140" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="161" x2="147" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="161" x2="154" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="161" x2="161" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="161" x2="168" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="161" x2="175" y2="163" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="161" x2="182" y2="163" stroke="#222" stroke-width="1.2"/>
+<path d="M120,194 H184 V206 H120" fill="none" stroke="#ef8a2f" stroke-width="6"/>
+<path d="M118,194 l12,-9 v18 z" transform="translate(-10 0)" fill="#ef8a2f"/>
+<line x1="126" y1="199" x2="126" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="199" x2="133" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="199" x2="140" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="199" x2="147" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="199" x2="154" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="199" x2="161" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="199" x2="168" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="199" x2="175" y2="201" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="199" x2="182" y2="201" stroke="#222" stroke-width="1.2"/>
+<path d="M120,232 H184 V244 H120" fill="none" stroke="#c41fa6" stroke-width="6"/>
+<path d="M118,232 l12,-9 v18 z" transform="translate(-10 0)" fill="#c41fa6"/>
+<line x1="126" y1="237" x2="126" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="237" x2="133" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="237" x2="140" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="237" x2="147" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="237" x2="154" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="237" x2="161" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="237" x2="168" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="237" x2="175" y2="239" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="237" x2="182" y2="239" stroke="#222" stroke-width="1.2"/>
+<path d="M120,270 H184 V282 H120" fill="none" stroke="#2ca02c" stroke-width="6"/>
+<path d="M118,270 l12,-9 v18 z" transform="translate(-10 0)" fill="#2ca02c"/>
+<line x1="126" y1="275" x2="126" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="275" x2="133" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="275" x2="140" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="275" x2="147" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="275" x2="154" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="275" x2="161" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="275" x2="168" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="275" x2="175" y2="277" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="275" x2="182" y2="277" stroke="#222" stroke-width="1.2"/>
+<text x="95.0" y="161.0" font-size="19" text-anchor="end" font-weight="normal" fill="#111">V1–V12</text>
+<text x="152.0" y="312.0" font-size="22" text-anchor="middle" font-weight="normal" fill="#111">⋮</text>
+<path d="M120,360 H184 V372 H120" fill="none" stroke="#1f3f8f" stroke-width="6"/>
+<path d="M118,360 l12,-9 v18 z" transform="translate(-10 0)" fill="#1f3f8f"/>
+<line x1="126" y1="365" x2="126" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="133" y1="365" x2="133" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="140" y1="365" x2="140" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="147" y1="365" x2="147" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="154" y1="365" x2="154" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="161" y1="365" x2="161" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="168" y1="365" x2="168" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="175" y1="365" x2="175" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="182" y1="365" x2="182" y2="367" stroke="#222" stroke-width="1.2"/>
+<line x1="196" y1="366" x2="196" y2="379" stroke="#555" stroke-width="2"/>
+<circle cx="196" cy="384" r="5" fill="#f5c242" stroke="#a87b0c" stroke-width="1.5"/>
+<text x="95.0" y="372.0" font-size="19" text-anchor="end" font-weight="normal" fill="#111">T12 / T13</text>
+<text x="232.0" y="400.0" font-size="14" text-anchor="middle" font-weight="normal" fill="#555">cholesterol-modified</text>
+<line x1="260" y1="215" x2="378" y2="215" stroke="#111" stroke-width="7"/>
+<path d="M374,198 L400,215 L374,232 L380,215 z" fill="#111"/>
+<text x="330.0" y="197.0" font-size="19" text-anchor="middle" font-weight="bold" fill="#111">Annealing</text>
+<text x="330.0" y="249.0" font-size="16" text-anchor="middle" font-weight="normal" fill="#555">95 °C → 25 °C</text>
+<rect x="440" y="153" width="170" height="124" fill="#eef2f6" fill-opacity="0.55"/>
+<ellipse cx="440" cy="215" rx="20.46" ry="62" fill="#f6f8fa" stroke="#9aa3ad" stroke-width="1.3"/>
+<line x1="460.2" y1="223.6" x2="630.2" y2="223.6" stroke="#9a9a22" stroke-width="4" stroke-opacity="0.32"/>
+<line x1="459.2" y1="198.0" x2="629.2" y2="198.0" stroke="#c86f9b" stroke-width="4" stroke-opacity="0.32"/>
+<line x1="455.7" y1="246.8" x2="625.7" y2="246.8" stroke="#7d3c98" stroke-width="4" stroke-opacity="0.32"/>
+<line x1="453.1" y1="177.0" x2="623.1" y2="177.0" stroke="#a3262a" stroke-width="4" stroke-opacity="0.32"/>
+<line x1="447.0" y1="261.6" x2="617.0" y2="261.6" stroke="#2bb3b1" stroke-width="4" stroke-opacity="0.32"/>
+<line x1="443.5" y1="166.1" x2="613.5" y2="166.1" stroke="#1f3f8f" stroke-width="4" stroke-opacity="0.32"/>
+<line x1="436.5" y1="263.9" x2="606.5" y2="263.9" stroke="#2ca02c" stroke-width="4" stroke-opacity="1.0"/>
+<line x1="433.0" y1="168.4" x2="603.0" y2="168.4" stroke="#d62728" stroke-width="4" stroke-opacity="1.0"/>
+<line x1="426.9" y1="253.0" x2="596.9" y2="253.0" stroke="#c41fa6" stroke-width="4" stroke-opacity="1.0"/>
+<line x1="424.3" y1="183.2" x2="594.3" y2="183.2" stroke="#1f77b4" stroke-width="4" stroke-opacity="1.0"/>
+<line x1="420.8" y1="232.0" x2="590.8" y2="232.0" stroke="#ef8a2f" stroke-width="4" stroke-opacity="1.0"/>
+<line x1="419.8" y1="206.4" x2="589.8" y2="206.4" stroke="#8c564b" stroke-width="4" stroke-opacity="1.0"/>
+<line x1="440" y1="153" x2="610" y2="153" stroke="#9aa3ad" stroke-width="1.3"/>
+<line x1="440" y1="277" x2="610" y2="277" stroke="#9aa3ad" stroke-width="1.3"/>
+<ellipse cx="610" cy="215" rx="20.46" ry="62" fill="none" stroke="#9aa3ad" stroke-width="1.3"/>
+<line x1="461.25" y1="153" x2="461.25" y2="140" stroke="#555" stroke-width="2"/>
+<circle cx="461.25" cy="134" r="6" fill="#f5c242" stroke="#a87b0c" stroke-width="1.5"/>
+<line x1="503.75" y1="153" x2="503.75" y2="140" stroke="#555" stroke-width="2"/>
+<circle cx="503.75" cy="134" r="6" fill="#f5c242" stroke="#a87b0c" stroke-width="1.5"/>
+<line x1="546.25" y1="153" x2="546.25" y2="140" stroke="#555" stroke-width="2"/>
+<circle cx="546.25" cy="134" r="6" fill="#f5c242" stroke="#a87b0c" stroke-width="1.5"/>
+<line x1="588.75" y1="153" x2="588.75" y2="140" stroke="#555" stroke-width="2"/>
+<circle cx="588.75" cy="134" r="6" fill="#f5c242" stroke="#a87b0c" stroke-width="1.5"/>
+<text x="525.0" y="113.0" font-size="19" text-anchor="middle" font-weight="bold" fill="#111">12HB / 13HB</text>
+<text x="525.0" y="310.0" font-size="15" text-anchor="middle" font-weight="normal" fill="#555">cholesterol-modified</text>
+<line x1="650" y1="215" x2="758" y2="215" stroke="#111" stroke-width="7"/>
+<path d="M754,198 L780,215 L754,232 L760,215 z" fill="#111"/>
+<text x="715.0" y="197.0" font-size="19" text-anchor="middle" font-weight="bold" fill="#111">PAGE</text>
+<text x="715.0" y="249.0" font-size="16" text-anchor="middle" font-weight="normal" fill="#555">strands vs. bundle</text>
+<rect x="795" y="105" width="300" height="300" rx="6" fill="#2a2e34"/>
+<rect x="815.3" y="115" width="32.6" height="9" fill="#111417"/>
+<text x="827.7" y="95.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111" transform="rotate(-45 827.6666666666666 95)">Ladder</text>
+<rect x="815.3" y="202.3" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="815.3" y="228.3" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="815.3" y="249.1" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="815.3" y="269.9" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="815.3" y="290.7" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="815.3" y="316.7" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="815.3" y="353.1" width="32.6" height="3" fill="#fff" fill-opacity="0.8" filter="url(#soft)"/>
+<rect x="860.7" y="115" width="32.6" height="9" fill="#111417"/>
+<text x="873.0" y="95.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111" transform="rotate(-45 873.0 95)">V1–V12</text>
+<rect x="860.7" y="319.9" width="32.6" height="7" rx="2" fill="#fff" fill-opacity="0.95" filter="url(#soft)"/>
+<rect x="860.7" y="309.5" width="32.6" height="7" rx="2" fill="#fff" fill-opacity="0.5" filter="url(#soft)"/>
+<rect x="906.0" y="115" width="32.6" height="9" fill="#111417"/>
+<text x="918.3" y="95.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111" transform="rotate(-45 918.3333333333334 95)">T12</text>
+<rect x="906.0" y="314.7" width="32.6" height="7" rx="2" fill="#fff" fill-opacity="0.95" filter="url(#soft)"/>
+<rect x="951.3" y="115" width="32.6" height="9" fill="#111417"/>
+<text x="963.7" y="95.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111" transform="rotate(-45 963.6666666666667 95)">T13</text>
+<rect x="951.3" y="314.7" width="32.6" height="7" rx="2" fill="#fff" fill-opacity="0.95" filter="url(#soft)"/>
+<rect x="996.7" y="115" width="32.6" height="9" fill="#111417"/>
+<text x="1009.0" y="95.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111" transform="rotate(-45 1009.0 95)">12HB</text>
+<rect x="996.7" y="115" width="32.6" height="9" fill="#fff" fill-opacity="0.95" filter="url(#soft)"/>
+<rect x="998.7" y="138.8" width="28.6" height="57.2" fill="#fff" fill-opacity="0.55" filter="url(#smear)"/>
+<rect x="996.7" y="314.7" width="32.6" height="7" rx="2" fill="#fff" fill-opacity="0.3" filter="url(#soft)"/>
+<rect x="1042.0" y="115" width="32.6" height="9" fill="#111417"/>
+<text x="1054.3" y="95.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111" transform="rotate(-45 1054.3333333333333 95)">13HB</text>
+<rect x="1042.0" y="115" width="32.6" height="9" fill="#fff" fill-opacity="0.95" filter="url(#soft)"/>
+<rect x="1044.0" y="138.8" width="28.6" height="57.2" fill="#fff" fill-opacity="0.55" filter="url(#smear)"/>
+<rect x="1042.0" y="314.7" width="32.6" height="7" rx="2" fill="#fff" fill-opacity="0.3" filter="url(#soft)"/>
+<line x1="1080.3333333333333" y1="120" x2="1118" y2="92" stroke="#333" stroke-width="1.5" marker-start="url(#ah)"/>
+<text x="1124.0" y="97.0" font-size="16" text-anchor="start" font-weight="normal" fill="#111">Bundles</text>
+<text x="1124.0" y="116.0" font-size="15" text-anchor="start" font-weight="normal" fill="#555">(in well)</text>
+<line x1="989.6666666666667" y1="318.2" x2="1118" y2="292.2" stroke="#333" stroke-width="1.5" marker-start="url(#ah)"/>
+<text x="1124.0" y="297.2" font-size="16" text-anchor="start" font-weight="normal" fill="#111">Single</text>
+<text x="1124.0" y="316.2" font-size="15" text-anchor="start" font-weight="normal" fill="#555">strands</text>
+</svg>

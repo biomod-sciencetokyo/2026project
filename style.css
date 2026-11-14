@@ -1904,23 +1904,141 @@ mark.key-line {
     transition-delay: 0.38s;
 }
 
+/* Scroll cue: its own layer, centred at the foot of the screen, and kept on through the whole cover
+   (not only the title) so it is clear the film goes on through the membrane. The script sets its opacity
+   and adds .is-deep once the title has gone, .is-nudge when the reader has stopped scrolling mid-way. */
 .hero-scroll {
     display: none;
-    position: absolute;
-    right: 7vw;
-    bottom: 5vh;
-    color: #7f93ad;
-    font-size: 0.7rem;
-    letter-spacing: 0.34em;
+    position: fixed;
+    left: 50%;
+    bottom: max(3.5vh, 18px);
+    z-index: 4;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px 12px;
+    border: 1px solid rgba(98, 197, 213, 0.35);
+    border-radius: 999px;
+    background: rgba(7, 17, 32, 0.55);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 rgba(98, 197, 213, 0);
+    color: var(--accent-blue);
+    font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.3s linear, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
-.hero-scroll::after {
-    content: "";
+.hero-scroll-label {
+    position: relative;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    margin-right: -0.3em;  /* letter-spacing leaves a gap after the last letter */
+    white-space: nowrap;
+    text-shadow: 0 2px 14px rgba(4, 12, 26, 0.9);
+}
+
+.hero-scroll-more,
+.hero-scroll.is-deep .hero-scroll-first {
+    display: none;
+}
+
+.hero-scroll.is-deep .hero-scroll-more {
+    display: inline;
+}
+
+/* drawn as a mouse rather than a capsule (a plain oval read as a "0"): a body slightly narrower at the
+   top, the seam between the buttons and the wheel turning in gold */
+.hero-scroll-mouse {
     display: block;
-    width: 1px;
-    height: 34px;
-    margin: 10px 0 0 auto;
-    background: linear-gradient(#7f93ad, transparent);
+    width: 24px;
+    height: 36px;
+    overflow: visible;
+}
+
+.hero-scroll-body,
+.hero-scroll-seam {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+}
+
+.hero-scroll-body {
+    stroke-width: 1.6;
+    fill: rgba(98, 197, 213, 0.08);
+}
+
+.hero-scroll-seam {
+    stroke-width: 1.1;
+    opacity: 0.55;
+}
+
+.hero-scroll-wheel {
+    fill: var(--accent-gold);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hero-scroll-wheel 1.6s ease-in-out infinite;
+}
+
+/* touch screens have no mouse: the arrows say it alone */
+@media (hover: none) and (pointer: coarse) {
+    .hero-scroll-mouse {
+        display: none;
+    }
+}
+
+.hero-scroll-chevrons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -2px;
+}
+
+.hero-scroll-chevrons i {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-top: -5px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    animation: hero-scroll-chevron 1.6s ease-in-out infinite;
+}
+
+.hero-scroll-chevrons i:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+@keyframes hero-scroll-wheel {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(5px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+}
+
+@keyframes hero-scroll-chevron {
+    0%, 100% { opacity: 0.25; transform: translateY(-3px) rotate(45deg); }
+    50% { opacity: 1; transform: translateY(3px) rotate(45deg); }
+}
+
+/* the reader has stopped part-way: call louder */
+.hero-scroll.is-nudge {
+    border-color: rgba(98, 197, 213, 0.85);
+    animation: hero-scroll-nudge 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-nudge {
+    0%, 100% { transform: translateX(-50%) translateY(0) scale(1.08); box-shadow: 0 0 0 0 rgba(98, 197, 213, 0.45); }
+    50% { transform: translateX(-50%) translateY(-8px) scale(1.08); box-shadow: 0 0 0 12px rgba(98, 197, 213, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-scroll-wheel,
+    .hero-scroll-chevrons i,
+    .hero-scroll.is-nudge {
+        animation: none;
+    }
 }
 
 /* live: the scroll bar is the clock */
@@ -1974,7 +2092,8 @@ mark.key-line {
 }
 
 .hero--live .hero-scroll {
-    display: block;
+    display: flex;
+    opacity: 0;
 }
 
 /* sealed: the camera has gone through the hole and the cover has closed behind it */
