@@ -36,8 +36,8 @@
                     <a class="nav-link fw-bold" href="#problem">2. Challenges</a>
                     <a class="nav-link fw-bold" href="#approach">3. Our Approach</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#how-it-works">3.1 How It Works</a>
-                        <a class="nav-link" href="#goal">3.2 Our Goal</a>
+                        <a class="nav-link" href="#how-it-works">3.1 Proposed Mechanism</a>
+                        <a class="nav-link" href="#goal">3.2 Project Scope</a>
                     </div>
                     <a class="nav-link fw-bold" href="#achievements">4. Achievements</a>
                     <a class="nav-link fw-bold" href="#ambition">5. Our Vision</a>
@@ -128,17 +128,18 @@
                 <section id="approach" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">3. Our Approach</h2>
                     <p class="text-secondary mb-3">
-                        To meet this requirement, we propose <span class="concept-highlight">lipid membrane disruption
-                            using DNA Bundles assembled in situ by Bundled HCR</span>.
+                        To address these challenges, we propose a novel approach to <span class="concept-highlight">lipid
+                            membrane disruption using DNA bundles that assemble and elongate <em>in situ</em></span>.
                     </p>
                     <p class="text-secondary mb-3">
-                        In our approach, a trigger signal initiates Bundled HCR (Bundled Hybridization Chain Reaction),
-                        and the rigid DNA Bundles assembled in situ disrupt the lipid membrane. Because the system
-                        becomes active only where the trigger is present, it is not &ldquo;always active,&rdquo; unlike
-                        pre-assembled structures. Our proposal proceeds in three steps.
+                        In this approach, we extend the concept of the Hybridization Chain Reaction (HCR) to enable
+                        multiple DNA double helices to elongate in parallel, forming a rigid DNA bundle. We named this
+                        reaction mechanism &ldquo;<span class="concept-highlight">Bundled HCR</span>.&rdquo; Furthermore,
+                        we envision that cholesterol modifications on the DNA bundle will enable it to anchor to lipid
+                        membranes and induce membrane disruption through mechanical forces.
                     </p>
                     <div id="how-it-works" class="subsection">
-                        <h3 class="h4 fw-bold mb-4">3.1 How It Works</h3>
+                        <h3 class="h4 fw-bold mb-4">3.1 Proposed Mechanism</h3>
 
                         <!-- Approach animation: one continuous video, the step text follows the playback -->
                         <div class="content-box approach-player mb-4" id="approach-player">
@@ -158,21 +159,21 @@
                                     aria-controls="approach-panel-1" aria-selected="true" data-start="0" data-end="21">
                                     <span class="approach-tab-bar"><span></span></span>
                                     <span class="approach-tab-num">Step 1</span>
-                                    <span class="approach-tab-label">Trigger</span>
+                                    <span class="approach-tab-label">Initiation</span>
                                 </button>
                                 <button type="button" class="approach-tab" role="tab" id="approach-tab-2"
                                     aria-controls="approach-panel-2" aria-selected="false" data-start="21"
                                     data-end="61">
                                     <span class="approach-tab-bar"><span></span></span>
                                     <span class="approach-tab-num">Step 2</span>
-                                    <span class="approach-tab-label">Elongation</span>
+                                    <span class="approach-tab-label">DNA Bundle Elongation</span>
                                 </button>
                                 <button type="button" class="approach-tab" role="tab" id="approach-tab-3"
                                     aria-controls="approach-panel-3" aria-selected="false" data-start="61"
                                     data-end="999">
                                     <span class="approach-tab-bar"><span></span></span>
                                     <span class="approach-tab-num">Step 3</span>
-                                    <span class="approach-tab-label">Membrane disruption</span>
+                                    <span class="approach-tab-label">Membrane Disruption</span>
                                 </button>
                             </div>
 
@@ -181,75 +182,54 @@
                                 <div class="approach-panel is-active" role="tabpanel" id="approach-panel-1"
                                     aria-labelledby="approach-tab-1">
                                     <h3 class="fw-bold section-subtitle"><span class="visually-hidden">Step 1:
-                                        </span>Bundled HCR is initiated by a
-                                        trigger</h3>
+                                        </span>Initiation</h3>
                                     <p class="text-secondary mb-0">
-                                        Only in the presence of the Trigger RNA does the seed become active. This
-                                        initiates the Bundled HCR process, causing the Double-Hairpin DNAs to
-                                        sequentially open and assemble.
+                                        A trigger RNA removes the blocker strand from the structure that serves as the seed for bundle formation, thereby activating the seed.
                                     </p>
                                 </div>
                                 <div class="approach-panel" role="tabpanel" id="approach-panel-2"
                                     aria-labelledby="approach-tab-2">
                                     <h3 class="fw-bold section-subtitle"><span class="visually-hidden">Step 2:
-                                        </span>Cholesterol-modified DNA Bundle
-                                        elongates via Bundled HCR</h3>
+                                        </span>DNA Bundle Elongation</h3>
                                     <p class="text-secondary mb-0">
-                                        Through the Bundled HCR process, the DNA Bundle elongates to a length
-                                        ranging from several hundred nanometers to a few micrometers. Because the
-                                        Double-Hairpin DNAs are modified with cholesterol, a cholesterol-tagged DNA
-                                        Bundle is assembled.
+                                        Starting from the activated seed, cholesterol-modified double-hairpin DNA structures sequentially open and hybridize. This process allows multiple DNA double helices to elongate in parallel, forming a rigid DNA bundle.
                                     </p>
                                 </div>
                                 <div class="approach-panel" role="tabpanel" id="approach-panel-3"
                                     aria-labelledby="approach-tab-3">
                                     <h3 class="fw-bold section-subtitle"><span class="visually-hidden">Step 3:
-                                        </span>Anchors to and disrupts the
-                                        lipid membrane</h3>
+                                        </span>Membrane Disruption</h3>
                                     <p class="text-secondary mb-0">
-                                        The cholesterol tags insert into the hydrophobic core of the lipid bilayer and
-                                        sequentially anchor the DNA Bundle to the membrane. The
-                                        multivalent binding of this highly rigid DNA Bundle generates local physical
-                                        tension, forcing the membrane to deform. When the induced curvature exceeds a
-                                        critical value, the membrane can no longer maintain its integrity and ruptures.
+                                        The resulting DNA bundle anchors to the hydrophobic core of the lipid bilayer through cholesterol modifications. Multivalent binding by the rigid DNA bundle exerts mechanical stress on the membrane, causing local deformation and ultimately leading to membrane disruption.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-secondary mb-0">
-                            <mark class="key-line">To establish a proof of concept, this project addressed the questions
-                                behind Step 2 (Elongation) and Step 3 (Membrane disruption).</mark>
-                            Step 1 is part of our ambition beyond this project.
-                        </p>
                     </div>
 
                     <div id="goal" class="subsection">
-                        <h3 class="h4 fw-bold mb-4">3.2 Our Goal</h3>
-                        <div class="goal-callout mb-4">
-                            <div class="goal-callout-head">
-                                <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
-                                <span>Our Goal</span>
-                            </div>
-                            <div class="goal-callout-body">
-                                <h4 class="goal-callout-title">Grow a rigid DNA Bundle by Bundled HCR<br
-                                        class="d-none d-xl-inline">
-                                    and disrupt the lipid membrane with&nbsp;it.</h4>
-                                <p class="goal-callout-text">
-                                    This corresponds to Step&nbsp;2 (Elongation) and Step&nbsp;3 (Membrane disruption),
-                                    the core
-                                    mechanism of our system.
-                                </p>
-                            </div>
-                        </div>
+                        <h3 class="h4 fw-bold mb-4">3.2 Project Scope</h3>
+                        <p class="text-secondary mb-3">
+                            In this project, we focused on evaluating the feasibility of two core processes of our
+                            proposed membrane disruption system: Step&nbsp;2 (DNA Bundle Elongation) and Step&nbsp;3
+                            (Membrane Disruption).
+                        </p>
                         <p class="text-secondary mb-4">
-                            We pursued the two steps in parallel. For Step&nbsp;2, we tested whether Bundled HCR
-                            assembles
-                            and elongates a DNA Bundle, using a minimal 6-Helix DNA Bundle (6HB) design that can be
-                            extended to more helices.
-                            For Step&nbsp;3, we tested whether a rigid DNA Bundle can disrupt the membrane, using 12-
-                            and
-                            13-Helix DNA Bundles built by annealing: our simulations showed that about 12 helices give
-                            sufficient rigidity, and the 13-Helix DNA Bundle carries cholesterol in all directions.
+                            To evaluate these processes independently, we conducted simulations and experiments in
+                            parallel using two different DNA bundle designs.
+                        </p>
+                        <h4 class="fw-bold section-subtitle">Step 2: DNA Bundle Elongation</h4>
+                        <p class="text-secondary mb-4">
+                            We investigated whether Bundled HCR could form and elongate DNA bundles. To focus on
+                            demonstrating the reaction mechanism, we adopted a minimal design consisting of 6-Helix DNA
+                            Bundle (6HB).
+                        </p>
+                        <h4 class="fw-bold section-subtitle">Step 3: Membrane Disruption</h4>
+                        <p class="text-secondary mb-4">
+                            We investigated whether DNA bundles could bind to lipid membranes and induce membrane
+                            disruption. Based on the simulation results, we selected bundles consisting of 12- and
+                            13-Helix DNA Bundles (12HB and 13HB), which were expected to exhibit sufficient rigidity.
+                            These bundles were pre-assembled by thermal annealing rather than Bundled HCR.
                         </p>
                         <a class="btn btn-sm learn-more-btn" href="design.html">Design of the seed, Double-Hairpin DNAs,
                             and 12- and 13-Helix DNA Bundles &rarr;</a>
