@@ -881,13 +881,53 @@
 
                     <div id="future-work" class="dry-model subsection">
                         <h3 class="h4 fw-bold mb-4">1.4 Multi-Bundle Extension and Limitations</h3>
-                        <p class="text-secondary mb-0">
+                        <p class="text-secondary mb-4">
                             The 3D implementation can set the number of independent DNA Bundles with
                             <code>SIM_NUM_BUNDLES</code>. In the current multi-Bundle extension, DNA Bundles are arranged
                             as an independent parallel array and their free-energy contributions are added
-                            independently. Bundle–Bundle interactions, membrane-mediated cooperativity, and
-                            overlap-dependent mechanics are not yet included. This extension is not direct evidence
-                            that multiple DNA Bundles enhance membrane rupture.
+                            independently.
+                        </p>
+                        <h4 class="h5 fw-bold mb-3">Representative Multi-Bundle Configurations</h4>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="content-box p-4 h-100">
+                                    <figure class="simulation-figure mb-0">
+                                        <!-- Replace this placeholder with the 2-DNA-Bundle GIF. -->
+                                        <img src="img/SIMULATION/multibundle_r50_a08_l2.5_b2.gif"
+                                            alt="Reduced 3D model showing two independently positioned DNA Bundles on a vesicle membrane"
+                                            class="img-fluid w-100" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3 mb-0">
+                                            <strong>Two DNA Bundles.</strong> Vesicle radius:
+                                            (<i>R</i> = 50) nm; linker rest length:
+                                            (<i>l</i><sub>0</sub> = 2.5) nm; DNA Bundle bending rigidity:
+                                            (<i>B</i><sub>DNA</sub> = 4.36 × 10<sup>5</sup>
+                                            pN·nm<sup>2</sup>); number of DNA Bundles: 2.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="content-box p-4 h-100">
+                                    <figure class="simulation-figure mb-0">
+                                        <!-- Replace this placeholder with the 3-DNA-Bundle GIF. -->
+                                        <img src="img/SIMULATION/multibundle_r50_a08_l2.5_b3_pure_chained.gif"
+                                            alt="Reduced 3D model showing three independently positioned DNA Bundles on a vesicle membrane"
+                                            class="img-fluid w-100" loading="lazy" decoding="async">
+                                        <figcaption class="text-secondary mt-3 mb-0">
+                                            <strong>Three DNA Bundles.</strong> Vesicle radius:
+                                            (<i>R</i> = 50) nm; linker rest length:
+                                            (<i>l</i><sub>0</sub> = 2.5) nm; DNA Bundle bending rigidity:
+                                            (<i>B</i><sub>DNA</sub> = 4.36 × 10<sup>5</sup>
+                                            pN·nm<sup>2</sup>); number of DNA Bundles: 3.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-0">
+                            Bundle–Bundle interactions, membrane-mediated cooperativity, and overlap-dependent
+                            mechanics are not yet included. This extension is not direct evidence that multiple DNA
+                            Bundles enhance membrane rupture.
                         </p>
                     </div>
                 </section>
