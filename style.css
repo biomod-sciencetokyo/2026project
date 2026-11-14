@@ -5370,35 +5370,33 @@ main .ms-hint {
     font-weight: 700;
 }
 
-/* two axes converge into the future frame (on phones: one straight arrow) */
+/* connector between the frames: a bracket joins both axes (gold), a stem leads into the future
+   frame (gold to blue); on phones the axes are stacked, so only the stem */
 .ms-merge {
     position: relative;
-    height: 3.5rem;
+    height: 4rem;
 }
 
-.ms-merge svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-.ms-merge path {
-    fill: none;
-    stroke: var(--text-muted);
-    stroke-width: 2;
+.ms-merge::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    height: 1.5rem;
+    border: 2px solid var(--accent-gold);
+    border-top: 0;
 }
 
 .ms-merge::after {
     content: "";
     position: absolute;
+    top: 1.5rem;
+    bottom: 0;
     left: 50%;
-    bottom: 0.15rem;
-    width: 0.6rem;
-    height: 0.6rem;
-    border-right: 2px solid var(--text-muted);
-    border-bottom: 2px solid var(--text-muted);
-    transform: translateX(-50%) rotate(45deg);
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(var(--accent-gold), var(--accent-blue));
 }
 
 .ms-legend {
@@ -5439,17 +5437,12 @@ main .ms-hint {
         height: 3rem;
     }
 
-    .ms-merge svg {
+    .ms-merge::before {
         display: none;
     }
 
-    .ms-merge::before {
-        content: "";
-        position: absolute;
-        left: 50%;
+    .ms-merge::after {
         top: 0;
-        bottom: 0.15rem;
-        border-left: 2px solid var(--text-muted);
     }
 }
 
