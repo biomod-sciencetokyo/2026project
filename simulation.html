@@ -168,7 +168,7 @@
                         </div>
 
                         <!-- Real system vs. 2D model -->
-                        <figure class="simulation-figure sim-env mb-5" data-sim-env>
+                        <figure id="figure-1" class="simulation-figure sim-env mb-5" data-sim-env>
                             <div class="sim-env-panels">
                                 <div class="sim-env-panel">
                                     <div class="sim-env-panel-label">Real system</div>
@@ -236,7 +236,7 @@
                         </figure>
 
                         <p class="text-secondary mb-3">
-                            The 2D model is used as a computational screening system to identify practical design
+                            The 2D model (<a href="#figure-1">Figure 1</a>) is used as a computational screening system to identify practical design
                             regions for three programmable parameters: vesicle radius (<i>R</i>), DNA Bundle bending
                             rigidity (<i>B</i><sub>DNA</sub>), and linker rest length (<i>l</i><sub>0</sub>). Our goal
                             is to estimate which parameter combinations are more likely to produce the model-defined
@@ -276,10 +276,10 @@
                                 direct evidence of complete membrane rupture or lysis.
                             </p>
                             <p class="text-secondary mb-3">
-                                Representative trajectories visualize the contrasting membrane-loading behaviors
+                                Representative trajectories (<a href="#figure-2">Figure 2</a>, <a href="#figure-3">Figure 3</a>) visualize the contrasting membrane-loading behaviors
                                 underlying these design trends.
                             </p>
-                            <figure class="simulation-figure sim-matrix-figure mb-4">
+                            <figure id="figure-2" class="simulation-figure sim-matrix-figure mb-4">
                             <h5 class="fw-bold mb-4 section-subtitle">Small vesicle (<em>R</em> = 50 nm)</h5>
                             <div class="d-flex flex-wrap gap-3 align-items-center text-secondary small mb-2"
                                  aria-label="Representative-animation result legend">
@@ -408,7 +408,7 @@
                                 condition (<i>R</i> = 50 nm).
                             </figcaption>
                             </figure>
-                            <figure class="simulation-figure sim-matrix-figure mb-4">
+                            <figure id="figure-3" class="simulation-figure sim-matrix-figure mb-4">
                             <h5 class="fw-bold mb-4 section-subtitle">Large vesicle (<em>R</em> = 200 nm)</h5>
                             <div class="d-flex flex-wrap gap-3 align-items-center text-secondary small mb-2"
                                  aria-label="Representative-animation result legend">
@@ -547,20 +547,20 @@
                             </h4>
                             <div class="mb-4">
                                 <p class="text-secondary mb-3">
-                                    The heatmaps quantify the fraction of simulated trajectories that reached the
+                                    The heatmaps (<a href="#figure-4">Figures 4</a>–<a href="#figure-9">9</a>) quantify the fraction of simulated trajectories that reached the
                                     model-defined local pore-formation event for each combination of linker rest
                                     length and DNA Bundle bending rigidity.
                                 </p>
                             </div>
 
                             <p class="text-secondary mb-3">
-                                <strong>Figures 4–9.</strong> Model-defined local pore-formation-event
+                                <strong><a href="#figure-4">Figures 4</a>–<a href="#figure-9">9</a>.</strong> Model-defined local pore-formation-event
                                 probability across DNA Bundle bending rigidity and linker rest length.
                                 Only the vesicle radius differs among panels.
                             </p>
                                             <div class="row g-4 mb-4">
                                                 <div class="col-12 col-md-6">
-                                                    <figure class="content-box h-100 mb-0 sim-heatmap">
+                                                    <figure id="figure-4" class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R50.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 50 nm"
@@ -574,7 +574,7 @@
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <figure class="content-box h-100 mb-0 sim-heatmap">
+                                                    <figure id="figure-5" class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R100.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 100 nm"
@@ -588,7 +588,7 @@
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <figure class="content-box h-100 mb-0 sim-heatmap">
+                                                    <figure id="figure-6" class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R150.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 150 nm"
@@ -602,7 +602,7 @@
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <figure class="content-box h-100 mb-0 sim-heatmap">
+                                                    <figure id="figure-7" class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R200.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 200 nm"
@@ -616,7 +616,7 @@
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <figure class="content-box h-100 mb-0 sim-heatmap">
+                                                    <figure id="figure-8" class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R250.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 250 nm"
@@ -630,7 +630,7 @@
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <figure class="content-box h-100 mb-0 sim-heatmap">
+                                                    <figure id="figure-9" class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R300.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 300 nm"
@@ -793,8 +793,8 @@
                             <div class="goal-callout-body">
                                 <h4 class="goal-callout-title">12 helices is the robust DNA Bundle design target</h4>
                                 <p class="goal-callout-text">
-                                    Figure 13 gives an ideal fully cross-linked reference of approximately
-                                    4 helices. Figure 14 shows that lower crosslinking efficiency (\(\alpha\))
+                                    <a href="#figure-13">Figure 13</a> gives an ideal fully cross-linked reference of approximately
+                                    4 helices. <a href="#figure-14">Figure 14</a> shows that lower crosslinking efficiency (\(\alpha\))
                                     requires more helices; with 12 helices, the target is reached even in the
                                     lowest crosslinking-efficiency condition examined. The 13-Helix DNA Bundle is
                                     used as a one-helix-above-threshold comparison design.
@@ -852,7 +852,7 @@
                         <div id="three-d-interactive" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Interactive 3D Deformation Visualization</h4>
                             <p class="text-secondary mb-4">
-                                The GLB and deformation views show local membrane deformation at the DNA Bundle
+                                The GLB and deformation views (<a href="#figure-10">Figure 10</a>, <a href="#figure-11">Figure 11</a>) show local membrane deformation at the DNA Bundle
                                 contact region. Its shape reflects the competition between effective adhesion,
                                 DNA Bundle flexibility, membrane bending elasticity, and membrane tension. The GLB can
                                 be rotated for viewing but is static, not a time-evolving simulation. Its color
@@ -860,7 +860,7 @@
                                 threshold.
                             </p>
                             <!-- Existing real-system and continuum comparison -->
-                            <figure class="simulation-figure sim-env mb-4" data-sim-env>
+                            <figure id="figure-10" class="simulation-figure sim-env mb-4" data-sim-env>
                                 <div class="sim-env-panels">
                                     <div class="sim-env-panel">
                                         <div class="sim-env-panel-label">Real system</div>
@@ -921,7 +921,7 @@
                                     <strong>Figure 10.</strong> Real system and 3D reduced free-energy representation.
                                 </figcaption>
                             </figure>
-                            <figure class="simulation-figure mb-4">
+                            <figure id="figure-11" class="simulation-figure mb-4">
                                     <div class="row g-3 mb-4 align-items-stretch">
                                         <div class="col-md-9">
                                             <model-viewer class="simulation-model-viewer"
@@ -952,14 +952,14 @@
                             <p class="text-secondary mb-3">
                                 DNA Bundle radius is an important geometric factor in membrane deformation.
                                 A wider DNA Bundle changes the contact geometry and distributes membrane
-                                deformation across a broader region. In contrast, the smaller-radius DNA Bundle
+                                deformation across a broader region. In contrast, the smaller-radius DNA Bundle (<a href="#figure-12">Figure 12</a>)
                                 produces more localized membrane deformation and appears more favorable
                                 for membrane pore formation. Because the number of helices in a DNA Bundle
                                 affects both its radius and bending rigidity, DNA Bundle geometry and mechanical
                                 stiffness must be considered together when designing a membrane-active
                                 DNA Bundle.
                             </p>
-                            <figure class="simulation-figure mb-0">
+                            <figure id="figure-12" class="simulation-figure mb-0">
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <img src="img/SIMULATION/low_bundle_radious_r4.jpeg?v=2"
@@ -983,10 +983,10 @@
                             <h4 class="h5 fw-bold mb-3 section-subtitle">
                                 Estimating the Minimum Number of DNA Helices
                             </h4>
-                            <h5 class="fw-bold mb-3 section-subtitle">How to Read Figures 13 and 14</h5>
+                            <h5 class="fw-bold mb-3 section-subtitle">How to Read <a href="#figure-13">Figures 13</a> and <a href="#figure-14">14</a></h5>
 
                             <p class="text-secondary mb-3">
-                                The smaller-radius DNA Bundle in Figure 12 produces more localized membrane
+                                The smaller-radius DNA Bundle in <a href="#figure-12">Figure 12</a> produces more localized membrane
                                 deformation, but a DNA Bundle with fewer helices also has lower bending
                                 rigidity. We therefore estimated the helix count required to retain
                                 sufficient mechanical strength while maintaining a membrane-active DNA Bundle

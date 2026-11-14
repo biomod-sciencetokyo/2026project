@@ -243,6 +243,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!video.paused) startLoop();
     }
 
+    // data-autoplay-visible の動画：画面に入ったときだけ読み込んで再生し、外れたら一時停止する
+    // （autoplay だとページを開いた瞬間に画面外の動画まで全部ダウンロードされるため）
+    const autoVideos = document.querySelectorAll('video[data-autoplay-visible]');
+    if (autoVideos.length) {
+        const videoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const v = entry.target;
+                if (entry.isIntersecting) {
+                    v.muted = true;
+                    const p = v.play();
+                    if (p && typeof p.catch === 'function') p.catch(() => {});
+                } else {
+                    v.pause();
+                }
+            });
+        }, { rootMargin: '200px 0px' });   // 少し手前から読み込み始め、表示されたときには再生できるようにする
+        autoVideos.forEach(v => videoObserver.observe(v));
+    }
+
     sections.forEach(section => {
         // 初期読み込み時に画面内（ビューポート）に既に表示されている要素は即座にフェードイン
         const rect = section.getBoundingClientRect();
