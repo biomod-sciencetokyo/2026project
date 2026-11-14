@@ -5228,6 +5228,47 @@ main .ms-axis-title {
     color: var(--text-muted);
 }
 
+/* the whole node is a link to the matching section of the results page */
+main a.ms-link,
+main a.ms-link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+a.ms-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.ms-link .ms-kind::after {
+    content: " \2192";
+}
+
+.ms-node:has(.ms-link) {
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.ms-node:has(.ms-link:hover),
+.ms-node:has(.ms-link:focus-visible) {
+    border-color: var(--accent-blue);
+    background: color-mix(in srgb, var(--accent-blue) 8%, var(--surface-dark));
+}
+
+.ms-link:focus-visible {
+    outline: none;
+}
+
+.ms-node:has(.ms-link:focus-visible) {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+.ms-link:hover .ms-kind,
+.ms-link:focus-visible .ms-kind {
+    color: var(--accent-blue);
+}
+
 .ms-future-list {
     max-width: 30rem;
     margin: 0 auto;
@@ -5334,64 +5375,3 @@ main .ms-axis-title {
     }
 }
 
-/* ===== Status table (all pages): goal / method / status / evidence, grouped by step =====
-   status-badge.is-done ✓ / .is-model ◐ (in model only) / .is-no ✗ */
-.home-status {
-    margin-top: 3rem;
-}
-
-main .home-status-title {
-    margin: 0 0 0.75rem;
-    color: var(--accent-blue);
-    font-family: 'DotGothic16', monospace;
-    font-size: 1.6rem;
-    -webkit-text-stroke: 0.6px currentColor;
-}
-
-.status-table {
-    min-width: 640px;
-    margin-bottom: 0;
-}
-
-.status-table .status-group th {
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--accent-gold);
-    background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
-}
-
-.status-table td:nth-child(3),
-.status-table td:nth-child(4) {
-    white-space: nowrap;
-}
-
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
-    font-weight: 700;
-}
-
-.status-badge.is-done {
-    color: var(--accent-gold);
-}
-
-.status-badge.is-model {
-    color: var(--accent-blue);
-}
-
-.status-badge.is-no {
-    color: var(--text-muted);
-}
-
-main .status-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.5rem;
-    margin: 0.75rem 0 0;
-    font-size: 0.85rem;
-    text-indent: 0;
-}
