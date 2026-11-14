@@ -5406,7 +5406,7 @@ main .ms-hint {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 2.25rem;
+    gap: 3rem;
 }
 
 .ms-claim {
@@ -5428,14 +5428,26 @@ main .ms-hint {
     border-style: dashed;
 }
 
-/* arrow from the previous box, with its label */
+/* arrow from the previous box: line and head both sit in the gap, clear of the box borders */
 .ms-claim[data-via]::before {
     content: "";
     position: absolute;
     left: 1.85rem;
-    top: -2.25rem;
-    height: calc(2.25rem - 0.35rem);
+    top: -2.5rem;
+    height: 1.6rem;
     border-left: 2px solid var(--text-muted);
+}
+
+.ms-claim[data-via]::after {
+    content: "";
+    position: absolute;
+    left: calc(1.85rem - 0.32rem + 1px);
+    top: -1.25rem;
+    width: 0.64rem;
+    height: 0.64rem;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg);
 }
 
 .ms-claim-main {
@@ -5443,19 +5455,6 @@ main .ms-hint {
     display: flex;
     gap: 0.85rem;
     align-items: flex-start;
-}
-
-/* arrowhead at the top edge of the box */
-.ms-claim[data-via] > .ms-claim-main::before {
-    content: "";
-    position: absolute;
-    left: calc(0.75rem - 0.3rem);
-    top: -1.45rem;
-    width: 0.55rem;
-    height: 0.55rem;
-    border-right: 2px solid var(--text-muted);
-    border-bottom: 2px solid var(--text-muted);
-    transform: rotate(45deg);
 }
 
 .ms-claim.is-done .ms-check {
