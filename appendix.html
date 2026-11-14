@@ -94,21 +94,32 @@
                             \]</div>
                             <p class="text-secondary mb-2">
                                 The 2D DNA Bundle contains 12 chains and is represented by five connected
-                                constant-curvature arcs, with length \(L_{\mathrm{Bundle}}=3R\). Its effective
-                                bending rigidity is mapped from the crosslinking efficiency (\(\alpha\)) by:
+                                constant-curvature arcs, with a length of \(L_{\mathrm{Bundle}} = 3R\). The parameter
+                                sweep is reported in terms of the effective DNA Bundle bending rigidity,
+                                \(B_{\mathrm{DNA}}\), which is the direct mechanical parameter used to compare the
+                                eight rigidity conditions.
+                            </p>
+                            <p class="text-secondary mb-2">
+                                In the source implementation, the eight \(B_{\mathrm{DNA}}\) conditions are generated
+                                using an internal dimensionless rigidity-control parameter, \(\alpha_{\mathrm{2D}}\):
                             </p>
                             <div class="math-display">\[
-                                L_{\mathrm{p,eff}} =
-                                2N_{\mathrm{chains}}+
-                                120\left(N_{\mathrm{chains}}\alpha\right)^3
+                                L_{\mathrm{p,eff}}
+                                =
+                                2N_{\mathrm{chains}}
+                                +
+                                120\left(N_{\mathrm{chains}}\alpha_{\mathrm{2D}}\right)^3
                             \]</div>
                             <div class="math-display">\[
-                                B_{\mathrm{DNA}}=L_{\mathrm{p,eff}}k_{\mathrm B}T
+                                B_{\mathrm{DNA}}
+                                =
+                                L_{\mathrm{p,eff}}k_{\mathrm{B}}T.
                             \]</div>
                             <p class="text-secondary mb-0">
-                                In the 2D model, crosslinking efficiency (\(\alpha\)) enters only through this
-                                phenomenological rigidity mapping; its numerical scale is defined separately from
-                                \(\alpha\) in the 3D helix-count screening.
+                                Here, \(\alpha_{\mathrm{2D}}\) is a code-defined numerical control used only to
+                                generate the effective bending-rigidity conditions in the 2D model. It is not an
+                                experimentally measured crosslinking efficiency and is not numerically comparable to
+                                \(\alpha_{\mathrm{3D}}\), which is used separately in the 3D helix-count screening.
                                 DNA flexibility and the mechanics of DNA assemblies have been studied experimentally
                                 and computationally [<a href="simulation.html#ref-8">8</a>–<a href="simulation.html#ref-11">11</a>].
                             </p>
@@ -288,26 +299,27 @@
                                                 <td>Varied</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Crosslinking efficiency (α)</th>
+                                                <th scope="row">Internal rigidity-control parameter, <i>α</i><sub>2D</sub></th>
                                                 <td>Eight values from 0.1 to 1.0</td>
                                                 <td>Dimensionless</td>
-                                                <td>Sets the effective DNA Bundle bending rigidity through
-                                                    <i>L</i><sub>p,eff</sub> = 2<i>N</i><sub>chains</sub> +
-                                                    120(<i>N</i><sub>chains</sub>α)<sup>3</sup> and
-                                                    <i>B</i><sub>DNA</sub> = <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>,
-                                                    with <i>N</i><sub>chains</sub> = 12</td>
-                                                <td>Phenomenological rigidity mapping</td>
-                                                <td>Varied</td>
+                                                <td>Internal source-code control used to generate <i>B</i><sub>DNA</sub>
+                                                    (code variable <code>alpha</code>)</td>
+                                                <td>Phenomenological 2D rigidity mapping</td>
+                                                <td>Varied internal parameter; not a measured crosslinking efficiency</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row"><i>B</i><sub>DNA</sub></th>
-                                                <td>Eight values from 9.51 × 10<sup>2</sup> to 8.52 × 10<sup>5</sup>;
-                                                    representative animations: 6.21 × 10<sup>5</sup> and
+                                                <th scope="row">Effective DNA Bundle bending rigidity, <i>B</i><sub>DNA</sub></th>
+                                                <td>Eight values from 9.51 × 10<sup>2</sup> to 8.52 × 10<sup>5</sup>
+                                                    pN·nm<sup>2</sup>; representative animations: 6.21 × 10<sup>5</sup> and
                                                     9.51 × 10<sup>2</sup></td>
                                                 <td>pN·nm<sup>2</sup></td>
-                                                <td>Effective DNA Bundle bending rigidity</td>
-                                                <td>Mapped from crosslinking efficiency (α)</td>
-                                                <td>Varied</td>
+                                                <td>Direct mechanical quantity reported in the 2D sweep and heatmaps</td>
+                                                <td>Generated from <i>α</i><sub>2D</sub> through the displayed phenomenological mapping
+                                                    (<i>L</i><sub>p,eff</sub> = 2<i>N</i><sub>chains</sub> +
+                                                    120(<i>N</i><sub>chains</sub><i>α</i><sub>2D</sub>)<sup>3</sup>,
+                                                    <i>B</i><sub>DNA</sub> = <i>L</i><sub>p,eff</sub><i>k</i><sub>B</sub><i>T</i>,
+                                                    <i>N</i><sub>chains</sub> = 12)</td>
+                                                <td>Varied effective rigidity condition</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"><i>l</i><sub>0</sub></th>
@@ -484,13 +496,18 @@
                             <h5 class="wet-subhead">Raw data</h5>
                             <p class="text-secondary">
                                 Raw CSVs are provided for <i>R</i> = 50, 100, 150, 200, 250, and 300 nm. Each CSV
-                                contains 3,200 rows: 8 crosslinking-efficiency (α) / bending-rigidity values ×
+                                contains 3,200 rows: 8 bending-rigidity (\(B_{\mathrm{DNA}}\)) conditions ×
                                 8 linker lengths × 50 trials. The files record `Alpha`, `B_dna(pN.nm^2)`,
                                 `Linker_Length_nm`, `Trial`, `Rupture_Success`, and `Rupture_Frame`; the `Rupture_*`
                                 columns denote the model-defined local pore-formation event. Each heatmap cell on the
                                 Simulation page is the percentage of the 50 trials in which the event occurred. The
                                 source scripts are listed in the
                                 <a href="#source-code-inventory">Source Code Inventory</a>.
+                            </p>
+                            <p class="text-secondary">
+                                The `Alpha` column is the original source-code field corresponding to the internal
+                                parameter \(\alpha_{\mathrm{2D}}\). For physical interpretation of the 2D sweep,
+                                \(B_{\mathrm{DNA}}\) is the reported DNA Bundle rigidity variable.
                             </p>
                             <ul class="text-secondary small mb-0">
                                 <li><a href="CSV/rupture_heatmap_data_R50.csv">R = 50 nm data</a> ·
@@ -782,7 +799,7 @@
                             </p>
                             <p class="text-secondary mb-0">
                                 Accordingly, \(H_{\mathrm{crit}}\) is used here to compare DNA Bundle helix-count and
-                                crosslinking-efficiency scenarios and to identify the model-defined
+                                crosslinking-efficiency (\(\alpha_{\mathrm{3D}}\)) scenarios and to identify the model-defined
                                 \(N_{\mathrm{crit}}\). It is not presented as a universal lipid-bilayer failure
                                 constant, an experimentally calibrated pore-formation threshold, or a rupture trigger
                                 evaluated directly by the static 3D GLB model.
@@ -790,14 +807,17 @@
                         </div>
 
                         <div id="three-d-helix-screen" class="simulation-subblock mb-0">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological helix-count screening and crosslinking efficiency (α)</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">Phenomenological helix-count screening and crosslinking efficiency (<i>α</i><sub>3D</sub>)</h4>
                             <p class="text-secondary mb-2">
                                 This is a separate screening analysis, not the output of the static 3D deformation
-                                optimization. Its effective-rigidity scaling is:
+                                optimization. The 3D parameter \(\alpha_{\mathrm{3D}}\) is a separate
+                                phenomenological crosslinking-efficiency scenario used only for helix-count
+                                screening. It is not the same parameter as the internal 2D rigidity-control
+                                parameter \(\alpha_{\mathrm{2D}}\). Its effective-rigidity scaling is:
                             </p>
                             <div class="math-display">\[
                                 B_{\mathrm{eff}}=
-                                \alpha C N^2L_{\mathrm{Bundle}}
+                                \alpha_{\mathrm{3D}} C N^2L_{\mathrm{Bundle}}
                             \]</div>
                             <p class="text-secondary mb-2">The screening model defines a DNA Bundle curvature indicator and a maximum local-curvature indicator by:</p>
                             <div class="math-display">\[
@@ -814,17 +834,17 @@
                             <p class="text-secondary mb-2">The crossing is defined by:</p>
                             <div class="math-display">\[
                                 N_{\mathrm{crit}}:
-                                \quad H_{\mathrm{max}}(N,\alpha)=H_{\mathrm{crit}}
+                                \quad H_{\mathrm{max}}(N,\alpha_{\mathrm{3D}})=H_{\mathrm{crit}}
                             \]</div>
                             <p class="text-secondary mb-0">
-                                Here, \(C=50\) is a model scaling constant and \(\alpha\) is the crosslinking
-                                efficiency (\(\alpha\)) of the helices within one DNA Bundle. The settings
-                                \(\alpha=1.0,\,0.5,\,0.1\) represent high, intermediate, and low
+                                Here, \(C=50\) is a model scaling constant and \(\alpha_{\mathrm{3D}}\) is the
+                                crosslinking efficiency of the helices within one DNA Bundle. The settings
+                                \(\alpha_{\mathrm{3D}}=1.0,\,0.5,\,0.1\) represent high, intermediate, and low
                                 crosslinking-efficiency scenarios. \(H_{\mathrm{crit}}\) is the comparison level
                                 described above, and \(N_{\mathrm{crit}}\) is a rigidity-based design estimate.
                                 <a href="simulation.html#figure-13">Figures 13</a> and <a href="simulation.html#figure-14">14</a> on the Simulation page use \(L_{\mathrm{Bundle}}=150\) nm, \(R_0=50\) nm, and
                                 \(k_{\mathrm{mem,eff}}=30000\); with these settings,
-                                \(\alpha=1.0,\,0.5,\,0.1\) give \(N_{\mathrm{crit}}\approx 3.8,\,5.4,\,12\).
+                                \(\alpha_{\mathrm{3D}}=1.0,\,0.5,\,0.1\) give \(N_{\mathrm{crit}}\approx 3.8,\,5.4,\,12\).
                                 This screening formula does not include a physical radius function
                                 \(r_{\mathrm{Bundle}}(N)\), so it does not quantitatively combine radius-dependent
                                 geometry with helix-count-dependent rigidity. See the
@@ -872,8 +892,8 @@
                                     <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>. Its interpolated crossing is
                                     <i>N</i> ≈ 3.8, rounded to 4 in the graph label.</li>
                                 <li><a href="code/helix_count_alpha_dependence.py">helix_count_alpha_dependence.py</a> — source
-                                    associated with <a href="simulation.html#figure-14">Figure 14</a> (crosslinking efficiency (α) dependence). It uses
-                                    <i>R</i><sub>0</sub> = 50 nm, <i>L</i><sub>Bundle</sub> = 150 nm, and α = 1.0, 0.5,
+                                    associated with <a href="simulation.html#figure-14">Figure 14</a> (crosslinking efficiency (<i>α</i><sub>3D</sub>) dependence). It uses
+                                    <i>R</i><sub>0</sub> = 50 nm, <i>L</i><sub>Bundle</sub> = 150 nm, and <i>α</i><sub>3D</sub> = 1.0, 0.5,
                                     and 0.1. With <i>H</i><sub>crit</sub> = 0.067 nm<sup>−1</sup>, these settings give
                                     crossings of approximately 3.8, 5.4, and 12 helices.</li>
                             </ul>

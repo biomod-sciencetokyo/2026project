@@ -629,7 +629,9 @@
 
         function updateLabels() {
             const a = parseFloat(inA.value);
-            outB.innerHTML = formatSci(CG2DSim.bendingRigidity(a));
+            const B = CG2DSim.bendingRigidity(a);
+            outB.innerHTML = formatSci(B);
+            inA.setAttribute('aria-valuetext', B.toExponential(2) + ' pN nm squared');
             outL.textContent = parseFloat(inL.value).toFixed(1);
             paintRange(inA);
             paintRange(inL);
