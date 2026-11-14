@@ -19,6 +19,7 @@
     --border-color: #2b405d;
     --text-main: #e5edf5;
     --text-muted: #a4b3c5;
+    --fig-accent: #7aa8ff;
     --surface-dark: #10213b;
     --surface-raised: #142945;
     --helix-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23000'%3E%3Ccircle cx='19' cy='12' r='3.1'/%3E%3Ccircle cx='15.5' cy='18.06' r='3.1'/%3E%3Ccircle cx='8.5' cy='18.06' r='3.1'/%3E%3Ccircle cx='5' cy='12' r='3.1'/%3E%3Ccircle cx='8.5' cy='5.94' r='3.1'/%3E%3Ccircle cx='15.5' cy='5.94' r='3.1'/%3E%3C/g%3E%3C/svg%3E");
@@ -271,6 +272,35 @@ a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--accent-gold);
     outline-offset: 3px;
+}
+
+/* 図・表・ムービーへのリンク：寒色の青（--fig-accent）＋点線の下線で、ページ・節へのリンク（水色・実線）や目次の現在地（金）と区別する。
+   キャプションの「Figure N.」ラベルも同じ色に揃える */
+main a[href*="#fig-"],
+main a[href*="#figure-"],
+main a[href*="#table-"],
+main a[href*="#movie-"] {
+    color: var(--fig-accent);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+}
+
+main a[href*="#fig-"]:hover,
+main a[href*="#figure-"]:hover,
+main a[href*="#table-"]:hover,
+main a[href*="#movie-"]:hover {
+    color: var(--accent-blue);
+    text-decoration-style: solid;
+}
+
+/* 図・表・ムービーのキャプション先頭ラベル（Figure N. / Table N. / Movie N.） */
+main figcaption strong,
+main caption strong,
+main .fig-group-caption > strong {
+    color: var(--fig-accent);
+    font-weight: 600;
 }
 
 /* Navigation */
@@ -2551,7 +2581,7 @@ html[data-theme="light"] .simulation-page .math-display {
 
 .simulation-page figure figcaption strong,
 .simulation-page table caption strong {
-    color: var(--accent-blue);
+    color: var(--fig-accent);
     font-weight: 600;
     white-space: nowrap;
 }
@@ -2565,7 +2595,7 @@ main .exp-seq-table caption {
 }
 
 main table caption strong {
-    color: var(--accent-blue);
+    color: var(--fig-accent);
     font-weight: 600;
     white-space: nowrap;
 }
@@ -2912,7 +2942,7 @@ main .wet-table td {
 }
 
 .wet-figure figcaption strong {
-    color: var(--accent-blue);
+    color: var(--fig-accent);
     font-weight: 600;
 }
 
@@ -2972,7 +3002,7 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 .experiment-page figure figcaption strong {
-    color: var(--accent-blue);
+    color: var(--fig-accent);
     font-weight: 600;
 }
 
@@ -3239,6 +3269,7 @@ html[data-theme="light"] {
     color-scheme: light;
     --accent-blue: #1d8193;
     --accent-gold: #9a7425;
+    --fig-accent: #2456c8;
     --bg-light: #f5f7fa;
     --border-color: #d3dce6;
     --text-main: #1c2b3e;
