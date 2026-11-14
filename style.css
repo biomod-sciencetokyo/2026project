@@ -490,6 +490,14 @@ h6,
     mask: var(--helix-mark) center / contain no-repeat;
 }
 
+/* ページタイトル下の補足（任意）：どのページでも同じ見た目で使える */
+.page-subtitle {
+    margin: 1rem 0 0;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
 /* h2.section-title also beats Bootstrap's .h3 (some pages mark chapters as h2.h3), so every chapter
    heading has the same size */
 .section-title,
@@ -2199,7 +2207,7 @@ mark.key-line {
 
 /* Captions inside cards: no paragraph indent, aligned with the title */
 .simulation-page main figure p,
-.experiment-page main figure p {
+:is(.experiment-page, .design-page) main figure p {
     text-indent: 0;
 }
 
@@ -2958,12 +2966,12 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 /* ===== Experiment page figures ===== */
-.experiment-page main figure img.border,
-.experiment-page main .row img.border {
+:is(.experiment-page, .design-page) main figure img.border,
+:is(.experiment-page, .design-page) main .row img.border {
     border-color: #314763 !important;
 }
 
-.experiment-page .exp-panel-label {
+.exp-panel-label {
     margin-top: 6px;
     text-align: center;
     text-indent: 0;
@@ -3003,37 +3011,37 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     font-weight: 400;
 }
 
-.experiment-page .exp-seq-link {
+.exp-seq-link {
     text-indent: 0;
 }
 
 /* Side-by-side images: same box size, whole image visible */
-.experiment-page img.exp-fit {
+img.exp-fit {
     object-fit: contain;
 }
 
-.experiment-page img.exp-fit-light {
+img.exp-fit-light {
     background-color: #fff;
 }
 
-.experiment-page img.exp-fit-dark {
+img.exp-fit-dark {
     background-color: #000;
 }
 
-.experiment-page img.exp-fit-4x3 {
+img.exp-fit-4x3 {
     aspect-ratio: 4 / 3;
 }
 
-.experiment-page img.exp-fit-1x1 {
+img.exp-fit-1x1 {
     aspect-ratio: 1 / 1;
 }
 
-.experiment-page img.exp-fit-hairpin {
+img.exp-fit-hairpin {
     aspect-ratio: 1 / 1;
 }
 
 /* One framed box per set of figure panels */
-.experiment-page .exp-panel-group {
+.exp-panel-group {
     height: 100%;
     padding: 12px;
     border: 1px solid #314763;
@@ -3041,7 +3049,7 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     background-color: rgba(255, 255, 255, 0.03);
 }
 
-.experiment-page .exp-panel-group img {
+.exp-panel-group img {
     display: block;
     border-radius: 0;
 }
@@ -3056,47 +3064,47 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     margin: 0 0 1.25rem;
 }
 
-.experiment-page .exp-subsection p.small {
+.exp-subsection p.small {
     font-size: 0.88rem;
 }
 
 /* Figures */
-.experiment-page .exp-subsection > figure,
-.experiment-page .exp-subsection > .row,
-.experiment-page .exp-block > figure,
-.experiment-page .exp-block > .row {
+.exp-subsection > figure,
+.exp-subsection > .row,
+.exp-block > figure,
+.exp-block > .row {
     margin-top: 1.25rem;
 }
 
 /* Results: scheme -> result, linked by an arrow */
-.experiment-page .exp-flow-arrow {
+.exp-flow-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
 }
 
-.experiment-page .exp-flow-arrow svg {
+.exp-flow-arrow svg {
     display: block;
     width: 44px;
     height: auto;
 }
 
 /* Scheme figures: box shrinks to the image so the caption starts at the image's left edge */
-.experiment-page figure.exp-scheme {
+figure.exp-scheme {
     width: fit-content;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.experiment-page figure.exp-scheme figcaption {
+figure.exp-scheme figcaption {
     width: 0;
     min-width: 100%;
 }
 
 /* Result image next to a scheme: natural aspect ratio, no letterbox */
-.experiment-page .exp-flow img.exp-fit {
+.exp-flow img.exp-fit {
     aspect-ratio: auto;
     width: auto !important;
     max-width: 100%;
@@ -3107,44 +3115,44 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 /* Agarose gel (Fig. 6): drop the empty area below the bands */
-.experiment-page .exp-flow img.exp-crop-gel {
+.exp-flow img.exp-crop-gel {
     aspect-ratio: 490 / 560;
     object-fit: cover;
     object-position: top;
 }
 
-.experiment-page .exp-flow-arrow-down {
+.exp-flow-arrow-down {
     margin: 1.25rem 0;
 }
 
-.experiment-page .exp-flow-arrow-down svg {
+.exp-flow-arrow-down svg {
     transform: rotate(90deg);
 }
 
 @media (max-width: 991.98px) {
-    .experiment-page .exp-flow .exp-flow-arrow svg {
+    .exp-flow .exp-flow-arrow svg {
         transform: rotate(90deg);
     }
 }
 
-.experiment-page .exp-subsection .seed-structure-layout,
-.experiment-page .exp-subsection .seed-structure-layout figure {
+.exp-subsection .seed-structure-layout,
+.exp-subsection .seed-structure-layout figure {
     margin-top: 0;
 }
 
-.experiment-page .seed-structure-layout .exp-seq-table {
+.seed-structure-layout .exp-seq-table {
     margin-bottom: 0;
 }
 
-.experiment-page .seed-structure-layout .table-responsive {
+.seed-structure-layout .table-responsive {
     margin-bottom: 0.25rem !important;
 }
 
-.experiment-page .seed-structure-layout .exp-seq-table caption {
+.seed-structure-layout .exp-seq-table caption {
     padding-bottom: 0;
 }
 
-.experiment-page .seed-structure-layout {
+.seed-structure-layout {
     margin-bottom: 2.5rem;
 }
 
@@ -3408,7 +3416,7 @@ html[data-theme="light"] .sim-env-arrow {
 /* Approach player */
 html[data-theme="light"] .approach-video-frame,
 html[data-theme="light"] .home-media,
-html[data-theme="light"] .experiment-page main .row img.border {
+html[data-theme="light"] :is(.experiment-page, .design-page) main .row img.border {
     border-color: var(--border-color) !important;
 }
 
@@ -5672,4 +5680,56 @@ main .goal-callout-text {
 .seq-chol {
     font-weight: 700;
     color: #e5484d;
+}
+
+/* ===== Moved from in-page <style> blocks ===== */
+
+/* (simulation.html) */
+/* Heatmap images with HTML axis labels overlaid on the image axes. */
+.heatmap-plot {
+    position: relative;
+    background: #fff;
+    line-height: 1;
+}
+
+.heatmap-plot>img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.heatmap-axis-y,
+.heatmap-axis-x {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #000;
+    font-size: clamp(0.78rem, 1.2vw, 1rem);
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.heatmap-axis-y {
+    inset: 24% auto 22% 0;
+    width: 3.5%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.heatmap-axis-x {
+    inset: auto 16% 0 14%;
+    height: 4.5%;
+}
+
+/* (team.html) */
+.team-member-card {
+    transition: transform 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
 }

@@ -7,7 +7,7 @@
     <title>ELSI | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-50">
+    <link rel="stylesheet" href="style.css?v=20261114-52">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -27,12 +27,9 @@
         <div class="text-center mb-5 pb-4">
             <h1 class="page-title">ELSI</h1>
             <div class="page-title-underline"></div>
-            <p class="text-muted mt-3 mb-0" style="font-size: 1.05rem; letter-spacing: 0.05em;">
-                Ethical, Legal, and Social Issues of Stimuli-Responsive DNA Nanomachines
-            </p>
         </div>
 
-        <div class="row gx-5">
+        <div class="row gx-3 gx-lg-5">
             <!-- サイドバーデザイン -->
             <div class="col-lg-2 d-none d-lg-block">
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
@@ -47,17 +44,15 @@
             <div class="col-lg-10">
 
                 <!-- Introduction: Ethical Principles of Molecular Robotics -->
-                <div id="molbot-principles" class="content-box mb-5">
-                    <p class="text-secondary mb-0" style="line-height: 1.9;">
-                        In considering the ELSI of our project, we referred to the Ethical Principles of Molecular
-                        Robotics, which were formulated by the Japanese molecular robotics community through dialogue
-                        with social scientists and refined with input from young researchers, including BIOMOD
-                        participants [<a href="#ref-5">5</a>, <a href="#ref-6">6</a>]. The principles consist of four
-                        items: comprehensive assessment of risks and benefits, consideration for safety and
-                        environment, attention to security and dual-use issues, and ensuring accountability and
-                        transparency. The issues below are discussed with these principles in mind.
-                    </p>
-                </div>
+                <p id="molbot-principles" class="text-secondary mb-5">
+                    In considering the ELSI of our project, we referred to the Ethical Principles of Molecular
+                    Robotics, which were formulated by the Japanese molecular robotics community through dialogue
+                    with social scientists and refined with input from young researchers, including BIOMOD
+                    participants [<a href="#ref-5">5</a>, <a href="#ref-6">6</a>]. The principles consist of four
+                    items: comprehensive assessment of risks and benefits, consideration for safety and
+                    environment, attention to security and dual-use issues, and ensuring accountability and
+                    transparency. The issues below are discussed with these principles in mind.
+                </p>
 
                 <!-- 1. Ethical Issues -->
                 <section id="ethical-issues" class="fade-in-section mb-5 pt-3">
@@ -71,7 +66,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Verification of Off-Target Rupture Risks and Safety</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             Because this technology ruptures target membranes by exploiting the structural rigidity of
                             DNA, the possibility that it acts on membranes other than the intended targets—extracellular
                             vesicles (EVs) and cancer cells—must be considered. In particular, unintended rupture of
@@ -90,7 +85,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Implementation of Informed Consent</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             At the stages of clinical research and future practical application, obtaining informed
                             consent from patients is critical. To respect patients' right to make their own decisions,
                             a robust communication framework must be established to provide clear and honest explanations, ensuring patients fully understand and accept the mechanisms, potential risks,
@@ -106,7 +101,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Prevention of Dual-Use Misuse</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             Although this technology is being developed for medical applications, its core
                             function—selectively rupturing lipid membranes in response to a specific nucleic acid
                             sequence—could in principle be redirected toward harmful purposes, such as damaging normal
@@ -124,7 +119,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Environmental Impact and Disposal</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             In line with the principle of consideration for safety and environment, the potential
                             effects of our artificially designed DNA nanostructures on the environment after use must
                             also be considered. In particular, these structures may enter the environment through
@@ -150,7 +145,7 @@
                             <h3 class="h5 fw-bold mb-0">Protection of Intellectual Property and Clarification of
                                 AI-Generated Output</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             Outcomes generated from this research activity (including data, DNA designs, algorithms, and
                             experimental know-how) constitute critical intellectual property. Protecting IP rights is
                             essential not only for pursuing commercial value, but also for preventing unauthorized
@@ -170,7 +165,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Compliance with Medical Regulations (PMDA Approval)</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             To apply this technology clinically for therapeutic purposes, it must undergo rigorous
                             evaluation and receive approval from regulatory agencies, such as Japan's Pharmaceuticals
                             and Medical Devices Agency (PMDA), under the Pharmaceuticals and Medical Devices Act.
@@ -186,7 +181,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Adherence to Biosafety Regulations</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             To guarantee the safety of research processes involving artificial DNA sequence design and
                             nucleic acids, experiments must strictly comply with relevant laws and guidelines
                             applicable to research involving nucleic acids, as well as laboratory safety standards.
@@ -202,7 +197,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Regulatory Gaps for Non-Living DNA Nanostructures</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             Because our DNA nanostructures are made of synthetic nucleic acids and cannot self-replicate,
                             they are not regarded as living modified organisms and may fall outside the scope of the
                             Cartagena Act [<a href="#ref-4">4</a>, <a href="#ref-6">6</a>]. Existing laws and
@@ -229,7 +224,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Addressing Global Healthcare Disparities</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             Treatments utilizing advanced DNA nanotechnology may involve high development and manufacturing costs, carrying the risk of escalating treatment costs and exacerbating global healthcare disparities due to unevenly distributed manufacturing infrastructure. The feasibility of implementation differs markedly between high-income countries or affluent patient populations and low-income regions with underdeveloped medical infrastructure.
                         </p>
                     </div>
@@ -243,7 +238,7 @@
                             </div>
                             <h3 class="h5 fw-bold mb-0">Fostering Public Acceptance and Trust</h3>
                         </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        <p class="text-secondary mb-0">
                             The public may harbor anxieties or concerns regarding research involving genetic manipulation. Consequently, proactive efforts must be made to clearly explain the underlying mechanisms, control frameworks, and safety measures to foster accurate public understanding and trust.
                         </p>
                     </div>
@@ -269,7 +264,7 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261114-26"></script>
+    <script src="main.js?v=20261114-28"></script>
 </body>
 
 </html>
