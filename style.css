@@ -618,10 +618,10 @@ section[id],
     color: #aebdce;
     font-size: 0.9rem;
     line-height: 1.45;
-    padding: 7px 0 7px 10px;
+    padding: 5px 0 5px 10px;
     border-left: 2px solid transparent;
     border-radius: 0;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     transition: color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -679,11 +679,25 @@ section[id],
     }
 }
 
-.sidebar-toc .nav-link:hover,
+.sidebar-toc .nav-link:hover {
+    background-color: rgba(98, 197, 213, 0.08);
+    color: var(--accent-blue);
+}
+
 .sidebar-toc .nav-link.active {
     background-color: transparent;
     color: var(--accent-gold);
     border-left-color: var(--accent-gold);
+}
+
+/* The item being read: bold with a soft highlight. Its parent chapters stay quieter. */
+.sidebar-toc .nav-link.active:not(:has(+ .sidebar-toc-subnav)) {
+    font-weight: 700;
+    background-color: rgba(216, 185, 111, 0.12);
+}
+
+.sidebar-toc .nav-link.active:has(+ .sidebar-toc-subnav) {
+    border-left-color: rgba(216, 185, 111, 0.55);
 }
 
 /* Content panels */

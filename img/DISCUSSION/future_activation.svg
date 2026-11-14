@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="880" height="336" font-family="Arial, Helvetica, sans-serif">
+<rect width="1100" height="420" fill="#fff"/>
+<g font-size="26" font-weight="700" text-anchor="middle">
+<text x="275" y="40" fill="#555">Non-target EV: OFF</text><text x="825" y="40" fill="#d62f4a">Target EV: ON</text></g>
+<line x1="550" y1="60" x2="550" y2="400" stroke="#bbb" stroke-width="2" stroke-dasharray="6 6"/>
+<g fill="none" stroke-linecap="round">
+<!-- membranes -->
+<path d="M40,360 Q275,300 510,360" stroke="#9fb4c8" stroke-width="22"/><path d="M40,360 Q275,300 510,360" stroke="#d3deea" stroke-width="8"/>
+<path d="M590,360 Q825,300 1060,360" stroke="#9fb4c8" stroke-width="22"/><path d="M590,360 Q825,300 1060,360" stroke="#d3deea" stroke-width="8"/>
+<!-- LEFT: seed + blocking strand -->
+<path d="M330,325 L330,215" stroke="#2f6fd6" stroke-width="12"/>
+<path d="M346,325 L346,255" stroke="#f08a1c" stroke-width="10"/>
+<!-- free trigger RNAs, far away -->
+<path d="M90,150 q12,-22 28,-8 q14,14 28,-4" stroke="#d62f4a" stroke-width="5"/>
+<path d="M430,150 q12,-22 28,-8 q14,14 28,-4" stroke="#d62f4a" stroke-width="5"/>
+<!-- RIGHT: protein, antibody, trigger RNA -->
+<path d="M700,310 L700,262" stroke="#444" stroke-width="7"/>
+<path d="M674,226 L700,262 L726,226" stroke="#444" stroke-width="7"/>
+<path d="M674,226 L674,206 M726,226 L726,206" stroke="#444" stroke-width="7"/>
+<path d="M726,208 Q770,150 840,196 Q870,215 880,232" stroke="#d62f4a" stroke-width="5"/>
+<!-- seed ON, blocking strand released -->
+<path d="M880,325 L880,215" stroke="#2f6fd6" stroke-width="12"/>
+<path d="M960,170 q14,-20 28,-6 q14,14 28,-4" stroke="#f08a1c" stroke-width="10"/>
+</g>
+<rect x="689" y="304" width="22" height="30" rx="8" fill="#3aa56b"/>
+<rect x="105" y="304" width="22" height="30" rx="8" fill="#3aa56b"/>
+<g font-size="22" fill="#222">
+<text x="40" y="104">Trigger RNA</text>
+<text x="420" y="104">Trigger RNA</text>
+<text x="362" y="205" fill="#2f6fd6" font-weight="700">Seed</text>
+<text x="362" y="288" fill="#c76a00">Blocking strand</text>
+<text x="596" y="200">Antibody</text>
+<text x="760" y="140" fill="#d62f4a">Trigger RNA</text>
+<text x="896" y="205" fill="#2f6fd6" font-weight="700">Seed</text>
+<text x="940" y="145" fill="#c76a00">Blocking strand</text>
+<text x="40" y="400" fill="#2b7a50">EV surface protein</text>
+<text x="600" y="400" fill="#2b7a50">EV surface protein</text>
+</g>
+</svg>
