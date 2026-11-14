@@ -50,6 +50,14 @@ main.content-container {
     padding-bottom: 100px;
 }
 
+/* Keep a side gutter that scales with the window (px-md-0 removes the padding,
+   so without this the content touches the edges just above each breakpoint) */
+@media (min-width: 768px) {
+    main.content-container {
+        width: calc(100% - 2 * clamp(24px, 3vw, 48px));
+    }
+}
+
 @media (min-width: 992px) {
 
     body[data-bs-spy="scroll"] main.content-container,
