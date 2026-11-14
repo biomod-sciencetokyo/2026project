@@ -46,6 +46,19 @@
             <!-- 右側：メインコンテンツ -->
             <div class="col-lg-10">
 
+                <!-- Introduction: Ethical Principles of Molecular Robotics -->
+                <div id="molbot-principles" class="content-box mb-5">
+                    <p class="text-secondary mb-0" style="line-height: 1.9;">
+                        In considering the ELSI of our project, we referred to the Ethical Principles of Molecular
+                        Robotics, which were formulated by the Japanese molecular robotics community through dialogue
+                        with social scientists and refined with input from young researchers, including BIOMOD
+                        participants [<a href="#ref-5">5</a>, <a href="#ref-6">6</a>]. The principles consist of four
+                        items: comprehensive assessment of risks and benefits, consideration for safety and
+                        environment, attention to security and dual-use issues, and ensuring accountability and
+                        transparency. The issues below are discussed with these principles in mind.
+                    </p>
+                </div>
+
                 <!-- 1. Ethical Issues -->
                 <section id="ethical-issues" class="fade-in-section mb-5 pt-3">
                     <h2 class="h3 section-title">1. Ethical Issues</h2>
@@ -59,11 +72,13 @@
                             <h3 class="h5 fw-bold mb-0">Verification of Off-Target Rupture Risks and Safety</h3>
                         </div>
                         <p class="text-secondary mb-0" style="line-height: 1.9;">
-                            Because this technology physically ruptures membranes using the structural rigidity of DNA,
-                            the risk of inadvertently damaging normal cell membranes—beyond the targeted extracellular
-                            vesicles (EVs) and cancer cells—must be thoroughly evaluated. For therapeutic applications,
-                            establishing high selectivity and in vivo safety is essential to prevent unintended effects
-                            on normal tissues and the emergence of novel side effects.
+                            Because this technology ruptures target membranes by exploiting the structural rigidity of
+                            DNA, the possibility that it acts on membranes other than the intended targets—extracellular
+                            vesicles (EVs) and cancer cells—must be considered. In particular, unintended rupture of
+                            normal cell membranes could damage healthy tissues. Therefore, for therapeutic applications,
+                            it is necessary to verify the specificity of target recognition and the selectivity of
+                            membrane disruption, and to establish in vivo safety in order to reduce the risk of new side
+                            effects.
                         </p>
                     </div>
 
@@ -77,25 +92,45 @@
                         </div>
                         <p class="text-secondary mb-0" style="line-height: 1.9;">
                             At the stages of clinical research and future practical application, obtaining informed
-                            consent from patients is critical. As this approach differs fundamentally from conventional
-                            drug therapies, a robust communication framework must be established to provide clear and honest explanations, ensuring patients fully understand and accept the mechanisms, potential risks,
+                            consent from patients is critical. To respect patients' right to make their own decisions,
+                            a robust communication framework must be established to provide clear and honest explanations, ensuring patients fully understand and accept the mechanisms, potential risks,
                             and expected benefits.
                         </p>
                     </div>
 
-                    <!-- 1.3 Research Integrity and Prevention of Dual-Use Misuse -->
-                    <div id=“dual-use” class="content-box mb-4">
+                    <!-- 1.3 Prevention of Dual-Use Misuse -->
+                    <div id="dual-use" class="content-box mb-4">
                         <div class="d-flex align-items-center mb-3">
                             <div class="elsi-icon-badge me-3 d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-scale-balanced"></i>
                             </div>
-                            <h3 class="h5 fw-bold mb-0">Research Integrity and Prevention of Dual-Use Misuse</h3>
+                            <h3 class="h5 fw-bold mb-0">Prevention of Dual-Use Misuse</h3>
                         </div>
                         <p class="text-secondary mb-0" style="line-height: 1.9;">
-                            Because this system uses DNA architectures designed to be triggered by specific sequences, the research process itself must be strictly managed to prevent misconduct or
-                            unintended applications. Furthermore, addressing the “dual-use” risk—wherein developed DNA
-                            sequences or technologies could be misused for offensive weapons or bioterrorism to
-                            selectively destroy normal cells—requires proactive disclosure to society and advocacy of its peaceful and safe use.
+                            Although this technology is being developed for medical applications, its core
+                            function—selectively rupturing lipid membranes in response to a specific nucleic acid
+                            sequence—could in principle be redirected toward harmful purposes, such as damaging normal
+                            cells. Following the principle of attention to security and dual-use issues, researchers
+                            must carefully consider this risk when sharing design information and take appropriate
+                            measures to ensure that the technology is used only for legitimate and beneficial purposes.
+                        </p>
+                    </div>
+
+                    <!-- 1.4 Environmental Impact and Disposal -->
+                    <div id="environmental-impact" class="content-box mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="elsi-icon-badge me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Environmental Impact and Disposal</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            In line with the principle of consideration for safety and environment, the potential
+                            effects of our artificially designed DNA nanostructures on the environment after use must
+                            also be considered. In particular, these structures may enter the environment through
+                            biological waste or improper disposal, and their effects on organisms and ecosystems are
+                            not yet fully understood. Therefore, it is necessary to evaluate their environmental impact
+                            and establish appropriate disposal methods to minimize potential ecological risks.
                         </p>
                     </div>
 
@@ -142,21 +177,40 @@
                         </p>
                     </div>
 
-                    <!-- 2.3 Adherence to Biosafety Regulations and the Cartagena Act -->
-                    <div id="cartagena-act" class="content-box mb-4">
+                    <!-- 2.3 Adherence to Biosafety Regulations -->
+                    <div id="biosafety" class="content-box mb-4">
                         <div class="d-flex align-items-center mb-3">
                             <div
                                 class="elsi-icon-badge elsi-icon-badge-gold me-3 d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-dna"></i>
                             </div>
-                            <h3 class="h5 fw-bold mb-0">Adherence to Biosafety Regulations and the Cartagena Act
-                            </h3>
+                            <h3 class="h5 fw-bold mb-0">Adherence to Biosafety Regulations</h3>
                         </div>
                         <p class="text-secondary mb-0" style="line-height: 1.9;">
-                            To ensure the safety of research processes involving artificial DNA sequence design,
-                            genetic materials, and nucleic acids, experiments must strictly comply with biosafety laws
-                            and laboratory safety standards, including the Cartagena Act (regulations on the use of
-                            genetically modified organisms).
+                            To guarantee the safety of research processes involving artificial DNA sequence design and
+                            nucleic acids, experiments must strictly comply with relevant laws and guidelines
+                            applicable to research involving nucleic acids, as well as laboratory safety standards.
+                        </p>
+                    </div>
+
+                    <!-- 2.4 Regulatory Gaps for Non-Living DNA Nanostructures -->
+                    <div id="regulatory-gaps" class="content-box mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div
+                                class="elsi-icon-badge elsi-icon-badge-gold me-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-gavel"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mb-0">Regulatory Gaps for Non-Living DNA Nanostructures</h3>
+                        </div>
+                        <p class="text-secondary mb-0" style="line-height: 1.9;">
+                            Because our DNA nanostructures are made of synthetic nucleic acids and cannot self-replicate,
+                            they are not regarded as living modified organisms and may fall outside the scope of the
+                            Cartagena Act [<a href="#ref-4">4</a>, <a href="#ref-6">6</a>]. Existing laws and
+                            regulations may therefore not fully address the challenges associated with their
+                            application, including safety assessment, clinical application, and appropriate management.
+                            It is thus necessary to review and update regulatory frameworks in accordance with
+                            technological advances to ensure the safe and responsible development and application of
+                            this technology.
                         </p>
                     </div>
 
@@ -166,21 +220,7 @@
                 <section id="social-issues" class="fade-in-section mb-5 pt-4">
                     <h2 class="h3 section-title">3. Social Issues</h2>
 
-                    <!-- 3.1 Privacy Protection of Genomic Data and Human Rights Considerations -->
-                    <div id="genomic-privacy" class="content-box mb-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <div
-                                class="elsi-icon-badge elsi-icon-badge-teal me-3 d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-user-shield"></i>
-                            </div>
-                            <h3 class="h5 fw-bold mb-0">Privacy Protection of Genomic Data and Human Rights Considerations</h3>
-                        </div>
-                        <p class="text-secondary mb-0" style="line-height: 1.9;">
-                            Guided by the principles of the Universal Declaration on the Human Genome and Human Rights, any research, treatment, or diagnosis affecting an individual's genome or RNA expression patterns requires a rigorous prior assessment of associated risks and benefits. Personal genetic information acquired during target identification and cancer screening represents sensitive personal data; thus, a robust data governance system must be established to prevent unauthorized use, privacy infringement, and discriminatory practices.
-                        </p>
-                    </div>
-
-                    <!-- 3.2 Addressing Global Healthcare Disparities -->
+                    <!-- 3.1 Addressing Global Healthcare Disparities -->
                     <div id="healthcare-disparities" class="content-box mb-4">
                         <div class="d-flex align-items-center mb-3">
                             <div
@@ -190,11 +230,11 @@
                             <h3 class="h5 fw-bold mb-0">Addressing Global Healthcare Disparities</h3>
                         </div>
                         <p class="text-secondary mb-0" style="line-height: 1.9;">
-                            Developing cutting-edge treatments based on advanced DNA nanotechnology carries the risk of escalating treatment costs and exacerbating global healthcare disparities due to unevenly distributed manufacturing infrastructure. The feasibility of implementation differs markedly between high-income countries or affluent patient populations and low-income regions with underdeveloped medical infrastructure.
+                            Treatments utilizing advanced DNA nanotechnology may involve high development and manufacturing costs, carrying the risk of escalating treatment costs and exacerbating global healthcare disparities due to unevenly distributed manufacturing infrastructure. The feasibility of implementation differs markedly between high-income countries or affluent patient populations and low-income regions with underdeveloped medical infrastructure.
                         </p>
                     </div>
 
-                    <!-- 3.3 Fostering Public Acceptance and Trust -->
+                    <!-- 3.2 Fostering Public Acceptance and Trust -->
                     <div id="public-acceptance" class="content-box mb-4">
                         <div class="d-flex align-items-center mb-3">
                             <div
@@ -217,7 +257,8 @@
                         <p id="ref-2">[2] European Union Intellectual Property Office (EUIPO). <i>Intellectual Property for Researchers</i>. Accessed 24 October 2026. <a class="ref-doi" href="https://www.euipo.europa.eu/en/publications/intellectual-property-for-researchers">URL</a></p>
                         <p id="ref-3">[3] 独立行政法人 医薬品医療機器総合機構（PMDA）. <i>独立行政法人 医薬品医療機器総合機構</i>. Accessed 24 October 2026. <a class="ref-doi" href="https://www.pmda.go.jp/">URL</a></p>
                         <p id="ref-4">[4] Pharmaceuticals and Medical Devices Agency (PMDA). <i>Regulations Regarding Living Modified Organisms (Genetically Modified Organisms)</i>. Accessed 24 October 2026. <a class="ref-doi" href="https://www.pmda.go.jp/english/review-services/reviews/cartagena-act/0001.html">URL</a></p>
-                        <p id="ref-5">[5] Office of the United Nations High Commissioner for Human Rights (OHCHR). <i>Universal Declaration on the Human Genome and Human Rights</i>. Accessed 24 October 2026. <a class="ref-doi" href="https://www.ohchr.org/en/instruments-mechanisms/instruments/universal-declaration-human-genome-and-human-rights">URL</a></p>
+                        <p id="ref-5">[5] Molecular Robot Ethics (2018) <i>Ethical Principles of Molecular Robotics (ver. 1.1)</i>. Archived copy accessed 14 November 2026. <a class="ref-doi" href="https://web.archive.org/web/20220325115859/http://molecular-robot-ethics.org/jp/wp-content/uploads/molecularRobotEthicsPrinciplev1.1.pdf">URL</a></p>
+                        <p id="ref-6">[6] Komiya K, Shineha R, Kawahara N (2022) Practice of responsible research and innovation in the formulation and revision of ethical principles of molecular robotics in Japan. <i>SN Applied Sciences</i> 4:305. <a class="ref-doi" href="https://doi.org/10.1007/s42452-022-05164-z">DOI</a></p>
                     </div>
                 </section>
 
