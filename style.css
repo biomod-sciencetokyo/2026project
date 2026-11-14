@@ -2657,7 +2657,7 @@ main .references-section .references-list {
 /* DOI shown as a short link label instead of the full URL */
 .references-list .ref-doi {
     margin-left: 0.25em;
-    font-size: 0.85em;
+    font-size: max(0.95em, 12.5px);
     font-weight: 600;
     letter-spacing: 0.04em;
 }
@@ -5777,7 +5777,17 @@ main .goal-callout-text {
 /* Cholesterol modification marked inside a sequence-domain table */
 .seq-chol {
     font-weight: 700;
-    color: #e5484d;
+    color: #ff8086;
+}
+
+html[data-theme="light"] .seq-chol {
+    color: #c4262c;
+}
+
+/* Keep subscripts/superscripts legible inside small table/caption text */
+sub,
+sup {
+    font-size: max(0.75em, 12px);
 }
 
 /* ===== Moved from in-page <style> blocks ===== */

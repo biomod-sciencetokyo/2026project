@@ -6,7 +6,7 @@
     <title>EXPERIMENT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-60">
+    <link rel="stylesheet" href="style.css?v=20261114-61">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="experiment-page" data-bs-spy="scroll" data-bs-target="#page-nav" data-bs-smooth-scroll="true" tabindex="0">
@@ -55,7 +55,7 @@
                 <section id="overview" class="fade-in-section mb-5 pb-4 pt-4">
                     <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-4">
-                        Our experiments are organized into three parts: Experiments A and B, which we performed to establish a proof of concept, and Future Experiments (Section 3), which are planned next.
+                        To establish a proof of concept, we divided our experiments into two parts.
                     </p>
 
                     <!-- Experiment A の四角枠 -->
@@ -86,6 +86,9 @@
                                     Anchoring of 12- and 13-Helix DNA Bundles to lipid membranes.</h4>
                                 <p class="text-secondary mb-0">
                                     In Experiment B (<a href="#fig-2">Figure 2</a>), we investigated whether cholesterol-modified 12- and 13-Helix DNA Bundles could anchor to lipid membranes. Based on our simulation results, we selected 12- and 13-Helix DNA Bundles because they were expected to possess sufficient rigidity to deform and disrupt lipid membranes. These structures were pre-assembled via thermal annealing before the experiment.
+                                </p>
+                                <p class="text-secondary mt-3 mb-0">
+                                    <strong>Plan:</strong> As the next step of Experiment B, we will test whether the anchored DNA Bundles actually disrupt lipid membranes and evaluate our system with smaller vesicles comparable in size to EVs (<a href="#exp-future">Section 3</a>).
                                 </p>
                             </div>
                             <div class="col-lg-6">
@@ -309,7 +312,7 @@
                                 for a difference in molecular weight.
                             </p>
                             <p class="text-secondary mb-0">
-                                Electrophoresis was performed in 1× TAE buffer containing 12 mM MgCl<sub>2</sub> at
+                                Electrophoresis was performed in 1× TBE buffer containing 12 mM MgCl<sub>2</sub> at
                                 100 V for 60 minutes at 4 °C.
                             </p>
                         </div>
@@ -439,7 +442,7 @@
                             <ul class="text-secondary mb-0">
                                 <li class="mb-2">
                                     <strong>GUVs</strong> — stained with Nile Red (red fluorescence). The GUVs in this
-                                    experiment were prepared by gentle hydration, using a lipid film solution of 1 mM 1,2-dioleoyl-<i>sn</i>-glycero-3-phosphocholine (DOPC) with 0.2 mol% Nile Red (in CHCl<sub>3</sub>) and 1 mM glucose solution mixed
+                                    experiment were prepared by gentle hydration [<a href="#ref-5">5</a>], using a lipid film solution of 1 mM 1,2-dioleoyl-<i>sn</i>-glycero-3-phosphocholine (DOPC) with 0.2 mol% Nile Red (in CHCl<sub>3</sub>) and 1 mM glucose solution mixed
                                     at 2:1.
                                 </li>
                                 <li>
@@ -450,7 +453,7 @@
                             <p class="text-secondary mt-3 mb-0">
                                 Both the 12- and 13-Helix DNA Bundles were mixed with GUVs and observed. Because no
                                 difference was observed between them, only the results for the 12-Helix DNA Bundle are
-                                shown below; the results for the 13-Helix DNA Bundle are provided in the Appendix.
+                                shown below; the results for the 13-Helix DNA Bundle are provided in the <a href="appendix.html#wet-exp-b-3">Appendix (Figures S45–S47)</a>.
                             </p>
                             <figure id="fig-18" class="mb-0 exp-figure exp-scheme">
                                 <img src="img/EXPERIMENT/scheme_guv.svg?v=8" alt="Schematic of Experiment 2.3: cholesterol-modified or unmodified DNA Bundles stained with SYBR Green I are mixed with Nile Red-stained GUVs and observed by fluorescence microscopy"
@@ -517,7 +520,7 @@
                             <p class="text-secondary mb-3">
                                 Unmodified 12HBs were also observed around some GUVs (<a href="#fig-20">Figure 20a</a>), while other GUVs showed
                                 no apparent association with DNA Bundles. <a href="#fig-20">Figure 20b</a> shows a representative GUV without apparent
-                                DNA Bundle attachment. In its fluorescence intensity profile (<a href="#fig-20">Figure 20c</a>), no clear SYBR Green I
+                                DNA Bundle binding. In its fluorescence intensity profile (<a href="#fig-20">Figure 20c</a>), no clear SYBR Green I
                                 peaks were observed at the GUV membrane.
                             </p>
                             <p class="text-secondary mb-0">
@@ -568,7 +571,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <figcaption class="text-secondary mt-3"><strong>Figure 22.</strong> 12HBs (− cholesterol) and GUVs with 200 mM NaCl. (a) Field of view. (b) Magnified view of a representative GUV. (c) Fluorescence intensity profile along A&rarr;B in (b).</figcaption>
+                                    <figcaption class="text-secondary mt-3"><strong>Figure 22.</strong> 12HBs (− cholesterol) and GUVs with 200 mM NaCl. (a) Field of view. (b) Magnified view of a representative GUV. (c) Fluorescence intensity profile along A&rarr;B in (b). In Figures 19–22, the brightness of the images in (a) and (b) was increased for visibility; the intensity profiles in (c) were measured on the original images without brightness adjustment.</figcaption>
                                 </figure>
                             </div>
                         </div>
@@ -592,11 +595,14 @@
                 <!-- 3. Future Experiments -->
                 <section id="exp-future" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">3. Future Experiments</h2>
+                    <p class="text-secondary mb-0">
+                        The following experiments are planned as a continuation of <a href="#exp-b">Experiment B</a>.
+                    </p>
 
                     <div id="exp-4-1" class="exp-subsection subsection">
                         <h3 class="h4 fw-bold mb-4">3.1 Confirmation of GUV Disruption</h3>
                         <p class="text-secondary mb-0">
-                            To investigate whether DNA Bundle attachment disrupts GUV membranes, we will perform a
+                            To investigate whether anchored DNA Bundles disrupt GUV membranes, we will perform a
                             calcein leakage assay (<a href="#fig-23">Figure 23</a>). Calcein is self-quenched at high concentrations and becomes highly
                             fluorescent when diluted [<a href="#ref-6">6</a>]. After replacing the external solution of
                             calcein-encapsulating GUVs with a calcein-free solution, the GUVs will be incubated with DNA
