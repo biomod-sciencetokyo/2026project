@@ -7,7 +7,7 @@
     <title>DESIGN | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-42">
+    <link rel="stylesheet" href="style.css?v=20261114-43">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -40,7 +40,11 @@
                         <a class="nav-link" href="#growth-cycle">1.3 Growth Cycle</a>
                         <a class="nav-link" href="#sequence-design">1.4 Sequence Design</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#rigid-bundles">2. 12- and 13-Helix Bundles</a>
+                    <a class="nav-link fw-bold mt-2" href="#rigid-bundles">2. 12- and 13-Helix DNA Bundles</a>
+                    <div class="nav flex-column sidebar-toc-subnav">
+                        <a class="nav-link" href="#why-12-13">2.1 Why the 12HB and 13HB</a>
+                        <a class="nav-link" href="#bundle-strands">2.2 Strands and Assembly</a>
+                    </div>
                 </nav>
             </div>
 
@@ -48,18 +52,22 @@
                 <section id="overview" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-3">
+                        <mark class="key-line">Bundled HCR, including the seed and the Double-Hairpin DNAs, is our own
+                        design.</mark> The 12- and 13-Helix DNA Bundles follow previously reported designs
+                        [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>], which we chose for the membrane experiments
+                        and used with cholesterol modification.
+                    </p>
+                    <p class="text-secondary mb-3">
                         Our simulations estimated that about 12 helices are needed to disrupt the membrane, while the
-                        growth mechanism of Bundled HCR can be tested with fewer helices. We therefore split the roles
-                        at the design stage and designed two structures that we tested in parallel:
+                        growth mechanism of Bundled HCR can be tested with fewer helices. We therefore assigned these two roles to separate structures, which we designed and tested in parallel:
                     </p>
                     <ul class="text-secondary mb-0">
-                        <li class="mb-2"><strong>Isothermally grown 6-helix bundle (Bundled HCR):</strong> a minimal
+                        <li class="mb-2"><strong>Isothermally grown 6-Helix DNA Bundle (6HB, Bundled HCR):</strong> a minimal
                             design to verify that Bundled HCR proceeds from the seed
                             (<a href="experiment.html#exp-a">Experiment A</a>).</li>
-                        <li><strong>Annealed 12- and 13-helix bundles:</strong> rigid, cholesterol-modified bundles
-                            built from established DNA tube designs [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>]
-                            to test anchoring and disruption of the membrane. The 12-helix bundle meets the estimated
-                            threshold, and the 13-helix bundle is a higher-helix comparison
+                        <li><strong>Annealed 12- and 13-Helix DNA Bundles (12HB and 13HB):</strong> rigid, cholesterol-modified DNA Bundles built from established DNA tube designs [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>]
+                            to test anchoring and disruption of the membrane. The 12HB meets the estimated
+                            threshold, and the 13HB serves as a comparison with one additional helix
                             (<a href="experiment.html#exp-b">Experiment B</a>).</li>
                     </ul>
                 </section>
@@ -69,20 +77,19 @@
                     <p class="text-secondary mb-0">
                         We have extended the concept of the Hybridization Chain Reaction (HCR) [<a href="#ref-3">3</a>]
                         and developed <span class="concept-highlight">Bundled HCR</span>. While conventional HCR yields
-                        a single long duplex DNA, Bundled HCR generates a long, thick DNA bundle. Its components are a
+                        a single long duplex DNA, Bundled HCR generates a long, thick DNA Bundle. Its components are a
                         seed and six types of Double-Hairpin DNAs (H1&ndash;H6).
                     </p>
 
                     <div id="seed-hairpins" class="subsection">
                         <h3 class="h4 fw-bold mb-4">1.1 Seed and Double-Hairpin DNAs</h3>
                         <p class="text-secondary mb-3">
-                            As the materials for Bundled HCR, we prepared a seed and six double-hairpin DNA strands
-                            (H1–H6).
+                            As the materials for Bundled HCR, we prepared a seed and six Double-Hairpin DNAs (H1–H6).
                         </p>
                         <p class="text-secondary mb-4">
                             The seed consists of the single-stranded DNAs S1–S6 shown in Table 1 and assembles into
                             the structure shown in Figure 1 by annealing. In Table 1, a domain labeled “a1*”
-                            hybridizes complementarily to domain “a1”.
+                            is complementary to domain “a1”.
                         </p>
                         <div class="row g-4 align-items-start seed-structure-layout">
                             <div class="col-12">
@@ -114,7 +121,7 @@
                             </div>
                         </div>
                         <p class="text-secondary mb-4">
-                            The sequences of the six double-hairpin DNAs (H1–H6) are shown in Table 2, and the
+                            The sequences of the six Double-Hairpin DNAs (H1–H6) are shown in Table 2, and the
                             structures they adopt in solution at 25 °C are shown in Figure 2.
                         </p>
                         <div class="row g-4 align-items-start seed-structure-layout hairpin-structure-layout">
@@ -225,11 +232,11 @@
                         <h3 class="h4 fw-bold mb-4">1.2 Why Double-Hairpin DNAs</h3>
                         <!-- TODO(team): confirm this rationale for the double-hairpin design -->
                         <p class="text-secondary mb-0">
-                                Like the 84-nt strands of the seed, each 84-nt Double-Hairpin DNA spans two neighbouring
+                                Like the 84-nt strands of the seed, each 84-nt Double-Hairpin DNA spans two neighboring
                                 helices. When it opens, it extends two helices at once and links them side by side, so
-                                that all helices grow together as one bundle instead of as separate duplexes. Each of its
+                                that all helices grow together as one DNA Bundle instead of as separate duplexes. Each of its
                                 two binding regions is closed in a hairpin until the preceding strand opens it, so the
-                                hairpins do not react with each other in solution and the bundle grows only from an
+                                hairpins do not react with each other in solution and the DNA Bundle grows only from an
                                 active seed.
                             </p>
                     </div>
@@ -237,18 +244,17 @@
                     <div id="growth-cycle" class="subsection">
                         <h3 class="h4 fw-bold mb-4">1.3 Growth Cycle</h3>
                         <p class="text-secondary mb-4">
-                            Only in the presence of the Trigger DNA is the Blocker strand displaced from the seed,
+                            Only in the presence of the Trigger DNA is the blocking strand displaced from the seed,
                             switching it to an active state. The active seed then opens the Double-Hairpin DNAs by
                             toehold-mediated strand displacement in a fixed order: H1, H2, and H3 open sequentially,
                             followed by H4, H5, and H6, and the cycle then returns to H1, H2, and H3. Through this
-                            repeated cycle, multiple dsDNA strands elongate together as a bundle. By changing the seed
-                            design and the number of Double-Hairpin DNA types, bundles consisting of any number of
-                            strands can be assembled.
+                            repeated cycle, multiple DNA duplexes elongate together as a DNA Bundle. By changing the seed
+                            design and the number of Double-Hairpin DNA types, DNA Bundles consisting of any number of helices can be assembled.
                         </p>
                         <div class="ratio content-box p-0 mb-4 w-75 mx-auto"
                         style="--bs-aspect-ratio: calc(9 / 16 * 100%);">
                         <video src="video/PROJECT/hcr-chain-seed.mp4?v=2" autoplay muted loop playsinline preload="metadata"
-                            aria-label="Demonstration of 6-dsDNA bundle formation via Bundled HCR"
+                            aria-label="Demonstration of 6-Helix DNA Bundle formation via Bundled HCR"
                             style="object-fit: contain; width: 100%; height: 100%;"></video>
                     </div>
                     </div>
@@ -260,32 +266,48 @@
                             palindromes of 4&nbsp;nt or longer and no homopolymers, all four bases within any 7-nt
                             window, and multi-tube design to suppress homodimerization and crosstalk
                             (<a href="simulation.html#hcr-self-assembly">Simulation 2.1</a>). Each designed
-                            hybridization step was predicted to be thermodynamically favourable
+                            hybridization step was predicted to be thermodynamically favorable
                             (<a href="simulation.html#hcr-possibility">Simulation 2.2</a>).
                         </p>
                     </div>
                 </section>
 
                 <section id="rigid-bundles" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">2. 12- and 13-Helix Bundles</h2>
-                    <div id="bundle-strands">
-                        <!-- [1]: 13-helix bundle の配列（SI）, [2]: 3×n の配列（SI） -->
+                    <h2 class="section-title">2. 12- and 13-Helix DNA Bundles</h2>
+                    <div id="why-12-13" class="subsection">
+                        <h3 class="h4 fw-bold mb-4">2.1 Why the 12HB and 13HB</h3>
                         <p class="text-secondary mb-3">
-                            Following the designs reported in previous studies [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>], the 12-helix and 13-helix bundles were
+                            <strong>12HB:</strong> our 3D free-energy model estimated that about 12 helices are needed to
+                            reach the target membrane-deformation condition
+                            (<a href="simulation.html#three-d">Simulation 1.2</a>). We therefore adopted the 12HB as the
+                            rigid DNA Bundle for the membrane experiments.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            <strong>13HB:</strong> the 13HB is the neighbouring structure in the same reported design
+                            series [<a href="#ref-1">1</a>], and we prepared it as a comparison. The two also differ in
+                            the direction of cholesterol: the straight 12HB carries cholesterol on one side, whereas the
+                            twisted 13HB carries it in all directions (Figure 5).
+                        </p>
+                    </div>
+
+                    <div id="bundle-strands" class="subsection">
+                        <h3 class="h4 fw-bold mb-4">2.2 Strands and Assembly</h3>
+                        <!-- [1]: 13-Helix DNA Bundle の配列（SI）, [2]: 3×n の配列（SI） -->
+                        <p class="text-secondary mb-3">
+                            Following the designs reported in previous studies [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>], the 12-Helix DNA Bundle (12HB) and 13-Helix DNA Bundle (13HB) were
                             synthesized by annealing the single-stranded DNAs V1–V12, T12, and T13 shown in
                             Table 3.
                         </p>
                         <p class="text-secondary mb-3">
-                            In the 12-helix bundle, V1–V11 and T12 hybridize as shown in Figure 3; in the 13-helix
-                            bundle, V1–V12 and T13 hybridize as shown in Figure 4. Each assembles into a bundle
+                            In the 12-Helix DNA Bundle, V1–V11 and T12 hybridize as shown in Figure 3; in the 13-Helix DNA Bundle, V1–V12 and T13 hybridize as shown in Figure 4. Each assembles into a DNA Bundle
                             hundreds to thousands of nanometers long.
                         </p>
                         <p class="text-secondary mb-3">
                             Because cholesterol was attached to the 3′ end of the 42-nt strand V1, the resulting
-                            12- and 13-helix bundles carry a cholesterol modification every 21 nucleotides.
+                            12- and 13-Helix DNA Bundles carry a cholesterol modification every 21 nucleotides.
                         </p>
                         <p class="text-secondary mb-4">
-                            For the cholesterol-free 12- and 13-helix bundles prepared as controls, unmodified V1 was
+                            For the cholesterol-free 12- and 13-Helix DNA Bundles prepared as controls, unmodified V1 was
                             used instead.
                         </p>
                         <div class="row g-4 align-items-start seed-structure-layout bundle-assembly-layout">
@@ -321,43 +343,43 @@
                                     <div class="col-md-6">
                                         <figure class="mb-0 exp-figure">
                                             <img src="img/EXPERIMENT/bundle_12helix_assembly.png"
-                                                alt="Assembly of the 12-helix bundle from V1–V11 and T12"
+                                                alt="Assembly of the 12-Helix DNA Bundle from V1–V11 and T12"
                                                 class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
                                             <figcaption class="text-secondary mt-3"><strong>Figure 3.</strong> Assembly of
-                                                the 12-helix bundle (adapted from [<a href="#ref-1">1</a>]).</figcaption>
+                                                the 12-Helix DNA Bundle (adapted from [<a href="#ref-1">1</a>]).</figcaption>
                                         </figure>
                                     </div>
                                     <div class="col-md-6">
                                         <figure class="mb-0 exp-figure">
                                             <img src="img/EXPERIMENT/bundle_13helix_assembly.png"
-                                                alt="Assembly of the 13-helix bundle from V1–V12 and T13"
+                                                alt="Assembly of the 13-Helix DNA Bundle from V1–V12 and T13"
                                                 class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
                                             <figcaption class="text-secondary mt-3"><strong>Figure 4.</strong> Assembly of
-                                                the 13-helix bundle (adapted from [<a href="#ref-1">1</a>]).</figcaption>
+                                                the 13-Helix DNA Bundle (adapted from [<a href="#ref-1">1</a>]).</figcaption>
                                         </figure>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p class="text-secondary mb-0">
-                            As Figure 4 shows, in the 13-helix bundle V1 and T13 hybridize while twisting, so the
-                            bundle becomes twisted and cholesterol protrudes in all directions around it. In the
-                            12-helix bundle, by contrast, V1 and T12 hybridize without twisting, so cholesterol
+                            As Figure 4 shows, in the 13-Helix DNA Bundle, V1 and T13 hybridize while twisting, so the
+                            DNA Bundle becomes twisted and cholesterol protrudes in all directions around it. In the
+                            12-Helix DNA Bundle, by contrast, V1 and T12 hybridize without twisting, so cholesterol
                             protrudes in only one direction (Figure 5).
                         </p>
                         <figure class="mt-4 mb-4">
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
-                                    <p class="text-secondary fw-bold mb-2">(a) 12-helix bundle: cholesterol in one direction</p>
-                                    <svg class="chol-fig" viewBox="0 0 520 150" role="img" aria-label="12-helix bundle: V1 runs straight along one side, so cholesterol protrudes in one direction" xmlns="http://www.w3.org/2000/svg"><rect width="520" height="150" fill="#fff"/><clipPath id="tube12"><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z"/></clipPath><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="#ececec"/><g clip-path="url(#tube12)"><line x1="21" y1="58.7" x2="409" y2="58.7" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="65.3" x2="409" y2="65.3" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="72.0" x2="409" y2="72.0" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="78.7" x2="409" y2="78.7" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="85.3" x2="409" y2="85.3" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="56" x2="409" y2="56" stroke="#222" stroke-width="2.6"/></g><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="none" stroke="#222" stroke-width="1.2"/><path d="M30,52 A9,20 0 0 1 30,92" fill="none" stroke="#222" stroke-width="0.8" opacity="0.5"/><line x1="44.0" y1="52.0" x2="44.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="44.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="70.0" y1="52.0" x2="70.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="70.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="96.0" y1="52.0" x2="96.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="96.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="122.0" y1="52.0" x2="122.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="122.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="148.0" y1="52.0" x2="148.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="148.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="174.0" y1="52.0" x2="174.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="174.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="200.0" y1="52.0" x2="200.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="200.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="226.0" y1="52.0" x2="226.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="226.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="252.0" y1="52.0" x2="252.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="252.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="278.0" y1="52.0" x2="278.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="278.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="304.0" y1="52.0" x2="304.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="304.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="330.0" y1="52.0" x2="330.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="330.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="356.0" y1="52.0" x2="356.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="356.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="382.0" y1="52.0" x2="382.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="382.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><circle cx="470" cy="72" r="20" fill="#ececec" stroke="#222" stroke-width="1.2"/><line x1="470.0" y1="52.0" x2="470.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="470.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><text x="470" y="118" font-size="11" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif">end view</text><line x1="30" y1="134" x2="52" y2="134" stroke="#222" stroke-width="2.6"/><text x="58" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">V1</text><circle cx="94" cy="134" r="3.2" fill="#e8930c"/><text x="102" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">cholesterol</text></svg>
+                                    <p class="text-secondary fw-bold mb-2">(a) 12-Helix DNA Bundle: cholesterol in one direction</p>
+                                    <svg class="chol-fig" viewBox="0 0 520 150" role="img" aria-label="12-Helix DNA Bundle: V1 runs straight along one side, so cholesterol protrudes in one direction" xmlns="http://www.w3.org/2000/svg"><rect width="520" height="150" fill="#fff"/><clipPath id="tube12"><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z"/></clipPath><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="#ececec"/><g clip-path="url(#tube12)"><line x1="21" y1="58.7" x2="409" y2="58.7" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="65.3" x2="409" y2="65.3" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="72.0" x2="409" y2="72.0" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="78.7" x2="409" y2="78.7" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="85.3" x2="409" y2="85.3" stroke="#9a9a9a" stroke-width="0.8"/><line x1="21" y1="56" x2="409" y2="56" stroke="#222" stroke-width="2.6"/></g><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="none" stroke="#222" stroke-width="1.2"/><path d="M30,52 A9,20 0 0 1 30,92" fill="none" stroke="#222" stroke-width="0.8" opacity="0.5"/><line x1="44.0" y1="52.0" x2="44.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="44.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="70.0" y1="52.0" x2="70.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="70.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="96.0" y1="52.0" x2="96.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="96.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="122.0" y1="52.0" x2="122.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="122.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="148.0" y1="52.0" x2="148.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="148.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="174.0" y1="52.0" x2="174.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="174.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="200.0" y1="52.0" x2="200.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="200.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="226.0" y1="52.0" x2="226.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="226.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="252.0" y1="52.0" x2="252.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="252.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="278.0" y1="52.0" x2="278.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="278.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="304.0" y1="52.0" x2="304.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="304.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="330.0" y1="52.0" x2="330.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="330.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="356.0" y1="52.0" x2="356.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="356.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="382.0" y1="52.0" x2="382.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="382.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><circle cx="470" cy="72" r="20" fill="#ececec" stroke="#222" stroke-width="1.2"/><line x1="470.0" y1="52.0" x2="470.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="470.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><text x="470" y="118" font-size="11" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif">end view</text><line x1="30" y1="134" x2="52" y2="134" stroke="#222" stroke-width="2.6"/><text x="58" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">V1</text><circle cx="94" cy="134" r="3.2" fill="#e8930c"/><text x="102" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">cholesterol</text></svg>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <p class="text-secondary fw-bold mb-2">(b) 13-helix bundle: cholesterol in all directions</p>
-                                    <svg class="chol-fig" viewBox="0 0 520 150" role="img" aria-label="13-helix bundle: the bundle twists and V1 winds around it, so cholesterol protrudes in all directions" xmlns="http://www.w3.org/2000/svg"><rect width="520" height="150" fill="#fff"/><clipPath id="tube13"><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z"/></clipPath><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="#ececec"/><g clip-path="url(#tube13)"><line x1="-65.0" y1="92" x2="10.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-58.0" y1="92" x2="17.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-51.0" y1="92" x2="24.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-44.0" y1="92" x2="31.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-37.0" y1="92" x2="38.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-30.0" y1="92" x2="45.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-23.0" y1="92" x2="52.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-16.0" y1="92" x2="59.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-9.0" y1="92" x2="66.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-2.0" y1="92" x2="73.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="5.0" y1="92" x2="80.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="12.0" y1="92" x2="87.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="19.0" y1="92" x2="94.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="26.0" y1="92" x2="101.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="33.0" y1="92" x2="108.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="40.0" y1="92" x2="115.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="47.0" y1="92" x2="122.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="54.0" y1="92" x2="129.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="61.0" y1="92" x2="136.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="68.0" y1="92" x2="143.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="75.0" y1="92" x2="150.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="82.0" y1="92" x2="157.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="89.0" y1="92" x2="164.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="96.0" y1="92" x2="171.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="103.0" y1="92" x2="178.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="110.0" y1="92" x2="185.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="117.0" y1="92" x2="192.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="124.0" y1="92" x2="199.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="131.0" y1="92" x2="206.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="138.0" y1="92" x2="213.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="145.0" y1="92" x2="220.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="152.0" y1="92" x2="227.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="159.0" y1="92" x2="234.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="166.0" y1="92" x2="241.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="173.0" y1="92" x2="248.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="180.0" y1="92" x2="255.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="187.0" y1="92" x2="262.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="194.0" y1="92" x2="269.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="201.0" y1="92" x2="276.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="208.0" y1="92" x2="283.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="215.0" y1="92" x2="290.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="222.0" y1="92" x2="297.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="229.0" y1="92" x2="304.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="236.0" y1="92" x2="311.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="243.0" y1="92" x2="318.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="250.0" y1="92" x2="325.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="257.0" y1="92" x2="332.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="264.0" y1="92" x2="339.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="271.0" y1="92" x2="346.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="278.0" y1="92" x2="353.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="285.0" y1="92" x2="360.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="292.0" y1="92" x2="367.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="299.0" y1="92" x2="374.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="306.0" y1="92" x2="381.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="313.0" y1="92" x2="388.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="320.0" y1="92" x2="395.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="327.0" y1="92" x2="402.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="334.0" y1="92" x2="409.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="341.0" y1="92" x2="416.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="348.0" y1="92" x2="423.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="355.0" y1="92" x2="430.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="362.0" y1="92" x2="437.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="369.0" y1="92" x2="444.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="376.0" y1="92" x2="451.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="383.0" y1="92" x2="458.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="390.0" y1="92" x2="465.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="397.0" y1="92" x2="472.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="404.0" y1="92" x2="479.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-45.0" y1="52" x2="30.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="-120.0" y1="92" x2="-45.0" y2="52" stroke="#222" stroke-width="2.6"/><line x1="105.0" y1="52" x2="180.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="30.0" y1="92" x2="105.0" y2="52" stroke="#222" stroke-width="2.6"/><line x1="255.0" y1="52" x2="330.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="180.0" y1="92" x2="255.0" y2="52" stroke="#222" stroke-width="2.6"/><line x1="405.0" y1="52" x2="480.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="330.0" y1="92" x2="405.0" y2="52" stroke="#222" stroke-width="2.6"/></g><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="none" stroke="#222" stroke-width="1.2"/><path d="M30,52 A9,20 0 0 1 30,92" fill="none" stroke="#222" stroke-width="0.8" opacity="0.5"/><line x1="34.5" y1="92.0" x2="34.5" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="34.5" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><circle cx="52.5" cy="80.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="67.5" cy="72.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="82.5" cy="64.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><line x1="100.5" y1="52.0" x2="100.5" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="100.5" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="184.5" y1="92.0" x2="184.5" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="184.5" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><circle cx="202.5" cy="80.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="217.5" cy="72.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="232.5" cy="64.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><line x1="250.5" y1="52.0" x2="250.5" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="250.5" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="334.5" y1="92.0" x2="334.5" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="334.5" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><circle cx="352.5" cy="80.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="367.5" cy="72.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="382.5" cy="64.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="470" cy="72" r="20" fill="#ececec" stroke="#222" stroke-width="1.2"/><line x1="470.0" y1="52.0" x2="470.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="470.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="484.1" y1="57.9" x2="489.1" y2="52.9" stroke="#222" stroke-width="1" opacity="1"/><circle cx="491.4" cy="50.6" r="3.2" fill="#e8930c" opacity="1"/><line x1="490.0" y1="72.0" x2="497.0" y2="72.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="500.2" cy="72.0" r="3.2" fill="#e8930c" opacity="1"/><line x1="484.1" y1="86.1" x2="489.1" y2="91.1" stroke="#222" stroke-width="1" opacity="1"/><circle cx="491.4" cy="93.4" r="3.2" fill="#e8930c" opacity="1"/><line x1="470.0" y1="92.0" x2="470.0" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="470.0" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><line x1="455.9" y1="86.1" x2="450.9" y2="91.1" stroke="#222" stroke-width="1" opacity="1"/><circle cx="448.6" cy="93.4" r="3.2" fill="#e8930c" opacity="1"/><line x1="450.0" y1="72.0" x2="443.0" y2="72.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="439.8" cy="72.0" r="3.2" fill="#e8930c" opacity="1"/><line x1="455.9" y1="57.9" x2="450.9" y2="52.9" stroke="#222" stroke-width="1" opacity="1"/><circle cx="448.6" cy="50.6" r="3.2" fill="#e8930c" opacity="1"/><text x="470" y="118" font-size="11" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif">end view</text><line x1="30" y1="134" x2="52" y2="134" stroke="#222" stroke-width="2.6"/><text x="58" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">V1</text><circle cx="94" cy="134" r="3.2" fill="#e8930c"/><text x="102" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">cholesterol</text></svg>
+                                    <p class="text-secondary fw-bold mb-2">(b) 13-Helix DNA Bundle: cholesterol in all directions</p>
+                                    <svg class="chol-fig" viewBox="0 0 520 150" role="img" aria-label="13-Helix DNA Bundle: the DNA Bundle twists and V1 winds around it, so cholesterol protrudes in all directions" xmlns="http://www.w3.org/2000/svg"><rect width="520" height="150" fill="#fff"/><clipPath id="tube13"><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z"/></clipPath><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="#ececec"/><g clip-path="url(#tube13)"><line x1="-65.0" y1="92" x2="10.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-58.0" y1="92" x2="17.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-51.0" y1="92" x2="24.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-44.0" y1="92" x2="31.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-37.0" y1="92" x2="38.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-30.0" y1="92" x2="45.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-23.0" y1="92" x2="52.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-16.0" y1="92" x2="59.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-9.0" y1="92" x2="66.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-2.0" y1="92" x2="73.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="5.0" y1="92" x2="80.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="12.0" y1="92" x2="87.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="19.0" y1="92" x2="94.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="26.0" y1="92" x2="101.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="33.0" y1="92" x2="108.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="40.0" y1="92" x2="115.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="47.0" y1="92" x2="122.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="54.0" y1="92" x2="129.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="61.0" y1="92" x2="136.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="68.0" y1="92" x2="143.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="75.0" y1="92" x2="150.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="82.0" y1="92" x2="157.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="89.0" y1="92" x2="164.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="96.0" y1="92" x2="171.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="103.0" y1="92" x2="178.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="110.0" y1="92" x2="185.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="117.0" y1="92" x2="192.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="124.0" y1="92" x2="199.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="131.0" y1="92" x2="206.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="138.0" y1="92" x2="213.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="145.0" y1="92" x2="220.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="152.0" y1="92" x2="227.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="159.0" y1="92" x2="234.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="166.0" y1="92" x2="241.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="173.0" y1="92" x2="248.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="180.0" y1="92" x2="255.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="187.0" y1="92" x2="262.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="194.0" y1="92" x2="269.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="201.0" y1="92" x2="276.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="208.0" y1="92" x2="283.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="215.0" y1="92" x2="290.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="222.0" y1="92" x2="297.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="229.0" y1="92" x2="304.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="236.0" y1="92" x2="311.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="243.0" y1="92" x2="318.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="250.0" y1="92" x2="325.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="257.0" y1="92" x2="332.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="264.0" y1="92" x2="339.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="271.0" y1="92" x2="346.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="278.0" y1="92" x2="353.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="285.0" y1="92" x2="360.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="292.0" y1="92" x2="367.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="299.0" y1="92" x2="374.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="306.0" y1="92" x2="381.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="313.0" y1="92" x2="388.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="320.0" y1="92" x2="395.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="327.0" y1="92" x2="402.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="334.0" y1="92" x2="409.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="341.0" y1="92" x2="416.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="348.0" y1="92" x2="423.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="355.0" y1="92" x2="430.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="362.0" y1="92" x2="437.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="369.0" y1="92" x2="444.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="376.0" y1="92" x2="451.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="383.0" y1="92" x2="458.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="390.0" y1="92" x2="465.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="397.0" y1="92" x2="472.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="404.0" y1="92" x2="479.0" y2="52" stroke="#9a9a9a" stroke-width="0.8"/><line x1="-45.0" y1="52" x2="30.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="-120.0" y1="92" x2="-45.0" y2="52" stroke="#222" stroke-width="2.6"/><line x1="105.0" y1="52" x2="180.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="30.0" y1="92" x2="105.0" y2="52" stroke="#222" stroke-width="2.6"/><line x1="255.0" y1="52" x2="330.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="180.0" y1="92" x2="255.0" y2="52" stroke="#222" stroke-width="2.6"/><line x1="405.0" y1="52" x2="480.0" y2="92" stroke="#222" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/><line x1="330.0" y1="92" x2="405.0" y2="52" stroke="#222" stroke-width="2.6"/></g><path d="M30,52 L400,52 A9,20 0 0 1 400,92 L30,92 A9,20 0 0 1 30,52 Z" fill="none" stroke="#222" stroke-width="1.2"/><path d="M30,52 A9,20 0 0 1 30,92" fill="none" stroke="#222" stroke-width="0.8" opacity="0.5"/><line x1="34.5" y1="92.0" x2="34.5" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="34.5" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><circle cx="52.5" cy="80.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="67.5" cy="72.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="82.5" cy="64.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><line x1="100.5" y1="52.0" x2="100.5" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="100.5" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="184.5" y1="92.0" x2="184.5" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="184.5" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><circle cx="202.5" cy="80.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="217.5" cy="72.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="232.5" cy="64.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><line x1="250.5" y1="52.0" x2="250.5" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="250.5" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="334.5" y1="92.0" x2="334.5" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="334.5" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><circle cx="352.5" cy="80.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="367.5" cy="72.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="382.5" cy="64.0" r="3.2" fill="#e8930c" stroke="#222" stroke-width="0.6"/><circle cx="470" cy="72" r="20" fill="#ececec" stroke="#222" stroke-width="1.2"/><line x1="470.0" y1="52.0" x2="470.0" y2="45.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="470.0" cy="41.8" r="3.2" fill="#e8930c" opacity="1"/><line x1="484.1" y1="57.9" x2="489.1" y2="52.9" stroke="#222" stroke-width="1" opacity="1"/><circle cx="491.4" cy="50.6" r="3.2" fill="#e8930c" opacity="1"/><line x1="490.0" y1="72.0" x2="497.0" y2="72.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="500.2" cy="72.0" r="3.2" fill="#e8930c" opacity="1"/><line x1="484.1" y1="86.1" x2="489.1" y2="91.1" stroke="#222" stroke-width="1" opacity="1"/><circle cx="491.4" cy="93.4" r="3.2" fill="#e8930c" opacity="1"/><line x1="470.0" y1="92.0" x2="470.0" y2="99.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="470.0" cy="102.2" r="3.2" fill="#e8930c" opacity="1"/><line x1="455.9" y1="86.1" x2="450.9" y2="91.1" stroke="#222" stroke-width="1" opacity="1"/><circle cx="448.6" cy="93.4" r="3.2" fill="#e8930c" opacity="1"/><line x1="450.0" y1="72.0" x2="443.0" y2="72.0" stroke="#222" stroke-width="1" opacity="1"/><circle cx="439.8" cy="72.0" r="3.2" fill="#e8930c" opacity="1"/><line x1="455.9" y1="57.9" x2="450.9" y2="52.9" stroke="#222" stroke-width="1" opacity="1"/><circle cx="448.6" cy="50.6" r="3.2" fill="#e8930c" opacity="1"/><text x="470" y="118" font-size="11" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif">end view</text><line x1="30" y1="134" x2="52" y2="134" stroke="#222" stroke-width="2.6"/><text x="58" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">V1</text><circle cx="94" cy="134" r="3.2" fill="#e8930c"/><text x="102" y="138" font-size="11" fill="#555" font-family="Helvetica, Arial, sans-serif">cholesterol</text></svg>
                                 </div>
                             </div>
                             <figcaption class="text-secondary mt-3"><strong>Figure 5.</strong> Direction of cholesterol on the
-                                12- and 13-helix bundles (schematic, not to scale). Black line: V1, which carries
+                                12- and 13-Helix DNA Bundles (schematic, not to scale). Black line: V1, which carries
                                 cholesterol (orange) every 21 nucleotides; dashed: V1 on the far side. Orange dots on the
                                 surface in (b) point toward the viewer.</figcaption>
                         </figure>
@@ -380,7 +402,7 @@
     <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js?v=20261113-26"></script>
+    <script src="main.js?v=20261114-26"></script>
 </body>
 
 </html>

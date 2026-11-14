@@ -672,7 +672,7 @@
                 outStatus.textContent = 'Ready — press Run';
             } else {
                 outStatus.className = 'sim-live-status' + (running ? ' is-running' : '');
-                outStatus.innerHTML = sim.approaching ? 'DNA Bundle approaching the membrane…' : 'Bundle docked — no event yet';
+                outStatus.innerHTML = sim.approaching ? 'DNA Bundle approaching the membrane…' : 'DNA Bundle docked — no event yet';
             }
         }
 

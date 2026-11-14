@@ -82,24 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // シミュレーション環境図：ドットのみ＋共通要素バーによる左右同時スポットライト比較
     const DOT_LAYOUTS = {
         'sim2d_real': {
-            bundle: { label: 'DNA bundle', dot: [22.0, 14.0] },
+            bundle: { label: 'DNA Bundle', dot: [22.0, 14.0] },
             linker: { label: 'TEG linker', dot: [34.3, 25.5] },
             chol: { label: 'Cholesterol', dot: [62.2, 31.5] },
             membrane: { label: 'Lipid membrane', dot: [50.0, 56.0] }
         },
         'sim2d_model': {
-            bundle: { label: 'DNA bundle', dot: [22.8, 11.0] },
+            bundle: { label: 'DNA Bundle', dot: [22.8, 11.0] },
             linker: { label: 'TEG linker', dot: [35.6, 20.0] },
             chol: { label: 'Cholesterol', dot: [61.0, 27.3] },
             membrane: { label: 'Lipid membrane', dot: [50.0, 45.5] }
         },
         'sim3d_real': {
-            bundle: { label: 'DNA bundle', dot: [48.5, 23.5] },
+            bundle: { label: 'DNA Bundle', dot: [48.5, 23.5] },
             chol: { label: 'Cholesterol anchors', dot: [39.7, 32.3] },
             membrane: { label: 'Lipid membrane', dot: [64.0, 76.0] }
         },
         'sim3d_model': {
-            bundle: { label: 'DNA bundle', dot: [48.5, 23.5] },
+            bundle: { label: 'DNA Bundle', dot: [48.5, 23.5] },
             chol: { label: 'Cholesterol anchors', dot: [39.7, 32.3] },
             membrane: { label: 'Lipid membrane', dot: [64.0, 76.0] }
         }

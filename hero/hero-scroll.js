@@ -425,7 +425,7 @@ const STOPS = [
     { t: 'TEG linker', ats: () => [onMod('l')], dir: [-1, -0.4] },
     { t: 'Cholesterol', ats: () => [onMod('c')], dir: [1, -0.5] },
   ] },
-  { a: PRO + A2 - 1.2, dur: 2.6, items: [{ t: 'DNA bundle', ats: () => [onBundle(XMID)], dir: [0, -1], noLead: true }] },
+  { a: PRO + A2 - 1.2, dur: 2.6, items: [{ t: 'DNA Bundle', ats: () => [onBundle(XMID)], dir: [0, -1], noLead: true }] },
   { a: PRO + A2 + 4.6, dur: 2.4, items: [{ t: 'Lipid membrane', ats: () => [onEV(-0.55, -0.5, 0.67)], dir: [-1, 0.25] }] },
   // and once it has gone in, what is holding the bundle there
   { a: PRO + A2 + 10.2, dur: 2.8, items: [{ t: 'Cholesterol anchoring', ats: () => [onModIn()], dir: [-1, 0.6] }] },

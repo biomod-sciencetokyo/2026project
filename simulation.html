@@ -7,7 +7,7 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-42">
+    <link rel="stylesheet" href="style.css?v=20261114-43">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -113,15 +113,15 @@
                     <a class="nav-link fw-bold" href="#simulation-overview">Overview</a>
                     <a class="nav-link fw-bold" href="#membrane-disruption">1. Membrane Deformation Models</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#two-d-md">1.1 2D MD-CG Simulation</a>
+                        <a class="nav-link" href="#two-d-md">1.1 2D CG-MD Simulation</a>
                         <a class="nav-link" href="#three-d">1.2 3D Reduced Free-Energy Model</a>
                     </div>
-                    <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. HCR Sequence Design and Thermodynamic Assessment</a>
+                    <a class="nav-link fw-bold mt-2" href="#hcr-reaction">2. Bundled HCR Sequence Design and Thermodynamic Assessment</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#hcr-self-assembly">2.1 HCR Sequence Design</a>
+                        <a class="nav-link" href="#hcr-self-assembly">2.1 Bundled HCR Sequence Design</a>
                         <a class="nav-link" href="#hcr-possibility">2.2 Thermodynamic Assessment of Sequential Hybridization</a>
                     </div>
-                    <a class="nav-link mt-2" href="#dry-references">Dry-model References</a>
+                    <a class="nav-link mt-2" href="#dry-references">References</a>
                 </nav>
             </div>
 
@@ -129,14 +129,14 @@
                 <section id="simulation-overview" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">Overview</h2>
                     <p class="text-secondary mb-3">
-                        This page is organised into three linked components:
+                        This page is organized into three linked components:
                     </p>
 
                     <nav class="content-box p-3 p-md-4 mb-0" aria-label="Simulation page guide">
                         <ol class="list-unstyled mb-0">
                             <li class="mb-3">
                                 <a href="#two-d-md">
-                                    <strong>2D MD-CG Simulation (Section 1.1)</strong>
+                                    <strong>2D CG-MD Simulation (Section 1.1)</strong>
                                 </a><br>
                                 <span class="text-secondary">
                                     Screens vesicle radius, DNA Bundle bending rigidity, and linker
@@ -148,16 +148,16 @@
                                     <strong>3D Reduced Free-Energy Model (Section 1.2)</strong>
                                 </a><br>
                                 <span class="text-secondary">
-                                    Visualises three-dimensional membrane deformation and estimates
-                                    the DNA Bundle helix number required for the design.
+                                    Visualizes three-dimensional membrane deformation and estimates
+                                    the DNA Bundle helix count required for the design.
                                 </span>
                             </li>
                             <li>
                                 <a href="#hcr-reaction">
-                                    <strong>HCR Sequence Design and Thermodynamic Assessment (Section 2)</strong>
+                                    <strong>Bundled HCR Sequence Design and Thermodynamic Assessment (Section 2)</strong>
                                 </a><br>
                                 <span class="text-secondary">
-                                    Designs the HCR sequences and evaluates the thermodynamic
+                                    Designs the Bundled HCR sequences and evaluates the thermodynamic
                                     plausibility of the intended sequential hybridization steps.
                                 </span>
                             </li>
@@ -174,20 +174,20 @@
                 <section id="membrane-disruption" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">1. Membrane Deformation Models</h2>
 
-                    <!-- 1.1 2D MD-CG Simulation -->
+                    <!-- 1.1 2D CG-MD Simulation -->
                     <div id="two-d-md" class="subsection">
-                        <h3 class="h4 fw-bold mb-4">1.1 2D MD-CG Simulation</h3>
+                        <h3 class="h4 fw-bold mb-4">1.1 2D CG-MD Simulation</h3>
 
                         <div class="goal-callout mb-4" role="note" aria-label="Section 1.1 key result">
                             <div class="goal-callout-head">
                                 <span>KEY RESULT</span>
                             </div>
                             <div class="goal-callout-body">
-                                <h4 class="goal-callout-title">Rigid Bundles and size-dependent linker preference</h4>
+                                <h4 class="goal-callout-title">Rigid DNA Bundles and size-dependent linker preference</h4>
                                 <ul class="goal-callout-text mb-0">
-                                    <li>Higher DNA Bundle bending rigidity favoured membrane pore formation.</li>
-                                    <li>For small vesicles (\(R = 50\) nm), short linkers were favoured.</li>
-                                    <li>For larger vesicles (\(R = 200\) nm), long linkers were favoured.</li>
+                                    <li>Higher DNA Bundle bending rigidity favored membrane pore formation.</li>
+                                    <li>For small vesicles (\(R = 50\) nm), short linkers were favored.</li>
+                                    <li>For larger vesicles (\(R = 200\) nm), long linkers were favored.</li>
                                 </ul>
                             </div>
                         </div>
@@ -199,10 +199,10 @@
                                     <div class="sim-env-panel-label">Real system</div>
                                     <div class="sim-env-canvas">
                                         <img src="img/SIMULATION/sim2d_real.jpg"
-                                            alt="A 12-helix DNA bundle held above a curved lipid bilayer by cholesterol anchors on flexible linkers"
+                                            alt="A 12-Helix DNA Bundle held above a curved lipid bilayer by cholesterol anchors on flexible linkers"
                                             loading="lazy" decoding="async">
                                         <button type="button" class="sim-env-marker" data-part="bundle"
-                                            style="left: 13%; top: 13%;" aria-label="1: DNA bundle">1</button>
+                                            style="left: 13%; top: 13%;" aria-label="1: DNA Bundle">1</button>
                                         <button type="button" class="sim-env-marker" data-part="linker"
                                             style="left: 34.3%; top: 26.3%;" aria-label="2: TEG linker">2</button>
                                         <button type="button" class="sim-env-marker" data-part="chol"
@@ -220,7 +220,7 @@
                                             alt="Coarse-grained model: a grey rod with purple cholesterol beads on linkers above an arc of membrane beads joined by colored springs"
                                             loading="lazy" decoding="async">
                                         <button type="button" class="sim-env-marker" data-part="bundle"
-                                            style="left: 14%; top: 11%;" aria-label="1: DNA bundle">1</button>
+                                            style="left: 14%; top: 11%;" aria-label="1: DNA Bundle">1</button>
                                         <button type="button" class="sim-env-marker" data-part="linker"
                                             style="left: 63.6%; top: 19%;" aria-label="2: TEG linker">2</button>
                                         <button type="button" class="sim-env-marker" data-part="chol"
@@ -240,7 +240,7 @@
                             <ol class="sim-env-parts">
                                 <li class="sim-env-part" data-part="bundle" tabindex="0">
                                     <span class="sim-env-num">1</span>
-                                    <h5 class="sim-env-part-title">DNA bundle</h5>
+                                    <h5 class="sim-env-part-title">DNA Bundle</h5>
                                 </li>
                                 <li class="sim-env-part" data-part="linker" tabindex="0">
                                     <span class="sim-env-num">2</span>
@@ -256,7 +256,7 @@
                                 </li>
                             </ol>
                             <figcaption class="text-secondary mt-3">
-                                <strong>Figure 1.</strong> Real system and 2D MD-CG representation.
+                                <strong>Figure 1.</strong> Real system and 2D CG-MD representation.
                             </figcaption>
                         </figure>
 
@@ -282,7 +282,7 @@
                         <!-- Linker Length -->
                         <div id="two-d-linker-length" class="simulation-subblock">
                             <h4 class="h5 fw-bold mb-3 section-subtitle">
-                                2D Comparison: Linker Length, Bundle Bending Rigidity, and Vesicle Size
+                                2D Comparison: Linker Length, DNA Bundle Bending Rigidity, and Vesicle Size
                             </h4>
                             <p class="text-secondary mb-4">
                                 Linker rest length <i>l</i><sub>0</sub> changes both linker mechanics and the
@@ -401,7 +401,7 @@
                                                 Vesicle radius: <em>R</em> = 50 nm<br>
                                                 DNA Bundle bending rigidity: <i>B</i><sub>DNA</sub> = 9.51 ×
                                                 10<sup>2</sup> pN·nm<sup>2</sup><br>
-                                                Linker rest length: <em>l</em><sub>0</sub> = 2.5 nm.
+                                                Linker rest length: <em>l</em><sub>0</sub> = 2.5 nm
                                             </p>
                                         </div>
                                     </div>
@@ -430,7 +430,7 @@
 
                             <figcaption class="text-secondary mt-3">
                                 <strong>Figure 2.</strong> Representative 2D simulations for the small-vesicle
-                                condition (<i>R</i> = 50) nm.
+                                condition (<i>R</i> = 50 nm).
                             </figcaption>
                             </figure>
                             <figure class="simulation-figure sim-matrix-figure mb-4">
@@ -506,7 +506,7 @@
                                                 DNA Bundle bending rigidity: <i>B</i><sub>DNA</sub> = 6.21 ×
                                                 10<sup>5</sup> pN·nm<sup>2</sup><br>
                                                 Available animation linker rest length: <em>l</em><sub>0</sub> = 20.0 nm
-                                                (target: 15.0 nm).
+                                                (target: 15.0 nm)
                                             </p>
                                         </div>
                                     </div>
@@ -552,7 +552,7 @@
                                                 DNA Bundle bending rigidity: <i>B</i><sub>DNA</sub> =
                                                 9.51 × 10<sup>2</sup> pN·nm<sup>2</sup><br>
                                                 Available animation linker rest length: <em>l</em><sub>0</sub> = 20.0 nm
-                                                (target: 15.0 nm).
+                                                (target: 15.0 nm)
                                             </p>
                                         </div>
                                     </div>
@@ -560,7 +560,7 @@
                             </div>
                             <figcaption class="text-secondary mt-3">
                                 <strong>Figure 3.</strong> Representative 2D simulations for the large-vesicle
-                                condition (<i>R</i> = 200) nm.
+                                condition (<i>R</i> = 200 nm).
                             </figcaption>
                             </figure>
                         </div>
@@ -588,7 +588,7 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R50.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 50 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
@@ -604,7 +604,7 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R100.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 100 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
@@ -620,7 +620,7 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R150.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 150 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
@@ -636,7 +636,7 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R200.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 200 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
@@ -652,7 +652,7 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/rupture_heatmap_R250.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 250 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
@@ -668,7 +668,7 @@
                                                     <figure class="content-box h-100 mb-0 sim-heatmap">
                                                         <div class="heatmap-plot mb-3">
                                                             <img src="img/SIMULATION/ruputure_heatmap_r300.png?v=2"
-                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA-Bundle bending rigidity and linker length at R = 300 nm"
+                                                                alt="Model-defined local pore-formation-event probability heatmap by DNA Bundle bending rigidity and linker length at R = 300 nm"
                                                                 loading="lazy" decoding="async">
                                                             <span class="heatmap-title-overlay" aria-hidden="true">Model-defined local event probability<br>Bending rigidity vs linker length</span>
                                                             <span class="heatmap-axis-y" aria-hidden="true">Bending rigidity (pN·nm²)</span>
@@ -697,7 +697,7 @@
                                 A JavaScript version of the 2D coarse-grained model (originally written in Python) runs
                                 directly in your browser. Choose a vesicle
                                 radius, DNA Bundle bending rigidity, and linker rest length, then press
-                                <strong>Run</strong>. Membrane bonds are coloured by tension; the first bond whose
+                                <strong>Run</strong>. Membrane bonds are colored by tension; the first bond whose
                                 tension exceeds the threshold (150 pN) is the model-defined local pore-formation
                                 event.
                             </p>
@@ -741,7 +741,7 @@
 
                                             <fieldset class="sim-live-group">
                                                 <legend class="sim-live-kicker">Vesicle radius <i>R</i> <span>nm</span></legend>
-                                                <div class="sim-live-segment" role="group" aria-label="Vesicle radius in nanometres">
+                                                <div class="sim-live-segment" role="group" aria-label="Vesicle radius in nanometers">
                                                     <button type="button" data-sim-r="50" aria-pressed="true">50</button>
                                                     <button type="button" data-sim-r="100" aria-pressed="false">100</button>
                                                     <button type="button" data-sim-r="150" aria-pressed="false">150</button>
@@ -767,7 +767,7 @@
                                                     <span class="sim-live-value"><output data-sim-out="l0"></output><small>nm</small></span>
                                                 </div>
                                                 <input id="sim-live-l0" type="range" class="sim-live-range" min="2" max="20" step="0.5" value="2.5"
-                                                    data-sim="l0" aria-label="Linker rest length in nanometres">
+                                                    data-sim="l0" aria-label="Linker rest length in nanometers">
                                                 <div class="sim-live-scale" aria-hidden="true"><span>2 nm</span><span>20 nm</span></div>
                                             </div>
 
@@ -811,7 +811,7 @@
                                 random-number generator, so individual trajectories will not match the published Python
                                 runs, and we cannot completely rule out small implementation differences. Each run lasts
                                 100 frames (100 integration steps of Δt = 10<sup>−4</sup> per frame), the same window used
-                                for the heatmaps. <mark class="key-line"><strong>We would therefore suggest treating this tool as an illustrative aid for
+                                for the heatmaps. <mark class="key-line"><strong>We therefore recommend treating this tool as an illustrative aid for
                                 building intuition about the trends discussed above rather than as a substitute for the
                                 Python results</strong></mark>; running several seeds may give a rough sense of how the event probability
                                 changes across conditions.
@@ -831,9 +831,8 @@
                                 <h4 class="goal-callout-title">12 helices is the robust DNA Bundle design target</h4>
                                 <p class="goal-callout-text">
                                     Figure 13 gives an ideal-coupling reference of approximately
-                                    4 helices. Figure 14 shows that weaker inter-helix coupling requires
-                                    more helices; 12 helices reaches the target even in the lowest
-                                    coupling condition examined. The 13-helix Bundle is used as a
+                                    4 helices. Figure 14 shows that weaker inter-helix coupling requires more helices; with 12 helices, the target is reached even in the lowest
+                                    coupling condition examined. The 13-Helix DNA Bundle is used as a
                                     one-helix-above-threshold comparison design.
                                 </p>
                             </div>
@@ -842,7 +841,7 @@
                             <h4 class="h5 fw-bold mb-3 section-subtitle">Why a reduced 3D model?</h4>
                             <p class="text-secondary mb-4">
                                 The 2D CG-MD model compares how DNA Bundle and membrane conditions affect local
-                                interactions, but it does not show how the membrane wraps around a Bundle or how
+                                interactions, but it does not show how the membrane wraps around a DNA Bundle or how
                                 deformation spreads in three dimensions. Evaluating every condition with time-evolving
                                 3D CG-MD would be computationally demanding for this project, so we use a
                                 <strong>3D Reduced Free-Energy Model</strong> instead.
@@ -891,7 +890,7 @@
                             <p class="text-secondary mb-4">
                                 The GLB and deformation views show local membrane deformation at the DNA Bundle
                                 contact region. Its shape reflects the competition between effective adhesion,
-                                Bundle flexibility, membrane bending elasticity, and membrane tension. The GLB can
+                                DNA Bundle flexibility, membrane bending elasticity, and membrane tension. The GLB can
                                 be rotated for viewing but is static, not a time-evolving simulation. Its color
                                 shows visualization-only local curvature, not a pore-formation test or rupture
                                 threshold.
@@ -903,10 +902,10 @@
                                         <div class="sim-env-panel-label">Real system</div>
                                         <div class="sim-env-canvas">
                                             <img src="img/SIMULATION/sim3d_real.svg"
-                                                alt="A 12-helix DNA bundle lying on a whole lipid vesicle and partly sunk into its surface, with cholesterols on linkers sticking out on every side of the bundle; the membrane wraps up around the bundle"
+                                                alt="A 12-Helix DNA Bundle lying on a whole lipid vesicle and partly sunk into its surface, with cholesterols on linkers sticking out on every side of the DNA Bundle; the membrane wraps up around the DNA Bundle"
                                                 loading="lazy" decoding="async">
                                             <button type="button" class="sim-env-marker" data-part="bundle"
-                                                style="left: 66.9%; top: 15.8%;" aria-label="1: DNA bundle">1</button>
+                                                style="left: 66.9%; top: 15.8%;" aria-label="1: DNA Bundle">1</button>
                                             <button type="button" class="sim-env-marker" data-part="chol"
                                                 style="left: 36.2%; top: 35.8%;"
                                                 aria-label="2: Cholesterol anchors">2</button>
@@ -924,7 +923,7 @@
                                                 alt="Continuum model: a dark blue elastic sphere with a black rod lying on top; the membrane beside the rod is colored cyan to green where it is strongly curved"
                                                 loading="lazy" decoding="async">
                                             <button type="button" class="sim-env-marker" data-part="bundle"
-                                                style="left: 66.9%; top: 15.8%;" aria-label="1: DNA bundle">1</button>
+                                                style="left: 66.9%; top: 15.8%;" aria-label="1: DNA Bundle">1</button>
                                             <button type="button" class="sim-env-marker" data-part="chol"
                                                 style="left: 36.2%; top: 35.8%;"
                                                 aria-label="2: Cholesterol anchors">2</button>
@@ -943,7 +942,7 @@
                                 <ol class="sim-env-parts">
                                     <li class="sim-env-part" data-part="bundle" tabindex="0">
                                         <span class="sim-env-num">1</span>
-                                        <h5 class="sim-env-part-title">DNA bundle</h5>
+                                        <h5 class="sim-env-part-title">DNA Bundle</h5>
                                     </li>
                                     <li class="sim-env-part" data-part="chol" tabindex="0">
                                         <span class="sim-env-num">2</span>
@@ -985,14 +984,14 @@
 
                         <!-- Bundle radius as a geometric design parameter -->
                         <div id="three-d-deformation" class="simulation-subblock">
-                            <h4 class="h5 fw-bold mb-3 section-subtitle">Bundle Radius as a Geometric Design Parameter</h4>
+                            <h4 class="h5 fw-bold mb-3 section-subtitle">DNA Bundle Radius as a Geometric Design Parameter</h4>
                             <p class="text-secondary mb-3">
                                 DNA Bundle radius is an important geometric factor in membrane deformation.
                                 A wider DNA Bundle changes the contact geometry and distributes membrane
-                                deformation across a broader region. In contrast, the smaller-radius Bundle
-                                produces more localized membrane deformation and appears more favourable
+                                deformation across a broader region. In contrast, the smaller-radius DNA Bundle
+                                produces more localized membrane deformation and appears more favorable
                                 for membrane pore formation. Because the number of helices in a DNA Bundle
-                                affects both its radius and bending rigidity, Bundle geometry and mechanical
+                                affects both its radius and bending rigidity, DNA Bundle geometry and mechanical
                                 stiffness must be considered together when designing a membrane-active
                                 DNA Bundle.
                             </p>
@@ -1000,17 +999,17 @@
                             <div class="row g-4 mb-4">
                                 <div class="col-md-6">
                                     <img src="img/SIMULATION/low_bundle_radious_r4.jpeg?v=2"
-                                        alt="Liposome deformation caused by a low-radius DNA bundle"
+                                        alt="Liposome deformation caused by a low-radius DNA Bundle"
                                         class="img-fluid w-100 radius-comparison-image" loading="lazy" decoding="async">
                                 </div>
                                 <div class="col-md-6">
                                     <img src="img/SIMULATION/high_bundle_radious_r10.jpeg?v=2"
-                                        alt="Liposome deformation caused by a high-radius DNA bundle"
+                                        alt="Liposome deformation caused by a high-radius DNA Bundle"
                                         class="img-fluid w-100 radius-comparison-image" loading="lazy" decoding="async">
                                 </div>
                             </div>
                                 <figcaption class="text-secondary mt-3">
-                                    <strong>Figure 12.</strong> Qualitative Bundle-radius comparison for
+                                    <strong>Figure 12.</strong> Qualitative DNA Bundle radius comparison for
                                     <i>r</i> = 4 nm and <i>r</i> = 10 nm.
                                 </figcaption>
                             </figure>
@@ -1023,16 +1022,16 @@
                             <h5 class="fw-bold mb-3 section-subtitle">How to Read Figures 13 and 14</h5>
 
                             <p class="text-secondary mb-3">
-                                The smaller-radius Bundle in Figure 12 produces more localised membrane
-                                deformation, but a Bundle with fewer helices also has lower bending
-                                rigidity. We therefore estimated the helix number required to retain
-                                sufficient mechanical strength while maintaining a membrane-active Bundle
+                                The smaller-radius DNA Bundle in Figure 12 produces more localized membrane
+                                deformation, but a DNA Bundle with fewer helices also has lower bending
+                                rigidity. We therefore estimated the helix count required to retain
+                                sufficient mechanical strength while maintaining a membrane-active DNA Bundle
                                 geometry.
                             </p>
 
                             <p class="text-secondary mb-3">
                                 <a href="#figure-13">Figure 13</a> shows the ideal fully coupled reference
-                                condition, in which all DNA helices act together as one rigid Bundle.
+                                condition, in which all DNA helices act together as one rigid DNA Bundle.
                                 Under this ideal condition, the target local-curvature level is reached at
                                 approximately 4 helices.
                             </p>
@@ -1041,24 +1040,24 @@
                                 In practice, helices may not be perfectly mechanically coupled. Therefore,
                                 <a href="#figure-14">Figure 14</a> evaluates \(\alpha\) (alpha), the
                                 effective mechanical coupling between helices in one DNA Bundle. A larger
-                                \(\alpha\) means that helices act more strongly as one rigid Bundle, whereas
-                                a smaller \(\alpha\) represents a more loosely coupled Bundle.
+                                \(\alpha\) means that helices act more strongly as one rigid DNA Bundle, whereas
+                                a smaller \(\alpha\) represents a more loosely coupled DNA Bundle.
                             </p>
 
                             <p class="text-secondary mb-4">
                                 As \(\alpha\) decreases, more helices are required to reach the target
                                 curvature level: approximately 4 helices for \(\alpha = 1.0\), 6 helices
                                 for \(\alpha = 0.5\), and 12 helices for <span class="text-nowrap">\(\alpha = 0.1\).</span> We therefore
-                                selected a 12-helix DNA Bundle as the robust design target because it
+                                selected a 12-Helix DNA Bundle as the robust design target because it
                                 reaches the target even under the lowest coupling condition examined. The
-                                13-helix DNA Bundle was included as a one-helix-above-threshold comparison
+                                13-Helix DNA Bundle was included as a one-helix-above-threshold comparison
                                 design.
                             </p>
                             <div class="row g-4 mb-4 figure-pair">
                                 <div class="col-lg-6">
                                     <figure id="figure-13" class="simulation-figure mb-0">
                                         <img src="img/SIMULATION/3Dpore-formation.png?v=2"
-                                            alt="Illustrative maximum local-curvature indicator versus the number of DNA helices in one Bundle, with a selected comparison level near four helices"
+                                            alt="Illustrative maximum local-curvature indicator versus the number of DNA helices in one DNA Bundle, with a selected comparison level near four helices"
                                             class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                             loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3">
@@ -1071,12 +1070,12 @@
                                 <div class="col-lg-6">
                                     <figure id="figure-14" class="simulation-figure mb-0">
                                         <img src="img/SIMULATION/3D_pore-formation.png?v=2"
-                                            alt="Phenomenological local-curvature comparison across cross-linking-efficiency scenarios, with selected helix numbers near 3.8, 5.4, and 12"
+                                            alt="Phenomenological local-curvature comparison across cross-linking-efficiency scenarios, with selected helix counts near 3.8, 5.4, and 12"
                                             class="img-fluid w-100 border" style="border-color: #314763 !important;"
                                             loading="lazy" decoding="async">
                                         <figcaption class="text-secondary mt-3">
                                             <strong>Figure 14.</strong> Effect of effective inter-helix coupling
-                                            (\(\alpha\)) on the required helix number. Lower coupling requires more
+                                            (\(\alpha\)) on the required helix count. Lower coupling requires more
                                             helices; the lowest coupling condition shown reaches the target at
                                             approximately 12 helices.
                                         </figcaption>
@@ -1091,20 +1090,19 @@
                     </div>
                 </section>
 
-                <!-- 2. HCR Sequence Design and Thermodynamic Assessment -->
+                <!-- 2. Bundled HCR Sequence Design and Thermodynamic Assessment -->
                 <section id="hcr-reaction" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">2. HCR Sequence Design and Thermodynamic Assessment</h2>
+                    <h2 class="section-title">2. Bundled HCR Sequence Design and Thermodynamic Assessment</h2>
                     <p class="text-secondary mb-4">
-                        To achieve programmable and stimuli-responsive bundle assembly, we computationally designed
-                        and thermodynamically evaluated the DNA sequences for the 6-Helix Bundle HCR system.
+                        To achieve programmable and stimuli-responsive DNA Bundle assembly, we computationally designed
+                        and thermodynamically evaluated the DNA sequences of the Bundled HCR system for the 6-Helix DNA Bundle (6HB).
                     </p>
 
                     <!-- 2.1 Sequence Design Conditions -->
                     <div id="hcr-self-assembly" class="simulation-subblock subsection">
-                        <h3 class="h4 fw-bold mb-4">2.1 HCR Sequence Design</h3>
+                        <h3 class="h4 fw-bold mb-4">2.1 Bundled HCR Sequence Design</h3>
                         <div class="content-box p-4 p-md-5 mb-4">
-                            <p class="text-secondary">The DNA sequences for the 6-Helix Bundle HCR system (seeds
-                                S1-S6 and hairpins H1-H6) were designed computationally with NUPACK to eliminate
+                            <p class="text-secondary">The DNA sequences for the 6HB Bundled HCR system (seed strands S1–S6 and hairpins H1–H6) were designed computationally with NUPACK to eliminate
                                 unintended leak reactions and structural defects
                                 [<a href="#ref-23">23</a>, <a href="#ref-24">24</a>]. Strict physical constraints were
                                 applied during the design process:</p>
@@ -1113,7 +1111,7 @@
                                 <li>Enforcement of sequence diversity, requiring all four nucleobases (A, T, G, C) to
                                     be present within any 7-nt window to prevent local GC-bias.</li>
                                 <li>Multi-tube design analysis (<code>max_size=2</code>) to rigorously suppress
-                                    homodimerization and non-specific crosstalk between domains.</li>
+                                    homodimerization and nonspecific crosstalk between domains.</li>
                             </ol>
                         </div>
                     </div>
@@ -1124,19 +1122,18 @@
                         <div class="content-box p-4 p-md-5">
                             <p class="text-secondary">
                                 NUPACK was used to evaluate the equilibrium thermodynamic plausibility of
-                                the specified sequential hybridization steps in the designed 6-Helix
-                                Bundle HCR system [<a href="#ref-24">24</a>]. First, each hairpin (H1–H6) was analysed in
-                                isolation at 1 μM; the predicted monomer fractions (&gt;99.7%) and
+                                the specified sequential hybridization steps in the designed 6HB Bundled HCR system [<a href="#ref-24">24</a>]. First, each hairpin (H1–H6) was analyzed in
+                                isolation at 1 µM; the predicted monomer fractions (&gt;99.7%) and
                                 homodimer fractions (≤0.21%) indicate that the intended closed-hairpin
-                                states are thermodynamically favoured under the model conditions. We then
+                                states are thermodynamically favored under the model conditions. We then
                                 calculated the Gibbs free-energy change (ΔG) for each prescribed trigger-
                                 or product-associated hybridization step. A negative ΔG means that the
                                 intended product complex, including hybridization associated with hairpin
-                                opening, is thermodynamically more favourable than the specified reactant
-                                state. As summarized in <a href="#table-1">Table 1</a>, all analysed steps
+                                opening, is thermodynamically more favorable than the specified reactant
+                                state. As summarized in <a href="#table-1">Table 1</a>, all analyzed steps
                                 have ΔG &lt; 0. These results support the thermodynamic feasibility of the
                                 individual designed steps; they do not predict the reaction rate, opening
-                                pathway, full-cascade yield, or irreversible completion of HCR.
+                                pathway, full-cascade yield, or irreversible completion of Bundled HCR.
                             </p>
                             <div class="table-responsive">
                                 <table id="table-1" class="table table-dark table-bordered table-sm align-middle exp-seq-table mb-2">
@@ -1194,7 +1191,7 @@
                                 </table>
                             </div>
                             <p class="text-secondary small mb-0">* Monomer fraction and homodimerization values are for
-                                each hairpin evaluated in isolation at 1 μM.<br>
+                                each hairpin evaluated in isolation at 1 µM.<br>
                                 * ΔG values refer to the specified equilibrium reactant and product states;
                                 they are not kinetic predictions.</p>
                         </div>
@@ -1239,8 +1236,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
-    <script src="main.js?v=20261113-26"></script>
-    <script src="sim2d.js?v=20261114-5"></script>
+    <script src="main.js?v=20261114-26"></script>
+    <script src="sim2d.js?v=20261114b-5"></script>
 </body>
 
 </html>
