@@ -1329,7 +1329,7 @@ function drawScale(g, W, H, dpr, alpha) {
   g.rotate(Math.PI / 2);
   g.textAlign = 'center';
   g.font = `700 ${Math.round(19 * dpr)}px "Helvetica Neue", Arial, sans-serif`;
-  g.fillText('Local Curvature H [1/nm]', 0, 0);
+  g.fillText('Local curvature H (nm⁻¹)', 0, 0);
   g.restore();
   g.globalAlpha = 1;
 }

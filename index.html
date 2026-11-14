@@ -211,7 +211,7 @@
     <script type="module">
         // 3D の表紙：動きを減らす設定の人には読み込まない。失敗しても静止したタイトルが残る
         if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            import('./hero/hero-scroll.js?v=19').catch(e => console.warn('hero cover unavailable:', e));
+            import('./hero/hero-scroll.js?v=20').catch(e => console.warn('hero cover unavailable:', e));
         }
     </script>
 </body>
