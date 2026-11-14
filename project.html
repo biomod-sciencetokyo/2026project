@@ -33,7 +33,7 @@
                 <nav id="page-nav" class="nav flex-column sticky-top sidebar-toc">
                     <span class="small fw-bold text-muted mb-3 tracking-widest ps-3">CONTENTS</span>
                     <a class="nav-link fw-bold" href="#background">1. Background</a>
-                    <a class="nav-link fw-bold" href="#problem">2. Challenges of Current Technology</a>
+                    <a class="nav-link fw-bold" href="#problem">2. Challenges</a>
                     <a class="nav-link fw-bold" href="#approach">3. Our Approach</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#how-it-works">3.1 How It Works</a>
@@ -52,15 +52,18 @@
                         <!-- 左側：文章 -->
                         <div class="col-md-7">
                             <p class="text-secondary mb-3">
-                                The lipid bilayer, a fundamental structural component of living cells, also forms the membranes of microscopic vesicles known as extracellular vesicles (EVs). EVs are present in virtually all body fluids, including blood and saliva. Among EVs, exosomes—which originate from endosomes—have a diameter of
-                                approximately 40–160 nm (averaging about 100 nm) [<a href="#ref-1">1</a>].
+                                Extracellular vesicles (EVs) are lipid bilayer-enclosed particles that are released by nearly all
+                                cell types [<a href="#ref-1">1</a>]. They play crucial roles in intercellular communication by
+                                transporting biomolecules, including proteins, nucleic acids, and lipids. As their molecular
+                                cargo can reflect the parent cells&rsquo; physiological and pathological states, EVs have
+                                attracted considerable attention as potential biomarkers for disease diagnosis, including
+                                cancer detection, and therapeutic response monitoring.
                             </p>
                             <p class="text-secondary mb-0">
-                                Cells engage in intercellular communication by encapsulating various biomolecules—such
-                                as RNA,
-                                DNA, proteins, and polypeptides—within these EVs and releasing them into the extracellular
-                                space [<a href="#ref-1">1</a>].
-                                Consequently, EVs, which reflect the state of the secreting cell, carry important molecular information and have attracted attention for their potential as diagnostic biomarkers and therapeutic tools.
+                                However, EVs exhibit substantial heterogeneity in size, molecular composition, and molecular
+                                cargo. Different EV subpopulations may transport distinct biomolecules and play different
+                                roles in intercellular communication. Therefore, characterizing individual EVs is important
+                                for understanding their diverse biological functions.
                             </p>
                         </div>
                         <!-- 右側：画像 -->
@@ -70,49 +73,40 @@
                         </div>
                     </div>
 
-                    <p class="text-secondary mb-3">
-                        To analyze the information inside EVs, the lipid bilayer, which acts as a physical barrier,
-                        must be disrupted, ideally without losing track of <em>which EV</em> carried which molecules.
-                        Recognition of EV surface antigens by aptamers and antibodies has been studied extensively;
-                        what is still missing is a mechanism that converts such a local recognition signal into the
-                        disruption of that membrane. We focused on building this mechanism.
-                    </p>
-                    <p class="text-secondary mb-4">
-                        Such technologies are also relevant to drug delivery systems (DDS) and the direct
-                        destruction of cancer cells, which we regard as future extensions of this work.
+                    <p class="text-secondary mb-0">
+                        To extract intravesicular molecules, the surrounding lipid bilayer must be permeabilized or
+                        disrupted. Conventional approaches include chemical lysis using detergents [<a href="#ref-2">2</a>].
+                        More recently, DNA nanostructures have also been developed as tools for manipulating and
+                        disrupting lipid membranes, owing to their precisely programmable structures and functions
+                        [<a href="#ref-3">3</a>].
                     </p>
                 </section>
 
                 <section id="problem" class="fade-in-section mb-5 pt-4">
-                    <h2 class="section-title">2. Challenges of Current Technology</h2>
-                    <p class="text-secondary mb-4">
-                        Existing membrane disruption methods do not meet this requirement, for two reasons.
-                    </p>
+                    <h2 class="section-title">2. Challenges</h2>
                     <div class="point-stack">
                         <div class="point-box content-box">
                             <div class="point-box-num" aria-hidden="true">01</div>
                             <div class="point-box-body">
-                                <h3 class="point-box-title">Bulk assay <i class="fa-solid fa-arrow-right-long heading-arrow" aria-hidden="true"></i><span class="visually-hidden">leads to</span> Loss of Origin
-                        Information</h3>
+                                <h3 class="point-box-title">Loss of Vesicle-Specific Information</h3>
                                 <p class="text-secondary mb-0">
-                                Bulk assays, such as the chemical dissolution of membranes using surfactants, have often been
-                                employed. However, because these methods destroy all vesicles simultaneously, critical
-                                information—which molecules were contained in which EVs—is lost [<a href="#ref-2">2</a>]. Furthermore, surfactants may
-                                damage the molecules inside the EVs.
+                                Conventional approaches using detergents such as SDS and Triton X-100 have been shown to
+                                efficiently disrupt EV membranes [<a href="#ref-2">2</a>]. However, when multiple EVs are lysed
+                                together, their molecular cargo becomes mixed, resulting in the loss of information about
+                                which molecules originated from each individual vesicle.
                                 </p>
                             </div>
                         </div>
                         <div class="point-box content-box">
                             <div class="point-box-num" aria-hidden="true">02</div>
                             <div class="point-box-body">
-                                <h3 class="point-box-title">Pre-assembled DNA nanostructures <i class="fa-solid fa-arrow-right-long heading-arrow" aria-hidden="true"></i><span class="visually-hidden">lead to</span> “Always Active”
-                        (Off-target Effects)</h3>
+                                <h3 class="point-box-title">Limited Temporal Control of Membrane Disruption</h3>
                                 <p class="text-secondary mb-0">
-                                Recent DNA nanotechnology approaches attempt to disrupt membranes using physical force. For
-                                example, a method has been reported in which DNA nanobarrels are prepared in advance and
-                                clustered on a membrane surface to damage the lipid bilayer [<a href="#ref-3">3</a>]. However, because these
-                                pre-assembled structures are “always active,” they indiscriminately attack membranes, leading to
-                                off-target effects. A method that becomes active only in the presence of a local signal is therefore required.
+                                A previous study on DNA-based membrane disruption systems has demonstrated that
+                                pre-assembled DNA nanobarrels can form clusters on bacterial membranes and induce membrane
+                                rupture [<a href="#ref-3">3</a>]. However, this approach relies on interactions between
+                                pre-assembled DNA nanostructures and lipid membranes and does not incorporate a mechanism to
+                                control the timing of membrane disruption.
                                 </p>
                             </div>
                         </div>
@@ -369,8 +363,8 @@
                 <section id="references" class="references-section">
                     <h2 class="references-title">References</h2>
                     <div class="references-list">
-                        <p id="ref-1">[1] Kalluri, R. &amp; LeBleu, V. S. The biology, function, and biomedical applications of exosomes. <i>Science</i> <b>367</b>, eaau6977 (2020). <a class="ref-doi" href="https://doi.org/10.1126/science.aau6977">DOI</a></p>
-                        <p id="ref-2">[2] Shao, H. et al. New technologies for analysis of extracellular vesicles. <i>Chem. Rev.</i> <b>118</b>, 1917–1950 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.chemrev.7b00534">DOI</a></p>
+                        <p id="ref-1">[1] Zhang, Y. et al. Unveiling heterogeneity: innovations and challenges in single-vesicle analysis for clinical translation. <i>J. Extracell. Vesicles</i> <b>14</b>, e70209 (2025). <a class="ref-doi" href="https://doi.org/10.1002/jev2.70209">DOI</a></p>
+                        <p id="ref-2">[2] Osteikoetxea, X. et al. Differential detergent sensitivity of extracellular vesicle subpopulations. <i>Org. Biomol. Chem.</i> <b>13</b>, 9775–9782 (2015). <a class="ref-doi" href="https://doi.org/10.1039/C5OB01451D">DOI</a></p>
                         <p id="ref-3">[3] Bennett, I. D., Burns, J. R., Ryadnov, M. G., Howorka, S. &amp; Pyne, A. L. B. Lipidated DNA nanostructures target and rupture bacterial membranes. <i>Small</i> <b>20</b>, 2207585 (2024). <a class="ref-doi" href="https://doi.org/10.1002/smll.202207585">DOI</a></p>
                     </div>
                 </section>
