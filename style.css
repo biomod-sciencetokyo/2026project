@@ -301,6 +301,16 @@ main caption strong,
 main .fig-group-caption > strong {
     color: var(--fig-accent);
     font-weight: 600;
+    white-space: nowrap;
+}
+
+/* 図・ムービーのキャプション：全ページ共通（サイズ・色・図との間隔）。
+   HTML 側の .text-secondary / .mt-3 より優先させるため :is() でクラス1つ分の詳細度を足している */
+main figure figcaption:is(.text-secondary, *) {
+    margin-top: 0.75rem !important;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted) !important;
 }
 
 /* Navigation */
@@ -859,6 +869,7 @@ main .col-lg-10 .subsection > h3:first-child {
 }
 
 main .col-lg-10 h4.section-subtitle,
+main .col-lg-10 h3.section-subtitle,
 main .wet-exp-title {
     font-size: 1.35rem;
     font-weight: 700;
@@ -2243,6 +2254,7 @@ html[data-theme="light"] .simulation-page .math-display {
 @media (max-width: 767.98px) {
 
     main .col-lg-10 h4.section-subtitle,
+    main .col-lg-10 h3.section-subtitle,
     main .wet-exp-title {
         font-size: 1.2rem;
     }
@@ -2565,25 +2577,6 @@ html[data-theme="light"] .simulation-page .math-display {
 
 .sim-heatmap .ratio > img {
     padding: 6px;
-}
-
-.simulation-page .sim-heatmap figcaption {
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.simulation-page figure figcaption,
-.simulation-page table caption {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text-muted) !important;
-}
-
-.simulation-page figure figcaption strong,
-.simulation-page table caption strong {
-    color: var(--fig-accent);
-    font-weight: 600;
-    white-space: nowrap;
 }
 
 main table caption,
@@ -2934,18 +2927,6 @@ main .wet-table td {
     background-color: #fff;
 }
 
-.wet-figure figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text-muted) !important;
-}
-
-.wet-figure figcaption strong {
-    color: var(--fig-accent);
-    font-weight: 600;
-}
-
 /* Consecutive single-panel figures sit two per row */
 .wet-figure-grid {
     display: grid;
@@ -2993,17 +2974,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
     --bs-table-bg: rgba(20, 41, 69, 0.6);
     --bs-table-border-color: rgba(148, 163, 184, 0.22);
     font-size: 0.86rem;
-}
-
-.experiment-page figure figcaption {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text-muted) !important;
-}
-
-.experiment-page figure figcaption strong {
-    color: var(--fig-accent);
-    font-weight: 600;
 }
 
 .exp-seq-table caption {
@@ -3091,10 +3061,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 }
 
 /* Figures */
-.experiment-page figure figcaption {
-    margin-top: 0.75rem !important;
-}
-
 .experiment-page .exp-subsection > figure,
 .experiment-page .exp-subsection > .row,
 .experiment-page .exp-block > figure,
@@ -3176,10 +3142,6 @@ main :not(h1):not(.page-title):not(.fa-solid):not(.fa-regular):not(.fa-brands):n
 
 .experiment-page .seed-structure-layout .exp-seq-table caption {
     padding-bottom: 0;
-}
-
-.experiment-page .seed-structure-layout figcaption {
-    margin: 0.5rem 0 0 !important;
 }
 
 .experiment-page .seed-structure-layout {
@@ -5149,8 +5111,8 @@ html[data-theme="light"] body.princess-page {
 .ms-frame {
     position: relative;
     padding: 1.5rem 2rem 2rem;
-    border: 2px solid var(--accent-gold);
-    background: color-mix(in srgb, var(--accent-gold) 5%, var(--surface-dark));
+    border: 1px solid var(--border-color);
+    background: transparent;
 }
 
 .ms-frame.is-future {
@@ -5263,9 +5225,8 @@ main .ms-axis-title {
 
 .ms-node.is-done .ms-check,
 .ms-check.is-done {
-    border-color: var(--accent-gold);
-    background: var(--accent-gold);
-    color: var(--bg-light);
+    border-color: color-mix(in srgb, var(--accent-gold) 60%, transparent);
+    color: var(--accent-gold);
 }
 
 .ms-node.is-model .ms-check,
@@ -5393,9 +5354,9 @@ main .ms-hint {
     gap: 0.6rem;
     margin: 0 0 1rem;
     text-indent: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--accent-blue);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
 }
 
 .ms-node:has(.ms-link) {
@@ -5503,13 +5464,6 @@ main .ms-hint {
     border: 1px solid var(--border-color);
 }
 
-.ms-claim.is-done {
-    border-color: color-mix(in srgb, var(--accent-gold) 55%, var(--border-color));
-}
-
-.ms-claim.is-model {
-    border-color: color-mix(in srgb, var(--accent-blue) 55%, var(--border-color));
-}
 
 .ms-claim.is-no {
     border-style: dashed;
@@ -5545,9 +5499,8 @@ main .ms-hint {
 }
 
 .ms-claim.is-done .ms-check {
-    border-color: var(--accent-gold);
-    background: var(--accent-gold);
-    color: var(--bg-light);
+    border-color: color-mix(in srgb, var(--accent-gold) 60%, transparent);
+    color: var(--accent-gold);
 }
 
 .ms-claim.is-model .ms-check {
@@ -5579,21 +5532,21 @@ main .ms-claim-text {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.3rem 1.1rem;
 }
 
 .ms-evidence a {
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
-    padding: 0.15rem 0.55rem;
-    border: 1px solid color-mix(in srgb, var(--accent-blue) 55%, transparent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    padding: 0;
+    border: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     color: var(--accent-blue);
     text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .ms-evidence a i {
@@ -5602,8 +5555,8 @@ main .ms-claim-text {
 
 .ms-evidence a:hover,
 .ms-evidence a:focus-visible {
-    background: var(--accent-blue);
-    color: var(--bg-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 @media (max-width: 767.98px) {

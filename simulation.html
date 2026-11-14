@@ -7,7 +7,7 @@
     <title>SIMULATION | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-47">
+    <link rel="stylesheet" href="style.css?v=20261114-50">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         MathJax = {
@@ -561,7 +561,7 @@
                                             <div class="row g-4 mb-4">
                                                 <div class="col-12 col-md-6">
                                                     <figure id="figure-4" class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="heatmap-plot mb-3">
+                                                        <div class="heatmap-plot">
                                                             <img src="img/SIMULATION/rupture_heatmap_R50.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 50 nm"
                                                                 loading="lazy" decoding="async">
@@ -575,7 +575,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure id="figure-5" class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="heatmap-plot mb-3">
+                                                        <div class="heatmap-plot">
                                                             <img src="img/SIMULATION/rupture_heatmap_R100.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 100 nm"
                                                                 loading="lazy" decoding="async">
@@ -589,7 +589,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure id="figure-6" class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="heatmap-plot mb-3">
+                                                        <div class="heatmap-plot">
                                                             <img src="img/SIMULATION/rupture_heatmap_R150.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 150 nm"
                                                                 loading="lazy" decoding="async">
@@ -603,7 +603,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure id="figure-7" class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="heatmap-plot mb-3">
+                                                        <div class="heatmap-plot">
                                                             <img src="img/SIMULATION/rupture_heatmap_R200.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 200 nm"
                                                                 loading="lazy" decoding="async">
@@ -617,7 +617,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure id="figure-8" class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="heatmap-plot mb-3">
+                                                        <div class="heatmap-plot">
                                                             <img src="img/SIMULATION/rupture_heatmap_R250.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 250 nm"
                                                                 loading="lazy" decoding="async">
@@ -631,7 +631,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <figure id="figure-9" class="content-box h-100 mb-0 sim-heatmap">
-                                                        <div class="heatmap-plot mb-3">
+                                                        <div class="heatmap-plot">
                                                             <img src="img/SIMULATION/rupture_heatmap_R300.png?v=3"
                                                                 alt="Local pore formation probability heatmap of DNA Bundle bending rigidity versus linker length at R = 300 nm"
                                                                 loading="lazy" decoding="async">
@@ -1063,7 +1063,7 @@
                     <!-- 2.1 Sequence Design Conditions -->
                     <div id="hcr-self-assembly" class="simulation-subblock subsection">
                         <h3 class="h4 fw-bold mb-4">2.1 Bundled HCR Sequence Design</h3>
-                        <div class="content-box p-4 p-md-5 mb-4">
+                        <div class="content-box mb-4">
                             <p class="text-secondary">The DNA sequences for the 6HB Bundled HCR system (seed strands S1–S6 and hairpins H1–H6) were designed computationally with NUPACK to eliminate
                                 unintended leak reactions and structural defects
                                 [<a href="#ref-23">23</a>, <a href="#ref-24">24</a>]. Strict physical constraints were
@@ -1081,7 +1081,7 @@
                     <!-- 2.2 Thermodynamic Feasibility -->
                     <div id="hcr-possibility" class="simulation-subblock subsection mb-0">
                         <h3 class="h4 fw-bold mb-4">2.2 Thermodynamic Assessment of Sequential Hybridization</h3>
-                        <div class="content-box p-4 p-md-5">
+                        <div class="content-box">
                             <p class="text-secondary">
                                 NUPACK was used to evaluate the equilibrium thermodynamic plausibility of
                                 the specified sequential hybridization steps in the designed 6HB Bundled HCR system [<a href="#ref-24">24</a>]. First, each hairpin (H1–H6) was analyzed in
@@ -1106,8 +1106,8 @@
                                     </caption>
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-wrap">Reaction Step (Added Strand)</th>
-                                            <th scope="col" class="text-wrap">Monomer Fraction (%)*</th>
+                                            <th scope="col" class="text-wrap">Reaction step (added strand)</th>
+                                            <th scope="col" class="text-wrap">Monomer fraction (%)*</th>
                                             <th scope="col" class="text-wrap">Homodimerization (%)*</th>
                                             <th scope="col" class="text-wrap">ΔG of specified hybridization step (kcal/mol)</th>
                                         </tr>
