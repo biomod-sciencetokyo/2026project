@@ -5099,12 +5099,6 @@ main .ms-frame-label {
     color: var(--text-muted);
 }
 
-.ms-axes {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-    align-items: start;
-}
 
 .ms-axis-head {
     margin-bottom: 1.25rem;
@@ -5370,22 +5364,14 @@ main .ms-hint {
     font-weight: 700;
 }
 
-/* connector between the frames: a bracket joins both axes (gold), a stem leads into the future
-   frame (gold to blue); on phones the axes are stacked, so only the stem */
+/* connector between the frames: one stem leads from the achievements into the future frame (gold to blue) */
 .ms-merge {
     position: relative;
     height: 4rem;
 }
 
 .ms-merge::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 25%;
-    right: 25%;
-    height: 1.5rem;
-    border: 2px solid var(--accent-gold);
-    border-top: 0;
+    content: none;
 }
 
 .ms-merge::after {
@@ -5397,6 +5383,7 @@ main .ms-hint {
     width: 2px;
     transform: translateX(-50%);
     background: linear-gradient(var(--accent-gold), var(--accent-blue));
+    top: 0;
 }
 
 .ms-legend {
@@ -5428,11 +5415,6 @@ main .ms-hint {
         padding: 1.25rem 1rem 1.25rem;
     }
 
-    .ms-axes {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
     .ms-merge {
         height: 3rem;
     }
@@ -5446,3 +5428,161 @@ main .ms-hint {
     }
 }
 
+
+/* ===== Milestone lanes: one lane per step, read left to right =====
+   a column (ms-stage) holds items done in parallel; an arrow between columns means
+   "the next column builds on this one". Below 992px the lane turns vertical. */
+.ms-lanes {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.ms-flow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: center;
+}
+
+.ms-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* lane cards are narrow: keep the label clear of the corner arrow, and show only the arrow on hover
+   (the "View data" hover text would sit on top of the label) */
+.ms-stage .ms-kind {
+    padding-right: 1.25rem;
+}
+
+.ms-stage .ms-go::before {
+    display: none;
+}
+
+/* parallel cards inside a column are not chained */
+.ms-stage .ms-node + .ms-node::before,
+.ms-stage .ms-node + .ms-node::after {
+    content: none;
+}
+
+.ms-stage + .ms-stage::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -1.75rem;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--text-muted);
+}
+
+.ms-stage + .ms-stage::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -0.75rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 2px solid var(--text-muted);
+    border-right: 2px solid var(--text-muted);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+@media (max-width: 991.98px) {
+    .ms-flow {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+    }
+
+    .ms-stage + .ms-stage::before {
+        top: -1.9rem;
+        left: 50%;
+        width: 2px;
+        height: 1.6rem;
+    }
+
+    .ms-stage + .ms-stage::after {
+        top: -0.8rem;
+        left: 50%;
+        transform: translateX(-50%) rotate(135deg);
+    }
+}
+
+/* ===== Goal callout (all pages): the one statement a page is built around =====
+   flat and compact: a gold label column on the left, the statement on the right */
+.goal-callout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border: 1px solid var(--accent-gold);
+    background: var(--surface-dark);
+}
+
+.goal-callout-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 8.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--accent-gold);
+    color: var(--bg-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.goal-callout-head i {
+    font-size: 1.6rem;
+}
+
+.goal-callout-body {
+    padding: 1.5rem 2rem;
+}
+
+main .goal-callout-title {
+    margin: 0 0 0.6rem;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--accent-gold);
+    text-wrap: balance;
+}
+
+main .goal-callout-text {
+    margin: 0;
+    text-indent: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    text-wrap: pretty;
+}
+
+@media (max-width: 575.98px) {
+    .goal-callout {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-callout-head {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0.6rem 1.25rem;
+    }
+
+    .goal-callout-head i {
+        font-size: 1.1rem;
+    }
+
+    .goal-callout-body {
+        padding: 1.1rem 1.25rem 1.25rem;
+    }
+
+    main .goal-callout-title {
+        font-size: 1.2rem;
+    }
+}

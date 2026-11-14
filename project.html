@@ -7,7 +7,7 @@
     <title>PROJECT | BIOMOD 2026 Team Science Tokyo</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/team_favicon_32.png?v=3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261114-37">
+    <link rel="stylesheet" href="style.css?v=20261114-40">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -38,7 +38,7 @@
                     <a class="nav-link fw-bold" href="#approach">4. Our Approach</a>
                     <div class="nav flex-column sidebar-toc-subnav">
                         <a class="nav-link" href="#how-it-works">4.1 How It Works</a>
-                        <a class="nav-link" href="#bundled-hcr">4.2 Key Factor: Bundled HCR</a>
+                        <a class="nav-link" href="#bundled-hcr">4.2 Our Design: Bundled HCR</a>
                     </div>
                     <a class="nav-link fw-bold" href="#achievements">5. Achievements &amp; Future Works</a>
                 </nav>
@@ -80,9 +80,10 @@
 
                     <p class="text-secondary mb-3">
                         To analyze the information inside EVs, the lipid bilayer, which acts as a physical barrier,
-                        must be disrupted. What matters, however, is not only <em>which molecules</em> are inside EVs
-                        but also <em>which EV</em> carries them. We therefore need a way to disrupt the membrane of
-                        only the target EV, without affecting other vesicles.
+                        must be disrupted, ideally without losing track of <em>which EV</em> carried which molecules.
+                        Recognition of EV surface antigens by aptamers and antibodies has been studied extensively;
+                        what is still missing is a mechanism that converts such a local recognition signal into the
+                        rupture of that membrane. We focused on building this mechanism.
                     </p>
                     <p class="text-secondary mb-4">
                         Such technologies are also important for drug delivery systems (DDS) and the direct
@@ -119,7 +120,7 @@
                                 example, a method has been reported in which DNA nanobarrels are prepared in advance and
                                 clustered on a membrane surface to damage the lipid bilayer [<a href="#ref-3">3</a>]. However, because these
                                 pre-assembled structures are “always active,” they indiscriminately attack membranes, leading to
-                                off-target effects. A method that is active only near the target EV is therefore required.
+                                off-target effects. A method that becomes active only where a signal appears is therefore required.
                                 </p>
                             </div>
                         </div>
@@ -128,13 +129,21 @@
 
                 <section id="goal" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">3. Our Goal</h2>
-                    <div class="content-box text-center">
-                        <h3 class="h5 fw-bold mb-3 section-subtitle">A physical membrane disruption
-                            system that becomes active only near the target EV.</h3>
-                        <p class="text-secondary mb-0">
-                            Achieving this goal will enable the molecular information inside target EVs to be read
-                            with their origin preserved, advancing disease diagnosis and biological analysis.
-                        </p>
+                    <div class="goal-callout">
+                        <div class="goal-callout-head">
+                            <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+                            <span>Our Goal</span>
+                        </div>
+                        <div class="goal-callout-body">
+                            <h3 class="goal-callout-title">A DNA mechanism that converts a local signal<br class="d-none d-xl-inline">
+                                into lipid membrane&nbsp;rupture.</h3>
+                            <p class="goal-callout-text">
+                                We aim to build the missing link between recognition and rupture: converting a trigger
+                                signal (Step&nbsp;1), growing a rigid DNA bundle (Step&nbsp;2), and disrupting the lipid
+                                membrane (Step&nbsp;3). Combined with existing recognition of EV surface antigens, this
+                                would enable selective disruption of target EVs.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
@@ -145,10 +154,10 @@
                             assembled DNA bundles by Bundled HCR</span>.
                     </p>
                     <p class="text-secondary mb-3">
-                        In our approach, Bundled HCR (Bundled Hybridization Chain Reaction) is initiated near the target
-                        EV, then rigid DNA bundles are assembled in situ and disrupt lipid membrane. Because this system
-                        becomes active only in the vicinity of the target EV, it can prevent the loss of origin
-                        information and minimize off-target effects. Our proposal proceeds in three steps.
+                        In our approach, a trigger signal initiates Bundled HCR (Bundled Hybridization Chain Reaction),
+                        then rigid DNA bundles are assembled in situ and disrupt the lipid membrane. Because the system
+                        becomes active only where the trigger is present, it is not &ldquo;always active&rdquo; like
+                        pre-assembled structures. Our proposal proceeds in three steps.
                     </p>
                     <div id="how-it-works" class="subsection">
                     <h3 class="h4 fw-bold mb-4">4.1 How It Works</h3>
@@ -226,50 +235,68 @@
                         </div>
                     </div>
                     <p class="text-secondary mb-0">
-                        <mark class="key-line">To establish a proof of concept, this project demonstrated Step 2 (Elongation) and Step 3 (Membrane disruption).</mark>
+                        <mark class="key-line">To establish a proof of concept, this project addressed the questions behind Step 2 (Elongation) and Step 3 (Membrane disruption).</mark>
                         Step 1 is our next stage (see <a href="#achievements">Achievements and Future Works</a>).
                     </p>
                     </div>
 
                     <div id="bundled-hcr" class="subsection">
-                    <h3 class="h4 fw-bold mb-4">4.2 Key Factor: Bundled HCR</h3>
+                    <h3 class="h4 fw-bold mb-4">4.2 Our Design: Bundled HCR</h3>
                     <p class="text-secondary mb-3">
-                        We have extended the concept of Hybridization Chain Reaction (HCR) and developed what we call
-                        <span class="concept-highlight">Bundled HCR</span>.
-                    </p>
-                    <p class="text-secondary mb-3">
+                        We have extended the concept of the Hybridization Chain Reaction (HCR) and developed what we
+                        call <span class="concept-highlight">Bundled HCR</span>.
                         Conventional HCR is an enzyme-free cascade reaction driven solely by DNA hybridization.
                         Initiated by a Trigger DNA, two types of hairpin DNAs sequentially open and hybridize via
                         toehold-mediated strand displacement to form a long DNA polymer [<a href="#ref-4">4</a>].
-                        While conventional HCR yields a long, single double-stranded DNA (dsDNA), our Bundled HCR
-                        generates a long, thick DNA bundle.
+                        While conventional HCR yields a single long duplex DNA, our Bundled HCR generates a long,
+                        thick DNA bundle. Its key components are a seed and six types of Double-Hairpin DNAs (H1&ndash;H6).
                     </p>
-                    <p class="text-secondary mb-4">
-                        The key components of Bundled HCR are a seed, which serves as the foundation of the DNA
-                        Bundle, and six types of Double-Hairpin DNAs (H1–H6).
-                    </p>
-                    <div class="row g-4 mb-4 w-75 mx-auto">
-                        <div class="col-12 col-md-6">
-                            <p class="text-secondary fw-bold mb-2">Seed</p>
+
+                    <h4 class="h5 fw-bold mb-3 section-subtitle">Seed: the foundation that switches on with the Trigger</h4>
+                    <div class="row g-4 align-items-center mb-4">
+                        <div class="col-md-7">
+                            <p class="text-secondary mb-0">
+                                The seed consists of six strands, S1&ndash;S6: three 42-nt strands and three 84-nt strands
+                                that each hybridize with two neighbouring 42-nt strands, so that the six strands roll up
+                                into a tube with six helices. Its reactive sequences are masked by a Blocker strand.
+                                Only in the presence of the Trigger DNA is the Blocker displaced, exposing the reactive
+                                sequences and switching the seed to an active state (<a
+                                    href="experiment.html#exp-a-materials">sequences and structure</a>).
+                            </p>
+                        </div>
+                        <div class="col-md-5">
                             <img src="img/PROJECT/bundled_hcr_seed_rolled.jpg?v=2" alt="Seed: six strands rolled up into a tube, capped by a Blocker strand"
                                 class="img-fluid w-100 border" loading="lazy" decoding="async">
                         </div>
-                        <div class="col-12 col-md-6">
-                            <p class="text-secondary fw-bold mb-2">Double-Hairpin DNAs (H1–H6)</p>
+                    </div>
+
+                    <h4 class="h5 fw-bold mb-3 section-subtitle">Why Double-Hairpin DNAs</h4>
+                    <!-- TODO(team): confirm this rationale for the double-hairpin design -->
+                    <div class="row g-4 align-items-center mb-4">
+                        <div class="col-md-7">
+                            <p class="text-secondary mb-0">
+                                Like the 84-nt strands of the seed, each 84-nt Double-Hairpin DNA spans two neighbouring
+                                helices. When it opens, it extends two helices at once and links them side by side, so
+                                that all helices grow together as one bundle instead of as separate duplexes. Each of its
+                                two binding regions is closed in a hairpin until the preceding strand opens it, so the
+                                hairpins do not react with each other in solution and the bundle grows only from an
+                                active seed.
+                            </p>
+                        </div>
+                        <div class="col-md-5">
                             <img src="img/PROJECT/bundled_hcr_hairpins.jpg" alt="Double-Hairpin DNAs H1 to H6"
                                 class="img-fluid w-100 border" loading="lazy" decoding="async">
                         </div>
                     </div>
+
+                    <h4 class="h5 fw-bold mb-3 section-subtitle">Growth cycle</h4>
                     <p class="text-secondary mb-4">
-                        The seed consists of six strands and its reactive sequences are masked by a Blocker strand.
-                        Only in the presence of the Trigger DNA is the Blocker displaced, exposing the reactive
-                        sequences and switching the seed to an active state.
-                    </p>
-                    <p class="text-secondary mb-4">
-                        The following video demonstrates the formation of a DNA bundle composed of 6 dsDNA strands via
-                        this Bundled HCR process.
-                        By changing the seed design and the number of Double-Hairpin DNA types, this Bundled HCR can be
-                        adapted to assemble bundles consisting of any number of strands.
+                        The active seed opens the Double-Hairpin DNAs by toehold-mediated strand displacement in a
+                        fixed order: H1, H2, and H3 open sequentially, followed by H4, H5, and H6, and the cycle then
+                        returns to H1, H2, and H3. Through this repeated cycle, multiple dsDNA strands elongate together
+                        as a bundle. The video shows a DNA bundle composed of 6 dsDNA strands. By changing the seed
+                        design and the number of Double-Hairpin DNA types, Bundled HCR can be adapted to assemble
+                        bundles consisting of any number of strands.
                     </p>
                     <div class="ratio content-box p-0 mb-4 w-75 mx-auto"
                         style="--bs-aspect-ratio: calc(9 / 16 * 100%);">
@@ -277,15 +304,45 @@
                             aria-label="Demonstration of 6-dsDNA bundle formation via Bundled HCR"
                             style="object-fit: contain; width: 100%; height: 100%;"></video>
                     </div>
+
+                    <h4 class="h5 fw-bold mb-3 section-subtitle">Resulting bundle: cholesterol for membrane anchoring</h4>
                     <p class="text-secondary mb-4">
-                        In this video, the active seed opens the Double-Hairpin DNAs by toehold-mediated strand
-                        displacement in a fixed order: H1, H2, and H3 open sequentially, followed by H4, H5, and H6,
-                        and the cycle then returns to H1, H2, and H3. Through this repeated cycle, multiple dsDNA
-                        strands elongate together as a bundle.
+                        In our proposed system, the Double-Hairpin DNAs are modified with cholesterol, so the resulting
+                        DNA bundle anchors directly to the lipid membrane. The direction in which cholesterol points
+                        depends on the bundle geometry: in the 12-helix bundle used in our experiments, the strands
+                        hybridize without twisting and cholesterol protrudes in only one direction, whereas in the
+                        13-helix bundle the bundle twists and cholesterol protrudes in all directions.
                     </p>
+
+                    <h4 class="h5 fw-bold mb-3 section-subtitle">Two structures with separate roles</h4>
+                    <p class="text-secondary mb-3">
+                        Our simulations estimated that about 12 helices are needed to disrupt the membrane, while the
+                        growth mechanism of Bundled HCR can be tested with fewer helices. We therefore split the roles
+                        at the design stage and prepared two structures that we tested in parallel:
+                    </p>
+                    <ul class="text-secondary mb-4">
+                        <li class="mb-2"><strong>Isothermally grown 6-helix bundle (Bundled HCR):</strong> a minimal
+                            design to verify that Bundled HCR proceeds from the seed (<a
+                                href="experiment.html#exp-a">Experiment A</a>).</li>
+                        <li><strong>Annealed 12- and 13-helix bundles:</strong> rigid, cholesterol-modified bundles
+                            built from established DNA tube designs [<a href="#ref-5">5</a>, <a href="#ref-6">6</a>]
+                            to test anchoring and disruption of the membrane. The 12-helix bundle meets the estimated
+                            threshold, and the 13-helix bundle is a higher-helix comparison with twisted cholesterol
+                            placement (<a href="experiment.html#exp-b">Experiment B</a>).</li>
+                    </ul>
                     <p class="text-secondary mb-4">
-                        In our proposed system, these Double-Hairpin DNAs are modified with cholesterols. Therefore, the
-                        resulting DNA Bundle anchors directly to the lipid membrane.
+                        Extending Bundled HCR itself to 12 helices is part of our future design (<a
+                            href="discussion.html#improvements">Discussion 3.1</a>).
+                    </p>
+
+                    <h4 class="h5 fw-bold mb-3 section-subtitle">Sequence design</h4>
+                    <p class="text-secondary mb-0">
+                        The seed and hairpin sequences were designed with NUPACK under strict constraints: no
+                        palindromes of 4&nbsp;nt or longer and no homopolymers, all four bases within any 7-nt window,
+                        and multi-tube design to suppress homodimerization and crosstalk
+                        (<a href="simulation.html#hcr-self-assembly">Simulation 2.1</a>). Each designed hybridization
+                        step was predicted to be thermodynamically favourable
+                        (<a href="simulation.html#hcr-possibility">Simulation 2.2</a>).
                     </p>
                     </div>
                 </section>
@@ -302,36 +359,42 @@
                     <div class="milestone">
                         <p class="ms-hint">
                             <i class="fa-solid fa-arrow-pointer" aria-hidden="true"></i>
-                            Each card links to the section that shows its data. Click a card to jump there.
+                            Each card links to the section that shows its data. Arrows mean that the next item builds
+                            on the previous one; cards stacked in one column were done in parallel.
                         </p>
                         <div class="ms-frame is-now">
                             <p class="ms-frame-label">Achievements<span>This project</span></p>
-                            <div class="ms-axes">
-                                <div class="ms-axis">
-                                    <div class="ms-axis-head">
-                                        <span class="ms-axis-step">Step 2 &middot; Elongation</span>
-                                        <h3 class="ms-axis-title">Does Bundled HCR proceed and form a DNA bundle?</h3>
-                                    </div>
-                                    <ol class="ms-list">
-                                        <li class="ms-node is-done">
+                            <div class="ms-lanes">
+                            <div class="ms-lane">
+                                <div class="ms-axis-head">
+                                    <span class="ms-axis-step">Step 2 &middot; Elongation</span>
+                                    <h3 class="ms-axis-title">Does Bundled HCR proceed and form a DNA bundle?</h3>
+                                </div>
+                                <ol class="ms-flow">
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="simulation.html#hcr-self-assembly">
                                                 <span class="ms-kind">Simulation 2.1</span>
-                                                <span class="ms-text">Seed and hairpin (H1&ndash;H6) sequences designed with NUPACK</span>
+                                                <span class="ms-text">Seed and hairpin sequences designed with NUPACK</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                    </li>
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="simulation.html#hcr-possibility">
                                                 <span class="ms-kind">Simulation 2.2</span>
-                                                <span class="ms-text">Every designed HCR step is thermodynamically favourable (&Delta;G &lt; 0)</span>
+                                                <span class="ms-text">Every designed HCR step is favourable (&Delta;G &lt; 0)</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                    </li>
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-2-1">
@@ -339,102 +402,113 @@
                                                 <span class="ms-text">Seed formation confirmed by PAGE</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                    </li>
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-2-2">
                                                 <span class="ms-kind">Experiment 2.2</span>
-                                                <span class="ms-text">Bundled HCR progression confirmed by agarose gel electrophoresis</span>
+                                                <span class="ms-text">Bundled HCR progression shown by agarose gel</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-2-3">
                                                 <span class="ms-kind">Experiment 2.3</span>
-                                                <span class="ms-text">Elongated 6-helix DNA Bundles observed by AFM</span>
+                                                <span class="ms-text">Elongated 6-helix bundles observed by AFM</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                    </ol>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="ms-lane">
+                                <div class="ms-axis-head">
+                                    <span class="ms-axis-step">Step 3 &middot; Membrane disruption</span>
+                                    <h3 class="ms-axis-title">Can a rigid, cholesterol-modified DNA bundle disrupt the lipid membrane?</h3>
                                 </div>
-                                <div class="ms-axis">
-                                    <div class="ms-axis-head">
-                                        <span class="ms-axis-step">Step 3 &middot; Membrane disruption</span>
-                                        <h3 class="ms-axis-title">Can a rigid, cholesterol-modified DNA bundle disrupt the lipid membrane?</h3>
-                                    </div>
-                                    <ol class="ms-list">
-                                        <li class="ms-node is-model">
+                                <ol class="ms-flow">
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-model">
                                             <span class="ms-check" aria-hidden="true">&#9680;</span>
                                             <span class="visually-hidden">In model only: </span>
                                             <a class="ms-body ms-link" href="simulation.html#two-d-md">
                                                 <span class="ms-kind">Simulation 1.1</span>
-                                                <span class="ms-text">2D model: stiffer DNA Bundles linked to local pore formation; favourable linker length depends on vesicle size</span>
+                                                <span class="ms-text">2D model: stiffer bundles start pores; linker length depends on vesicle size</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-model">
+                                        </div>
+                                        <div class="ms-node is-model">
                                             <span class="ms-check" aria-hidden="true">&#9680;</span>
                                             <span class="visually-hidden">In model only: </span>
                                             <a class="ms-body ms-link" href="simulation.html#three-d">
                                                 <span class="ms-kind">Simulation 1.2</span>
-                                                <span class="ms-text">3D model: about 12 helices per DNA Bundle estimated as the design target</span>
+                                                <span class="ms-text">3D model: about 12 helices as the design target</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                    </li>
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-3-1">
                                                 <span class="ms-kind">Experiment 3.1</span>
-                                                <span class="ms-text">12- and 13-helix DNA Bundle formation confirmed by PAGE</span>
+                                                <span class="ms-text">12- and 13-helix bundle formation shown by PAGE</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-3-2">
                                                 <span class="ms-kind">Experiment 3.2</span>
-                                                <span class="ms-text">12- and 13-helix DNA Bundles observed by AFM</span>
+                                                <span class="ms-text">12- and 13-helix bundles observed by AFM</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-done">
+                                        </div>
+                                    </li>
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-done">
                                             <span class="ms-check" aria-hidden="true">&#10003;</span>
                                             <span class="visually-hidden">Achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-3-3">
                                                 <span class="ms-kind">Experiment 3.3</span>
-                                                <span class="ms-text">Cholesterol-specific anchoring of 12-helix DNA Bundles to lipid membranes (GUVs)</span>
+                                                <span class="ms-text">Cholesterol-specific anchoring of 12-helix bundles to GUVs</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-no">
+                                        </div>
+                                    </li>
+                                    <li class="ms-stage">
+                                        <div class="ms-node is-no">
                                             <span class="ms-check" aria-hidden="true">&#10007;</span>
                                             <span class="visually-hidden">Not yet achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-4-1">
                                                 <span class="ms-kind">Experiment 4.1</span>
-                                                <span class="ms-text">Membrane disruption confirmed by a calcein leakage assay</span>
+                                                <span class="ms-text">Membrane disruption by a calcein leakage assay</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                        <li class="ms-node is-no">
+                                        </div>
+                                        <div class="ms-node is-no">
                                             <span class="ms-check" aria-hidden="true">&#10007;</span>
                                             <span class="visually-hidden">Not yet achieved: </span>
                                             <a class="ms-body ms-link" href="experiment.html#exp-4-2">
                                                 <span class="ms-kind">Experiment 4.2</span>
-                                                <span class="ms-text">Membrane disruption on small, EV-sized vesicles</span>
+                                                <span class="ms-text">Disruption of small, EV-sized vesicles</span>
                                                 <span class="ms-go" aria-hidden="true">View data <i class="fa-solid fa-arrow-right"></i></span>
                                             </a>
-                                        </li>
-                                    </ol>
-                                </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
                             </div>
                         </div>
 
-                        <!-- connector: both axes join, then lead into the future works -->
+                        <!-- connector: the achievements lead into the future works -->
                         <div class="ms-merge" aria-hidden="true"></div>
 
                         <div class="ms-frame is-future">
@@ -452,7 +526,7 @@
                                 <li class="ms-node is-goal">
                                     <span class="ms-body">
                                         <span class="ms-kind"><a href="#goal">Our Goal</a></span>
-                                        <span class="ms-text">A physical membrane disruption system that becomes active only near the target EV</span>
+                                        <span class="ms-text">A DNA mechanism that converts a local signal into lipid membrane rupture</span>
                                     </span>
                                 </li>
                             </ol>
@@ -472,6 +546,8 @@
                         <p id="ref-2">[2] Shao, H. et al. New Technologies for Analysis of Extracellular Vesicles. <i>Chem. Rev.</i> <b>118</b>, 1917–1950 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.chemrev.7b00534">DOI</a></p>
                         <p id="ref-3">[3] Bennett, I. D., Burns, J. R., Ryadnov, M. G., Howorka, S. &amp; Pyne, A. L. B. Lipidated DNA Nanostructures Target and Rupture Bacterial Membranes. <i>Small</i> <b>20</b>, 2207585 (2024). <a class="ref-doi" href="https://doi.org/10.1002/smll.202207585">DOI</a></p>
                         <p id="ref-4">[4] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
+                        <p id="ref-5">[5] Maier, A. M. et al. Self-Assembled DNA Tubes Forming Helices of Controlled Diameter and Chirality. <i>ACS Nano</i> <b>11</b>, 1301–1306 (2017). <a class="ref-doi" href="https://doi.org/10.1021/acsnano.6b05602">DOI</a></p>
+                        <p id="ref-6">[6] Yin, P. et al. Programming DNA Tube Circumferences. <i>Science</i> <b>321</b>, 824–826 (2008). <a class="ref-doi" href="https://doi.org/10.1126/science.1157312">DOI</a></p>
                     </div>
                 </section>
             </div>
