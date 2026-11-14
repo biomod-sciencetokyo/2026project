@@ -435,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const poses = {
         'index.html': 'princess_wave.gif',       // HOME：手を振ってお出迎え
         'project.html': 'princess_step.gif',     // PROJECT：足踏みで出発
+        'design.html': 'princess_look.gif',      // DESIGN：設計図をのぞき込む
         'simulation.html': 'princess_turn.gif',  // SIMULATION：3Dモデルのようにくるっと回転
         'experiment.html': 'princess_handstand.gif', // EXPERIMENT：体を張って実験
         'discussion.html': 'princess_look.gif',  // DISCUSSION：きょろきょろ考察

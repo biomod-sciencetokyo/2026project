@@ -243,60 +243,42 @@
                     <div id="bundled-hcr" class="subsection">
                     <h3 class="h4 fw-bold mb-4">4.2 Our Design: Bundled HCR</h3>
                     <p class="text-secondary mb-3">
-                        We have extended the concept of the Hybridization Chain Reaction (HCR) and developed what we
-                        call <span class="concept-highlight">Bundled HCR</span>.
+                        We have extended the concept of the Hybridization Chain Reaction (HCR) and developed what we call
+                        <span class="concept-highlight">Bundled HCR</span>.
+                    </p>
+                    <p class="text-secondary mb-3">
                         Conventional HCR is an enzyme-free cascade reaction driven solely by DNA hybridization.
                         Initiated by a Trigger DNA, two types of hairpin DNAs sequentially open and hybridize via
                         toehold-mediated strand displacement to form a long DNA polymer [<a href="#ref-4">4</a>].
-                        While conventional HCR yields a single long duplex DNA, our Bundled HCR generates a long,
-                        thick DNA bundle. Its key components are a seed and six types of Double-Hairpin DNAs (H1&ndash;H6).
+                        While conventional HCR yields a single long duplex DNA, our Bundled HCR
+                        generates a long, thick DNA bundle.
                     </p>
-
-                    <h4 class="h5 fw-bold mb-3 section-subtitle">Seed: the foundation that switches on with the Trigger</h4>
-                    <div class="row g-4 align-items-center mb-4">
-                        <div class="col-md-7">
-                            <p class="text-secondary mb-0">
-                                The seed consists of six strands, S1&ndash;S6: three 42-nt strands and three 84-nt strands
-                                that each hybridize with two neighbouring 42-nt strands, so that the six strands roll up
-                                into a tube with six helices. Its reactive sequences are masked by a Blocker strand.
-                                Only in the presence of the Trigger DNA is the Blocker displaced, exposing the reactive
-                                sequences and switching the seed to an active state (<a
-                                    href="experiment.html#exp-a-materials">sequences and structure</a>).
-                            </p>
-                        </div>
-                        <div class="col-md-5">
+                    <p class="text-secondary mb-4">
+                        The key components of Bundled HCR are a seed, which serves as the foundation of the DNA
+                        Bundle, and six types of Double-Hairpin DNAs (H1–H6).
+                    </p>
+                    <div class="row g-4 mb-4 w-75 mx-auto">
+                        <div class="col-12 col-md-6">
+                            <p class="text-secondary fw-bold mb-2">Seed</p>
                             <img src="img/PROJECT/bundled_hcr_seed_rolled.jpg?v=2" alt="Seed: six strands rolled up into a tube, capped by a Blocker strand"
                                 class="img-fluid w-100 border" loading="lazy" decoding="async">
                         </div>
-                    </div>
-
-                    <h4 class="h5 fw-bold mb-3 section-subtitle">Why Double-Hairpin DNAs</h4>
-                    <!-- TODO(team): confirm this rationale for the double-hairpin design -->
-                    <div class="row g-4 align-items-center mb-4">
-                        <div class="col-md-7">
-                            <p class="text-secondary mb-0">
-                                Like the 84-nt strands of the seed, each 84-nt Double-Hairpin DNA spans two neighbouring
-                                helices. When it opens, it extends two helices at once and links them side by side, so
-                                that all helices grow together as one bundle instead of as separate duplexes. Each of its
-                                two binding regions is closed in a hairpin until the preceding strand opens it, so the
-                                hairpins do not react with each other in solution and the bundle grows only from an
-                                active seed.
-                            </p>
-                        </div>
-                        <div class="col-md-5">
+                        <div class="col-12 col-md-6">
+                            <p class="text-secondary fw-bold mb-2">Double-Hairpin DNAs (H1–H6)</p>
                             <img src="img/PROJECT/bundled_hcr_hairpins.jpg" alt="Double-Hairpin DNAs H1 to H6"
                                 class="img-fluid w-100 border" loading="lazy" decoding="async">
                         </div>
                     </div>
-
-                    <h4 class="h5 fw-bold mb-3 section-subtitle">Growth cycle</h4>
                     <p class="text-secondary mb-4">
-                        The active seed opens the Double-Hairpin DNAs by toehold-mediated strand displacement in a
-                        fixed order: H1, H2, and H3 open sequentially, followed by H4, H5, and H6, and the cycle then
-                        returns to H1, H2, and H3. Through this repeated cycle, multiple dsDNA strands elongate together
-                        as a bundle. The video shows a DNA bundle composed of 6 dsDNA strands. By changing the seed
-                        design and the number of Double-Hairpin DNA types, Bundled HCR can be adapted to assemble
-                        bundles consisting of any number of strands.
+                        The seed consists of six strands and its reactive sequences are masked by a Blocker strand.
+                        Only in the presence of the Trigger DNA is the Blocker displaced, exposing the reactive
+                        sequences and switching the seed to an active state.
+                    </p>
+                    <p class="text-secondary mb-4">
+                        The following video demonstrates the formation of a DNA bundle composed of 6 dsDNA strands via
+                        this Bundled HCR process.
+                        By changing the seed design and the number of Double-Hairpin DNA types, this Bundled HCR can be
+                        adapted to assemble bundles consisting of any number of strands.
                     </p>
                     <div class="ratio content-box p-0 mb-4 w-75 mx-auto"
                         style="--bs-aspect-ratio: calc(9 / 16 * 100%);">
@@ -304,46 +286,17 @@
                             aria-label="Demonstration of 6-dsDNA bundle formation via Bundled HCR"
                             style="object-fit: contain; width: 100%; height: 100%;"></video>
                     </div>
-
-                    <h4 class="h5 fw-bold mb-3 section-subtitle">Resulting bundle: cholesterol for membrane anchoring</h4>
                     <p class="text-secondary mb-4">
-                        In our proposed system, the Double-Hairpin DNAs are modified with cholesterol, so the resulting
-                        DNA bundle anchors directly to the lipid membrane. The direction in which cholesterol points
-                        depends on the bundle geometry: in the 12-helix bundle used in our experiments, the strands
-                        hybridize without twisting and cholesterol protrudes in only one direction, whereas in the
-                        13-helix bundle the bundle twists and cholesterol protrudes in all directions.
+                        In this video, the active seed opens the Double-Hairpin DNAs by toehold-mediated strand
+                        displacement in a fixed order: H1, H2, and H3 open sequentially, followed by H4, H5, and H6,
+                        and the cycle then returns to H1, H2, and H3. Through this repeated cycle, multiple dsDNA
+                        strands elongate together as a bundle.
                     </p>
-
-                    <h4 class="h5 fw-bold mb-3 section-subtitle">Two structures with separate roles</h4>
-                    <p class="text-secondary mb-3">
-                        Our simulations estimated that about 12 helices are needed to disrupt the membrane, while the
-                        growth mechanism of Bundled HCR can be tested with fewer helices. We therefore split the roles
-                        at the design stage and prepared two structures that we tested in parallel:
-                    </p>
-                    <ul class="text-secondary mb-4">
-                        <li class="mb-2"><strong>Isothermally grown 6-helix bundle (Bundled HCR):</strong> a minimal
-                            design to verify that Bundled HCR proceeds from the seed (<a
-                                href="experiment.html#exp-a">Experiment A</a>).</li>
-                        <li><strong>Annealed 12- and 13-helix bundles:</strong> rigid, cholesterol-modified bundles
-                            built from established DNA tube designs [<a href="#ref-5">5</a>, <a href="#ref-6">6</a>]
-                            to test anchoring and disruption of the membrane. The 12-helix bundle meets the estimated
-                            threshold, and the 13-helix bundle is a higher-helix comparison with twisted cholesterol
-                            placement (<a href="experiment.html#exp-b">Experiment B</a>).</li>
-                    </ul>
                     <p class="text-secondary mb-4">
-                        Extending Bundled HCR itself to 12 helices is part of our future design (<a
-                            href="discussion.html#improvements">Discussion 3.1</a>).
+                        In our proposed system, these Double-Hairpin DNAs are modified with cholesterols. Therefore, the
+                        resulting DNA Bundle anchors directly to the lipid membrane.
                     </p>
-
-                    <h4 class="h5 fw-bold mb-3 section-subtitle">Sequence design</h4>
-                    <p class="text-secondary mb-0">
-                        The seed and hairpin sequences were designed with NUPACK under strict constraints: no
-                        palindromes of 4&nbsp;nt or longer and no homopolymers, all four bases within any 7-nt window,
-                        and multi-tube design to suppress homodimerization and crosstalk
-                        (<a href="simulation.html#hcr-self-assembly">Simulation 2.1</a>). Each designed hybridization
-                        step was predicted to be thermodynamically favourable
-                        (<a href="simulation.html#hcr-possibility">Simulation 2.2</a>).
-                    </p>
+                    <a class="btn btn-sm learn-more-btn" href="design.html">Design details: seed, Double-Hairpin DNAs and 12-helix bundles &rarr;</a>
                     </div>
                 </section>
 
@@ -546,8 +499,6 @@
                         <p id="ref-2">[2] Shao, H. et al. New Technologies for Analysis of Extracellular Vesicles. <i>Chem. Rev.</i> <b>118</b>, 1917–1950 (2018). <a class="ref-doi" href="https://doi.org/10.1021/acs.chemrev.7b00534">DOI</a></p>
                         <p id="ref-3">[3] Bennett, I. D., Burns, J. R., Ryadnov, M. G., Howorka, S. &amp; Pyne, A. L. B. Lipidated DNA Nanostructures Target and Rupture Bacterial Membranes. <i>Small</i> <b>20</b>, 2207585 (2024). <a class="ref-doi" href="https://doi.org/10.1002/smll.202207585">DOI</a></p>
                         <p id="ref-4">[4] Dirks, R. M. &amp; Pierce, N. A. Triggered amplification by hybridization chain reaction. <i>Proc. Natl Acad. Sci. USA</i> <b>101</b>, 15275–15278 (2004). <a class="ref-doi" href="https://doi.org/10.1073/pnas.0407024101">DOI</a></p>
-                        <p id="ref-5">[5] Maier, A. M. et al. Self-Assembled DNA Tubes Forming Helices of Controlled Diameter and Chirality. <i>ACS Nano</i> <b>11</b>, 1301–1306 (2017). <a class="ref-doi" href="https://doi.org/10.1021/acsnano.6b05602">DOI</a></p>
-                        <p id="ref-6">[6] Yin, P. et al. Programming DNA Tube Circumferences. <i>Science</i> <b>321</b>, 824–826 (2008). <a class="ref-doi" href="https://doi.org/10.1126/science.1157312">DOI</a></p>
                     </div>
                 </section>
             </div>

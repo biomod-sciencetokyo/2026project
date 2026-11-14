@@ -5586,3 +5586,21 @@ main .goal-callout-text {
         font-size: 1.2rem;
     }
 }
+
+/* Header menu between 992px and 1279px: nine items plus the logo do not fit at the full size,
+   so tighten the spacing and type a little instead of letting the last items run off the edge */
+@media (min-width: 992px) and (max-width: 1279.98px) {
+    nav.navbar .navbar-nav .nav-link {
+        padding-left: 0.45rem;
+        padding-right: 0.45rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1099.98px) {
+    nav.navbar .navbar-nav .nav-link {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        font-size: 0.8rem;
+    }
+}

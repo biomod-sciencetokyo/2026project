@@ -32,14 +32,12 @@
                     <a class="nav-link fw-bold" href="#overview">Overview</a>
                     <a class="nav-link fw-bold mt-2" href="#exp-a">2. Experiment A</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#exp-a-materials">Materials</a>
                         <a class="nav-link" href="#exp-2-1">2.1 Seed Formation (PAGE)</a>
                         <a class="nav-link" href="#exp-2-2">2.2 Bundled HCR (Agarose Gel)</a>
                         <a class="nav-link" href="#exp-2-3">2.3 AFM Observation</a>
                     </div>
                     <a class="nav-link fw-bold mt-2" href="#exp-b">3. Experiment B</a>
                     <div class="nav flex-column sidebar-toc-subnav">
-                        <a class="nav-link" href="#exp-b-materials">Materials</a>
                         <a class="nav-link" href="#exp-3-1">3.1 Bundle Formation (PAGE)</a>
                         <a class="nav-link" href="#exp-3-2">3.2 AFM Observation</a>
                         <a class="nav-link" href="#exp-3-3">3.3 Membrane Anchoring</a>
@@ -115,154 +113,10 @@
                 <section id="exp-a" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">2. Experiment A: Synthesis and Elongation of a 6-Helix DNA Bundle via Bundled HCR</h2>
 
-                    <!-- Materials -->
-                    <div id="exp-a-materials" class="exp-subsection subsection">
-                        <h3 class="h4 fw-bold mb-4">Materials</h3>
-                        <p class="text-secondary mb-3">
-                            As the materials for Bundled HCR, we prepared a seed and six double-hairpin DNA strands
-                            (H1–H6).
-                        </p>
-                        <p class="text-secondary mb-4">
-                            The seed consists of the single-stranded DNAs S1–S6 shown in Table 1 and assembles into
-                            the structure shown in Figure 3 by annealing. In Table 1, a domain labeled “a1*”
-                            hybridizes complementarily to domain “a1”.
-                        </p>
-                        <div class="row g-4 align-items-start seed-structure-layout">
-                            <div class="col-12">
-                                <div id="table-seed-strands" class="table-responsive mb-2">
-                                    <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
-                                        <caption class="caption-top text-secondary"><strong>Table 1.</strong> Sequences of S1–S6.</caption>
-                                        <thead>
-                                            <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><th scope="row">S1</th><td>42 nt</td><td class="exp-seq-domains">a1 – b1 – a2 – b2</td></tr>
-                                            <tr><th scope="row">S2</th><td>84 nt</td><td class="exp-seq-domains">B – A – b2<sup>*</sup> – a2<sup>*</sup> – b3<sup>*</sup> – a3<sup>*</sup> – C – D</td></tr>
-                                            <tr><th scope="row">S3</th><td>42 nt</td><td class="exp-seq-domains">a3 – b3 – a4 – b4</td></tr>
-                                            <tr><th scope="row">S4</th><td>84 nt</td><td class="exp-seq-domains">F – E – b4<sup>*</sup> – a4<sup>*</sup> – b5<sup>*</sup> – a5<sup>*</sup> – G – H</td></tr>
-                                            <tr><th scope="row">S5</th><td>42 nt</td><td class="exp-seq-domains">a5 – b5 – a6 – b6</td></tr>
-                                            <tr><th scope="row">S6</th><td>84 nt</td><td class="exp-seq-domains">J – I – b6<sup>*</sup> – a6<sup>*</sup> – b1<sup>*</sup> – a1<sup>*</sup> – K – L</td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p class="text-secondary small mb-0 exp-seq-link">Full sequences: <a href="appendix.html#wet-seq-seed">Appendix</a></p>
-                            </div>
-                            <div class="col-12">
-                                <figure class="mb-0 exp-figure">
-                                    <img src="img/EXPERIMENT/seed_structure.jpg"
-                                        alt="Assembly of strands S1–S6 into the seed structure"
-                                        class="img-fluid w-100 border" loading="lazy" decoding="async">
-                                    <figcaption class="text-secondary"><strong>Figure 3.</strong> Structure of the seed.</figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                        <p class="text-secondary mb-4">
-                            The sequences of the six double-hairpin DNAs (H1–H6) are shown in Table 2, and the
-                            structures they adopt in solution at 25 °C are shown in Figure 4.
-                        </p>
-                        <div class="row g-4 align-items-start seed-structure-layout hairpin-structure-layout">
-                            <div class="col-12">
-                                <div id="table-hairpins" class="table-responsive mb-2">
-                                    <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
-                                        <caption class="caption-top text-secondary"><strong>Table 2.</strong> Sequences of H1–H6.</caption>
-                                        <thead>
-                                            <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><th scope="row">H1</th><td>84 nt</td><td class="exp-seq-domains">L – R – L – K – A<sup>*</sup> – B<sup>*</sup> – M – B</td></tr>
-                                            <tr><th scope="row">H2</th><td>84 nt</td><td class="exp-seq-domains">D – N – D – C – E<sup>*</sup> – F<sup>*</sup> – O – F</td></tr>
-                                            <tr><th scope="row">H3</th><td>84 nt</td><td class="exp-seq-domains">H – P – H – G – I<sup>*</sup> – J<sup>*</sup> – Q – J</td></tr>
-                                            <tr><th scope="row">H4</th><td>84 nt</td><td class="exp-seq-domains">B – A – B – M – N<sup>*</sup> – D<sup>*</sup> – C – D</td></tr>
-                                            <tr><th scope="row">H5</th><td>84 nt</td><td class="exp-seq-domains">F – E – F – O – P<sup>*</sup> – H<sup>*</sup> – G – H</td></tr>
-                                            <tr><th scope="row">H6</th><td>84 nt</td><td class="exp-seq-domains">J – I – J – Q – R<sup>*</sup> – L<sup>*</sup> – K – L</td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p class="text-secondary small mb-0 exp-seq-link">Full sequences: <a href="appendix.html#wet-seq-hairpin">Appendix</a></p>
-                            </div>
-                            <div class="col-12">
-                                <!-- 下書きでは「図4－図10」と記載。画像は6枚のため、H1〜H6の順と仮定して1つの図にまとめた -->
-                                <figure class="mb-0">
-                                    <div class="row g-3">
-                                        <div class="col-12 col-lg-6">
-                                            <div class="exp-panel-group">
-                                                <div class="row g-2">
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H1_old.png" alt="Predicted secondary structure of H1 at 25 °C, colored by equilibrium probability"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(a) H1</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H2_old.png" alt="Predicted secondary structure of H2 at 25 °C, colored by equilibrium probability"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(b) H2</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H3_old.png" alt="Predicted secondary structure of H3 at 25 °C, colored by equilibrium probability"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(c) H3</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H4_old.png" alt="Predicted secondary structure of H4 at 25 °C, colored by equilibrium probability"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(d) H4</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H5_old.png" alt="Predicted secondary structure of H5 at 25 °C, colored by equilibrium probability"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(e) H5</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H6_old.png" alt="Predicted secondary structure of H6 at 25 °C, colored by equilibrium probability"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(f) H6</p>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <div class="exp-panel-group">
-                                                <div class="row g-2">
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H1.png?v=2" alt="Predicted secondary structure of H1 at 25 °C, colored by base identity"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(g) H1</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H2.png?v=2" alt="Predicted secondary structure of H2 at 25 °C, colored by base identity"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(h) H2</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H3.png?v=2" alt="Predicted secondary structure of H3 at 25 °C, colored by base identity"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(i) H3</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H4.png?v=2" alt="Predicted secondary structure of H4 at 25 °C, colored by base identity"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(j) H4</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H5.png?v=2" alt="Predicted secondary structure of H5 at 25 °C, colored by base identity"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(k) H5</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <img src="img/EXPERIMENT/hairpin_H6.png?v=2" alt="Predicted secondary structure of H6 at 25 °C, colored by base identity"
-                                                        class="img-fluid w-100 exp-fit exp-fit-light exp-fit-hairpin" loading="lazy" decoding="async">
-                                                    <p class="exp-panel-label text-secondary small mb-0">(l) H6</p>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <figcaption class="text-secondary mt-3"><strong>Figure 4.</strong> Structures of H1–H6 in
-                                        solution at 25 °C. (a)–(f) colored by equilibrium probability; (g)–(l) colored by base identity.</figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="text-secondary mb-0">
+                        The materials used here and their design are described on the
+                        <a href="design.html#seed-hairpins">Design page (Design 1.1)</a>.
+                    </p>
 
                     <!-- 2.1 -->
                     <div id="exp-2-1" class="exp-subsection subsection">
@@ -284,7 +138,7 @@
                                     <figure class="mb-0 exp-figure exp-scheme">
                                         <img src="img/EXPERIMENT/scheme_seed_page.svg?v=8" alt="Schematic of Experiment 2.1: S1–S6 are annealed into the seed and compared with the single strands by PAGE"
                                             class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 5.</strong> Scheme of seed formation and PAGE.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 3.</strong> Scheme of seed formation and PAGE.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-lg-auto exp-flow-arrow" aria-hidden="true"><svg viewBox="0 0 48 24" width="48" height="24"><path d="M2 12h37" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M33 4l11 8-11 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -293,7 +147,7 @@
                                         <img src="img/EXPERIMENT/page_seed.jpg?v=3"
                                             alt="PAGE gel of S1–S6 and the annealed seed with DNA ladders"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 6.</strong> PAGE of S1–S6 and
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 4.</strong> PAGE of S1–S6 and
                                             the seed.</figcaption>
                                     </figure>
                                 </div>
@@ -348,7 +202,7 @@
                                     <figure class="mb-0 exp-figure exp-scheme">
                                         <img src="img/EXPERIMENT/scheme_hcr_gel.svg?v=8" alt="Schematic of Experiment 2.2: the seed is mixed with H1–H6, the bundle elongates, and the products are analyzed by agarose gel electrophoresis"
                                             class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 7.</strong> Scheme of Bundled HCR and agarose gel electrophoresis.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 5.</strong> Scheme of Bundled HCR and agarose gel electrophoresis.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-lg-auto exp-flow-arrow" aria-hidden="true"><svg viewBox="0 0 48 24" width="48" height="24"><path d="M2 12h37" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M33 4l11 8-11 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -357,7 +211,7 @@
                                         <img src="img/EXPERIMENT/hcr_agarose_gel.jpg?v=2"
                                             alt="Agarose gel of the seed mixed with H1–H6 at ratios from 1:200 to 1:5, with seed-only and H1–H6-only lanes"
                                             class="exp-crop-gel img-fluid w-100 border exp-fit exp-fit-dark" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 8.</strong> Agarose gel electrophoresis of Bundled HCR samples (seed:H1–H6 = 1:200 to 1:5). The image is cropped to show only the relevant lanes.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 6.</strong> Agarose gel electrophoresis of Bundled HCR samples (seed:H1–H6 = 1:200 to 1:5). The image is cropped to show only the relevant lanes.</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -394,7 +248,7 @@
                             <figure class="mb-0 exp-figure exp-scheme">
                                 <img src="img/EXPERIMENT/scheme_hcr_afm.svg?v=8" alt="Schematic of Experiment 2.3: Bundled HCR products are deposited on mica and imaged by AFM"
                                     class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                                <figcaption class="text-secondary mt-3"><strong>Figure 9.</strong> Scheme of AFM observation of Bundled HCR products.</figcaption>
+                                <figcaption class="text-secondary mt-3"><strong>Figure 7.</strong> Scheme of AFM observation of Bundled HCR products.</figcaption>
                             </figure>
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
@@ -402,7 +256,7 @@
                                         <img src="img/EXPERIMENT/afm_hcr_1to20.jpg?v=2"
                                             alt="AFM height image of Bundled HCR products at seed:hairpin = 1:20 showing elongated structures"
                                             class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 10.</strong> AFM image of Bundled HCR products (seed:hairpin = 1:20).</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 8.</strong> AFM image of Bundled HCR products (seed:hairpin = 1:20).</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -410,7 +264,7 @@
                                         <img src="img/EXPERIMENT/afm_hcr_1to200.jpg?v=2"
                                             alt="AFM height image of Bundled HCR products at seed:hairpin = 1:200 showing an elongated structure"
                                             class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 11.</strong> AFM image of Bundled HCR products (seed:hairpin = 1:200).</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 9.</strong> AFM image of Bundled HCR products (seed:hairpin = 1:200).</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -430,86 +284,10 @@
                 <section id="exp-b" class="fade-in-section mb-5 pt-4">
                     <h2 class="section-title">3. Experiment B: Anchoring of 12-Helix and 13-Helix DNA Bundles to Lipid Membranes</h2>
 
-                    <!-- Materials -->
-                    <div id="exp-b-materials" class="exp-subsection subsection">
-                        <h3 class="h4 fw-bold mb-4">Materials</h3>
-                        <!-- [1]: 13-helix bundle の配列（SI）, [2]: 3×n の配列（SI） -->
-                        <p class="text-secondary mb-3">
-                            Following the designs reported in previous studies [<a href="#ref-1">1</a>, <a href="#ref-2">2</a>], the 12-helix and 13-helix bundles were
-                            synthesized by annealing the single-stranded DNAs V1–V12, T12, and T13 shown in
-                            Table 3.
-                        </p>
-                        <p class="text-secondary mb-3">
-                            In the 12-helix bundle, V1–V11 and T12 hybridize as shown in Figure 12; in the 13-helix
-                            bundle, V1–V12 and T13 hybridize as shown in Figure 13. Each assembles into a bundle
-                            hundreds to thousands of nanometers long.
-                        </p>
-                        <p class="text-secondary mb-3">
-                            Because cholesterol was attached to the 3′ end of the 42-nt strand V1, the resulting
-                            12- and 13-helix bundles carry a cholesterol modification every 21 nucleotides.
-                        </p>
-                        <p class="text-secondary mb-4">
-                            For the cholesterol-free 12- and 13-helix bundles prepared as controls, unmodified V1 was
-                            used instead.
-                        </p>
-                        <div class="row g-4 align-items-start seed-structure-layout bundle-assembly-layout">
-                            <div class="col-12">
-                                <div id="table-bundle-strands" class="table-responsive mb-2">
-                                    <table class="table table-dark table-bordered table-sm align-middle exp-seq-table">
-                                        <caption class="caption-top text-secondary"><strong>Table 3.</strong> Sequences of V1–V12, T12, and T13, adapted from [<a href="#ref-1">1</a>].</caption>
-                                        <thead>
-                                            <tr><th scope="col">Strand</th><th scope="col">Length</th><th scope="col">Domains</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><th scope="row">V1<br><span class="exp-seq-note">(cholesterol-modified)</span></th><td>42 nt</td><td class="exp-seq-domains">a1<sup>*</sup> – b1<sup>*</sup> – a2 – b2</td></tr>
-                                            <tr><th scope="row">V2</th><td>42 nt</td><td class="exp-seq-domains">a2<sup>*</sup> – b2<sup>*</sup> – a3 – b3</td></tr>
-                                            <tr><th scope="row">V3</th><td>42 nt</td><td class="exp-seq-domains">a3<sup>*</sup> – b3<sup>*</sup> – a4 – b4</td></tr>
-                                            <tr><th scope="row">V4</th><td>42 nt</td><td class="exp-seq-domains">a4<sup>*</sup> – b4<sup>*</sup> – a5 – b5</td></tr>
-                                            <tr><th scope="row">V5</th><td>42 nt</td><td class="exp-seq-domains">a5<sup>*</sup> – b5<sup>*</sup> – a6 – b6</td></tr>
-                                            <tr><th scope="row">V6</th><td>42 nt</td><td class="exp-seq-domains">a6<sup>*</sup> – b6<sup>*</sup> – a7 – b7</td></tr>
-                                            <tr><th scope="row">V7</th><td>42 nt</td><td class="exp-seq-domains">a7<sup>*</sup> – b7<sup>*</sup> – a8 – b8</td></tr>
-                                            <tr><th scope="row">V8</th><td>42 nt</td><td class="exp-seq-domains">a8<sup>*</sup> – b8<sup>*</sup> – a9 – b9</td></tr>
-                                            <tr><th scope="row">V9</th><td>42 nt</td><td class="exp-seq-domains">a9<sup>*</sup> – b9<sup>*</sup> – a10 – b10</td></tr>
-                                            <tr><th scope="row">V10</th><td>42 nt</td><td class="exp-seq-domains">a10<sup>*</sup> – b10<sup>*</sup> – a11 – b11</td></tr>
-                                            <tr><th scope="row">V11</th><td>42 nt</td><td class="exp-seq-domains">a11<sup>*</sup> – b11<sup>*</sup> – a12 – b12</td></tr>
-                                            <tr><th scope="row">V12</th><td>42 nt</td><td class="exp-seq-domains">a12<sup>*</sup> – b12<sup>*</sup> – a13 – b13</td></tr>
-                                            <tr><th scope="row">T12</th><td>42 nt</td><td class="exp-seq-domains">a12<sup>*</sup> – b12<sup>*</sup> – a1 – b1</td></tr>
-                                            <tr><th scope="row">T13</th><td>42 nt</td><td class="exp-seq-domains">a13<sup>*</sup> – b13<sup>*</sup> – a1 – b1</td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p class="text-secondary small mb-0 exp-seq-link">Full sequences: <a href="appendix.html#wet-seq-bundle">Appendix</a></p>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <figure class="mb-0 exp-figure">
-                                            <img src="img/EXPERIMENT/bundle_12helix_assembly.png"
-                                                alt="Assembly of the 12-helix bundle from V1–V11 and T12"
-                                                class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
-                                            <figcaption class="text-secondary mt-3"><strong>Figure 12.</strong> Assembly of
-                                                the 12-helix bundle (adapted from [<a href="#ref-1">1</a>]).</figcaption>
-                                        </figure>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <figure class="mb-0 exp-figure">
-                                            <img src="img/EXPERIMENT/bundle_13helix_assembly.png"
-                                                alt="Assembly of the 13-helix bundle from V1–V12 and T13"
-                                                class="img-fluid w-100 border exp-fit exp-fit-light exp-fit-4x3" loading="lazy" decoding="async">
-                                            <figcaption class="text-secondary mt-3"><strong>Figure 13.</strong> Assembly of
-                                                the 13-helix bundle (adapted from [<a href="#ref-1">1</a>]).</figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-secondary mb-0">
-                            As Figure 13 shows, in the 13-helix bundle V1 and T13 hybridize while twisting, so the
-                            bundle becomes twisted and cholesterol protrudes in all directions around it. In the
-                            12-helix bundle, by contrast, V1 and T12 hybridize without twisting, so cholesterol
-                            protrudes in only one direction.
-                        </p>
-                    </div>
+                    <p class="text-secondary mb-0">
+                        The materials used here and their design are described on the
+                        <a href="design.html#rigid-bundles">Design page (Design 2)</a>.
+                    </p>
 
                     <!-- 3.1 -->
                     <div id="exp-3-1" class="exp-subsection subsection">
@@ -533,7 +311,7 @@
                             <figure class="mb-0 exp-figure exp-scheme">
                                 <img src="img/EXPERIMENT/scheme_bundle_page.svg?v=8" alt="Schematic of Experiment 3.1: V1–V12 and cholesterol-modified T12/T13 are annealed into 12- and 13-helix bundles and compared with the single strands by PAGE"
                                     class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                                <figcaption class="text-secondary mt-3"><strong>Figure 14.</strong> Scheme of 12-/13-helix bundle formation and PAGE.</figcaption>
+                                <figcaption class="text-secondary mt-3"><strong>Figure 10.</strong> Scheme of 12-/13-helix bundle formation and PAGE.</figcaption>
                             </figure>
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
@@ -541,7 +319,7 @@
                                         <img src="img/EXPERIMENT/page_V1-V8.jpg?v=3"
                                             alt="PAGE gel of single strands V1–V8 with DNA ladders"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 15.</strong> PAGE of
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 11.</strong> PAGE of
                                             V1–V8.</figcaption>
                                     </figure>
                                 </div>
@@ -550,7 +328,7 @@
                                         <img src="img/EXPERIMENT/page_V9-T13_bundles.jpg?v=3"
                                             alt="PAGE gel of V9–V12, T12, T13 and the 12- and 13-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-4x3" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 16.</strong> PAGE of
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 12.</strong> PAGE of
                                             V9–T13 and the 12- and 13-helix bundles.</figcaption>
                                     </figure>
                                 </div>
@@ -591,7 +369,7 @@
                             <figure class="mb-0 exp-figure exp-scheme">
                                 <img src="img/EXPERIMENT/scheme_bundle_afm.svg?v=8" alt="Schematic of Experiment 3.2: 12- and 13-helix bundles with and without cholesterol are deposited on mica and imaged by AFM"
                                     class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                                <figcaption class="text-secondary mt-3"><strong>Figure 17.</strong> Scheme of AFM observation of 12-/13-helix bundles.</figcaption>
+                                <figcaption class="text-secondary mt-3"><strong>Figure 13.</strong> Scheme of AFM observation of 12-/13-helix bundles.</figcaption>
                             </figure>
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
@@ -599,7 +377,7 @@
                                         <img src="img/EXPERIMENT/afm_12hb_chol.jpg?v=2"
                                             alt="AFM height image of cholesterol-modified 12-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 18.</strong> AFM image of 12-helix bundles (+ Cholesterol).</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 14.</strong> AFM image of 12-helix bundles (+ Cholesterol).</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -607,7 +385,7 @@
                                         <img src="img/EXPERIMENT/afm_12hb_nochol.jpg?v=2"
                                             alt="AFM height image of unmodified 12-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 19.</strong> AFM image of 12-helix bundles (− Cholesterol).</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 15.</strong> AFM image of 12-helix bundles (− Cholesterol).</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -615,7 +393,7 @@
                                         <img src="img/EXPERIMENT/afm_13hb_chol.jpg?v=2"
                                             alt="AFM height image of cholesterol-modified 13-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 20.</strong> AFM image of 13-helix bundles (+ Cholesterol).</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 16.</strong> AFM image of 13-helix bundles (+ Cholesterol).</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -623,7 +401,7 @@
                                         <img src="img/EXPERIMENT/afm_13hb_nochol.jpg?v=2"
                                             alt="AFM height image of unmodified 13-helix bundles"
                                             class="img-fluid w-100 border exp-fit exp-fit-light" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 21.</strong> AFM image of 13-helix bundles (− Cholesterol).</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 17.</strong> AFM image of 13-helix bundles (− Cholesterol).</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -670,7 +448,7 @@
                             <figure class="mb-0 exp-figure exp-scheme">
                                 <img src="img/EXPERIMENT/scheme_guv.svg?v=8" alt="Schematic of Experiment 3.3: cholesterol-modified or unmodified bundles stained with SYBR Green I are mixed with Nile Red-stained GUVs and observed by fluorescence microscopy"
                                     class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                                <figcaption class="text-secondary mt-3"><strong>Figure 22.</strong> Scheme of GUV anchoring and fluorescence observation.</figcaption>
+                                <figcaption class="text-secondary mt-3"><strong>Figure 18.</strong> Scheme of GUV anchoring and fluorescence observation.</figcaption>
                             </figure>
                         </div>
 
@@ -687,7 +465,7 @@
                                         <img src="img/EXPERIMENT/guv_12helix_chol.jpg?v=2"
                                             alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with GUVs (red)"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 23.</strong>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 19.</strong>
                                             12-helix bundles (+ Cholesterol) and GUVs.</figcaption>
                                     </figure>
                                 </div>
@@ -696,7 +474,7 @@
                                         <img src="img/EXPERIMENT/guv_12helix_nochol.jpg?v=2"
                                             alt="Fluorescence image of unmodified 12-helix bundles (green) with GUVs (red)"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 24.</strong>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 20.</strong>
                                             12-helix bundles (− Cholesterol) and GUVs.</figcaption>
                                     </figure>
                                 </div>
@@ -724,7 +502,7 @@
                                         <img src="img/EXPERIMENT/guv_result2_a.jpg?v=2"
                                             alt="Fluorescence image of cholesterol-modified 12-helix bundles (green) with GUVs (red) in 200 mM NaCl"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 25.</strong> 12-helix bundles (+ Cholesterol) and GUVs with 200 mM NaCl.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 21.</strong> 12-helix bundles (+ Cholesterol) and GUVs with 200 mM NaCl.</figcaption>
                                     </figure>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -732,7 +510,7 @@
                                         <img src="img/EXPERIMENT/guv_result2_b.jpg?v=2"
                                             alt="Fluorescence image of unmodified 12-helix bundles (green) with GUVs (red) in 200 mM NaCl"
                                             class="img-fluid w-100 border exp-fit exp-fit-dark exp-fit-1x1" loading="lazy" decoding="async">
-                                        <figcaption class="text-secondary mt-3"><strong>Figure 26.</strong> 12-helix bundles (− Cholesterol) and GUVs with 200 mM NaCl.</figcaption>
+                                        <figcaption class="text-secondary mt-3"><strong>Figure 22.</strong> 12-helix bundles (− Cholesterol) and GUVs with 200 mM NaCl.</figcaption>
                                     </figure>
                                 </div>
                             </div>
@@ -768,7 +546,7 @@
                         <figure class="mb-0 mt-4 exp-figure exp-scheme">
                             <img src="img/EXPERIMENT/scheme_calcein.svg?v=2" alt="Planned calcein leakage assay: calcein-loaded GUVs (self-quenched) and cholesterol-modified 12-helix bundles are mixed in qPCR tubes, and fluorescence is recorded over time from the moment of mixing; if the membrane is disrupted, leaked calcein is diluted and becomes fluorescent. GUVs without bundles and GUVs treated with Triton X-100 serve as controls"
                                 class="img-fluid d-block mx-auto border" loading="lazy" decoding="async">
-                            <figcaption class="text-secondary mt-3"><strong>Figure 27.</strong> Scheme of the planned calcein leakage assay.</figcaption>
+                            <figcaption class="text-secondary mt-3"><strong>Figure 23.</strong> Scheme of the planned calcein leakage assay.</figcaption>
                         </figure>
                     </div>
 
